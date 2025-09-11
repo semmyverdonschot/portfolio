@@ -10,38 +10,41 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./ # adjust if your project is in a subfolder
+        working-directory: ./
 
     steps:
-      # 1️⃣ Checkout repository
       - name: 🚚 Checkout code
         uses: actions/checkout@v3
 
-      # 2️⃣ Setup Node.js
       - name: 📦 Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: "20"
 
-      # 3️⃣ Install dependencies
+      - name: 💾 Cache dependencies & Next.js build
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.npm
+            .next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-
+
       - name: 📥 Install dependencies
         run: npm ci
 
-      # 4️⃣ Build Next.js project
       - name: 🔨 Build Next.js project
         run: npm run build
 
-      # 5️⃣ Export static site (creates ./out folder)
       - name: 📤 Export static site
         run: npm run export
 
-      # 6️⃣ Debug: list contents of ./out to ensure it exists
       - name: 🐛 List out folder
         run: |
           echo "Contents of ./out:"
           ls -R ./out
 
-      # 7️⃣ Deploy entire out folder via SFTP
       - name: 📂 Deploy all files to Strato
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
@@ -49,6 +52,6 @@ jobs:
           port: 22
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
-          local_path: ./out/* # deploy everything in out, including _next and top-level files
+          local_path: ./out/*
           remote_path: /htdocs
           sftp_only: true
