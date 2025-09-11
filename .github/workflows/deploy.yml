@@ -29,7 +29,7 @@ jobs:
 
       # 4️⃣ Build & export static site
       - name: 🔨 Build & export Next.js project
-        run: npm run export
+        run: npm run build && npm run export
 
       # 6️⃣ Deploy static files via SFTP
       - name: 📂 Deploy via SFTP
