@@ -13,7 +13,7 @@ export default function Home() {
       color: "#fff"
     }}>
       <h1>Next.js Test Page</h1>
-      <p>Testing pushing</p>
+      <p>Testing pushing++</p>
     </main>
   );
 }
