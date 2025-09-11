@@ -1,7 +1,8 @@
-import type { NextConfig } from "next";
+// next.config.ts
+import { defineNextConfig } from 'next/config'
 
-const nextConfig: NextConfig = {
-  /* config options here */
-};
+const nextConfig = defineNextConfig({
+  output: 'export',  // <-- this generates the `out/` folder on build
+})
 
-export default nextConfig;
+export default nextConfig
