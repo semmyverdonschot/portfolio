@@ -32,7 +32,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      # 4️⃣ Install dependencies (clean install)
+      # 4️⃣ Install dependencies
       - name: 📥 Install dependencies
         run: npm ci
 
@@ -40,42 +40,19 @@ jobs:
       - name: 🔨 Build Next.js project
         run: npm run build
 
-      # 6️⃣ Deploy _next folder in batches to avoid SFTP timeouts
-      - name: 📂 Deploy _next/static/chunks (batch 1)
+      # 6️⃣ Deploy all _next files
+      - name: 📂 Deploy _next folder
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
           server: ${{ secrets.SFTP_SERVER }}
           port: 22
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
-          local_path: ./out/_next/static/chunks/0*  # first batch
-          remote_path: /htdocs/_next/static/chunks
-          sftp_only: true
-
-      - name: 📂 Deploy _next/static/chunks (batch 2)
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
-        with:
-          server: ${{ secrets.SFTP_SERVER }}
-          port: 22
-          username: ${{ secrets.SFTP_USERNAME }}
-          password: ${{ secrets.SFTP_PASSWORD }}
-          local_path: ./out/_next/static/chunks/1*  # second batch
-          remote_path: /htdocs/_next/static/chunks
-          sftp_only: true
-
-      # 7️⃣ Deploy remaining _next files (runtime, media)
-      - name: 📂 Deploy remaining _next files
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
-        with:
-          server: ${{ secrets.SFTP_SERVER }}
-          port: 22
-          username: ${{ secrets.SFTP_USERNAME }}
-          password: ${{ secrets.SFTP_PASSWORD }}
-          local_path: ./out/_next/*  # other files like runtime, media
+          local_path: ./out/_next/* # all _next files in one go
           remote_path: /htdocs/_next
           sftp_only: true
 
-      # 8️⃣ Deploy top-level static files (index.html, assets)
+      # 7️⃣ Deploy top-level static files
       - name: 📂 Deploy top-level static files
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
@@ -83,6 +60,6 @@ jobs:
           port: 22
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
-          local_path: ./out/*   # top-level files
+          local_path: ./out/* # top-level files
           remote_path: /htdocs
           sftp_only: true
