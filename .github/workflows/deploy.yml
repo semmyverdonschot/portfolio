@@ -52,6 +52,5 @@ jobs:
           local_path: ./out/*       # static export output folder
           remote_path: /htdocs
           sftp_only: true
-          delete_remote_files: true  # replace overwrite
 
 
