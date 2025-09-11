@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./
+        working-directory: ./ # adjust if your project is in a subfolder
 
     steps:
       # 1️⃣ Checkout repository
@@ -31,53 +31,24 @@ jobs:
       - name: 🔨 Build Next.js project
         run: npm run build
 
-      # 5️⃣ Export static site (ensure ./out folder exists)
+      # 5️⃣ Export static site (creates ./out folder)
       - name: 📤 Export static site
         run: npm run export
 
-      # 6️⃣ Deploy _next static chunks in batches to prevent timeouts
-      - name: 📂 Deploy _next/static/chunks (batch 1)
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
-        with:
-          server: ${{ secrets.SFTP_SERVER }}
-          port: 22
-          username: ${{ secrets.SFTP_USERNAME }}
-          password: ${{ secrets.SFTP_PASSWORD }}
-          local_path: ./out/_next/static/chunks/0*
-          remote_path: /htdocs/_next/static/chunks
-          sftp_only: true
+      # 6️⃣ Debug: list contents of ./out to ensure it exists
+      - name: 🐛 List out folder
+        run: |
+          echo "Contents of ./out:"
+          ls -R ./out
 
-      - name: 📂 Deploy _next/static/chunks (batch 2)
+      # 7️⃣ Deploy entire out folder via SFTP
+      - name: 📂 Deploy all files to Strato
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
           server: ${{ secrets.SFTP_SERVER }}
           port: 22
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
-          local_path: ./out/_next/static/chunks/1*
-          remote_path: /htdocs/_next/static/chunks
-          sftp_only: true
-
-      # 7️⃣ Deploy remaining _next files
-      - name: 📂 Deploy remaining _next files
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
-        with:
-          server: ${{ secrets.SFTP_SERVER }}
-          port: 22
-          username: ${{ secrets.SFTP_USERNAME }}
-          password: ${{ secrets.SFTP_PASSWORD }}
-          local_path: ./out/_next/* 
-          remote_path: /htdocs/_next
-          sftp_only: true
-
-      # 8️⃣ Deploy top-level static files
-      - name: 📂 Deploy top-level static files
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
-        with:
-          server: ${{ secrets.SFTP_SERVER }}
-          port: 22
-          username: ${{ secrets.SFTP_USERNAME }}
-          password: ${{ secrets.SFTP_PASSWORD }}
-          local_path: ./out/*
+          local_path: ./out/* # deploy everything in out, including _next and top-level files
           remote_path: /htdocs
           sftp_only: true
