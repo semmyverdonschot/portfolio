@@ -42,7 +42,7 @@ jobs:
         run: npm run build
 
       # 6️⃣ Deploy static files via SFTP
-      - name: 📂 Deploy via SFTP
+      - name: 📂 Deploy static files via SFTP
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
           server: ${{ secrets.SFTP_SERVER }}
@@ -52,4 +52,6 @@ jobs:
           local_path: ./out/*       # static export output folder
           remote_path: /htdocs
           sftp_only: true
-          overwrite: true
+          delete_remote_files: true  # replace overwrite
+
+
