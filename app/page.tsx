@@ -12,7 +12,7 @@ export default function Home() {
       background: "#1e1e1e",
       color: "#fff"
     }}>
-      <h1>🚀 Next.js Test Page</h1>
+      <h1>Next.js Test Page</h1>
       <p>Edit this file and push to test deployment!</p>
     </main>
   );
