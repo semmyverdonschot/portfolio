@@ -1,8 +1,7 @@
-// next.config.ts
-import { defineNextConfig } from 'next/config'
+import { NextConfig } from 'next'
 
-const nextConfig = defineNextConfig({
-  output: 'export',  // <-- this generates the `out/` folder on build
-})
+const nextConfig: NextConfig = {
+  output: 'export', // enables static export
+}
 
 export default nextConfig
