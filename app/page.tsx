@@ -1,4 +1,4 @@
-"use client"; // Must be first line
+"use client";
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
@@ -6,68 +6,89 @@ import gsap from "gsap";
 export default function Page() {
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subRef = useRef<HTMLParagraphElement>(null);
-  const floatingRefs = useRef<HTMLDivElement[]>([]);
+  const cardsRef = useRef<HTMLDivElement[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  // Initialize floating elements
-  floatingRefs.current = [];
-
+  // Collect card refs
+  cardsRef.current = [];
   const addToRefs = (el: HTMLDivElement) => {
-    if (el && !floatingRefs.current.includes(el)) {
-      floatingRefs.current.push(el);
-    }
+    if (el && !cardsRef.current.includes(el)) cardsRef.current.push(el);
   };
 
   useEffect(() => {
     // Animate headline and subtext
-    gsap.from(headlineRef.current, { y: -50, opacity: 0, duration: 1, ease: "power3.out" });
-    gsap.from(subRef.current, { y: 50, opacity: 0, duration: 1, ease: "power3.out", delay: 0.3 });
+    gsap.from(headlineRef.current, { y: -30, opacity: 0, duration: 1, ease: "power3.out" });
+    gsap.from(subRef.current, { y: 30, opacity: 0, duration: 1, ease: "power3.out", delay: 0.3 });
 
-    // Floating elements hover effect
-    floatingRefs.current.forEach((el, i) => {
+    // Floating / subtle motion for cards
+    cardsRef.current.forEach((el, i) => {
       gsap.to(el, {
-        y: `+=${Math.random() * 20 + 10}px`,
-        x: `+=${Math.random() * 20 - 10}px`,
+        y: `+=${Math.random() * 10 - 5}px`,
+        x: `+=${Math.random() * 10 - 5}px`,
         repeat: -1,
         yoyo: true,
-        duration: Math.random() * 4 + 2,
+        duration: Math.random() * 3 + 2,
         ease: "sine.inOut",
         delay: i * 0.2,
       });
     });
 
-    // Mouse movement interaction
+    // Mouse 3D rotation
     const handleMouse = (e: MouseEvent) => {
+      if (!containerRef.current) return;
       const { clientX, clientY } = e;
-      floatingRefs.current.forEach((el, i) => {
-        const speed = (i + 1) * 0.02;
-        const offsetX = (clientX - window.innerWidth / 2) * speed;
-        const offsetY = (clientY - window.innerHeight / 2) * speed;
-        gsap.to(el, { x: offsetX, y: offsetY, duration: 0.5, ease: "power1.out" });
+      const { left, top, width, height } = containerRef.current.getBoundingClientRect();
+      const x = clientX - left - width / 2;
+      const y = clientY - top - height / 2;
+
+      cardsRef.current.forEach((el, i) => {
+        const rotationX = (-y / height) * 12;
+        const rotationY = (x / width) * 12;
+        gsap.to(el, { rotationX, rotationY, transformPerspective: 800, transformOrigin: "center", duration: 0.3 });
       });
     };
+
     window.addEventListener("mousemove", handleMouse);
     return () => window.removeEventListener("mousemove", handleMouse);
   }, []);
 
   return (
-    <main className="relative flex items-center justify-center min-h-screen bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 overflow-hidden text-white">
-      {/* Floating background circles */}
-      {[...Array(8)].map((_, i) => (
+    <main
+      ref={containerRef}
+      className="relative flex flex-col items-center justify-center min-h-screen bg-gray-900 text-gray-50 overflow-hidden"
+    >
+      {/* Headline */}
+      <h1 ref={headlineRef} className="text-5xl md:text-7xl font-extrabold mb-4">
+        test pagina
+      </h1>
+      <p ref={subRef} className="text-lg md:text-xl mb-10 text-gray-300">
+        test pagina
+      </p>
+
+      {/* Glassmorphic interactive cards */}
+      <div className="relative flex flex-wrap justify-center gap-6 z-10">
+        {[...Array(6)].map((_, i) => (
+          <div
+            key={i}
+            ref={addToRefs}
+            className="w-36 h-36 bg-white bg-opacity-10 backdrop-blur-md rounded-xl shadow-lg flex items-center justify-center text-gray-100 text-xl font-medium cursor-pointer transform transition-transform duration-500 hover:scale-105 hover:shadow-2xl"
+          >
+            {`#${i + 1}`}
+          </div>
+        ))}
+      </div>
+
+      {/* Floating soft particles */}
+      {[...Array(12)].map((_, i) => (
         <div
           key={i}
-          ref={addToRefs}
-          className={`absolute rounded-full bg-white opacity-${i % 2 === 0 ? 10 : 20} w-${8 + i * 4} h-${8 + i * 4} top-${10 + i * 5} left-${i * 12}`}
+          className={`absolute rounded-full bg-white opacity-5 w-${4 + i * 2} h-${4 + i * 2}`}
+          style={{
+            top: `${Math.random() * 90}%`,
+            left: `${Math.random() * 90}%`,
+          }}
         ></div>
       ))}
-
-      <div className="z-10 text-center px-4">
-        <h1 ref={headlineRef} className="text-6xl md:text-8xl font-bold mb-4">
-          Coming Soon
-        </h1>
-        <p ref={subRef} className="text-xl md:text-2xl">
-          testing page
-        </p>
-      </div>
     </main>
   );
 }
