@@ -1,0 +1,55 @@
+name: 🚀 Deploy Next.js Portfolio to Strato
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./   # set to your project folder if not root
+
+    steps:
+      # 1️⃣ Checkout repository
+      - name: 🚚 Checkout code
+        uses: actions/checkout@v3
+
+      # 2️⃣ Setup Node.js
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      # 3️⃣ Debug: check package.json and scripts
+      - name: 🐛 Show package.json & npm scripts
+        run: |
+          echo "Repo files:"
+          ls -la
+          echo "package.json contents:"
+          cat package.json
+          echo "Available npm scripts:"
+          npm run
+
+      # 4️⃣ Install dependencies
+      - name: 📥 Install dependencies
+        run: npm install
+
+      # 5️⃣ Build Next.js project (static export enabled via next.config.js)
+      - name: 🔨 Build Next.js project
+        run: npm run build
+
+      # 6️⃣ Deploy static files via SFTP
+      - name: 📂 Deploy via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+          server: ${{ secrets.SFTP_SERVER }}
+          port: 22
+          username: ${{ secrets.SFTP_USERNAME }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          local_path: ./out/*       # static export output folder
+          remote_path: /htdocs
+          sftp_only: true
+          overwrite: true
