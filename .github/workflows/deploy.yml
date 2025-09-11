@@ -36,30 +36,20 @@ jobs:
       - name: 📥 Install dependencies
         run: npm ci
 
-      # 5️⃣ Build Next.js project
-      - name: 🔨 Build Next.js project
-        run: npm run build
+      # 5️⃣ Build & export Next.js static site
+      - name: 🔨 Build & export Next.js project
+        run: |
+          npm run build
+          npm run export  # ensures ./out folder is generated with _next inside
 
-      # 6️⃣ Deploy all _next files
-      - name: 📂 Deploy _next folder
+      # 6️⃣ Deploy all files via SFTP
+      - name: 📂 Deploy all files to Strato
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
           server: ${{ secrets.SFTP_SERVER }}
           port: 22
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
-          local_path: ./out/_next/* # all _next files in one go
-          remote_path: /htdocs/_next
-          sftp_only: true
-
-      # 7️⃣ Deploy top-level static files
-      - name: 📂 Deploy top-level static files
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
-        with:
-          server: ${{ secrets.SFTP_SERVER }}
-          port: 22
-          username: ${{ secrets.SFTP_USERNAME }}
-          password: ${{ secrets.SFTP_PASSWORD }}
-          local_path: ./out/* # top-level files
+          local_path: ./out/* # entire out folder, includes _next and top-level files
           remote_path: /htdocs
           sftp_only: true
