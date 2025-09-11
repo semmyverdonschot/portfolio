@@ -23,14 +23,16 @@ jobs:
         with:
           node-version: "20"
 
-      # 3️⃣ Cache node_modules for faster rebuilds
-      - name: 💾 Cache node_modules
-        uses: actions/cache@v3
+      # 3️⃣ Cache node_modules and Next.js build cache
+      - name: 💾 Cache dependencies & Next.js cache
+        uses: actions/cache@v4
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          path: |
+            ~/.npm
+            ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.js','**/*.jsx','**/*.ts','**/*.tsx') }}
           restore-keys: |
-            ${{ runner.os }}-node-
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
 
       # 4️⃣ Install dependencies
       - name: 📥 Install dependencies
@@ -40,7 +42,7 @@ jobs:
       - name: 🔨 Build & export Next.js project
         run: |
           npm run build
-          npm run export  # ensures ./out folder is generated with _next inside
+          npm run export  # generates ./out folder with static files
 
       # 6️⃣ Deploy all files via SFTP
       - name: 📂 Deploy all files to Strato
@@ -50,6 +52,6 @@ jobs:
           port: 22
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
-          local_path: ./out/* # entire out folder, includes _next and top-level files
+          local_path: ./out/* # includes _next folder and top-level files
           remote_path: /htdocs
           sftp_only: true
