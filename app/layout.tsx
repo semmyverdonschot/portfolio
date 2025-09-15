@@ -16,6 +16,11 @@ export const metadata: Metadata = {
   keywords: ["Web Developer", "Portfolio", "Next.js", "React", "JavaScript", "Animations", "Interactive"],
   authors: [{ name: "Semmy Verdonschot" }],
   robots: "index, follow",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f5f5f5" },
+    { media: "(prefers-color-scheme: dark)", color: "#171717" },
+  ],
+  };
   openGraph: {
     title: "Semmy Verdonschot | Web Developer ",
     description: "Semmy Verdonschot | Web Developer based in The Netherlands.",
