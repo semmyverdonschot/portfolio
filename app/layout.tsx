@@ -11,18 +11,25 @@ const albertSans = Albert_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Semmy Verdonschot | Web Developer ",
+  title: "Semmy Verdonschot | Web Developer",
   description: "Semmy Verdonschot | Web Developer based in The Netherlands.",
-  keywords: ["Web Developer", "Portfolio", "Next.js", "React", "JavaScript", "Animations", "Interactive"],
+  keywords: [
+    "Web Developer",
+    "Portfolio",
+    "Next.js",
+    "React",
+    "JavaScript",
+    "Animations",
+    "Interactive",
+  ],
   authors: [{ name: "Semmy Verdonschot" }],
   robots: "index, follow",
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#f5f5f5" },
     { media: "(prefers-color-scheme: dark)", color: "#171717" },
   ],
-  };
   openGraph: {
-    title: "Semmy Verdonschot | Web Developer ",
+    title: "Semmy Verdonschot | Web Developer",
     description: "Semmy Verdonschot | Web Developer based in The Netherlands.",
     url: "https://semmyverdonschot.com",
     siteName: "Semmy Verdonschot Portfolio",
@@ -36,8 +43,8 @@ export const metadata: Metadata = {
     ],
     locale: "en-US",
     type: "website",
-  }, 
-};
+  },
+}
 
 const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
