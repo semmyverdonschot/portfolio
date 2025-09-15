@@ -49,14 +49,15 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <html lang="en" className={`${albertSans.variable}`}>
+      <head>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+      </head>
       <body className="antialiased bg-white text-[var(--color-dark)] transition-colors duration-300">
         <AppProvider>
-          {/* Wrap the entire app so theme is accessible */}
           {children}
         </AppProvider>
       </body>
     </html>
   );
 };
-
 export default RootLayout;
