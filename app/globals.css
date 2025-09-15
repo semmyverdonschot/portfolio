@@ -1,25 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Alberta+Sans:wght@400;700&display=swap');
 @import "tailwindcss";
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-.animate-float {
-  animation: float 6s ease-in-out infinite;
+:root {
+  --color-primary: #f5f5f5;
+  --color-dark: #171717;
+  --color-secondary: #262626;
+  --color-grayish: #404040;
+  --color-light: #e5e5e5;
+
+
+  --font-albert-sans: 'Albert Sans', sans-serif;
+  font-family: var(--font-albert-sans);
 }
 
-.perspective {
-  perspective: 600px;
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-primary);
+  color: var(--color-dark);
+  font-family: var(--font-albert-sans);
 }
-.front {
-  backface-visibility: hidden;
-  position: absolute;
+
+* {
+  box-sizing: border-box;
 }
-.back {
-  backface-visibility: hidden;
-  transform: rotateY(180deg);
-  position: absolute;
-}
-.hover\:rotate-y-180:hover {
-  transform: rotateY(180deg);
+
+.transition-name {
+  transition: all 0.5s ease-in-out;
 }
