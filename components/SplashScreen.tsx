@@ -58,7 +58,7 @@ export default function SplashScreen({ onFinish }: { onFinish: () => void }) {
           ease: "power4.inOut",
           onComplete: onFinish,
         });
-      }, 800);
+      }, 500);
     }
   }, [count, loaded, onFinish]);
 
