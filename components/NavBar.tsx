@@ -17,16 +17,15 @@ export default function Navbar() {
     { name: "SEMMY VERDONSCHOT", isHome: true },
     { name: "PROJECTS" },
     { name: "ABOUT" },
-    { name: "GET" },
+    { name: "LINKED IN" },
   ];
 
-  // Animate menu open/close
 useEffect(() => {
   if (menuRef.current) {
     gsap.to(menuRef.current, {
       x: menuOpen ? 0 : "100%",
-      duration: 0.8, // total duration
-      ease: "power3.out", // fast at first, slows near the end
+      duration: 0.8, 
+      ease: "power3.out", 
     });
   }
 }, [menuOpen]);
@@ -53,27 +52,32 @@ useEffect(() => {
     <nav className="fixed top-0 left-0 w-full px-5 py-5 font-[var(--font-albert-sans)] z-50">
       {/* Desktop Navbar */}
       <div className="hidden md:flex w-full justify-between items-center text-[16px] text-[var(--color-dark)]">
-        {navItems.map((item, idx) => (
-          <button
-            key={idx}
-            onClick={() => handleNavClick(idx)}
-            className="flex items-center cursor-pointer group"
-          >
-            {/* Dot for active item (only show if active) */}
-            <div
-              className={`w-3 h-3 mr-2 rounded-full border-2 transition-all ${
-                activeIndex === idx
-                  ? "bg-[var(--color-dark)] border-[var(--color-dark)]"
-                  : "border-transparent"
-              }`}
-            />
-            <span className={`${item.isHome ? "uppercase" : ""}`}>
-              {item.name}
-            </span>
-          </button>
-        ))}
-      </div>
+      {navItems.map((item, idx) => (
+      <button
+        key={idx}
+        onClick={() => handleNavClick(idx)}
+        className="flex items-center cursor-pointer group relative"
+      >
+        {/* Dot for active item */}
+        <div
+          className={`w-3 h-3 mr-2 rounded-full border-2 transition-all ${
+            activeIndex === idx
+              ? "bg-[var(--color-dark)] border-[var(--color-dark)]"
+              : "border-transparent"
+          }`}
+        />
 
+        {/* Outline dot on hover (only if NOT active) */}
+        {activeIndex !== idx && (
+          <div className="absolute w-3 h-3 top-1/2 left-1 mr-2 transform -translate-y-1/2 rounded-full border-2 border-dotted border-[var(--color-dark)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+        )}
+
+        <span className={`${item.isHome ? "uppercase" : ""}`}>
+          {item.name}
+        </span>
+      </button>
+    ))}
+      </div>
       {/* Mobile Navbar */}
       <div className="md:hidden flex justify-between items-center relative z-50">
         {/* SV with Dot */}

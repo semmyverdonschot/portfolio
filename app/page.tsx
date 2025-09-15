@@ -1,7 +1,7 @@
 "use client";
-
 import SplashScreen from "@/components/SplashScreen";
 import Navbar from "@/components/NavBar";
+
 import { useState } from "react";
 
 export default function Page() {
