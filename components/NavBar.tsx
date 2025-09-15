@@ -20,64 +20,68 @@ export default function Navbar() {
     { name: "LINKED IN" },
   ];
 
-useEffect(() => {
-  if (menuRef.current) {
-    gsap.to(menuRef.current, {
-      x: menuOpen ? 0 : "100%",
-      duration: 0.8, 
-      ease: "power3.out", 
-    });
-  }
-}, [menuOpen]);
+  useEffect(() => {
+    if (menuRef.current) {
+      gsap.to(menuRef.current, {
+        x: menuOpen ? 0 : "100%",
+        duration: 0.8,
+        ease: "power3.out",
+      });
+    }
+  }, [menuOpen]);
 
-  function animateNumberUp(numberElement: HTMLElement) {
-    gsap.to(numberElement, {
-      yPercent: -100,
-      duration: 0.6,
-      ease: "power3.inOut",
-    });
-  }
-
-  // Handle navigation click
   const handleNavClick = (idx: number) => {
     setActiveIndex(idx);
     setMenuOpen(false);
   };
 
-  const handleSVClick = () => {
-    setActiveIndex(0); // Go home
-  };
+  const handleSVClick = () => setActiveIndex(0);
 
   return (
     <nav className="fixed top-0 left-0 w-full px-5 py-5 font-[var(--font-albert-sans)] z-50">
       {/* Desktop Navbar */}
       <div className="hidden md:flex w-full justify-between items-center text-[16px] text-[var(--color-dark)]">
-      {navItems.map((item, idx) => (
-      <button
-        key={idx}
-        onClick={() => handleNavClick(idx)}
-        className="flex items-center cursor-pointer group relative"
-      >
-        {/* Dot for active item */}
-        <div
-          className={`w-3 h-3 mr-2 rounded-full border-2 transition-all ${
-            activeIndex === idx
-              ? "bg-[var(--color-dark)] border-[var(--color-dark)]"
-              : "border-transparent"
-          }`}
-        />
+        {navItems.map((item, idx) => {
+          const dotRef = useRef<HTMLDivElement>(null);
 
-        {/* Outline dot on hover (only if NOT active) */}
-        {activeIndex !== idx && (
-          <div className="absolute w-3 h-3 top-1/2 left-1 mr-2 transform -translate-y-1/2 rounded-full border-2 border-dotted border-[var(--color-dark)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-        )}
+          useEffect(() => {
+            if (dotRef.current) {
+              gsap.to(dotRef.current, {
+                scale: activeIndex === idx ? 1 : 0,
+                backgroundColor:
+                  activeIndex === idx ? "var(--color-dark)" : "transparent",
+                duration: 0.4,
+                ease: "power3.out",
+              });
+            }
+          }, [activeIndex]);
 
-        <span className={`${item.isHome ? "uppercase" : ""}`}>
-          {item.name}
-        </span>
-      </button>
-    ))}
+          return (
+            <button
+              key={idx}
+              onClick={() => handleNavClick(idx)}
+              className="flex items-center cursor-pointer group relative"
+            >
+              {/* Hover Outline (only if not active) */}
+              {activeIndex !== idx && (
+                <div className="absolute w-3 h-3 rounded-full border-2 border-dotted border-[var(--color-dark)] top-1/2 left-0 transform -translate-y-1/2 transition-opacity duration-300 opacity-0 group-hover:opacity-100 pointer-events-none" />
+              )}
+
+              {/* Animated Dot */}
+              <div
+                ref={dotRef}
+                className="w-3 h-3 mr-2 rounded-full border-2 border-[var(--color-dark)]"
+                style={{ transformOrigin: "center" }}
+              />
+
+              <span className={`${item.isHome ? "uppercase" : ""}`}>
+                {item.name}
+              </span>
+            </button>
+          );
+        })}
       </div>
+
       {/* Mobile Navbar */}
       <div className="md:hidden flex justify-between items-center relative z-50">
         {/* SV with Dot */}
@@ -108,7 +112,6 @@ useEffect(() => {
           className="relative w-8 h-4 flex items-center justify-center z-50"
           onClick={() => setMenuOpen(!menuOpen)}
         >
-          {/* Top line */}
           <span
             className={`block absolute h-[1px] w-full bg-[var(--color-dark)] transition-all duration-500 origin-center ${
               menuOpen
@@ -116,7 +119,6 @@ useEffect(() => {
                 : "translate-y-[-0.42rem]"
             }`}
           />
-          {/* Bottom line */}
           <span
             className={`block absolute h-[1px] w-full bg-[var(--color-dark)] transition-all duration-500 origin-center ${
               menuOpen
@@ -137,7 +139,7 @@ useEffect(() => {
             key={idx}
             onClick={(e) => {
               handleNavClick(idx + 1);
-              animateNumberUp(e.currentTarget);
+              gsap.to(e.currentTarget, { yPercent: -100, duration: 0.6, ease: "power3.inOut" });
             }}
             className="cursor-pointer text-white overflow-hidden"
           >
