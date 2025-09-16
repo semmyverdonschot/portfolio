@@ -98,7 +98,7 @@ export default function Navbar() {
           href="/contact"
           className="px-6 py-3 rounded-full bg-[var(--color-dark)] text-white font-semibold hover:opacity-80 transition-opacity duration-300"
         >
-          Get IN Touch
+          CONTACT
         </Link>
       </div>
 
@@ -138,7 +138,7 @@ export default function Navbar() {
                 : "bg-[var(--color-dark)] text-white"
             }`}
           >
-            Get IN Touch
+            CONTACT
           </Link>
 
           {/* Hamburger */}
