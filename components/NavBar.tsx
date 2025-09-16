@@ -36,13 +36,13 @@ function NavButton({ item, idx, activeIndex, onClick }: NavButtonProps) {
       className="flex items-center cursor-pointer group relative"
     >
       {activeIndex !== idx && (
-        <div className="absolute w-3 h-3 rounded-full border-2 border-dotted border-[var(--color-dark)] top-1/2 left-0 transform -translate-y-1/2 transition-opacity duration-300 opacity-0 group-hover:opacity-100 pointer-events-none" />
+        <div className="absolute w-3 h-3 rounded-full border-1 border-line border-[var(--color-dark)] top-1/2 left-0 transform -translate-y-1/2 transition-opacity duration-300 opacity-0 group-hover:opacity-100 pointer-events-none" />
       )}
 
       <div
         ref={dotRef}
         className="w-3 h-3 mr-2 rounded-full border-2 border-[var(--color-dark)]"
-        style={{ transformOrigin: "center", transform: "scale(0)" }} // <-- init scale 0
+        style={{ transformOrigin: "center", transform: "scale(0)" }}
       />
 
       <span className={item.isHome ? "uppercase" : ""}>{item.name}</span>
@@ -59,7 +59,6 @@ export default function Navbar() {
     { name: "SEMMY VERDONSCHOT", isHome: true },
     { name: "PROJECTS" },
     { name: "ABOUT" },
-    { name: "LINKED IN" },
   ];
 
   useEffect(() => {
@@ -92,10 +91,19 @@ export default function Navbar() {
             onClick={() => handleNavClick(idx)}
           />
         ))}
+
+        {/* CTA */}
+        <a
+          href="#contact"
+          className="px-6 py-3 rounded-full bg-[var(--color-dark)] text-white font-semibold hover:opacity-80 transition-opacity duration-300"
+        >
+          Get IN Touch
+        </a>
       </div>
 
       {/* Mobile Navbar */}
-      <div className="md:hidden flex justify-between items-center relative z-50">
+      <div className="md:hidden flex justify-between items-center relative z-50 w-full">
+        {/* SV */}
         <div
           className="flex items-center space-x-2 z-50 cursor-pointer"
           onClick={handleSVClick}
@@ -118,26 +126,40 @@ export default function Navbar() {
           </span>
         </div>
 
-        {/* Hamburger */}
-        <button
-          className="relative w-8 h-4 flex items-center justify-center z-50"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          <span
-            className={`block absolute h-[1px] w-full bg-[var(--color-dark)] transition-all duration-500 origin-center ${
+        <div className="flex items-center space-x-3">
+          {/* Mobile CTA */}
+          <a
+            href="#contact"
+            className={`px-4 py-2 rounded-full font-semibold transition-colors duration-500 ${
               menuOpen
-                ? "rotate-45 bg-[var(--color-primary)]"
-                : "translate-y-[-0.42rem]"
+                ? "bg-[var(--color-primary)] text-[var(--color-dark)]"
+                : "bg-[var(--color-dark)] text-white"
             }`}
-          />
-          <span
-            className={`block absolute h-[1px] w-full bg-[var(--color-dark)] transition-all duration-500 origin-center ${
-              menuOpen
-                ? "-rotate-45 bg-[var(--color-primary)]"
-                : "translate-y-[0.42rem]"
-            }`}
-          />
-        </button>
+          >
+            Get IN Touch
+          </a>
+
+          {/* Hamburger */}
+          <button
+            className="relative w-8 h-4 flex items-center justify-center z-50"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            <span
+              className={`block absolute h-[1px] w-full bg-[var(--color-dark)] transition-all duration-500 origin-center ${
+                menuOpen
+                  ? "rotate-45 bg-[var(--color-primary)]"
+                  : "translate-y-[-0.42rem]"
+              }`}
+            />
+            <span
+              className={`block absolute h-[1px] w-full bg-[var(--color-dark)] transition-all duration-500 origin-center ${
+                menuOpen
+                  ? "-rotate-45 bg-[var(--color-primary)]"
+                  : "translate-y-[0.42rem]"
+              }`}
+            />
+          </button>
+        </div>
       </div>
 
       {/* Mobile Fullscreen Menu */}
