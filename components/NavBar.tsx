@@ -2,9 +2,11 @@
 
 import { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
+import Link from "next/link";
 
 interface NavItem {
   name: string;
+  href: string;
   isHome?: boolean;
 }
 
@@ -31,7 +33,8 @@ function NavButton({ item, idx, activeIndex, onClick }: NavButtonProps) {
   }, [activeIndex, idx]);
 
   return (
-    <button
+    <Link
+      href={item.href}
       onClick={onClick}
       className="flex items-center cursor-pointer group relative"
     >
@@ -46,7 +49,7 @@ function NavButton({ item, idx, activeIndex, onClick }: NavButtonProps) {
       />
 
       <span className={item.isHome ? "uppercase" : ""}>{item.name}</span>
-    </button>
+    </Link>
   );
 }
 
@@ -56,9 +59,9 @@ export default function Navbar() {
   const menuRef = useRef<HTMLDivElement>(null);
 
   const navItems: NavItem[] = [
-    { name: "SEMMY VERDONSCHOT", isHome: true },
-    { name: "PROJECTS" },
-    { name: "ABOUT" },
+    { name: "SEMMY VERDONSCHOT", href: "/", isHome: true },
+    { name: "PROJECTS", href: "/" },
+    { name: "ABOUT", href: "/" },
   ];
 
   useEffect(() => {
@@ -76,8 +79,6 @@ export default function Navbar() {
     setMenuOpen(false);
   };
 
-  const handleSVClick = () => setActiveIndex(0);
-
   return (
     <nav className="fixed top-0 left-0 w-full px-5 py-5 font-[var(--font-albert-sans)] z-50">
       {/* Desktop Navbar */}
@@ -93,20 +94,21 @@ export default function Navbar() {
         ))}
 
         {/* CTA */}
-        <a
-          href="#contact"
+        <Link
+          href="/contact"
           className="px-6 py-3 rounded-full bg-[var(--color-dark)] text-white font-semibold hover:opacity-80 transition-opacity duration-300"
         >
           Get IN Touch
-        </a>
+        </Link>
       </div>
 
       {/* Mobile Navbar */}
       <div className="md:hidden flex justify-between items-center relative z-50 w-full">
         {/* SV */}
-        <div
+        <Link
+          href="/"
+          onClick={() => handleNavClick(0)}
           className="flex items-center space-x-2 z-50 cursor-pointer"
-          onClick={handleSVClick}
         >
           <div
             className={`w-3 h-3 rounded-full border-2 transition-all duration-300 ${
@@ -124,12 +126,12 @@ export default function Navbar() {
           >
             SV
           </span>
-        </div>
+        </Link>
 
         <div className="flex items-center space-x-3">
           {/* Mobile CTA */}
-          <a
-            href="#contact"
+          <Link
+            href="/contact"
             className={`px-4 py-2 rounded-full font-semibold transition-colors duration-500 ${
               menuOpen
                 ? "bg-[var(--color-primary)] text-[var(--color-dark)]"
@@ -137,7 +139,7 @@ export default function Navbar() {
             }`}
           >
             Get IN Touch
-          </a>
+          </Link>
 
           {/* Hamburger */}
           <button
@@ -168,8 +170,9 @@ export default function Navbar() {
         className="fixed top-0 left-0 h-full w-full bg-black flex flex-col items-start justify-center pl-10 space-y-10 text-[60px] transform translate-x-full"
       >
         {navItems.slice(1).map((item, idx) => (
-          <button
+          <Link
             key={idx}
+            href={item.href}
             onClick={(e) => {
               handleNavClick(idx + 1);
               gsap.to(e.currentTarget, {
@@ -181,7 +184,7 @@ export default function Navbar() {
             className="cursor-pointer text-white overflow-hidden"
           >
             <span className="block">{item.name}</span>
-          </button>
+          </Link>
         ))}
       </div>
     </nav>
