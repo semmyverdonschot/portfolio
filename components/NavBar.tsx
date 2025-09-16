@@ -35,16 +35,14 @@ function NavButton({ item, idx, activeIndex, onClick }: NavButtonProps) {
       onClick={onClick}
       className="flex items-center cursor-pointer group relative"
     >
-      {/* Hover Outline (only if not active) */}
       {activeIndex !== idx && (
         <div className="absolute w-3 h-3 rounded-full border-2 border-dotted border-[var(--color-dark)] top-1/2 left-0 transform -translate-y-1/2 transition-opacity duration-300 opacity-0 group-hover:opacity-100 pointer-events-none" />
       )}
 
-      {/* Animated Dot */}
       <div
         ref={dotRef}
         className="w-3 h-3 mr-2 rounded-full border-2 border-[var(--color-dark)]"
-        style={{ transformOrigin: "center" }}
+        style={{ transformOrigin: "center", transform: "scale(0)" }} // <-- init scale 0
       />
 
       <span className={item.isHome ? "uppercase" : ""}>{item.name}</span>
