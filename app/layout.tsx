@@ -4,6 +4,7 @@ import "./globals.css";
 
 import { ReactNode } from "react";
 import { AppProvider } from "@/app/provider";
+import Head from "next/head";
 
 const albertSans = Albert_Sans({
   variable: "--font-albert-sans",
@@ -24,10 +25,6 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Semmy Verdonschot" }],
   robots: "index, follow",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f5f5f5" },
-    { media: "(prefers-color-scheme: dark)", color: "#171717" },
-  ],
   openGraph: {
     title: "Semmy Verdonschot | Web Developer",
     description: "Semmy Verdonschot | Web Developer based in The Netherlands.",
@@ -44,14 +41,18 @@ export const metadata: Metadata = {
     locale: "en-US",
     type: "website",
   },
-}
+};
 
 const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <html lang="en" className={`${albertSans.variable}`}>
+      <Head>
+        {/* ✅ Ensures theme-color always shows */}
+        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f5f5" />
+        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#171717" />
+      </Head>
       <body className="antialiased bg-white text-[var(--color-dark)] transition-colors duration-300">
         <AppProvider>
-          {/* Wrap the entire app so theme is accessible */}
           {children}
         </AppProvider>
       </body>
