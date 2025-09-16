@@ -8,6 +8,50 @@ interface NavItem {
   isHome?: boolean;
 }
 
+interface NavButtonProps {
+  item: NavItem;
+  idx: number;
+  activeIndex: number;
+  onClick: () => void;
+}
+
+function NavButton({ item, idx, activeIndex, onClick }: NavButtonProps) {
+  const dotRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (dotRef.current) {
+      gsap.to(dotRef.current, {
+        scale: activeIndex === idx ? 1 : 0,
+        backgroundColor:
+          activeIndex === idx ? "var(--color-dark)" : "transparent",
+        duration: 0.4,
+        ease: "power3.out",
+      });
+    }
+  }, [activeIndex, idx]);
+
+  return (
+    <button
+      onClick={onClick}
+      className="flex items-center cursor-pointer group relative"
+    >
+      {/* Hover Outline (only if not active) */}
+      {activeIndex !== idx && (
+        <div className="absolute w-3 h-3 rounded-full border-2 border-dotted border-[var(--color-dark)] top-1/2 left-0 transform -translate-y-1/2 transition-opacity duration-300 opacity-0 group-hover:opacity-100 pointer-events-none" />
+      )}
+
+      {/* Animated Dot */}
+      <div
+        ref={dotRef}
+        className="w-3 h-3 mr-2 rounded-full border-2 border-[var(--color-dark)]"
+        style={{ transformOrigin: "center" }}
+      />
+
+      <span className={item.isHome ? "uppercase" : ""}>{item.name}</span>
+    </button>
+  );
+}
+
 export default function Navbar() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -41,50 +85,19 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 w-full px-5 py-5 font-[var(--font-albert-sans)] z-50">
       {/* Desktop Navbar */}
       <div className="hidden md:flex w-full justify-between items-center text-[16px] text-[var(--color-dark)]">
-        {navItems.map((item, idx) => {
-          const dotRef = useRef<HTMLDivElement>(null);
-
-          useEffect(() => {
-            if (dotRef.current) {
-              gsap.to(dotRef.current, {
-                scale: activeIndex === idx ? 1 : 0,
-                backgroundColor:
-                  activeIndex === idx ? "var(--color-dark)" : "transparent",
-                duration: 0.4,
-                ease: "power3.out",
-              });
-            }
-          }, [activeIndex]);
-
-          return (
-            <button
-              key={idx}
-              onClick={() => handleNavClick(idx)}
-              className="flex items-center cursor-pointer group relative"
-            >
-              {/* Hover Outline (only if not active) */}
-              {activeIndex !== idx && (
-                <div className="absolute w-3 h-3 rounded-full border-2 border-dotted border-[var(--color-dark)] top-1/2 left-0 transform -translate-y-1/2 transition-opacity duration-300 opacity-0 group-hover:opacity-100 pointer-events-none" />
-              )}
-
-              {/* Animated Dot */}
-              <div
-                ref={dotRef}
-                className="w-3 h-3 mr-2 rounded-full border-2 border-[var(--color-dark)]"
-                style={{ transformOrigin: "center" }}
-              />
-
-              <span className={`${item.isHome ? "uppercase" : ""}`}>
-                {item.name}
-              </span>
-            </button>
-          );
-        })}
+        {navItems.map((item, idx) => (
+          <NavButton
+            key={idx}
+            item={item}
+            idx={idx}
+            activeIndex={activeIndex}
+            onClick={() => handleNavClick(idx)}
+          />
+        ))}
       </div>
 
       {/* Mobile Navbar */}
       <div className="md:hidden flex justify-between items-center relative z-50">
-        {/* SV with Dot */}
         <div
           className="flex items-center space-x-2 z-50 cursor-pointer"
           onClick={handleSVClick}
@@ -139,7 +152,11 @@ export default function Navbar() {
             key={idx}
             onClick={(e) => {
               handleNavClick(idx + 1);
-              gsap.to(e.currentTarget, { yPercent: -100, duration: 0.6, ease: "power3.inOut" });
+              gsap.to(e.currentTarget, {
+                yPercent: -100,
+                duration: 0.6,
+                ease: "power3.inOut",
+              });
             }}
             className="cursor-pointer text-white overflow-hidden"
           >
