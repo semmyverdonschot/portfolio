@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface NavItem {
   name: string;
@@ -26,7 +27,7 @@ function NavButton({ item, idx, activeIndex, onClick }: NavButtonProps) {
         scale: activeIndex === idx ? 1 : 0,
         backgroundColor:
           activeIndex === idx ? "var(--color-dark)" : "transparent",
-        duration: 0.4,
+        duration: 0.15,
         ease: "power3.out",
       });
     }
@@ -54,15 +55,20 @@ function NavButton({ item, idx, activeIndex, onClick }: NavButtonProps) {
 }
 
 export default function Navbar() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname(); // get current path
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const navItems: NavItem[] = [
     { name: "SEMMY VERDONSCHOT", href: "/", isHome: true },
-    { name: "PROJECTS", href: "/" },
+    { name: "PROJECTS", href: "/projects" },
     { name: "ABOUT", href: "/" },
   ];
+
+  // Determine active index based on pathname
+  const activeIndex = navItems.findIndex((item) => item.href === pathname);
+  // fallback if no match
+  const finalActiveIndex = activeIndex === -1 ? 0 : activeIndex;
 
   useEffect(() => {
     if (menuRef.current) {
@@ -75,7 +81,6 @@ export default function Navbar() {
   }, [menuOpen]);
 
   const handleNavClick = (idx: number) => {
-    setActiveIndex(idx);
     setMenuOpen(false);
   };
 
@@ -88,7 +93,7 @@ export default function Navbar() {
             key={idx}
             item={item}
             idx={idx}
-            activeIndex={activeIndex}
+            activeIndex={finalActiveIndex}
             onClick={() => handleNavClick(idx)}
           />
         ))}
@@ -112,7 +117,7 @@ export default function Navbar() {
         >
           <div
             className={`w-3 h-3 rounded-full border-2 transition-all duration-300 ${
-              activeIndex === 0
+              finalActiveIndex === 0
                 ? menuOpen
                   ? "bg-[var(--color-primary)] border-[var(--color-primary)]"
                   : "bg-[var(--color-dark)] border-[var(--color-dark)]"
@@ -173,14 +178,6 @@ export default function Navbar() {
           <Link
             key={idx}
             href={item.href}
-            onClick={(e) => {
-              handleNavClick(idx + 1);
-              gsap.to(e.currentTarget, {
-                yPercent: -100,
-                duration: 0.6,
-                ease: "power3.inOut",
-              });
-            }}
             className="cursor-pointer text-white overflow-hidden"
           >
             <span className="block">{item.name}</span>

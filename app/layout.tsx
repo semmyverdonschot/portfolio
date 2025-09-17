@@ -3,8 +3,7 @@ import { Albert_Sans } from "next/font/google";
 import "./globals.css";
 
 import { ReactNode } from "react";
-import { AppProvider } from "@/app/provider";
-import Head from "next/head";
+import ClientWrapper from "@/components/ClientWrapper"; // our client component
 
 const albertSans = Albert_Sans({
   variable: "--font-albert-sans",
@@ -43,21 +42,12 @@ export const metadata: Metadata = {
   },
 };
 
-const RootLayout = ({ children }: { children: ReactNode }) => {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={`${albertSans.variable}`}>
-      <Head>
-        {/* ✅ Ensures theme-color always shows */}
-        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f5f5" />
-        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#171717" />
-      </Head>
       <body className="antialiased bg-white text-[var(--color-dark)] transition-colors duration-300">
-        <AppProvider>
-          {children}
-        </AppProvider>
+        <ClientWrapper>{children}</ClientWrapper>
       </body>
     </html>
   );
-};
-
-export default RootLayout;
+}

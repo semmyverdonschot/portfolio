@@ -38,7 +38,6 @@ export default function SplashScreen({ onFinish }: { onFinish: () => void }) {
       );
 
       await Promise.all([...imagePromises, ...stylePromises]);
-
       setLoaded(true);
     };
 
