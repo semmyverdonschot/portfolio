@@ -56,7 +56,7 @@ export default function SplashScreen({ onFinish }: SplashScreenProps) {
           onComplete: onFinish,
         });
       }
-    }, 3500);
+    }, 3000);
 
     return () => clearTimeout(fallback);
   }, [onFinish]);
@@ -64,10 +64,10 @@ export default function SplashScreen({ onFinish }: SplashScreenProps) {
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 flex items-center justify-center z-[9999] bg-[var(--color-primary)] overflow-hidden"
+      className="fixed inset-0 z-[9999] bg-[var(--color-primary)] flex items-center justify-center overflow-hidden pointer-events-auto"
     >
       {/* Counter */}
-      <div className="overflow-hidden h-[24px]">
+      <div className="overflow-hidden h-[24px] pointer-events-none">
         <div
           ref={numberRef}
           className="text-[18px] font-bold text-[var(--color-dark)]"

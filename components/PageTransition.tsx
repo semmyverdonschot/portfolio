@@ -13,13 +13,13 @@ export default function PageTransition({
   const pathname = usePathname();
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    const element = containerRef.current;
+    if (!element) return;
 
-    gsap.set(containerRef.current, { y: "100%", opacity: 0 });
+    gsap.set(element, { y: "100%", opacity: 0 });
 
     const tl = gsap.timeline();
-
-    tl.to(containerRef.current, {
+    tl.to(element, {
       y: "0%",
       opacity: 1,
       duration: 0.8,
@@ -27,7 +27,8 @@ export default function PageTransition({
     });
 
     return () => {
-      gsap.to(containerRef.current, {
+      if (!element) return;
+      gsap.to(element, {
         y: "-20%",
         opacity: 0,
         duration: 0.6,

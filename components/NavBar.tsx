@@ -25,7 +25,8 @@ function NavButton({ item, idx, activeIndex, onClick }: NavButtonProps) {
     if (dotRef.current) {
       gsap.to(dotRef.current, {
         scale: activeIndex === idx ? 1 : 0,
-        backgroundColor: activeIndex === idx ? "var(--color-dark)" : "transparent",
+        backgroundColor:
+          activeIndex === idx ? "var(--color-dark)" : "transparent",
         duration: 0.15,
         ease: "power3.out",
       });
@@ -79,14 +80,33 @@ export default function Navbar() {
         Array.from(navItemsRef.current.children).forEach((child, i) => {
           const inner = (child as HTMLElement).querySelector("span");
           if (inner) {
-            gsap.fromTo(inner, { yPercent: 100 }, { yPercent: 0, duration: 0.8, delay: i * 0.05, ease: "power3.out" });
+            gsap.fromTo(
+              inner,
+              { yPercent: 100 },
+              {
+                yPercent: 0,
+                duration: 0.8,
+                delay: i * 0.05,
+                ease: "power3.out",
+              },
+            );
           }
         });
       }
 
       if (bottomLinksRef.current) {
         Array.from(bottomLinksRef.current.children).forEach((child, i) => {
-          gsap.fromTo(child as HTMLElement, { opacity: 0, yPercent: 10 }, { opacity: 1, yPercent: 0, duration: 0.5, delay: i * 0.05, ease: "power3.out" });
+          gsap.fromTo(
+            child as HTMLElement,
+            { opacity: 0, yPercent: 10 },
+            {
+              opacity: 1,
+              yPercent: 0,
+              duration: 0.5,
+              delay: i * 0.05,
+              ease: "power3.out",
+            },
+          );
         });
       }
     } else {
@@ -103,7 +123,12 @@ export default function Navbar() {
 
       if (bottomLinksRef.current) {
         Array.from(bottomLinksRef.current.children).forEach((child, i) => {
-          gsap.to(child as HTMLElement, { opacity: 0, yPercent: 10, duration: 0.3, delay: i * 0.02 });
+          gsap.to(child as HTMLElement, {
+            opacity: 0,
+            yPercent: 10,
+            duration: 0.3,
+            delay: i * 0.02,
+          });
         });
       }
 
@@ -117,15 +142,28 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 w-full px-4 md:px-8 py-5 font-[var(--font-albert-sans)] z-50">
       <div className="hidden md:flex w-full justify-between items-center text-[16px] text-[var(--color-dark)]">
         {navItems.map((item, idx) => (
-          <NavButton key={idx} item={item} idx={idx} activeIndex={finalActiveIndex} onClick={handleNavClick} />
+          <NavButton
+            key={idx}
+            item={item}
+            idx={idx}
+            activeIndex={finalActiveIndex}
+            onClick={handleNavClick}
+          />
         ))}
-        <Link href="/contact" className="px-6 py-3 rounded-full bg-[var(--color-dark)] text-white font-semibold hover:opacity-80 transition-opacity duration-300">
+        <Link
+          href="/contact"
+          className="px-6 py-3 rounded-full bg-[var(--color-dark)] text-white font-semibold hover:opacity-80 transition-opacity duration-300"
+        >
           CONTACT
         </Link>
       </div>
 
       <div className="md:hidden flex justify-between items-center relative z-50 w-full">
-        <Link href="/" onClick={handleNavClick} className="flex items-center space-x-2 z-50 cursor-pointer">
+        <Link
+          href="/"
+          onClick={handleNavClick}
+          className="flex items-center space-x-2 z-50 cursor-pointer"
+        >
           <div
             className={`w-3 h-3 rounded-full border-2 transition-all duration-300 ${
               finalActiveIndex === 0
@@ -135,7 +173,9 @@ export default function Navbar() {
                 : "border-transparent"
             }`}
           />
-          <span className={`font-normal uppercase transition-colors duration-500 ${menuOpen ? "text-white" : "text-[var(--color-dark)]"}`}>
+          <span
+            className={`font-normal uppercase transition-colors duration-500 ${menuOpen ? "text-white" : "text-[var(--color-dark)]"}`}
+          >
             HOME
           </span>
         </Link>
@@ -144,41 +184,96 @@ export default function Navbar() {
           <Link
             href="/contact"
             className={`px-4 py-2 rounded-full font-semibold transition-colors duration-500 ${
-              menuOpen ? "bg-white text-[var(--color-dark)]" : "bg-[var(--color-dark)] text-white"
+              menuOpen
+                ? "bg-white text-[var(--color-dark)]"
+                : "bg-[var(--color-dark)] text-white"
             }`}
           >
             CONTACT
           </Link>
 
-          <button onClick={() => setMenuOpen(!menuOpen)} className="relative w-8 h-4 flex items-center justify-center z-50">
-            <span className={`block absolute h-[1px] w-full bg-[var(--color-dark)] transition-all duration-500 origin-center ${menuOpen ? "rotate-45 bg-[var(--color-primary)]" : "translate-y-[-0.42rem]"}`} />
-            <span className={`block absolute h-[1px] w-full bg-[var(--color-dark)] transition-all duration-500 origin-center ${menuOpen ? "-rotate-45 bg-[var(--color-primary)]" : "translate-y-[0.42rem]"}`} />
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="relative w-8 h-4 flex items-center justify-center z-50"
+          >
+            <span
+              className={`block absolute h-[1px] w-full bg-[var(--color-dark)] transition-all duration-500 origin-center ${menuOpen ? "rotate-45 bg-[var(--color-primary)]" : "translate-y-[-0.42rem]"}`}
+            />
+            <span
+              className={`block absolute h-[1px] w-full bg-[var(--color-dark)] transition-all duration-500 origin-center ${menuOpen ? "-rotate-45 bg-[var(--color-primary)]" : "translate-y-[0.42rem]"}`}
+            />
           </button>
         </div>
       </div>
 
-      <div ref={menuRef} className="fixed top-0 left-0 h-full w-full bg-black flex flex-col justify-start pl-6 pt-28 text-[60px] transform translate-x-full overflow-hidden">
-        <div ref={navItemsRef} className="flex flex-col space-y-2 overflow-hidden">
+      <div
+        ref={menuRef}
+        className="fixed top-0 left-0 h-full w-full bg-black flex flex-col justify-start pl-6 pt-28 text-[60px] transform translate-x-full overflow-hidden"
+      >
+        <div
+          ref={navItemsRef}
+          className="flex flex-col space-y-2 overflow-hidden"
+        >
           {navItems.map((item, idx) => (
-            <Link key={idx} href={item.href} onClick={handleNavClick} className="relative overflow-hidden w-max cursor-pointer">
-              <span className="block text-[70px] font-semibold text-white">{item.name}</span>
+            <Link
+              key={idx}
+              href={item.href}
+              onClick={handleNavClick}
+              className="relative overflow-hidden w-max cursor-pointer"
+            >
+              <span className="block text-[70px] font-semibold text-white">
+                {item.name}
+              </span>
             </Link>
           ))}
         </div>
 
-        <div ref={bottomLinksRef} className="flex flex-col space-y-4 mt-20 text-white text-[16px]">
-          <a href="https://www.linkedin.com/in/semmyverdonschot/" target="_blank" rel="noopener noreferrer" className="flex items-center overflow-hidden w-max group">
+        <div
+          ref={bottomLinksRef}
+          className="flex flex-col space-y-4 mt-20 text-white text-[16px]"
+        >
+          <a
+            href="https://www.linkedin.com/in/semmyverdonschot/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center overflow-hidden w-max group"
+          >
             <span>[LINKEDIN</span>
-            <svg className="w-4 h-4 ml-1 transform rotate-45 transition-transform duration-300 group-hover:translate-x-1 group-hover:translate-y-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
+            <svg
+              className="w-4 h-4 ml-1 transform rotate-45 transition-transform duration-300 group-hover:translate-x-1 group-hover:translate-y-1"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M5 12h14M12 5l7 7-7 7"
+              />
             </svg>
             <span>]</span>
           </a>
 
-          <a href="https://github.com/semmyverdonschot" target="_blank" rel="noopener noreferrer" className="flex items-center overflow-hidden w-max group">
+          <a
+            href="https://github.com/semmyverdonschot"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center overflow-hidden w-max group"
+          >
             <span>[GITHUB</span>
-            <svg className="w-4 h-4 ml-1 transform rotate-45 transition-transform duration-300 group-hover:translate-x-1 group-hover:translate-y-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
+            <svg
+              className="w-4 h-4 ml-1 transform rotate-45 transition-transform duration-300 group-hover:translate-x-1 group-hover:translate-y-1"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M5 12h14M12 5l7 7-7 7"
+              />
             </svg>
             <span>]</span>
           </a>
