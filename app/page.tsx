@@ -107,24 +107,26 @@ export default function Page() {
             isMobile ? "" : "pointer-events-none"
           }`}
         >
-            <video
-              ref={(el) => {
-                videoElRef.current = el;
-              }}
-              src="/1.mp4"
-              autoPlay
-              playsInline
-              preload="auto"
-              muted={isMuted}
-              loop
-              className={`rounded-2xl object-cover cursor-pointer pointer-events-auto ${
-                isMobile ? "w-full max-w-full" : "w-96 md:w-[40vw] lg:w-[600px]"
-              }`}
-              onCanPlay={() => {
-                try { videoElRef.current?.play().catch(() => {}); } catch { }
-              }}
-              onClick={() => setIsMuted(!isMuted)}
-            />
+          <video
+            ref={(el) => {
+              videoElRef.current = el;
+            }}
+            src="/1.mp4"
+            autoPlay
+            playsInline
+            preload="auto"
+            muted={isMuted}
+            loop
+            className={`rounded-2xl object-cover cursor-pointer pointer-events-auto ${
+              isMobile ? "w-full max-w-full" : "w-96 md:w-[40vw] lg:w-[600px]"
+            }`}
+            onCanPlay={() => {
+              try {
+                videoElRef.current?.play().catch(() => {});
+              } catch {}
+            }}
+            onClick={() => setIsMuted(!isMuted)}
+          />
 
           {/* Mobile: Dynamic mute/unmute indicator */}
           {isMobile && (
