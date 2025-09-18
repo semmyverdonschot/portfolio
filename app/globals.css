@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Alberta+Sans:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Alberta+Sans:wght@400;700&display=swap");
 @import "tailwindcss";
 
 /* Root variables */
@@ -9,12 +9,13 @@
   --color-grayish: #404040;
   --color-light: #e5e5e5;
 
-  --font-albert-sans: 'Alberta Sans', sans-serif;
+  --font-albert-sans: "Alberta Sans", sans-serif;
   font-family: var(--font-albert-sans);
 }
 
 /* Global styles */
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   background-color: var(--color-primary);
@@ -28,17 +29,18 @@ html, body {
 
 h1 {
   display: none;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
-h1, p {
+h1,
+p {
   overflow: hidden;
 }
 
 .masked-word {
   display: inline-block;
   transform: translateY(100%);
-  will-change: transform;     
+  will-change: transform;
 }
 
 ::selection {

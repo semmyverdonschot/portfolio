@@ -4,7 +4,7 @@ import useTextReveal from "@/hooks/useTextReveal";
 
 export default function WorkPage() {
   // Animate <h1> and <p>
-  
+
   useTextReveal("h1, p");
 
   return (

@@ -1,6 +1,12 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from "react";
 
 interface AppContextType {
   theme: "light" | "dark" | "mono";
@@ -11,7 +17,11 @@ interface AppContextType {
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider = ({ children }: { children: ReactNode }) => {
-  const [theme, setTheme] = useState<{ light: boolean; dark: boolean; mono: boolean }>({
+  const [theme, setTheme] = useState<{
+    light: boolean;
+    dark: boolean;
+    mono: boolean;
+  }>({
     light: true,
     dark: false,
     mono: false,
@@ -31,14 +41,14 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       root.style.setProperty("--color-dark", "#111");
     }
 
-    imgs.forEach(img => {
+    imgs.forEach((img) => {
       img.style.transition = "filter 0.5s ease";
       img.style.filter = theme.mono ? "saturate(0.2)" : "saturate(1)";
     });
   }, [theme]);
 
   const toggleTheme = (mode: "light" | "dark" | "mono") => {
-    setTheme(prev => ({
+    setTheme((prev) => ({
       ...prev,
       [mode]: !prev[mode],
       ...(mode === "light" && !prev.light ? { dark: false } : {}),
@@ -71,6 +81,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
 
 export const useAppContext = () => {
   const context = useContext(AppContext);
-  if (!context) throw new Error("useAppContext must be used within AppProvider");
+  if (!context)
+    throw new Error("useAppContext must be used within AppProvider");
   return context;
 };

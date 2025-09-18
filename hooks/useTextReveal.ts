@@ -22,19 +22,21 @@ export default function useTextReveal(selector: string, play: boolean = true) {
       el.innerHTML = `<span class="masked-word">${text}</span>`;
     });
 
-    const maskedWords = document.querySelectorAll<HTMLElement>(`${selector} .masked-word`);
+    const maskedWords = document.querySelectorAll<HTMLElement>(
+      `${selector} .masked-word`,
+    );
 
     // Set initial position for all masked spans
     maskedWords.forEach((word) => {
       word.style.display = "inline-block";
       word.style.transform = "translateY(100%)"; // start hidden under mask
-      word.style.willChange = "transform";       // GPU optimized
+      word.style.willChange = "transform"; // GPU optimized
     });
 
     // Animate all spans in one smooth motion
     tlRef.current = gsap.to(maskedWords, {
       y: "0%",
-      duration: 1.5,               // smooth
+      duration: 1.5, // smooth
       ease: "cubic-bezier(.4, 0, .2, 1)", // snappy yet smooth
     });
 
