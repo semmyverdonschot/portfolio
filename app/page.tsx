@@ -187,12 +187,12 @@ export default function Page() {
 
       {/* Desktop: Text below video */}
       {!isMobile && (
-        <div className="flex w-full mt-2 mb-2 text-base md:text-2xl lg:text-2xl font-medium">
-          <span className="flex-1 text-left">A</span>
-          <span className="flex-1 text-center">VERY</span>
-          <span className="flex-1 text-right">SECURE</span>
-        </div>
-      )}
+    <div className="flex w-full mt-2 mb-2 text-[16px] font-normal">
+      <span className="flex-1 text-left">A</span>
+      <span className="flex-1 text-center">VERY</span>
+      <span className="flex-1 text-right">SECURE</span>
+    </div>
+  )}
 
       {/* Bottom row */}
       <div className="w-full flex h-[20vw] md:h-[14vw] lg:h-[10vw] items-end">

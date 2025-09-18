@@ -1,23 +1,48 @@
 "use client";
 
-import { ReactNode, useState } from "react";
+import { ReactNode, useState, useRef } from "react";
 import SplashScreen from "@/components/SplashScreen";
 import Navbar from "@/components/NavBar";
 import { AppProvider } from "@/app/provider";
+import gsap from "gsap";
 
-export default function ClientWrapper({ children }: { children: ReactNode }) {
+interface ClientWrapperProps {
+  children: ReactNode;
+}
+
+export default function ClientWrapper({ children }: ClientWrapperProps) {
   const [showSplash, setShowSplash] = useState(true);
+  const overlayRef = useRef<HTMLDivElement>(null);
+
+  const handleSplashFinish = () => {
+    if (!overlayRef.current) return;
+
+    // Slide overlay up out of view instead of fading
+    gsap.to(overlayRef.current, {
+      yPercent: -100, // slide up
+      duration: 1,
+      ease: "power4.inOut",
+      onComplete: () => setShowSplash(false),
+    });
+  };
 
   return (
     <AppProvider>
-      {/* Navbar rendered immediately */}
-      <Navbar />
+      {/* Navbar + page mounted immediately */}
+      <div className="relative">
+        <Navbar />
+        <main>{children}</main>
+      </div>
 
-      {/* Page content renders immediately for LCP */}
-      <main className="relative">{children}</main>
-
-      {/* Splash overlays visually; Splash handles its own animation */}
-      {showSplash && <SplashScreen onFinish={() => setShowSplash(false)} />}
+      {/* Splash overlay */}
+      {showSplash && (
+        <div
+          ref={overlayRef}
+          className="fixed inset-0 z-[9999] bg-white flex items-center justify-center overflow-hidden"
+        >
+          <SplashScreen onFinish={handleSplashFinish} />
+        </div>
+      )}
     </AppProvider>
   );
 }
