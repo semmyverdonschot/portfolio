@@ -195,6 +195,7 @@ export default function Navbar() {
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="relative w-8 h-4 flex items-center justify-center z-50"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
           >
             <span
               className={`block absolute h-[1px] w-full bg-[var(--color-dark)] transition-all duration-500 origin-center ${menuOpen ? "rotate-45 bg-[var(--color-primary)]" : "translate-y-[-0.42rem]"}`}
