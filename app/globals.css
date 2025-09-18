@@ -45,3 +45,14 @@ h1, p {
   background-color: #bbf7d0;
   color: var(--color-dark);
 }
+/* global.css or relevant stylesheet */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.5s forwards ease-out;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
