@@ -9,59 +9,12 @@ interface SplashScreenProps {
 
 export default function SplashScreen({ onFinish }: SplashScreenProps) {
   const [count, setCount] = useState(0);
-  const [loaded, setLoaded] = useState(false);
-  const numberRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const numberRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
 
   /**
-   * Helper: wrap a promise with a timeout
-   */
-  const withTimeout = (promise: Promise<void>, ms: number) =>
-    new Promise<void>((resolve) => {
-      const timer = setTimeout(resolve, ms);
-      promise.finally(() => {
-        clearTimeout(timer);
-        resolve();
-      });
-    });
-
-  /**
-   * Preload critical assets (images / video / svg)
-   */
-  useEffect(() => {
-    const preloadAssets = async () => {
-      const assets = ["/1.mp4", "/WEB.svg", "/DEVELOPER.svg"];
-      const promises = assets.map((src) => {
-        if (src.endsWith(".mp4")) {
-          return withTimeout(
-            new Promise<void>((resolve) => {
-              const video = document.createElement("video");
-              video.src = src;
-              video.preload = "auto";
-              video.onloadeddata = video.onerror = () => resolve();
-            }),
-            3000,
-          );
-        } else {
-          return withTimeout(
-            new Promise<void>((resolve) => {
-              const img = new Image();
-              img.src = src;
-              img.onload = img.onerror = () => resolve();
-            }),
-            3000,
-          );
-        }
-      });
-      await Promise.all(promises);
-      setLoaded(true);
-    };
-
-    preloadAssets();
-  }, []);
-
-  /**
-   * Count animation: increments from 0 → 100
+   * Count animation: 0 → 100
    */
   useEffect(() => {
     let current = 0;
@@ -75,10 +28,23 @@ export default function SplashScreen({ onFinish }: SplashScreenProps) {
   }, []);
 
   /**
-   * Exit animation (GSAP) once assets loaded + counter finished
+   * Entry animation: fade in logo/name
    */
   useEffect(() => {
-    if (count >= 100 && loaded && numberRef.current && containerRef.current) {
+    if (textRef.current) {
+      gsap.fromTo(
+        textRef.current,
+        { opacity: 0, y: 40 },
+        { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" }
+      );
+    }
+  }, []);
+
+  /**
+   * Exit animation: once counter finishes
+   */
+  useEffect(() => {
+    if (count >= 100 && numberRef.current && containerRef.current) {
       setTimeout(() => {
         // Slide number up
         gsap.to(numberRef.current, {
@@ -87,17 +53,26 @@ export default function SplashScreen({ onFinish }: SplashScreenProps) {
           ease: "power3.inOut",
         });
 
-        // Slide splash container up
+        // Fade + slide logo up
+        gsap.to(textRef.current, {
+          yPercent: -100,
+          opacity: 0,
+          duration: 0.8,
+          delay: 0.1,
+          ease: "power3.inOut",
+        });
+
+        // Slide container up
         gsap.to(containerRef.current, {
           yPercent: -100,
           duration: 1,
-          delay: 0.2,
+          delay: 0.3,
           ease: "power4.inOut",
           onComplete: onFinish,
         });
       }, 200);
     }
-  }, [count, loaded, onFinish]);
+  }, [count, onFinish]);
 
   /**
    * Fallback: force splash to exit after 6s
@@ -120,14 +95,23 @@ export default function SplashScreen({ onFinish }: SplashScreenProps) {
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 flex items-center justify-center z-[9999] bg-[var(--color-primary)] overflow-hidden"
+      className="fixed inset-0 flex flex-col items-center justify-center z-[9999] bg-[var(--color-primary)] overflow-hidden"
     >
-      <div className="overflow-hidden h-[20px]">
+      {/* Big Name */}
+      <div
+        ref={textRef}
+        className="text-white text-4xl md:text-6xl font-extrabold tracking-wide mb-6"
+      >
+        SEMMY VERDONSCHOT
+      </div>
+
+      {/* Counter */}
+      <div className="overflow-hidden h-[24px]">
         <div
           ref={numberRef}
-          className="text-[16px] font-bold text-[var(--color-dark)]"
+          className="text-[18px] font-bold text-[var(--color-dark)]"
         >
-          {count}
+          {count}%
         </div>
       </div>
     </div>
