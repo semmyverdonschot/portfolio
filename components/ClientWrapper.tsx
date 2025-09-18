@@ -10,20 +10,14 @@ export default function ClientWrapper({ children }: { children: ReactNode }) {
 
   return (
     <AppProvider>
+      {/* Navbar rendered immediately */}
       <Navbar />
 
       {/* Page content renders immediately for LCP */}
       <main className="relative">{children}</main>
 
-      {/* Splash overlays visually but doesn’t block paint */}
-      {showSplash && (
-        <div
-          className="fixed inset-0 z-50 bg-[var(--color-primary)] transition-opacity duration-700"
-          // fade out when splash ends
-        >
-          <SplashScreen onFinish={() => setShowSplash(false)} />
-        </div>
-      )}
+      {/* Splash overlays visually; Splash handles its own animation */}
+      {showSplash && <SplashScreen onFinish={() => setShowSplash(false)} />}
     </AppProvider>
   );
 }
