@@ -35,9 +35,8 @@ h1 {
   background-color: #bbf7d0;
   color: var(--color-dark);
 }
-
-.char,
-.word {
+.sentence {
   display: inline-block;
-  transform: translateY(115px);
+  transform: translateY(70px);
+  white-space: pre-wrap;
 }
