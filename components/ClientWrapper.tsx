@@ -1,46 +1,25 @@
 "use client";
 
-import { ReactNode, useState, useRef } from "react";
+import { ReactNode, useState } from "react";
 import SplashScreen from "@/components/SplashScreen";
 import Navbar from "@/components/NavBar";
 import { AppProvider } from "@/app/provider";
-import gsap from "gsap";
 
-interface ClientWrapperProps {
-  children: ReactNode;
-}
-
-export default function ClientWrapper({ children }: ClientWrapperProps) {
+export default function ClientWrapper({ children }: { children: ReactNode }) {
   const [showSplash, setShowSplash] = useState(true);
-  const overlayRef = useRef<HTMLDivElement>(null);
-
-  const handleSplashFinish = () => {
-    if (!overlayRef.current) return;
-
-    // Slide overlay up out of view instead of fading
-    gsap.to(overlayRef.current, {
-      yPercent: -100, // slide up
-      duration: 1,
-      ease: "power4.inOut",
-      onComplete: () => setShowSplash(false),
-    });
-  };
 
   return (
     <AppProvider>
-      {/* Navbar + page mounted immediately */}
-      <div className="relative">
-        <Navbar />
-        <main>{children}</main>
-      </div>
+      {/* Navbar rendered immediately */}
+      <Navbar />
 
-      {/* Splash overlay */}
+      {/* Page content mounts immediately */}
+      <main className="relative">{children}</main>
+
+      {/* Full-screen overlay hides content visually while splash plays */}
       {showSplash && (
-        <div
-          ref={overlayRef}
-          className="fixed inset-0 z-[9999] bg-white flex items-center justify-center overflow-hidden"
-        >
-          <SplashScreen onFinish={handleSplashFinish} />
+        <div className="fixed inset-0 z-[9999] bg-[var(--color-primary)] pointer-events-none">
+          <SplashScreen onFinish={() => setShowSplash(false)} />
         </div>
       )}
     </AppProvider>

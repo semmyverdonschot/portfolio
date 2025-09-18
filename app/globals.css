@@ -31,29 +31,13 @@ h1 {
   overflow: hidden;
 }
 
-h1,
-p {
-  overflow: hidden;
-}
-
-.masked-word {
-  display: inline-block;
-  transform: translateY(100%);
-  will-change: transform;
-}
-
 ::selection {
   background-color: #bbf7d0;
   color: var(--color-dark);
 }
-/* global.css or relevant stylesheet */
-.fade-in {
-  opacity: 0;
-  animation: fadeIn 0.5s forwards ease-out;
-}
 
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
+.char,
+.word {
+  display: inline-block;
+  transform: translateY(115px);
 }

@@ -72,7 +72,7 @@ export default function SplashScreen({ onFinish }: SplashScreenProps) {
           ref={numberRef}
           className="text-[18px] font-bold text-[var(--color-dark)]"
         >
-          {count}%
+          {count}
         </div>
       </div>
     </div>
