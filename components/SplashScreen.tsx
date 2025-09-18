@@ -45,7 +45,7 @@ export default function SplashScreen({ onFinish }: SplashScreenProps) {
     }
   }, [count, onFinish]);
 
-  // Fallback exit after 6s
+  
   useEffect(() => {
     const fallback = setTimeout(() => {
       if (containerRef.current) {
@@ -56,7 +56,7 @@ export default function SplashScreen({ onFinish }: SplashScreenProps) {
           onComplete: onFinish,
         });
       }
-    }, 6000);
+    }, 3500);
 
     return () => clearTimeout(fallback);
   }, [onFinish]);
