@@ -12,7 +12,16 @@ export default function SplashScreen({ onFinish }: SplashScreenProps) {
   const [loaded, setLoaded] = useState(false);
   const numberRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
+
+  // Helper: add timeout fallback to any promise
+  const withTimeout = (promise: Promise<void>, ms: number) =>
+    new Promise<void>((resolve) => {
+      const timer = setTimeout(resolve, ms);
+      promise.finally(() => {
+        clearTimeout(timer);
+        resolve();
+      });
+    });
 
   // Preload assets
   useEffect(() => {
@@ -20,29 +29,31 @@ export default function SplashScreen({ onFinish }: SplashScreenProps) {
       const assets = ["/1.mp4", "/WEB.svg", "/DEVELOPER.svg"];
       const promises = assets.map((src) => {
         if (src.endsWith(".mp4")) {
-          return new Promise<void>((resolve) => {
+          const videoPromise = new Promise<void>((resolve) => {
             const video = document.createElement("video");
             video.src = src;
             video.preload = "auto";
             video.onloadeddata = video.onerror = () => resolve();
           });
+          return withTimeout(videoPromise, 3000);
         } else {
-          return new Promise<void>((resolve) => {
+          const imgPromise = new Promise<void>((resolve) => {
             const img = new Image();
             img.src = src;
             img.onload = img.onerror = () => resolve();
           });
+          return withTimeout(imgPromise, 3000);
         }
       });
       await Promise.all(promises);
       setLoaded(true);
     };
+
     preloadAssets();
   }, []);
 
-  // Count animation
+  // Count animation (always runs)
   useEffect(() => {
-    if (!loaded) return;
     let current = 0;
     const timer = setInterval(() => {
       current++;
@@ -50,8 +61,9 @@ export default function SplashScreen({ onFinish }: SplashScreenProps) {
       if (current >= 100) clearInterval(timer);
     }, 15);
     return () => clearInterval(timer);
-  }, [loaded]);
+  }, []);
 
+  // GSAP exit animation once both loaded + count finished
   useEffect(() => {
     if (count >= 100 && loaded && numberRef.current && containerRef.current) {
       setTimeout(() => {
@@ -68,11 +80,26 @@ export default function SplashScreen({ onFinish }: SplashScreenProps) {
           duration: 1,
           delay: 0.2,
           ease: "power4.inOut",
-          onComplete: onFinish, // reveal content immediately
+          onComplete: onFinish,
         });
-      }, 200); // slight delay for smoothness
+      }, 200);
     }
   }, [count, loaded, onFinish]);
+
+  // Force splash to exit after 6s no matter what
+  useEffect(() => {
+    const fallback = setTimeout(() => {
+      if (containerRef.current) {
+        gsap.to(containerRef.current, {
+          yPercent: -100,
+          duration: 1,
+          ease: "power4.inOut",
+          onComplete: onFinish,
+        });
+      }
+    }, 6000);
+    return () => clearTimeout(fallback);
+  }, [onFinish]);
 
   return (
     <>
@@ -89,11 +116,6 @@ export default function SplashScreen({ onFinish }: SplashScreenProps) {
             {count}
           </div>
         </div>
-      </div>
-
-      {/* Page content mounted behind splash */}
-      <div ref={contentRef}>
-        {/* Main page content will be visible immediately once onFinish fires */}
       </div>
     </>
   );
