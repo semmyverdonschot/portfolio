@@ -56,7 +56,7 @@ export default function SplashScreen({ onFinish }: SplashScreenProps) {
           onComplete: onFinish,
         });
       }
-    }, 1500);
+    }, 3500);
 
     return () => clearTimeout(fallback);
   }, [onFinish]);
