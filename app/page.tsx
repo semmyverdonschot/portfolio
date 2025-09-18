@@ -13,6 +13,8 @@ export default function Page() {
   const targetX = useRef(0);
   const currentX = useRef(0);
 
+  const videoElRef = useRef<HTMLVideoElement | null>(null);
+
   // Check if mobile
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
@@ -21,6 +23,26 @@ export default function Page() {
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
+
+  // Ensure video attempts to play (helps some in-app browsers). If autoplay
+  // is blocked, leaving the element with `muted` and `playsInline` increases
+  // the chance it will start automatically; we also call `.play()` and swallow
+  // any errors so the site doesn't crash.
+  useEffect(() => {
+    const tryPlay = async () => {
+      try {
+        const v = videoElRef.current;
+        if (v) {
+          const p = v.play();
+          if (p && typeof p.then === "function") p.catch(() => {});
+        }
+      } catch {
+        // ignore
+      }
+    };
+
+    tryPlay();
+  }, [isMobile]);
 
   // Horizontal mouse follow (disabled on mobile)
   useEffect(() => {
@@ -93,16 +115,25 @@ export default function Page() {
             isMobile ? "" : "pointer-events-none"
           }`}
         >
-          <video
-            src="/1.mp4"
-            autoPlay
-            muted={isMuted}
-            loop
-            className={`rounded-2xl object-cover cursor-pointer pointer-events-auto ${
-              isMobile ? "w-full max-w-full" : "w-96 md:w-[40vw] lg:w-[600px]"
-            }`}
-            onClick={() => setIsMuted(!isMuted)}
-          />
+            <video
+              ref={(el) => {
+                videoElRef.current = el;
+              }}
+              src="/1.mp4"
+              autoPlay
+              playsInline
+              preload="auto"
+              muted={isMuted}
+              loop
+              className={`rounded-2xl object-cover cursor-pointer pointer-events-auto ${
+                isMobile ? "w-full max-w-full" : "w-96 md:w-[40vw] lg:w-[600px]"
+              }`}
+              onCanPlay={() => {
+                // Attempt to play when it can
+                try { videoElRef.current?.play().catch(() => {}); } catch { }
+              }}
+              onClick={() => setIsMuted(!isMuted)}
+            />
 
           {/* Mobile: Dynamic mute/unmute indicator */}
           {isMobile && (
