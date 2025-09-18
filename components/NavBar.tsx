@@ -151,7 +151,7 @@ export default function Navbar() {
           />
         ))}
         <Link
-          href="/contact"
+          href="mailto:hello@semmyverdonschot.com"
           className="px-6 py-3 rounded-full bg-[var(--color-dark)] text-white font-semibold hover:opacity-80 transition-opacity duration-300"
         >
           CONTACT
@@ -182,7 +182,7 @@ export default function Navbar() {
 
         <div className="flex items-center space-x-4">
           <Link
-            href="/contact"
+            href="mailto:hello@semmyverdonschot.com"
             className={`px-4 py-2 rounded-full font-semibold transition-colors duration-500 ${
               menuOpen
                 ? "bg-white text-[var(--color-dark)]"
@@ -256,7 +256,7 @@ export default function Navbar() {
           </a>
 
           <a
-            href="https://github.com/semmyverdonschot"
+            href="https://github.com/cybrance"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center overflow-hidden w-max group"
