@@ -132,7 +132,7 @@ export default function Navbar() {
           </span>
         </Link>
 
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-6">
           {/* Mobile CTA */}
           <Link
             href="/contact"
