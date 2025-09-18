@@ -15,7 +15,6 @@ export default function Page() {
 
   const videoElRef = useRef<HTMLVideoElement | null>(null);
 
-  // Check if mobile
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -24,10 +23,6 @@ export default function Page() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Ensure video attempts to play (helps some in-app browsers). If autoplay
-  // is blocked, leaving the element with `muted` and `playsInline` increases
-  // the chance it will start automatically; we also call `.play()` and swallow
-  // any errors so the site doesn't crash.
   useEffect(() => {
     const tryPlay = async () => {
       try {
@@ -44,7 +39,6 @@ export default function Page() {
     tryPlay();
   }, [isMobile]);
 
-  // Horizontal mouse follow (disabled on mobile)
   useEffect(() => {
     if (isMobile) return;
 
@@ -63,7 +57,6 @@ export default function Page() {
     };
 
     const animate = () => {
-      // very small lerp factor = super smooth lag
       currentX.current += (targetX.current - currentX.current) * 0.06;
       if (videoRef.current) {
         videoRef.current.style.transform = `translateX(${currentX.current}px)`;
@@ -77,7 +70,6 @@ export default function Page() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [isMobile]);
 
-  // GSAP Scroll animation (disabled on mobile)
   useEffect(() => {
     if (!videoRef.current || isMobile) return;
 
@@ -129,7 +121,6 @@ export default function Page() {
                 isMobile ? "w-full max-w-full" : "w-96 md:w-[40vw] lg:w-[600px]"
               }`}
               onCanPlay={() => {
-                // Attempt to play when it can
                 try { videoElRef.current?.play().catch(() => {}); } catch { }
               }}
               onClick={() => setIsMuted(!isMuted)}

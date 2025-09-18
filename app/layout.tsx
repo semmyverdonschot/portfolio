@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     siteName: "Semmy Verdonschot Portfolio",
     images: [
       {
-        url: "https://semmyverdonschot.com/og-image.png",
+        url: "https://semmyverdonschot.com/webdeveloper.png",
         width: 1200,
         height: 630,
         alt: "Semmy Verdonschot Portfolio",
