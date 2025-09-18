@@ -46,7 +46,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={`${albertSans.variable}`}>
       <body className="antialiased bg-white text-[var(--color-dark)] transition-colors duration-300">
-        <ClientWrapper>{children}</ClientWrapper>
+        {/* Wrapper with global horizontal padding */}
+        <div className="px-8">
+          <ClientWrapper>{children}</ClientWrapper>
+        </div>
       </body>
     </html>
   );

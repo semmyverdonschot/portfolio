@@ -67,7 +67,6 @@ export default function Navbar() {
 
   // Determine active index based on pathname
   const activeIndex = navItems.findIndex((item) => item.href === pathname);
-  // fallback if no match
   const finalActiveIndex = activeIndex === -1 ? 0 : activeIndex;
 
   useEffect(() => {
@@ -85,7 +84,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full px-5 py-5 font-[var(--font-albert-sans)] z-50">
+    <nav className="fixed top-0 left-0 w-full px-8 py-5 font-[var(--font-albert-sans)] z-50">
       {/* Desktop Navbar */}
       <div className="hidden md:flex w-full justify-between items-center text-[16px] text-[var(--color-dark)]">
         {navItems.map((item, idx) => (
