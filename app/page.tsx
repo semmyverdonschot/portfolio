@@ -9,13 +9,13 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Page() {
   const videoRef = useRef<HTMLDivElement>(null);
+  const videoElRef = useRef<HTMLVideoElement | null>(null);
   const [isMuted, setIsMuted] = useState(true);
   const targetX = useRef(0);
   const currentX = useRef(0);
-
-  const videoElRef = useRef<HTMLVideoElement | null>(null);
-
   const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
@@ -23,22 +23,19 @@ export default function Page() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
+  // Try autoplay video
   useEffect(() => {
     const tryPlay = async () => {
-      try {
-        const v = videoElRef.current;
-        if (v) {
-          const p = v.play();
-          if (p && typeof p.then === "function") p.catch(() => {});
-        }
-      } catch {
-        // ignore
+      const v = videoElRef.current;
+      if (v) {
+        const p = v.play();
+        if (p && typeof p.then === "function") p.catch(() => {});
       }
     };
-
     tryPlay();
   }, [isMobile]);
 
+  // Horizontal mouse follow for desktop
   useEffect(() => {
     if (isMobile) return;
 
@@ -46,13 +43,10 @@ export default function Page() {
       if (!videoRef.current) return;
       const rect = videoRef.current.parentElement!.getBoundingClientRect();
       const halfVideoWidth = videoRef.current.offsetWidth / 2;
-
       const maxX = rect.width / 2 - halfVideoWidth;
       const minX = -maxX;
-
       let x = e.clientX - rect.left - rect.width / 2;
       x = Math.max(minX, Math.min(maxX, x));
-
       targetX.current = x;
     };
 
@@ -70,16 +64,17 @@ export default function Page() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [isMobile]);
 
+  // GSAP scroll animation: video scales up and fills a section
   useEffect(() => {
     if (!videoRef.current || isMobile) return;
 
     gsap.to(videoRef.current, {
-      scale: 2,
+      scale: 5, // adjust this for final size
       ease: "power2.out",
       scrollTrigger: {
         trigger: videoRef.current,
         start: "top center",
-        end: "bottom top",
+        end: "bottom+=100% top", // extended end so video keeps scaling
         scrub: true,
       },
     });
@@ -92,10 +87,10 @@ export default function Page() {
 
       {/* Mobile: Text above video */}
       {isMobile && (
-        <div className="flex w-full mt-2 mb-2 text-xl font-semibold text-[var(--color-dark)]">
+        <div className="flex w-full mt-2 mb-2 text-base md:text-xl font-medium text-[var(--color-dark)]">
           <span className="animate-down flex-1 text-left">A</span>
           <span className="animate-down flex-1 text-center">VERY</span>
-          <span className="animate-down flex-1 text-right">GOOD</span>
+          <span className="animate-down flex-1 text-right">SECURE</span>
         </div>
       )}
 
@@ -128,7 +123,7 @@ export default function Page() {
             onClick={() => setIsMuted(!isMuted)}
           />
 
-          {/* Mobile: Dynamic mute/unmute indicator */}
+          {/* Mobile: Mute/unmute indicator */}
           {isMobile && (
             <div className="absolute bottom-2 right-2 pointer-events-none">
               <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[var(--color-primary)]/25 backdrop-blur-md transition-all duration-300 ease-out">
@@ -192,15 +187,15 @@ export default function Page() {
 
       {/* Desktop: Text below video */}
       {!isMobile && (
-        <div className="flex w-full mt-2 mb-2 text-xl md:text-2xl lg:text-3xl font-semibold">
+        <div className="flex w-full mt-2 mb-2 text-base md:text-2xl lg:text-2xl font-medium">
           <span className="flex-1 text-left">A</span>
           <span className="flex-1 text-center">VERY</span>
-          <span className="flex-1 text-right">GOOD</span>
+          <span className="flex-1 text-right">SECURE</span>
         </div>
       )}
 
-      {/* Bottom row (desktop layout for all screens) */}
-      <div className="w-full flex h-[26vw] md:h-[20vw] lg:h-[16vw] items-end">
+      {/* Bottom row */}
+      <div className="w-full flex h-[20vw] md:h-[14vw] lg:h-[10vw] items-end">
         <div className="flex justify-start h-full">
           <Image
             src="/WEB.svg"
@@ -212,7 +207,7 @@ export default function Page() {
             priority
           />
         </div>
-        <div className="w-28 md:w-32 lg:w-36"></div>
+        <div className="w-12 md:w-12 lg:w-14"></div>
         <div className="flex justify-end h-full">
           <Image
             src="/DEVELOPER.svg"
@@ -224,9 +219,6 @@ export default function Page() {
           />
         </div>
       </div>
-
-      {/* Extra spacer to allow scroll */}
-      <div className="h-screen"></div>
     </div>
   );
 }
