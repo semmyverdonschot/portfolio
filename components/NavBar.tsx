@@ -220,7 +220,7 @@ export default function Navbar() {
       {/* Mobile Menu */}
       <div
         ref={menuRef}
-        className="fixed top-0 left-0 h-full w-full bg-black flex flex-col justify-start pl-6 pt-28 text-[60px] transform translate-x-full overflow-hidden"
+        className="fixed top-0 left-0 h-full w-full bg-[var(--color-dark)] flex flex-col justify-start pl-6 pt-28 text-[60px] transform translate-x-full overflow-hidden"
       >
         <div
           ref={navItemsRef}

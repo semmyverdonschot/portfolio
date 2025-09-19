@@ -92,6 +92,7 @@ export default function Page() {
     };
   }, [isMobile]);
 
+  // Reset images and lock mobile wrapper heights
   useEffect(() => {
     const resetImages = () => {
       if (webWrapperRef.current) {
@@ -100,6 +101,9 @@ export default function Page() {
           webImgRef.current = img;
           img.style.transform = "translateY(100%)";
         }
+        if (isMobile) {
+          webWrapperRef.current.style.height = `${webWrapperRef.current.offsetHeight}px`;
+        }
       }
       if (devWrapperRef.current) {
         const img = devWrapperRef.current.querySelector("img");
@@ -107,12 +111,15 @@ export default function Page() {
           devImgRef.current = img;
           img.style.transform = "translateY(100%)";
         }
+        if (isMobile) {
+          devWrapperRef.current.style.height = `${devWrapperRef.current.offsetHeight}px`;
+        }
       }
     };
     resetImages();
     const timeoutId = setTimeout(resetImages, 50);
     return () => clearTimeout(timeoutId);
-  }, []);
+  }, [isMobile]);
 
   const animatedUpRefs = useMemo(
     () =>
@@ -300,6 +307,7 @@ export default function Page() {
         </div>
       )}
 
+      {/* WEB / DEVELOPER images */}
       <div
         className={`w-full flex h-[20vw] md:h-[14vw] lg:h-[10vw] items-end mt-6 transition-opacity duration-300 ${
           mounted ? "opacity-100" : "opacity-0"
