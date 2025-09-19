@@ -8,12 +8,14 @@ export default function WorkPage() {
   const headingRef = useRef<HTMLHeadingElement>(null);
   const paragraphRef = useRef<HTMLParagraphElement>(null);
 
+  // refs for wrappers around images
   const imgWrapperRefs = [
     useRef<HTMLDivElement>(null),
     useRef<HTMLDivElement>(null),
   ];
   const videoWrapperRef = useRef<HTMLDivElement>(null);
 
+  // Slide heading & paragraph **together**
   useSlideTogether(
     [
       ...imgWrapperRefs,
@@ -24,6 +26,7 @@ export default function WorkPage() {
     2,
   );
 
+  // Slide video **together**
   useSlideTogether(
     [videoWrapperRef] as React.RefObject<HTMLElement>[],
     "down",
@@ -71,7 +74,7 @@ export default function WorkPage() {
           className="overflow-hidden rounded-lg h-[300px] col-span-2 relative"
         >
           <video
-            src="/hero-video.mp4"
+            src="/hero-video.mp4" // replace with your video
             autoPlay
             muted
             loop
