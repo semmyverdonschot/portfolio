@@ -6,7 +6,7 @@ interface SplashScreenProps {
   onFinish: () => void;
   visualDuration?: number;
   pause?: number;
-  videoRef?: React.RefObject<HTMLVideoElement>; // optional ref to the real video
+  videoRef?: React.RefObject<HTMLVideoElement>; // optional ref to the main video
 }
 
 export default function SplashScreen({
@@ -21,50 +21,54 @@ export default function SplashScreen({
   const visualStartRef = useRef(0);
 
   useEffect(() => {
-    // Preload images only
     ["/WEB.svg", "/DEVELOPER.svg"].forEach((src) => {
       const img = new Image();
       img.src = src;
     });
 
-    visualStartRef.current = performance.now();
+    const startCounter = () => {
+      visualStartRef.current = performance.now();
 
-    const updateCounter = (time: number) => {
-      if (finishedRef.current) return;
+      const updateCounter = (time: number) => {
+        if (finishedRef.current) return;
 
-      const elapsed = time - visualStartRef.current;
-      const progress = Math.min((elapsed / visualDuration) * 100, 100);
-      setCount(progress);
+        const elapsed = time - visualStartRef.current;
+        const progress = Math.min((elapsed / visualDuration) * 100, 100);
+        setCount(progress);
 
-      if (progress < 100) {
-        requestAnimationFrame(updateCounter);
-      } else {
-        waitForVideoAndFinish();
-      }
-    };
-
-    const waitForVideoAndFinish = () => {
-      if (videoRef?.current && videoRef.current.readyState < 4) {
-        videoRef.current.addEventListener("canplaythrough", finishSplash, {
-          once: true,
-        });
-      } else {
-        finishSplash();
-      }
-    };
-
-    const finishSplash = () => {
-      setTimeout(() => {
-        if (numberRef.current) {
-          numberRef.current.style.transition = "transform 0.6s ease-in-out";
-          numberRef.current.style.transform = "translateY(-100%)";
+        if (progress < 100) {
+          requestAnimationFrame(updateCounter);
+        } else {
+          setTimeout(() => {
+            if (numberRef.current) {
+              numberRef.current.style.transition =
+                "transform 0.6s ease-in-out";
+              numberRef.current.style.transform = "translateY(-100%)";
+            }
+            setTimeout(onFinish, 600);
+            finishedRef.current = true;
+          }, pause);
         }
-        setTimeout(onFinish, 600);
-        finishedRef.current = true;
-      }, pause);
+      };
+
+      requestAnimationFrame(updateCounter);
     };
 
-    requestAnimationFrame(updateCounter);
+    const waitForVideo = () => {
+      if (videoRef?.current) {
+        if (videoRef.current.readyState >= 4) {
+          startCounter();
+        } else {
+          videoRef.current.addEventListener("canplaythrough", startCounter, {
+            once: true,
+          });
+        }
+      } else {
+        startCounter();
+      }
+    };
+
+    waitForVideo();
   }, [visualDuration, pause, onFinish, videoRef]);
 
   return (
