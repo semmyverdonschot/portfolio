@@ -61,8 +61,8 @@ export default function Navbar() {
 
   const navItems: NavItem[] = [
     { name: "HOME", href: "/", isHome: true },
-    { name: "PROJECTS", href: "/projects" },
-    { name: "ABOUT", href: "/about" },
+    { name: "PROJECTS", href: "/" },
+    { name: "ABOUT", href: "/" },
   ];
 
   const activeIndex = navItems.findIndex((item) => item.href === pathname);
