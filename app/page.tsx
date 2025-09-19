@@ -2,8 +2,10 @@
 
 import Image from "next/image";
 import { useRef, useState, useEffect } from "react";
+import { useSlideTogether } from "@/hooks/useStaggerSlide";
 
 export default function Page() {
+  // Video refs and state
   const videoRef = useRef<HTMLDivElement>(null);
   const videoElRef = useRef<HTMLVideoElement | null>(null);
   const [isMuted, setIsMuted] = useState(true);
@@ -14,6 +16,23 @@ export default function Page() {
   const parentRectRef = useRef<DOMRect | null>(null);
   const halfVideoWidthRef = useRef<number>(0);
 
+  // SVG refs
+  const webRef = useRef<HTMLImageElement>(null);
+  const devRef = useRef<HTMLImageElement>(null);
+
+  // Text refs
+  const aRef = useRef<HTMLSpanElement>(null);
+  const veryRef = useRef<HTMLSpanElement>(null);
+  const secureRef = useRef<HTMLSpanElement>(null);
+
+  // Animate SVGs and text together
+  useSlideTogether(
+    [webRef, devRef, aRef, veryRef, secureRef] as React.RefObject<HTMLElement>[],
+    "up",
+    1.5
+  );
+
+  // Detect mobile
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
@@ -21,6 +40,7 @@ export default function Page() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
+  // Auto play video
   useEffect(() => {
     const v = videoElRef.current;
     if (v) {
@@ -30,6 +50,7 @@ export default function Page() {
     }
   }, [isMobile]);
 
+  // Video follow mouse
   useEffect(() => {
     if (isMobile) return;
 
@@ -54,8 +75,8 @@ export default function Page() {
           maxX,
           e.clientX -
             parentRectRef.current.left -
-            parentRectRef.current.width / 2,
-        ),
+            parentRectRef.current.width / 2
+        )
       );
       targetX.current = x;
     };
@@ -82,16 +103,24 @@ export default function Page() {
 
       {isMobile && (
         <div className="flex w-full mt-2 mb-2 text-base md:text-xl font-medium text-[var(--color-dark)]">
-          <span className="animate-down flex-1 text-left">A</span>
-          <span className="animate-down flex-1 text-center">VERY</span>
-          <span className="animate-down flex-1 text-right">SECURE</span>
+          <span ref={aRef} className="flex-1 text-left transform">
+            A
+          </span>
+          <span ref={veryRef} className="flex-1 text-center transform">
+            VERY
+          </span>
+          <span ref={secureRef} className="flex-1 text-right transform">
+            SECURE
+          </span>
         </div>
       )}
 
-      <div className="animate-down relative w-full flex justify-center">
+      <div className="relative w-full flex justify-center">
         <div
           ref={videoRef}
-          className={`transition-transform duration-150 ease-out relative ${isMobile ? "" : "pointer-events-none"}`}
+          className={`transition-transform duration-150 ease-out relative ${
+            isMobile ? "" : "pointer-events-none"
+          }`}
           style={{
             aspectRatio: "16/9",
             width: isMobile ? "100%" : "40vw",
@@ -172,34 +201,44 @@ export default function Page() {
 
       {!isMobile && (
         <div className="flex w-full mt-2 mb-2 text-[16px] font-normal">
-          <span className="flex-1 text-left">A</span>
-          <span className="flex-1 text-center">VERY</span>
-          <span className="flex-1 text-right">SECURE</span>
+          <span ref={aRef} className="flex-1 text-left transform">
+            A
+          </span>
+          <span ref={veryRef} className="flex-1 text-center transform">
+            VERY
+          </span>
+          <span ref={secureRef} className="flex-1 text-right transform">
+            SECURE
+          </span>
         </div>
       )}
 
-      <div className="w-full flex h-[20vw] md:h-[14vw] lg:h-[10vw] items-end">
-        <div className="flex justify-start h-full">
+      <div className="w-full flex h-[20vw] md:h-[14vw] lg:h-[10vw] items-end mt-6">
+        <div className="overflow-hidden h-full flex justify-start">
           <Image
+            ref={webRef}
             src="/WEB.svg"
             alt="WEB"
             width={1000}
             height={400}
             fetchPriority="high"
-            className="h-full w-auto object-contain"
+            className="h-full w-auto object-contain transform"
             draggable={false}
             priority
           />
         </div>
+
         <div className="w-12 md:w-12 lg:w-14" />
-        <div className="flex justify-end h-full">
+
+        <div className="overflow-hidden h-full flex justify-end">
           <Image
+            ref={devRef}
             src="/DEVELOPER.svg"
             alt="DEVELOPER"
             width={1000}
             height={400}
             fetchPriority="high"
-            className="h-full w-auto object-contain"
+            className="h-full w-auto object-contain transform"
             draggable={false}
             priority
           />

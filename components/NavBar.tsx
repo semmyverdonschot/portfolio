@@ -60,9 +60,9 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navItems: NavItem[] = [
-    { name: "HOME", href: "/", isHome: true },
-    { name: "PROJECTS", href: "/" },
-    { name: "ABOUT", href: "/" },
+    { name: "SEMMY VERDONSCHOT", href: "/", isHome: true },
+    { name: "PROJECTS", href: "/projects" },
+    { name: "ABOUT", href: "/about" },
   ];
 
   const activeIndex = navItems.findIndex((item) => item.href === pathname);
@@ -88,7 +88,7 @@ export default function Navbar() {
                 duration: 0.8,
                 delay: i * 0.05,
                 ease: "power3.out",
-              },
+              }
             );
           }
         });
@@ -105,7 +105,7 @@ export default function Navbar() {
               duration: 0.5,
               delay: i * 0.05,
               ease: "power3.out",
-            },
+            }
           );
         });
       }
@@ -140,6 +140,7 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-0 left-0 w-full px-4 md:px-8 py-5 font-[var(--font-albert-sans)] z-50">
+      {/* Desktop */}
       <div className="hidden md:flex w-full justify-between items-center text-[16px] text-[var(--color-dark)]">
         {navItems.map((item, idx) => (
           <NavButton
@@ -158,6 +159,7 @@ export default function Navbar() {
         </Link>
       </div>
 
+      {/* Mobile Header */}
       <div className="md:hidden flex justify-between items-center relative z-50 w-full">
         <Link
           href="/"
@@ -166,17 +168,17 @@ export default function Navbar() {
         >
           <div
             className={`w-3 h-3 rounded-full border-2 transition-all duration-300 ${
-              finalActiveIndex === 0
-                ? menuOpen
-                  ? "bg-[var(--color-primary)] border-[var(--color-primary)]"
-                  : "bg-[var(--color-dark)] border-[var(--color-dark)]"
-                : "border-transparent"
+              menuOpen
+                ? "bg-[var(--color-primary)] border-[var(--color-primary)]"
+                : "bg-[var(--color-dark)] border-[var(--color-dark)]"
             }`}
           />
           <span
-            className={`font-normal uppercase transition-colors duration-500 ${menuOpen ? "text-white" : "text-[var(--color-dark)]"}`}
+            className={`font-normal uppercase transition-colors duration-500 ${
+              menuOpen ? "text-white" : "text-[var(--color-dark)]"
+            }`}
           >
-            HOME
+            SV
           </span>
         </Link>
 
@@ -198,15 +200,20 @@ export default function Navbar() {
             aria-label={menuOpen ? "Close menu" : "Open menu"}
           >
             <span
-              className={`block absolute h-[1px] w-full bg-[var(--color-dark)] transition-all duration-500 origin-center ${menuOpen ? "rotate-45 bg-[var(--color-primary)]" : "translate-y-[-0.42rem]"}`}
+              className={`block absolute h-[1px] w-full bg-[var(--color-dark)] transition-all duration-500 origin-center ${
+                menuOpen ? "rotate-45 bg-[var(--color-primary)]" : "translate-y-[-0.42rem]"
+              }`}
             />
             <span
-              className={`block absolute h-[1px] w-full bg-[var(--color-dark)] transition-all duration-500 origin-center ${menuOpen ? "-rotate-45 bg-[var(--color-primary)]" : "translate-y-[0.42rem]"}`}
+              className={`block absolute h-[1px] w-full bg-[var(--color-dark)] transition-all duration-500 origin-center ${
+                menuOpen ? "-rotate-45 bg-[var(--color-primary)]" : "translate-y-[0.42rem]"
+              }`}
             />
           </button>
         </div>
       </div>
 
+      {/* Mobile Menu */}
       <div
         ref={menuRef}
         className="fixed top-0 left-0 h-full w-full bg-black flex flex-col justify-start pl-6 pt-28 text-[60px] transform translate-x-full overflow-hidden"
@@ -215,15 +222,15 @@ export default function Navbar() {
           ref={navItemsRef}
           className="flex flex-col space-y-2 overflow-hidden"
         >
-          {navItems.map((item, idx) => (
+          {navItems.map((item) => (
             <Link
-              key={idx}
+              key={item.href}
               href={item.href}
               onClick={handleNavClick}
               className="relative overflow-hidden w-max cursor-pointer"
             >
               <span className="block text-[70px] font-semibold text-white">
-                {item.name}
+                {item.isHome ? "HOME" : item.name}
               </span>
             </Link>
           ))}
