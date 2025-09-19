@@ -196,6 +196,7 @@ export default function Page() {
             <video
               ref={videoElRef}
               src="/1.mp4"
+              poster="/placeholder.png"
               autoPlay
               playsInline
               preload="auto"

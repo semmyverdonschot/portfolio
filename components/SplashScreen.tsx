@@ -21,7 +21,7 @@ export default function SplashScreen({
   const visualStartRef = useRef(0);
 
   useEffect(() => {
-    ["/WEB.svg", "/DEVELOPER.svg"].forEach((src) => {
+    ["/WEB.svg", "/DEVELOPER.svg", "/placeholder.png"].forEach((src) => {
       const img = new Image();
       img.src = src;
     });
@@ -41,8 +41,7 @@ export default function SplashScreen({
         } else {
           setTimeout(() => {
             if (numberRef.current) {
-              numberRef.current.style.transition =
-                "transform 0.6s ease-in-out";
+              numberRef.current.style.transition = "transform 0.6s ease-in-out";
               numberRef.current.style.transform = "translateY(-100%)";
             }
             setTimeout(onFinish, 600);
