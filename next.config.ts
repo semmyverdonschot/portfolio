@@ -1,10 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "export",
-
+  swcMinify: true,
   experimental: {
-    optimizeCss: true, // enables Critters to inline critical CSS
+    esmExternals: true,
+    optimizeCss: true,
   },
 };
 
