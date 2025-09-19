@@ -79,19 +79,16 @@ export default function Page() {
           }}
         >
           <video
-          ref={videoElRef}
-          autoPlay
-          playsInline
-          muted={isMuted}
-          loop
-          preload="metadata"
-          className="w-full h-full rounded-2xl object-cover cursor-pointer pointer-events-auto"
-          onClick={() => setIsMuted(!isMuted)}
-        >
-          <source src="/1-mobile.webm" media="(max-width: 767px)" type="video/webm" />
-          <source src="/1-desktop.webm" media="(min-width: 768px)" type="video/webm" />
-        </video>
-
+            ref={videoElRef}
+            src="/1.mp4"
+            autoPlay
+            playsInline
+            preload="auto"
+            muted={isMuted}
+            loop
+            className="w-full h-full rounded-2xl object-cover cursor-pointer pointer-events-auto"
+            onClick={() => setIsMuted(!isMuted)}
+          />
           {isMobile && (
             <div className="absolute bottom-2 right-2 pointer-events-none">
               <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[var(--color-primary)]/25 backdrop-blur-md transition-all duration-300 ease-out">
