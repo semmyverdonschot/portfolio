@@ -32,7 +32,6 @@ export default function Page() {
 
   useEffect(() => setMounted(true), []);
 
-  // Detect mobile
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
@@ -40,37 +39,21 @@ export default function Page() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Video autoplay (mobile-safe)
   useEffect(() => {
     const v = videoElRef.current;
     if (!v) return;
-
     v.muted = true;
-    const tryPlay = () => {
-      v.play().catch(() => {});
-    };
-
-    // immediate attempt
-    tryPlay();
-
-    // fallback: play on first user interaction
-    window.addEventListener("touchstart", tryPlay, { once: true });
-    window.addEventListener("click", tryPlay, { once: true });
-
-    return () => {
-      window.removeEventListener("touchstart", tryPlay);
-      window.removeEventListener("click", tryPlay);
-    };
+    v.play().catch(() => {});
   }, []);
 
-  // Desktop mouse hover effect
   useEffect(() => {
     if (isMobile) return;
     let rafId: number | null = null;
 
     const recalcSizes = () => {
       if (videoWrapperRef.current?.parentElement) {
-        parentRectRef.current = videoWrapperRef.current.parentElement.getBoundingClientRect();
+        parentRectRef.current =
+          videoWrapperRef.current.parentElement.getBoundingClientRect();
         halfVideoWidthRef.current = videoWrapperRef.current.offsetWidth / 2;
       }
     };
@@ -81,7 +64,15 @@ export default function Page() {
       if (!parentRectRef.current) return;
       const maxX = parentRectRef.current.width / 2 - halfVideoWidthRef.current;
       const minX = -maxX;
-      targetX.current = Math.max(minX, Math.min(maxX, e.clientX - parentRectRef.current.left - parentRectRef.current.width / 2));
+      targetX.current = Math.max(
+        minX,
+        Math.min(
+          maxX,
+          e.clientX -
+            parentRectRef.current.left -
+            parentRectRef.current.width / 2,
+        ),
+      );
     };
 
     const animate = () => {
@@ -101,7 +92,6 @@ export default function Page() {
     };
   }, [isMobile]);
 
-  // Reset image transforms
   useEffect(() => {
     const resetImages = () => {
       if (webWrapperRef.current) {
@@ -133,12 +123,12 @@ export default function Page() {
           ? [mobileARef, mobileVeryRef, mobileSecureRef]
           : [desktopARef, desktopVeryRef, desktopSecureRef]),
       ] as unknown as React.RefObject<HTMLElement>[],
-    [isMobile]
+    [isMobile],
   );
 
   const animatedDownRefs = useMemo(
     () => [videoRef] as React.RefObject<HTMLElement>[],
-    []
+    [],
   );
 
   useSlideTogether(animatedUpRefs, "up", 0.5);
@@ -148,19 +138,47 @@ export default function Page() {
     <div className="min-h-screen bg-[var(--color-primary)] flex flex-col justify-start relative overflow-hidden">
       <div className="h-36 md:h-40 lg:h-44 w-full" />
 
-      {/* Mobile "A VERY SECURE" */}
       {isMobile && (
-        <div className={`flex w-full mb-2 text-base font-medium text-[var(--color-dark)] overflow-visible justify-center transition-opacity duration-300 ${mounted ? "opacity-100" : "opacity-0"}`}>
-          <span ref={mobileARef} className="flex-1 text-left transform translate-y-full transition-transform duration-1000 ease-out">A</span>
-          <span ref={mobileVeryRef} className="flex-1 text-center transform translate-y-full transition-transform duration-1000 ease-out">VERY</span>
-          <span ref={mobileSecureRef} className="flex-1 text-right transform translate-y-full transition-transform duration-1000 ease-out">SECURE</span>
+        <div
+          className={`flex w-full mb-2 text-base font-medium text-[var(--color-dark)] overflow-visible justify-center transition-opacity duration-300 ${mounted ? "opacity-100" : "opacity-0"}`}
+        >
+          <span
+            ref={mobileARef}
+            className="flex-1 text-left transform translate-y-full transition-transform duration-1000 ease-out"
+          >
+            A
+          </span>
+          <span
+            ref={mobileVeryRef}
+            className="flex-1 text-center transform translate-y-full transition-transform duration-1000 ease-out"
+          >
+            VERY
+          </span>
+          <span
+            ref={mobileSecureRef}
+            className="flex-1 text-right transform translate-y-full transition-transform duration-1000 ease-out"
+          >
+            SECURE
+          </span>
         </div>
       )}
 
-      {/* Video */}
-      <div className={`relative w-full flex justify-center overflow-hidden transition-opacity duration-300 ${mounted ? "opacity-100" : "opacity-0"}`}>
-        <div ref={videoWrapperRef} className="relative" style={{ aspectRatio: "16/9", width: isMobile ? "100%" : "40vw", maxWidth: isMobile ? "100%" : "600px" }}>
-          <div ref={videoRef} className="transform translate-y-[-100%] transition-transform duration-1000 ease-out">
+      <div
+        className={`relative w-full flex justify-center overflow-hidden transition-opacity duration-300 ${mounted ? "opacity-100" : "opacity-0"}`}
+      >
+        <div
+          ref={videoWrapperRef}
+          className="relative"
+          style={{
+            aspectRatio: "16/9",
+            width: isMobile ? "100%" : "40vw",
+            maxWidth: isMobile ? "100%" : "600px",
+          }}
+        >
+          <div
+            ref={videoRef}
+            className="transform translate-y-[-100%] transition-transform duration-1000 ease-out"
+          >
             <video
               ref={videoElRef}
               src="/1.mp4"
@@ -176,8 +194,6 @@ export default function Page() {
                 setIsMuted(videoElRef.current.muted);
               }}
             />
-
-            {/* Mobile mute/unmute */}
             {isMobile && (
               <div className="absolute bottom-2 right-2 pointer-events-auto">
                 <div
@@ -189,15 +205,55 @@ export default function Page() {
                   className="flex items-center justify-center w-10 h-10 rounded-full bg-[var(--color-primary)]/25 backdrop-blur-md cursor-pointer"
                 >
                   {isMuted ? (
-                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-[var(--color-dark)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M11 5L6 9H2v6h4l5 4V5z" />
-                      <line x1="15" y1="9" x2="21" y2="15" stroke="currentColor" strokeWidth={2} />
-                      <line x1="21" y1="9" x2="15" y2="15" stroke="currentColor" strokeWidth={2} />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-5 h-5 text-[var(--color-dark)]"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M11 5L6 9H2v6h4l5 4V5z"
+                      />
+                      <line
+                        x1="15"
+                        y1="9"
+                        x2="21"
+                        y2="15"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      />
+                      <line
+                        x1="21"
+                        y1="9"
+                        x2="15"
+                        y2="15"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      />
                     </svg>
                   ) : (
-                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-[var(--color-dark)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M11 5L6 9H2v6h4l5 4V5z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.54 8.46a5 5 0 010 7.08" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-5 h-5 text-[var(--color-dark)]"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M11 5L6 9H2v6h4l5 4V5z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M15.54 8.46a5 5 0 010 7.08"
+                      />
                     </svg>
                   )}
                 </div>
@@ -207,23 +263,64 @@ export default function Page() {
         </div>
       </div>
 
-      {/* Desktop "A VERY SECURE" */}
       {!isMobile && (
-        <div className={`flex w-full mt-4 mb-6 text-[16px] font-normal overflow-visible justify-center transition-opacity duration-300 ${mounted ? "opacity-100" : "opacity-0"}`}>
-          <span ref={desktopARef} className="flex-1 text-left transform translate-y-full transition-transform duration-1000 ease-out">A</span>
-          <span ref={desktopVeryRef} className="flex-1 text-center transform translate-y-full transition-transform duration-1000 ease-out">VERY</span>
-          <span ref={desktopSecureRef} className="flex-1 text-right transform translate-y-full transition-transform duration-1000 ease-out">SECURE</span>
+        <div
+          className={`flex w-full mt-4 mb-6 text-[16px] font-normal overflow-visible justify-center transition-opacity duration-300 ${mounted ? "opacity-100" : "opacity-0"}`}
+        >
+          <span
+            ref={desktopARef}
+            className="flex-1 text-left transform translate-y-full transition-transform duration-1000 ease-out"
+          >
+            A
+          </span>
+          <span
+            ref={desktopVeryRef}
+            className="flex-1 text-center transform translate-y-full transition-transform duration-1000 ease-out"
+          >
+            VERY
+          </span>
+          <span
+            ref={desktopSecureRef}
+            className="flex-1 text-right transform translate-y-full transition-transform duration-1000 ease-out"
+          >
+            SECURE
+          </span>
         </div>
       )}
 
-      {/* SVGs */}
-      <div className={`w-full flex h-[20vw] md:h-[14vw] lg:h-[10vw] items-end mt-6 transition-opacity duration-300 ${mounted ? "opacity-100" : "opacity-0"}`}>
-        <div ref={webWrapperRef} className="overflow-hidden h-full flex justify-start">
-          <Image src="/WEB.svg" alt="WEB" width={1000} height={400} unoptimized priority draggable={false} className="h-full w-auto transform translate-y-full transition-transform duration-1000 ease-out" />
+      <div
+        className={`w-full flex h-[20vw] md:h-[14vw] lg:h-[10vw] items-end mt-6 transition-opacity duration-300 ${mounted ? "opacity-100" : "opacity-0"}`}
+      >
+        <div
+          ref={webWrapperRef}
+          className="overflow-hidden h-full flex justify-start"
+        >
+          <Image
+            src="/WEB.svg"
+            alt="WEB"
+            width={1000}
+            height={400}
+            unoptimized
+            priority
+            draggable={false}
+            className="h-full w-auto transform translate-y-full transition-transform duration-1000 ease-out"
+          />
         </div>
         <div className="w-12 md:w-12 lg:w-14" />
-        <div ref={devWrapperRef} className="overflow-hidden h-full flex justify-end">
-          <Image src="/DEVELOPER.svg" alt="DEVELOPER" width={1000} height={400} unoptimized priority draggable={false} className="h-full w-auto transform translate-y-full transition-transform duration-1000 ease-out" />
+        <div
+          ref={devWrapperRef}
+          className="overflow-hidden h-full flex justify-end"
+        >
+          <Image
+            src="/DEVELOPER.svg"
+            alt="DEVELOPER"
+            width={1000}
+            height={400}
+            unoptimized
+            priority
+            draggable={false}
+            className="h-full w-auto transform translate-y-full transition-transform duration-1000 ease-out"
+          />
         </div>
       </div>
     </div>
