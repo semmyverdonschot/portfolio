@@ -30,8 +30,10 @@ export default function Page() {
 
   const [mounted, setMounted] = useState(false);
 
+  // Fade-in mounted state
   useEffect(() => setMounted(true), []);
 
+  // Detect mobile viewport
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
@@ -39,6 +41,7 @@ export default function Page() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
+  // Video autoplay & muted
   useEffect(() => {
     const v = videoElRef.current;
     if (!v) return;
@@ -46,6 +49,7 @@ export default function Page() {
     v.play().catch(() => {});
   }, []);
 
+  // Desktop mouse-follow animation
   useEffect(() => {
     if (isMobile) return;
     let rafId: number | null = null;
@@ -92,6 +96,7 @@ export default function Page() {
     };
   }, [isMobile]);
 
+  // Reset WEB / DEVELOPER images positions
   useEffect(() => {
     const resetImages = () => {
       if (webWrapperRef.current) {
@@ -207,7 +212,6 @@ export default function Page() {
                 setIsMuted(videoElRef.current.muted);
               }}
             />
-
             {isMobile && (
               <div className="absolute bottom-2 right-2 pointer-events-auto">
                 <div
@@ -306,6 +310,7 @@ export default function Page() {
           </div>
         </div>
       )}
+
       {/* WEB / DEVELOPER images */}
       <div
         className={`w-full flex h-[20vw] md:h-[14vw] lg:h-[10vw] items-end mt-6 transition-opacity duration-300 ${
@@ -323,9 +328,8 @@ export default function Page() {
             height={400}
             unoptimized
             priority
-            fetchPriority="high"
             draggable={false}
-            className="h-full w-auto max-w-full transform translate-y-full transition-transform duration-1000 ease-out"
+            className="h-full w-auto max-w-[100%] object-contain transform translate-y-full transition-transform duration-1000 ease-out"
           />
         </div>
 
@@ -342,9 +346,8 @@ export default function Page() {
             height={400}
             unoptimized
             priority
-            fetchPriority="high"
             draggable={false}
-            className="h-full w-auto max-w-full transform translate-y-full transition-transform duration-1000 ease-out"
+            className="h-full w-auto max-w-[100%] object-contain transform translate-y-full transition-transform duration-1000 ease-out"
           />
         </div>
       </div>
