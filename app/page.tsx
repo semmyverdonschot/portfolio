@@ -306,7 +306,6 @@ export default function Page() {
           </div>
         </div>
       )}
-
       {/* WEB / DEVELOPER images */}
       <div
         className={`w-full flex h-[20vw] md:h-[14vw] lg:h-[10vw] items-end mt-6 transition-opacity duration-300 ${
@@ -326,7 +325,7 @@ export default function Page() {
             priority
             fetchPriority="high"
             draggable={false}
-            className="h-full w-auto transform translate-y-full transition-transform duration-1000 ease-out"
+            className="h-full w-auto max-w-full transform translate-y-full transition-transform duration-1000 ease-out"
           />
         </div>
 
@@ -345,7 +344,7 @@ export default function Page() {
             priority
             fetchPriority="high"
             draggable={false}
-            className="h-full w-auto transform translate-y-full transition-transform duration-1000 ease-out"
+            className="h-full w-auto max-w-full transform translate-y-full transition-transform duration-1000 ease-out"
           />
         </div>
       </div>
