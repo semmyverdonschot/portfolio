@@ -44,7 +44,12 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={`${albertSans.variable}`}>
-      <body className="antialiased bg-white text-[var(--color-dark)] transition-colors duration-300">
+      <head>
+        {/* Theme color for Safari and Chrome */}
+        <meta name="theme-color" content="#171717" />
+      </head>
+      <body className="antialiased bg-[#171717] text-[var(--color-light)] transition-colors duration-300">
+        {/* Google Analytics */}
         <Script
           strategy="afterInteractive"
           src="https://www.googletagmanager.com/gtag/js?id=G-0CS17B888C"
@@ -57,6 +62,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             gtag('config', 'G-0CS17B888C');
           `}
         </Script>
+
         <div className="px-4 md:px-8">
           <ClientWrapper>{children}</ClientWrapper>
         </div>
