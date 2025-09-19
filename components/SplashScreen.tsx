@@ -19,6 +19,7 @@ export default function SplashScreen({
   const visualStartRef = useRef(0);
 
   useEffect(() => {
+    // Preload assets
     const criticalAssets = ["/1.mp4", "/WEB.svg", "/DEVELOPER.svg"];
 
     criticalAssets.forEach((src) => {
@@ -28,46 +29,42 @@ export default function SplashScreen({
         video.preload = "auto";
         video.muted = true;
         video.playsInline = true;
-
-        // start counter when video is ready
-        video.addEventListener(
-          "canplaythrough",
-          () => {
-            startCounter();
-          },
-          { once: true },
-        );
+        video.style.display = "none"; 
+        document.body.appendChild(video);
       } else {
         const img = new Image();
         img.src = src;
       }
     });
 
-    const startCounter = () => {
-      visualStartRef.current = performance.now();
+    visualStartRef.current = performance.now();
 
-      const updateCounter = (time: number) => {
-        if (finishedRef.current) return;
+    const updateCounter = (time: number) => {
+      if (finishedRef.current) return;
 
-        const elapsed = time - visualStartRef.current;
-        const progress = Math.min((elapsed / visualDuration) * 100, 100);
-        setCount(progress);
+      const elapsed = time - visualStartRef.current;
+      const progress = Math.min((elapsed / visualDuration) * 100, 100);
+      setCount(progress);
 
-        if (progress < 100) {
-          requestAnimationFrame(updateCounter);
-        } else {
-          setTimeout(() => {
-            if (numberRef.current) {
-              numberRef.current.style.transition = "transform 0.6s ease-in-out";
-              numberRef.current.style.transform = "translateY(-100%)";
-            }
-            setTimeout(onFinish, 600);
-            finishedRef.current = true;
-          }, pause);
-        }
-      };
+      if (progress < 100) {
+        requestAnimationFrame(updateCounter);
+      } else {
+        setTimeout(() => {
+          if (numberRef.current) {
+            numberRef.current.style.transition = "transform 0.6s ease-in-out";
+            numberRef.current.style.transform = "translateY(-100%)";
+          }
+          setTimeout(onFinish, 600);
+          finishedRef.current = true;
+        }, pause);
+      }
+    };
 
-      requestAnimationFrame(updateCounter);
+    requestAnimationFrame(updateCounter);
+
+    return () => {
+      const videos = document.querySelectorAll("video[style='display: none;']");
+      videos.forEach((v) => v.remove());
     };
   }, [visualDuration, pause, onFinish]);
 
