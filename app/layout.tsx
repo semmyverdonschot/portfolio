@@ -59,9 +59,26 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <link
           rel="preload"
           as="font"
-          href="/_next/static/fonts/Albert_Sans-*.woff2" // Next.js will replace the wildcard
+          href="/_next/static/fonts/Albert_Sans-*.woff2" // Next.js replaces wildcard
           type="font/woff2"
           crossOrigin="anonymous"
+        />
+
+        {/* Preload LCP video */}
+        <link
+          rel="preload"
+          as="video"
+          href="/hero-video.mp4"
+          type="video/mp4"
+        />
+
+        {/* Preload LCP poster */}
+        <link
+          rel="preload"
+          as="image"
+          href="/placeholder.webp"
+          type="image/webp"
+          fetchPriority="high"
         />
 
         {/* Theme for Chrome, Android, Windows */}

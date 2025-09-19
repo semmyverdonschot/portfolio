@@ -157,19 +157,19 @@ export default function Page() {
           <div className="flex w-full text-base font-medium text-[var(--color-dark)] justify-center">
             <span
               ref={mobileARef}
-              className="flex-1 text-left transform translate-y-full transition-transform duration-1000 ease-out"
+              className="flex-1 text-left translate-y-full"
             >
               A
             </span>
             <span
               ref={mobileVeryRef}
-              className="flex-1 text-center transform translate-y-full transition-transform duration-1000 ease-out"
+              className="flex-1 text-center translate-y-full"
             >
               VERY
             </span>
             <span
               ref={mobileSecureRef}
-              className="flex-1 text-right transform translate-y-full transition-transform duration-1000 ease-out"
+              className="flex-1 text-right translate-y-full"
             >
               SECURE
             </span>
@@ -194,11 +194,11 @@ export default function Page() {
         >
           <div
             ref={videoRef}
-            className="transform translate-y-[-100%] transition-transform duration-1000 ease-out"
+            className="translate-y-[-100%] transition-transform duration-1000 ease-out"
           >
             <video
               ref={videoElRef}
-              src="/1.mp4"
+              src="/hero-video.mp4"
               poster="/placeholder.webp"
               autoPlay
               playsInline
@@ -291,19 +291,19 @@ export default function Page() {
           <div className="flex w-full text-[16px] font-normal justify-center">
             <span
               ref={desktopARef}
-              className="flex-1 text-left transform translate-y-full transition-transform duration-1000 ease-out"
+              className="flex-1 text-left translate-y-full"
             >
               A
             </span>
             <span
               ref={desktopVeryRef}
-              className="flex-1 text-center transform translate-y-full transition-transform duration-1000 ease-out"
+              className="flex-1 text-center translate-y-full"
             >
               VERY
             </span>
             <span
               ref={desktopSecureRef}
-              className="flex-1 text-right transform translate-y-full transition-transform duration-1000 ease-out"
+              className="flex-1 text-right translate-y-full"
             >
               SECURE
             </span>
@@ -329,7 +329,7 @@ export default function Page() {
             unoptimized
             priority
             draggable={false}
-            className="h-full w-auto max-w-[100%] object-contain transform translate-y-full transition-transform duration-1000 ease-out"
+            className="h-full w-auto max-w-[100%] object-contain translate-y-full"
           />
         </div>
 
@@ -347,7 +347,7 @@ export default function Page() {
             unoptimized
             priority
             draggable={false}
-            className="h-full w-auto max-w-[100%] object-contain transform translate-y-full transition-transform duration-1000 ease-out"
+            className="h-full w-auto max-w-[100%] object-contain translate-y-full"
           />
         </div>
       </div>

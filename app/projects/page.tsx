@@ -74,7 +74,7 @@ export default function WorkPage() {
           className="overflow-hidden rounded-lg h-[300px] col-span-2 relative"
         >
           <video
-            src="/1.mp4" // replace with your video
+            src="/hero-video.mp4" // replace with your video
             autoPlay
             muted
             loop
