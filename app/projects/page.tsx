@@ -1,26 +1,26 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { useSlideTogether } from "@/hooks/useStaggerSlide";
 
 export default function WorkPage() {
   const headingRef = useRef<HTMLHeadingElement>(null);
   const paragraphRef = useRef<HTMLParagraphElement>(null);
-  const imgRefs = [
-    useRef<HTMLImageElement>(null),
-    useRef<HTMLImageElement>(null),
-  ];
-  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // refs for wrappers around images
+  const imgWrapperRefs = [useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null)];
+  const videoWrapperRef = useRef<HTMLDivElement>(null);
 
   // Slide heading & paragraph **together**
   useSlideTogether(
-    [...imgRefs, headingRef, paragraphRef] as React.RefObject<HTMLElement>[],
+    [...imgWrapperRefs, headingRef, paragraphRef] as React.RefObject<HTMLElement>[],
     "up",
     2,
   );
 
-  // Slide images & video **together**
-  useSlideTogether([videoRef] as React.RefObject<HTMLElement>[], "down", 1.23);
+  // Slide video **together**
+  useSlideTogether([videoWrapperRef] as React.RefObject<HTMLElement>[], "down", 1.23);
 
   return (
     <div className="p-10 space-y-8">
@@ -41,20 +41,25 @@ export default function WorkPage() {
       {/* Images */}
       <div className="grid grid-cols-2 gap-6 mt-6">
         {["Project 1", "Project 2"].map((title, i) => (
-          <div key={i} className="overflow-hidden rounded-lg h-[300px]">
-            <img
-              ref={imgRefs[i]}
-              src={`/WEB.svg`} // replace with your image
+          <div
+            key={i}
+            ref={imgWrapperRefs[i]}
+            className="overflow-hidden rounded-lg h-[300px] relative"
+          >
+            <Image
+              src="/WEB.svg" // replace with your actual image
               alt={title}
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
+              priority
+              draggable={false}
             />
           </div>
         ))}
 
         {/* Video */}
-        <div className="overflow-hidden rounded-lg h-[300px] col-span-2">
+        <div ref={videoWrapperRef} className="overflow-hidden rounded-lg h-[300px] col-span-2 relative">
           <video
-            ref={videoRef}
             src="/1.mp4" // replace with your video
             autoPlay
             muted
