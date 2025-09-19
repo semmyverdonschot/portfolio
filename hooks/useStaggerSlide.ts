@@ -5,10 +5,7 @@ import gsap from "gsap";
 
 type Direction = "up" | "down";
 
-/**
- * Slides elements in simultaneously from completely hidden behind a mask
- * Uses container height to ensure nothing is visible initially
- */
+
 export function useSlideTogether<T extends HTMLElement = HTMLElement>(
   refs: RefObject<T>[],
   direction: Direction = "up",
@@ -21,11 +18,13 @@ export function useSlideTogether<T extends HTMLElement = HTMLElement>(
       const containerHeight = ref.current.parentElement.offsetHeight;
       const yStart = direction === "up" ? containerHeight : -containerHeight;
 
-      // Set initial position off-screen
       gsap.set(ref.current, { y: yStart });
 
-      // Animate into view
-      gsap.to(ref.current, { y: -0, duration, ease: "power3.out" });
+      gsap.to(ref.current, {
+        y: 0,
+        duration,
+        ease: "cubic-bezier(0.5, 0, 1, 1)",
+      });
     });
   }, [refs, direction, duration]);
 }

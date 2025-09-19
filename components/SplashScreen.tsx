@@ -11,7 +11,7 @@ interface SplashScreenProps {
 export default function SplashScreen({
   onFinish,
   visualDuration = 1000,
-  pause = 200,
+  pause = 400,
 }: SplashScreenProps) {
   const [count, setCount] = useState(0);
   const numberRef = useRef<HTMLDivElement>(null);

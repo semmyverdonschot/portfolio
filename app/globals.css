@@ -40,3 +40,7 @@ h1 {
   transform: translateY(70px);
   white-space: pre-wrap;
 }
+.animated-wrapper {
+  display: inline-block;
+  overflow: hidden;
+}
