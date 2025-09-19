@@ -11,6 +11,9 @@ export default function Page() {
   const currentX = useRef(0);
   const [isMobile, setIsMobile] = useState(false);
 
+  const parentRectRef = useRef<DOMRect | null>(null);
+  const halfVideoWidthRef = useRef<number>(0);
+
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
@@ -30,15 +33,29 @@ export default function Page() {
   useEffect(() => {
     if (isMobile) return;
 
+    const recalcSizes = () => {
+      if (videoRef.current?.parentElement) {
+        parentRectRef.current =
+          videoRef.current.parentElement.getBoundingClientRect();
+        halfVideoWidthRef.current = videoRef.current.offsetWidth / 2;
+      }
+    };
+
+    recalcSizes();
+    window.addEventListener("resize", recalcSizes);
+
     const handleMouseMove = (e: MouseEvent) => {
-      if (!videoRef.current) return;
-      const rect = videoRef.current.parentElement!.getBoundingClientRect();
-      const halfVideoWidth = videoRef.current.offsetWidth / 2;
-      const maxX = rect.width / 2 - halfVideoWidth;
+      if (!parentRectRef.current) return;
+      const maxX = parentRectRef.current.width / 2 - halfVideoWidthRef.current;
       const minX = -maxX;
       const x = Math.max(
         minX,
-        Math.min(maxX, e.clientX - rect.left - rect.width / 2),
+        Math.min(
+          maxX,
+          e.clientX -
+            parentRectRef.current.left -
+            parentRectRef.current.width / 2,
+        ),
       );
       targetX.current = x;
     };
@@ -53,7 +70,10 @@ export default function Page() {
     window.addEventListener("mousemove", handleMouseMove);
     animate();
 
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("resize", recalcSizes);
+    };
   }, [isMobile]);
 
   return (
@@ -165,6 +185,7 @@ export default function Page() {
             alt="WEB"
             width={1000}
             height={400}
+            fetchPriority="high"
             className="h-full w-auto object-contain"
             draggable={false}
             priority
@@ -177,8 +198,10 @@ export default function Page() {
             alt="DEVELOPER"
             width={1000}
             height={400}
+            fetchPriority="high"
             className="h-full w-auto object-contain"
             draggable={false}
+            priority
           />
         </div>
       </div>
