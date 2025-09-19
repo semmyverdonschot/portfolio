@@ -5,7 +5,6 @@ import gsap from "gsap";
 
 type Direction = "up" | "down";
 
-
 export function useSlideTogether<T extends HTMLElement = HTMLElement>(
   refs: RefObject<T>[],
   direction: Direction = "up",
