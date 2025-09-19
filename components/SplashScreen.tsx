@@ -19,7 +19,7 @@ export default function SplashScreen({
   const visualStartRef = useRef(performance.now());
 
   useEffect(() => {
-    const criticalAssets = ["/1.mp4", "/WEB.SVG", "/DEVELOPER.SVG"];
+    const criticalAssets = ["/1.mp4", "/WEB.svg", "/DEVELOPER.svg"];
 
     criticalAssets.forEach((src) => {
       if (src.endsWith(".mp4")) {
