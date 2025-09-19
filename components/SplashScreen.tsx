@@ -17,45 +17,34 @@ export default function SplashScreen({
   const numberRef = useRef<HTMLDivElement>(null);
   const finishedRef = useRef(false);
   const visualStartRef = useRef(performance.now());
-  const assetsDoneRef = useRef(false);
 
   useEffect(() => {
-    const mediaElements: (HTMLImageElement | HTMLVideoElement)[] = [];
-    document.querySelectorAll("img, video").forEach((el) => {
-      if (el instanceof HTMLImageElement || el instanceof HTMLVideoElement)
-        mediaElements.push(el);
-    });
+    const criticalAssets = ["/1.mp4", "/WEB.SVG", "/DEVELOPER.SVG"];
 
-    let loadedCount = 0;
-    const totalCount = mediaElements.length || 1;
-
-    const onAssetLoaded = () => {
-      loadedCount++;
-      if (loadedCount >= totalCount) assetsDoneRef.current = true;
-    };
-
-    mediaElements.forEach((el) => {
-      if (
-        (el instanceof HTMLImageElement && el.complete) ||
-        (el instanceof HTMLVideoElement && el.readyState >= 3)
-      ) {
-        onAssetLoaded();
+    criticalAssets.forEach((src) => {
+      if (src.endsWith(".mp4")) {
+        const video = document.createElement("video");
+        video.src = src;
+        video.preload = "auto";
+        video.muted = true;
+        video.playsInline = true;
       } else {
-        el.addEventListener("load", onAssetLoaded, { once: true });
-        el.addEventListener("loadeddata", onAssetLoaded, { once: true });
-        el.addEventListener("loadedmetadata", onAssetLoaded, { once: true });
+        const img = new Image();
+        img.src = src;
       }
     });
+  }, []);
 
+  useEffect(() => {
     const updateCounter = (time: number) => {
       if (finishedRef.current) return;
 
       const elapsed = time - visualStartRef.current;
-      const visualProgress = Math.min((elapsed / visualDuration) * 100, 100);
+      const progress = Math.min((elapsed / visualDuration) * 100, 100);
 
-      setCount(visualProgress);
+      setCount(progress);
 
-      if (visualProgress < 100 || !assetsDoneRef.current) {
+      if (progress < 100) {
         requestAnimationFrame(updateCounter);
       } else {
         setTimeout(() => {
@@ -70,14 +59,6 @@ export default function SplashScreen({
     };
 
     requestAnimationFrame(updateCounter);
-
-    return () => {
-      mediaElements.forEach((el) => {
-        el.removeEventListener("load", onAssetLoaded);
-        el.removeEventListener("loadeddata", onAssetLoaded);
-        el.removeEventListener("loadedmetadata", onAssetLoaded);
-      });
-    };
   }, [visualDuration, pause, onFinish]);
 
   return (
