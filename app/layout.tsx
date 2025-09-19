@@ -23,6 +23,7 @@ export const metadata = {
   ],
   authors: [{ name: "Semmy Verdonschot" }],
   robots: "index, follow",
+  themeColor: "#171717",
   openGraph: {
     title: "Semmy Verdonschot | Web Developer",
     description: "Semmy Verdonschot | Web Developer based in The Netherlands.",
@@ -44,10 +45,6 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={`${albertSans.variable}`}>
-      <head>
-        {/* Theme color for Safari and Chrome */}
-        <meta name="theme-color" content="#171717" />
-      </head>
       <body className="antialiased bg-[#171717] text-[var(--color-light)] transition-colors duration-300">
         {/* Google Analytics */}
         <Script
