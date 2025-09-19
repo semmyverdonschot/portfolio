@@ -6,26 +6,24 @@ import { useSlideTogether } from "@/hooks/useStaggerSlide";
 export default function WorkPage() {
   const headingRef = useRef<HTMLHeadingElement>(null);
   const paragraphRef = useRef<HTMLParagraphElement>(null);
-  const imgRefs = [useRef<HTMLImageElement>(null), useRef<HTMLImageElement>(null)];
+  const imgRefs = [
+    useRef<HTMLImageElement>(null),
+    useRef<HTMLImageElement>(null),
+  ];
   const videoRef = useRef<HTMLVideoElement>(null);
 
   // Slide heading & paragraph **together**
   useSlideTogether(
     [...imgRefs, headingRef, paragraphRef] as React.RefObject<HTMLElement>[],
     "up",
-    2
+    2,
   );
 
   // Slide images & video **together**
-  useSlideTogether(
-    [videoRef] as React.RefObject<HTMLElement>[],
-    "down",
-    1.23
-  );
+  useSlideTogether([videoRef] as React.RefObject<HTMLElement>[], "down", 1.23);
 
   return (
     <div className="p-10 space-y-8">
-
       {/* Heading */}
       <div className="overflow-hidden">
         <h1 ref={headingRef} className="text-4xl font-bold">

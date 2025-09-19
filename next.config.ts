@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   output: "export",
 
   experimental: {
-    optimizeCss: true,
+    optimizeCss: true, // enables Critters to inline critical CSS
   },
 };
 

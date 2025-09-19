@@ -12,7 +12,7 @@ type Direction = "up" | "down";
 export function useSlideTogether<T extends HTMLElement = HTMLElement>(
   refs: RefObject<T>[],
   direction: Direction = "up",
-  duration = 2
+  duration = 2,
 ) {
   useEffect(() => {
     refs.forEach((ref) => {

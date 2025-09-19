@@ -1,12 +1,12 @@
 "use client";
 
-import Image from "next/image";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useMemo } from "react";
+import Image from "next/image"; // kept import in case you still use it elsewhere
 import { useSlideTogether } from "@/hooks/useStaggerSlide";
 
 export default function Page() {
   // Video refs and state
-  const videoRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLDivElement | null>(null);
   const videoElRef = useRef<HTMLVideoElement | null>(null);
   const [isMuted, setIsMuted] = useState(true);
   const targetX = useRef(0);
@@ -16,21 +16,30 @@ export default function Page() {
   const parentRectRef = useRef<DOMRect | null>(null);
   const halfVideoWidthRef = useRef<number>(0);
 
-  // SVG refs
-  const webRef = useRef<HTMLImageElement>(null);
-  const devRef = useRef<HTMLImageElement>(null);
+  // SVG refs (attach to real <img> elements so your animation hook sees HTMLImageElement)
+  const webRef = useRef<HTMLImageElement | null>(null);
+  const devRef = useRef<HTMLImageElement | null>(null);
 
   // Text refs
-  const aRef = useRef<HTMLSpanElement>(null);
-  const veryRef = useRef<HTMLSpanElement>(null);
-  const secureRef = useRef<HTMLSpanElement>(null);
+  const aRef = useRef<HTMLSpanElement | null>(null);
+  const veryRef = useRef<HTMLSpanElement | null>(null);
+  const secureRef = useRef<HTMLSpanElement | null>(null);
 
-  // Animate SVGs and text together
-  useSlideTogether(
-    [webRef, devRef, aRef, veryRef, secureRef] as React.RefObject<HTMLElement>[],
-    "up",
-    1.5
+  // Stable refs array for animation so the hook doesn't restart on every render
+  const animatedRefs = useMemo(
+    () =>
+      [
+        webRef,
+        devRef,
+        aRef,
+        veryRef,
+        secureRef,
+      ] as React.RefObject<HTMLElement>[],
+    [],
   );
+
+  // Animate SVGs and text together (will run once thanks to stable array)
+  useSlideTogether(animatedRefs, "up", 1.5);
 
   // Detect mobile
   useEffect(() => {
@@ -40,19 +49,21 @@ export default function Page() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Auto play video
+  // Auto play video (tries to play on mount / when mobile flag changes)
   useEffect(() => {
     const v = videoElRef.current;
     if (v) {
       const playPromise = v.play();
-      if (playPromise && typeof playPromise.then === "function")
+      if (playPromise && typeof playPromise.then === "function") {
         playPromise.catch(() => {});
+      }
     }
   }, [isMobile]);
 
-  // Video follow mouse
+  // Video follow mouse (desktop only). Cancel RAF on cleanup.
   useEffect(() => {
     if (isMobile) return;
+    let rafId: number | null = null;
 
     const recalcSizes = () => {
       if (videoRef.current?.parentElement) {
@@ -75,8 +86,8 @@ export default function Page() {
           maxX,
           e.clientX -
             parentRectRef.current.left -
-            parentRectRef.current.width / 2
-        )
+            parentRectRef.current.width / 2,
+        ),
       );
       targetX.current = x;
     };
@@ -85,7 +96,7 @@ export default function Page() {
       currentX.current += (targetX.current - currentX.current) * 0.06;
       if (videoRef.current)
         videoRef.current.style.transform = `translateX(${currentX.current}px)`;
-      requestAnimationFrame(animate);
+      rafId = requestAnimationFrame(animate);
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -94,6 +105,7 @@ export default function Page() {
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("resize", recalcSizes);
+      if (rafId !== null) cancelAnimationFrame(rafId);
     };
   }, [isMobile]);
 
@@ -136,7 +148,7 @@ export default function Page() {
             muted={isMuted}
             loop
             className="w-full h-full rounded-2xl object-cover cursor-pointer pointer-events-auto"
-            onClick={() => setIsMuted(!isMuted)}
+            onClick={() => setIsMuted((m) => !m)}
           />
           {isMobile && (
             <div className="absolute bottom-2 right-2 pointer-events-none">
@@ -215,32 +227,27 @@ export default function Page() {
 
       <div className="w-full flex h-[20vw] md:h-[14vw] lg:h-[10vw] items-end mt-6">
         <div className="overflow-hidden h-full flex justify-start">
-          <Image
+          {/* Use plain <img> for stable sizing & to preserve the exact animation behavior */}
+          <img
             ref={webRef}
             src="/WEB.svg"
             alt="WEB"
-            width={1000}
-            height={400}
-            fetchPriority="high"
-            className="h-full w-auto object-contain transform"
             draggable={false}
-            priority
+            loading="eager"
+            className="h-full w-auto object-contain transform"
           />
         </div>
 
         <div className="w-12 md:w-12 lg:w-14" />
 
         <div className="overflow-hidden h-full flex justify-end">
-          <Image
+          <img
             ref={devRef}
             src="/DEVELOPER.svg"
             alt="DEVELOPER"
-            width={1000}
-            height={400}
-            fetchPriority="high"
-            className="h-full w-auto object-contain transform"
             draggable={false}
-            priority
+            loading="eager"
+            className="h-full w-auto object-contain transform"
           />
         </div>
       </div>

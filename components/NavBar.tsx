@@ -88,7 +88,7 @@ export default function Navbar() {
                 duration: 0.8,
                 delay: i * 0.05,
                 ease: "power3.out",
-              }
+              },
             );
           }
         });
@@ -105,7 +105,7 @@ export default function Navbar() {
               duration: 0.5,
               delay: i * 0.05,
               ease: "power3.out",
-            }
+            },
           );
         });
       }
@@ -201,12 +201,16 @@ export default function Navbar() {
           >
             <span
               className={`block absolute h-[1px] w-full bg-[var(--color-dark)] transition-all duration-500 origin-center ${
-                menuOpen ? "rotate-45 bg-[var(--color-primary)]" : "translate-y-[-0.42rem]"
+                menuOpen
+                  ? "rotate-45 bg-[var(--color-primary)]"
+                  : "translate-y-[-0.42rem]"
               }`}
             />
             <span
               className={`block absolute h-[1px] w-full bg-[var(--color-dark)] transition-all duration-500 origin-center ${
-                menuOpen ? "-rotate-45 bg-[var(--color-primary)]" : "translate-y-[0.42rem]"
+                menuOpen
+                  ? "-rotate-45 bg-[var(--color-primary)]"
+                  : "translate-y-[0.42rem]"
               }`}
             />
           </button>
