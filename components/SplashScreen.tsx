@@ -6,7 +6,7 @@ interface SplashScreenProps {
   onFinish: () => void;
   visualDuration?: number;
   pause?: number;
-  videoRef?: React.RefObject<HTMLVideoElement>; // optional ref to the main video
+  videoRef?: React.RefObject<HTMLVideoElement>;
 }
 
 export default function SplashScreen({
@@ -21,7 +21,7 @@ export default function SplashScreen({
   const visualStartRef = useRef(0);
 
   useEffect(() => {
-    ["/WEB.svg", "/DEVELOPER.svg", "/placeholder.png"].forEach((src) => {
+    ["/WEB.svg", "/DEVELOPER.svg", "/placeholder.webp"].forEach((src) => {
       const img = new Image();
       img.src = src;
     });

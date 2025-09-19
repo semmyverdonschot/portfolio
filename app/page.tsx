@@ -92,7 +92,6 @@ export default function Page() {
     };
   }, [isMobile]);
 
-  // Reset images and lock mobile wrapper heights
   useEffect(() => {
     const resetImages = () => {
       if (webWrapperRef.current) {
@@ -101,9 +100,8 @@ export default function Page() {
           webImgRef.current = img;
           img.style.transform = "translateY(100%)";
         }
-        if (isMobile) {
+        if (isMobile)
           webWrapperRef.current.style.height = `${webWrapperRef.current.offsetHeight}px`;
-        }
       }
       if (devWrapperRef.current) {
         const img = devWrapperRef.current.querySelector("img");
@@ -111,9 +109,8 @@ export default function Page() {
           devImgRef.current = img;
           img.style.transform = "translateY(100%)";
         }
-        if (isMobile) {
+        if (isMobile)
           devWrapperRef.current.style.height = `${devWrapperRef.current.offsetHeight}px`;
-        }
       }
     };
     resetImages();
@@ -175,6 +172,7 @@ export default function Page() {
         </div>
       )}
 
+      {/* Video Section */}
       <div
         className={`relative w-full flex justify-center overflow-hidden transition-opacity duration-300 ${
           mounted ? "opacity-100" : "opacity-0"
@@ -196,7 +194,7 @@ export default function Page() {
             <video
               ref={videoElRef}
               src="/1.mp4"
-              poster="/placeholder.png"
+              poster="/placeholder.webp"
               autoPlay
               playsInline
               preload="auto"
@@ -209,6 +207,7 @@ export default function Page() {
                 setIsMuted(videoElRef.current.muted);
               }}
             />
+
             {isMobile && (
               <div className="absolute bottom-2 right-2 pointer-events-auto">
                 <div
@@ -325,9 +324,9 @@ export default function Page() {
             height={400}
             unoptimized
             priority
+            fetchPriority="high"
             draggable={false}
             className="h-full w-auto transform translate-y-full transition-transform duration-1000 ease-out"
-            style={{ height: "100%", width: "auto" }}
           />
         </div>
 
@@ -344,9 +343,9 @@ export default function Page() {
             height={400}
             unoptimized
             priority
+            fetchPriority="high"
             draggable={false}
             className="h-full w-auto transform translate-y-full transition-transform duration-1000 ease-out"
-            style={{ height: "100%", width: "auto" }}
           />
         </div>
       </div>
