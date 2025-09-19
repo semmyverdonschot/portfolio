@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect, useMemo } from "react";
+import Image from "next/image";
 import { useSlideTogether } from "@/hooks/useStaggerSlide";
 
 export default function Page() {
@@ -29,7 +30,6 @@ export default function Page() {
 
   const [mounted, setMounted] = useState(false);
 
-  // Trigger animations after hydration
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -42,18 +42,16 @@ export default function Page() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Video autoplay
+  // Video autoplay (works on mobile if muted)
   useEffect(() => {
     const v = videoElRef.current;
-    if (v) {
-      const playPromise = v.play();
-      if (playPromise && typeof playPromise.then === "function") {
-        playPromise.catch(() => {
-          /* ignore autoplay block */
-        });
-      }
+    if (!v) return;
+    v.muted = isMuted;
+    const playPromise = v.play();
+    if (playPromise && typeof playPromise.then === "function") {
+      playPromise.catch(() => {});
     }
-  }, [isMobile]);
+  }, [isMobile, isMuted]);
 
   // Desktop mouse hover video effect
   useEffect(() => {
@@ -79,8 +77,10 @@ export default function Page() {
         minX,
         Math.min(
           maxX,
-          e.clientX - parentRectRef.current.left - parentRectRef.current.width / 2
-        )
+          e.clientX -
+            parentRectRef.current.left -
+            parentRectRef.current.width / 2,
+        ),
       );
       targetX.current = x;
     };
@@ -109,24 +109,22 @@ export default function Page() {
         const img = webWrapperRef.current.querySelector("img");
         if (img) {
           webImgRef.current = img;
-          img.style.transform = "translateY(100%)"; // reset animation
+          img.style.transform = "translateY(100%)";
         }
       }
       if (devWrapperRef.current) {
         const img = devWrapperRef.current.querySelector("img");
         if (img) {
           devImgRef.current = img;
-          img.style.transform = "translateY(100%)"; // reset animation
+          img.style.transform = "translateY(100%)";
         }
       }
     };
-
     resetImages();
-    const timeoutId = setTimeout(resetImages, 50); // for hydration
+    const timeoutId = setTimeout(resetImages, 50);
     return () => clearTimeout(timeoutId);
   }, []);
 
-  // Animated refs
   const animatedUpRefs = useMemo(
     () =>
       [
@@ -136,12 +134,12 @@ export default function Page() {
           ? [mobileARef, mobileVeryRef, mobileSecureRef]
           : [desktopARef, desktopVeryRef, desktopSecureRef]),
       ] as unknown as React.RefObject<HTMLElement>[],
-    [isMobile]
+    [isMobile],
   );
 
   const animatedDownRefs = useMemo(
     () => [videoRef] as React.RefObject<HTMLElement>[],
-    []
+    [],
   );
 
   useSlideTogether(animatedUpRefs, "up", 0.5);
@@ -209,6 +207,68 @@ export default function Page() {
               className="w-full h-full rounded-2xl object-cover cursor-pointer pointer-events-auto"
               onClick={() => setIsMuted((m) => !m)}
             />
+            {/* Mobile mute/unmute */}
+            {isMobile && (
+              <div className="absolute bottom-2 right-2 pointer-events-auto">
+                <div
+                  onClick={() => setIsMuted((m) => !m)}
+                  className="flex items-center justify-center w-10 h-10 rounded-full bg-[var(--color-primary)]/25 backdrop-blur-md cursor-pointer"
+                >
+                  {isMuted ? (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-5 h-5 text-[var(--color-dark)]"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M11 5L6 9H2v6h4l5 4V5z"
+                      />
+                      <line
+                        x1="15"
+                        y1="9"
+                        x2="21"
+                        y2="15"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      />
+                      <line
+                        x1="21"
+                        y1="9"
+                        x2="15"
+                        y2="15"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      />
+                    </svg>
+                  ) : (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-5 h-5 text-[var(--color-dark)]"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M11 5L6 9H2v6h4l5 4V5z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M15.54 8.46a5 5 0 010 7.08"
+                      />
+                    </svg>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -247,14 +307,17 @@ export default function Page() {
           mounted ? "opacity-100" : "opacity-0"
         }`}
       >
-        {/* WEB */}
         <div
           ref={webWrapperRef}
           className="overflow-hidden h-full flex justify-start"
         >
-          <img
+          <Image
             src="/WEB.svg"
             alt="WEB"
+            width={1000}
+            height={400}
+            unoptimized
+            priority
             draggable={false}
             className="h-full w-auto transform translate-y-full transition-transform duration-1000 ease-out"
           />
@@ -262,14 +325,17 @@ export default function Page() {
 
         <div className="w-12 md:w-12 lg:w-14" />
 
-        {/* DEVELOPER */}
         <div
           ref={devWrapperRef}
           className="overflow-hidden h-full flex justify-end"
         >
-          <img
+          <Image
             src="/DEVELOPER.svg"
             alt="DEVELOPER"
+            width={1000}
+            height={400}
+            unoptimized
+            priority
             draggable={false}
             className="h-full w-auto transform translate-y-full transition-transform duration-1000 ease-out"
           />

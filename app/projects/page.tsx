@@ -9,18 +9,29 @@ export default function WorkPage() {
   const paragraphRef = useRef<HTMLParagraphElement>(null);
 
   // refs for wrappers around images
-  const imgWrapperRefs = [useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null)];
+  const imgWrapperRefs = [
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+  ];
   const videoWrapperRef = useRef<HTMLDivElement>(null);
 
   // Slide heading & paragraph **together**
   useSlideTogether(
-    [...imgWrapperRefs, headingRef, paragraphRef] as React.RefObject<HTMLElement>[],
+    [
+      ...imgWrapperRefs,
+      headingRef,
+      paragraphRef,
+    ] as React.RefObject<HTMLElement>[],
     "up",
     2,
   );
 
   // Slide video **together**
-  useSlideTogether([videoWrapperRef] as React.RefObject<HTMLElement>[], "down", 1.23);
+  useSlideTogether(
+    [videoWrapperRef] as React.RefObject<HTMLElement>[],
+    "down",
+    1.23,
+  );
 
   return (
     <div className="p-10 space-y-8">
@@ -58,7 +69,10 @@ export default function WorkPage() {
         ))}
 
         {/* Video */}
-        <div ref={videoWrapperRef} className="overflow-hidden rounded-lg h-[300px] col-span-2 relative">
+        <div
+          ref={videoWrapperRef}
+          className="overflow-hidden rounded-lg h-[300px] col-span-2 relative"
+        >
           <video
             src="/1.mp4" // replace with your video
             autoPlay
