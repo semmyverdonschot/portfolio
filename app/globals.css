@@ -8,6 +8,7 @@
   --color-secondary: #262626;
   --color-grayish: #404040;
   --color-light: #e5e5e5;
+  --color-selection: #bfdbfe;
 
   --font-albert-sans: "Albert Sans", sans-serif;
   font-family: var(--font-albert-sans);
@@ -32,7 +33,7 @@ h1 {
 }
 
 ::selection {
-  background-color: #bbf7d0;
+  background-color: var(--color-selection);
   color: var(--color-dark);
 }
 .sentence {
