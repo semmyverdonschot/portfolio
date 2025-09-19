@@ -202,7 +202,7 @@ export default function Page() {
               poster="/placeholder.webp"
               autoPlay
               playsInline
-              preload="auto"
+              preload="metadata"
               muted
               loop
               className="w-full h-full rounded-2xl object-cover cursor-pointer pointer-events-auto"

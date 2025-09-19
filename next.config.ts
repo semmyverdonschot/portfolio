@@ -5,8 +5,8 @@ const nextConfig: NextConfig = {
   output: "export",
 
   experimental: {
-    optimizeCss: true, 
-    esmExternals: true, 
+    optimizeCss: true,
+    esmExternals: true,
   },
 
   compiler: {
@@ -14,11 +14,11 @@ const nextConfig: NextConfig = {
   },
 
   future: {
-    strictPostcssConfiguration: true, 
+    strictPostcssConfiguration: true,
   },
 
-  transpilePackages: [], 
-  excludeDefaultMomentLocales: true, 
+  transpilePackages: [],
+  excludeDefaultMomentLocales: true,
 };
 
 export default nextConfig;

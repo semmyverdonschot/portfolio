@@ -8,7 +8,6 @@ export default function ClientWrapper({ children }: { children: ReactNode }) {
   const [showSplash, setShowSplash] = useState(true);
 
   useEffect(() => {
-    // Preload LCP video
     const video = document.createElement("link");
     video.rel = "preload";
     video.as = "video";
@@ -16,7 +15,6 @@ export default function ClientWrapper({ children }: { children: ReactNode }) {
     video.type = "video/mp4";
     document.head.appendChild(video);
 
-    // Preload poster
     const poster = document.createElement("link");
     poster.rel = "preload";
     poster.as = "image";
@@ -25,7 +23,6 @@ export default function ClientWrapper({ children }: { children: ReactNode }) {
     poster.fetchPriority = "high";
     document.head.appendChild(poster);
 
-    // Preload SVGs
     ["/WEB.svg", "/DEVELOPER.svg"].forEach((src) => {
       const img = new Image();
       img.src = src;
