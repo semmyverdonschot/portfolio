@@ -45,9 +45,9 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={`${albertSans.variable}`}>
+    <html lang="en" className={albertSans.variable}>
       <head>
-        {/* Preconnect to Google Fonts for faster loading */}
+        {/* Preconnect to Google Fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -55,11 +55,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           crossOrigin="anonymous"
         />
 
-        {/* Preload the Albert Sans font */}
+        {/* Preload Albert Sans font */}
         <link
           rel="preload"
           as="font"
-          href="/_next/static/fonts/Albert_Sans-*.woff2" // Next.js replaces wildcard
+          href="/_next/static/fonts/Albert_Sans-*.woff2"
           type="font/woff2"
           crossOrigin="anonymous"
         />

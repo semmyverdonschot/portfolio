@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 interface SplashScreenProps {
   onFinish: () => void;
@@ -15,10 +15,7 @@ export default function SplashScreen({
   pause = 400,
   videoRef,
 }: SplashScreenProps) {
-  const [count, setCount] = useState(0);
   const numberRef = useRef<HTMLDivElement>(null);
-  const finishedRef = useRef(false);
-  const visualStartRef = useRef(0);
 
   useEffect(() => {
     ["/WEB.svg", "/DEVELOPER.svg", "/placeholder.webp"].forEach((src) => {
@@ -27,30 +24,28 @@ export default function SplashScreen({
     });
 
     const startCounter = () => {
-      visualStartRef.current = performance.now();
+      const numberEl = numberRef.current;
+      if (!numberEl) return;
 
-      const updateCounter = (time: number) => {
-        if (finishedRef.current) return;
+      const startTime = performance.now();
 
-        const elapsed = time - visualStartRef.current;
+      const step = (time: number) => {
+        const elapsed = time - startTime;
         const progress = Math.min((elapsed / visualDuration) * 100, 100);
-        setCount(progress);
+        numberEl.textContent = Math.floor(progress).toString();
 
         if (progress < 100) {
-          requestAnimationFrame(updateCounter);
+          requestAnimationFrame(step);
         } else {
           setTimeout(() => {
-            if (numberRef.current) {
-              numberRef.current.style.transition = "transform 0.6s ease-in-out";
-              numberRef.current.style.transform = "translateY(-100%)";
-            }
+            numberEl.style.transition = "transform 0.6s ease-in-out";
+            numberEl.style.transform = "translateY(-100%)";
             setTimeout(onFinish, 600);
-            finishedRef.current = true;
           }, pause);
         }
       };
 
-      requestAnimationFrame(updateCounter);
+      requestAnimationFrame(step);
     };
 
     const waitForVideo = () => {
@@ -71,13 +66,13 @@ export default function SplashScreen({
   }, [visualDuration, pause, onFinish, videoRef]);
 
   return (
-    <div className="fixed inset-0 z-[9999] bg-[var(--color-primary)] flex items-center justify-center overflow-hidden pointer-events-auto">
-      <div className="overflow-hidden h-[24px]">
+    <div className="fixed inset-0 z-[9999] bg-[var(--color-primary)] flex items-center justify-center overflow-hidden pointer-events-none">
+      <div className="overflow-hidden h-[24px] w-[40px] flex justify-center items-center">
         <div
           ref={numberRef}
           className="text-[18px] font-bold text-[var(--color-dark)]"
         >
-          {Math.floor(count)}
+          0
         </div>
       </div>
     </div>

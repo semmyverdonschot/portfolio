@@ -1,12 +1,18 @@
 import type { NextConfig } from "next";
-
 const nextConfig: NextConfig = {
   swcMinify: true,
+  output: "export",
   experimental: {
-    esmExternals: true, 
-    optimizeCss: true,  
+    optimizeCss: true,
+    esmExternals: true,
   },
-  output: "export", 
+
+  future: {
+    webpack5: true,
+  },
+  compiler: {
+    styledComponents: false,
+  },
 };
 
 export default nextConfig;
