@@ -202,11 +202,22 @@ export default function Page() {
               autoPlay
               playsInline
               preload="auto"
-              muted={isMuted}
+              muted
               loop
               className="w-full h-full rounded-2xl object-cover cursor-pointer pointer-events-auto"
-              onClick={() => setIsMuted((m) => !m)}
+              onClick={() => {
+                if (videoElRef.current) {
+                  if (videoElRef.current.muted) {
+                    videoElRef.current.muted = false;
+                    setIsMuted(false);
+                  } else {
+                    videoElRef.current.muted = true;
+                    setIsMuted(true);
+                  }
+                }
+              }}
             />
+
             {/* Mobile mute/unmute */}
             {isMobile && (
               <div className="absolute bottom-2 right-2 pointer-events-auto">
