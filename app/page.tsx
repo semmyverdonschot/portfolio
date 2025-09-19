@@ -86,9 +86,12 @@ export default function Page() {
             preload="auto"
             muted={isMuted}
             loop
+            // @ts-expect-error fetchpriority does exist
+            fetchpriority="high"
             className="w-full h-full rounded-2xl object-cover cursor-pointer pointer-events-auto"
             onClick={() => setIsMuted(!isMuted)}
           />
+
           {isMobile && (
             <div className="absolute bottom-2 right-2 pointer-events-none">
               <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[var(--color-primary)]/25 backdrop-blur-md transition-all duration-300 ease-out">
@@ -179,6 +182,7 @@ export default function Page() {
             height={400}
             className="h-full w-auto object-contain"
             draggable={false}
+            priority
           />
         </div>
       </div>

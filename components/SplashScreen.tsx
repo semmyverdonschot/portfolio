@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 interface SplashScreenProps {
   onFinish: () => void;
   visualDuration?: number;
-  pause?: number;  
+  pause?: number;
 }
 
 export default function SplashScreen({
@@ -22,7 +22,8 @@ export default function SplashScreen({
   useEffect(() => {
     const mediaElements: (HTMLImageElement | HTMLVideoElement)[] = [];
     document.querySelectorAll("img, video").forEach((el) => {
-      if (el instanceof HTMLImageElement || el instanceof HTMLVideoElement) mediaElements.push(el);
+      if (el instanceof HTMLImageElement || el instanceof HTMLVideoElement)
+        mediaElements.push(el);
     });
 
     let loadedCount = 0;
