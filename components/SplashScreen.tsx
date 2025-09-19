@@ -6,12 +6,14 @@ interface SplashScreenProps {
   onFinish: () => void;
   visualDuration?: number;
   pause?: number;
+  videoRef?: React.RefObject<HTMLVideoElement>; // optional ref to the real video
 }
 
 export default function SplashScreen({
   onFinish,
   visualDuration = 1000,
   pause = 400,
+  videoRef,
 }: SplashScreenProps) {
   const [count, setCount] = useState(0);
   const numberRef = useRef<HTMLDivElement>(null);
@@ -19,22 +21,10 @@ export default function SplashScreen({
   const visualStartRef = useRef(0);
 
   useEffect(() => {
-    // Preload assets
-    const criticalAssets = ["/1.mp4", "/WEB.svg", "/DEVELOPER.svg"];
-
-    criticalAssets.forEach((src) => {
-      if (src.endsWith(".mp4")) {
-        const video = document.createElement("video");
-        video.src = src;
-        video.preload = "auto";
-        video.muted = true;
-        video.playsInline = true;
-        video.style.display = "none"; 
-        document.body.appendChild(video);
-      } else {
-        const img = new Image();
-        img.src = src;
-      }
+    // Preload images only
+    ["/WEB.svg", "/DEVELOPER.svg"].forEach((src) => {
+      const img = new Image();
+      img.src = src;
     });
 
     visualStartRef.current = performance.now();
@@ -49,24 +39,33 @@ export default function SplashScreen({
       if (progress < 100) {
         requestAnimationFrame(updateCounter);
       } else {
-        setTimeout(() => {
-          if (numberRef.current) {
-            numberRef.current.style.transition = "transform 0.6s ease-in-out";
-            numberRef.current.style.transform = "translateY(-100%)";
-          }
-          setTimeout(onFinish, 600);
-          finishedRef.current = true;
-        }, pause);
+        waitForVideoAndFinish();
       }
     };
 
-    requestAnimationFrame(updateCounter);
-
-    return () => {
-      const videos = document.querySelectorAll("video[style='display: none;']");
-      videos.forEach((v) => v.remove());
+    const waitForVideoAndFinish = () => {
+      if (videoRef?.current && videoRef.current.readyState < 4) {
+        videoRef.current.addEventListener("canplaythrough", finishSplash, {
+          once: true,
+        });
+      } else {
+        finishSplash();
+      }
     };
-  }, [visualDuration, pause, onFinish]);
+
+    const finishSplash = () => {
+      setTimeout(() => {
+        if (numberRef.current) {
+          numberRef.current.style.transition = "transform 0.6s ease-in-out";
+          numberRef.current.style.transform = "translateY(-100%)";
+        }
+        setTimeout(onFinish, 600);
+        finishedRef.current = true;
+      }, pause);
+    };
+
+    requestAnimationFrame(updateCounter);
+  }, [visualDuration, pause, onFinish, videoRef]);
 
   return (
     <div className="fixed inset-0 z-[9999] bg-[var(--color-primary)] flex items-center justify-center overflow-hidden pointer-events-auto">
@@ -78,11 +77,6 @@ export default function SplashScreen({
           {Math.floor(count)}
         </div>
       </div>
-      <noscript>
-        <div className="text-[var(--color-dark)] font-bold absolute">
-          loading...
-        </div>
-      </noscript>
     </div>
   );
 }
