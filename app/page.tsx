@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, useState, useEffect, useMemo } from "react";
-import Image from "next/image";
 import { useSlideTogether } from "@/hooks/useStaggerSlide";
 
 export default function Page() {
@@ -9,9 +8,9 @@ export default function Page() {
   const videoRef = useRef<HTMLDivElement | null>(null);
   const videoElRef = useRef<HTMLVideoElement | null>(null);
   const [isMuted, setIsMuted] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
   const targetX = useRef(0);
   const currentX = useRef(0);
-  const [isMobile, setIsMobile] = useState(false);
   const parentRectRef = useRef<DOMRect | null>(null);
   const halfVideoWidthRef = useRef<number>(0);
 
@@ -30,29 +29,10 @@ export default function Page() {
 
   const [mounted, setMounted] = useState(false);
 
+  // Trigger animations after hydration
   useEffect(() => {
-    setMounted(true); // triggers animations after hydration
+    setMounted(true);
   }, []);
-
-  const animatedUpRefs = useMemo(
-    () =>
-      [
-        webImgRef,
-        devImgRef,
-        ...(isMobile
-          ? [mobileARef, mobileVeryRef, mobileSecureRef]
-          : [desktopARef, desktopVeryRef, desktopSecureRef]),
-      ] as unknown as React.RefObject<HTMLElement>[],
-    [isMobile],
-  );
-
-  const animatedDownRefs = useMemo(
-    () => [videoRef] as React.RefObject<HTMLElement>[],
-    [],
-  );
-
-  useSlideTogether(animatedUpRefs, "up", 0.5);
-  useSlideTogether(animatedDownRefs, "down", 0.8);
 
   // Detect mobile
   useEffect(() => {
@@ -67,12 +47,15 @@ export default function Page() {
     const v = videoElRef.current;
     if (v) {
       const playPromise = v.play();
-      if (playPromise && typeof playPromise.then === "function")
-        playPromise.catch(() => {});
+      if (playPromise && typeof playPromise.then === "function") {
+        playPromise.catch(() => {
+          /* ignore autoplay block */
+        });
+      }
     }
   }, [isMobile]);
 
-  // Desktop hover animation
+  // Desktop mouse hover video effect
   useEffect(() => {
     if (isMobile) return;
 
@@ -96,10 +79,8 @@ export default function Page() {
         minX,
         Math.min(
           maxX,
-          e.clientX -
-            parentRectRef.current.left -
-            parentRectRef.current.width / 2,
-        ),
+          e.clientX - parentRectRef.current.left - parentRectRef.current.width / 2
+        )
       );
       targetX.current = x;
     };
@@ -121,19 +102,56 @@ export default function Page() {
     };
   }, [isMobile]);
 
-  // Assign image refs
+  // Assign image refs and reset transform on mount
   useEffect(() => {
-    if (webWrapperRef.current)
-      webImgRef.current = webWrapperRef.current.querySelector("img");
-    if (devWrapperRef.current)
-      devImgRef.current = devWrapperRef.current.querySelector("img");
+    const resetImages = () => {
+      if (webWrapperRef.current) {
+        const img = webWrapperRef.current.querySelector("img");
+        if (img) {
+          webImgRef.current = img;
+          img.style.transform = "translateY(100%)"; // reset animation
+        }
+      }
+      if (devWrapperRef.current) {
+        const img = devWrapperRef.current.querySelector("img");
+        if (img) {
+          devImgRef.current = img;
+          img.style.transform = "translateY(100%)"; // reset animation
+        }
+      }
+    };
+
+    resetImages();
+    const timeoutId = setTimeout(resetImages, 50); // for hydration
+    return () => clearTimeout(timeoutId);
   }, []);
+
+  // Animated refs
+  const animatedUpRefs = useMemo(
+    () =>
+      [
+        webImgRef,
+        devImgRef,
+        ...(isMobile
+          ? [mobileARef, mobileVeryRef, mobileSecureRef]
+          : [desktopARef, desktopVeryRef, desktopSecureRef]),
+      ] as unknown as React.RefObject<HTMLElement>[],
+    [isMobile]
+  );
+
+  const animatedDownRefs = useMemo(
+    () => [videoRef] as React.RefObject<HTMLElement>[],
+    []
+  );
+
+  useSlideTogether(animatedUpRefs, "up", 0.5);
+  useSlideTogether(animatedDownRefs, "down", 0.8);
 
   return (
     <div className="min-h-screen bg-[var(--color-primary)] flex flex-col justify-start relative overflow-hidden">
       <div className="h-36 md:h-40 lg:h-44 w-full" />
 
-      {/* Mobile "A VERY SECURE" above video */}
+      {/* Mobile "A VERY SECURE" */}
       {isMobile && (
         <div
           className={`flex w-full mb-2 text-base font-medium text-[var(--color-dark)] overflow-visible justify-center transition-opacity duration-300 ${
@@ -191,72 +209,11 @@ export default function Page() {
               className="w-full h-full rounded-2xl object-cover cursor-pointer pointer-events-auto"
               onClick={() => setIsMuted((m) => !m)}
             />
-            {isMobile && (
-              <div className="absolute bottom-2 right-2 pointer-events-auto">
-                <div
-                  onClick={() => setIsMuted((m) => !m)}
-                  className="flex items-center justify-center w-10 h-10 rounded-full bg-[var(--color-primary)]/25 backdrop-blur-md cursor-pointer"
-                >
-                  {isMuted ? (
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-5 h-5 text-[var(--color-dark)]"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M11 5L6 9H2v6h4l5 4V5z"
-                      />
-                      <line
-                        x1="15"
-                        y1="9"
-                        x2="21"
-                        y2="15"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                      />
-                      <line
-                        x1="21"
-                        y1="9"
-                        x2="15"
-                        y2="15"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                      />
-                    </svg>
-                  ) : (
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-5 h-5 text-[var(--color-dark)]"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M11 5L6 9H2v6h4l5 4V5z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M15.54 8.46a5 5 0 010 7.08"
-                      />
-                    </svg>
-                  )}
-                </div>
-              </div>
-            )}
           </div>
         </div>
       </div>
 
-      {/* Desktop "A VERY SECURE" below video */}
+      {/* Desktop "A VERY SECURE" */}
       {!isMobile && (
         <div
           className={`flex w-full mt-4 mb-6 text-[16px] font-normal overflow-visible justify-center transition-opacity duration-300 ${
@@ -290,32 +247,29 @@ export default function Page() {
           mounted ? "opacity-100" : "opacity-0"
         }`}
       >
+        {/* WEB */}
         <div
           ref={webWrapperRef}
           className="overflow-hidden h-full flex justify-start"
         >
-          <Image
+          <img
             src="/WEB.svg"
             alt="WEB"
-            width={1000}
-            height={400}
-            priority
             draggable={false}
-            loading="eager"
             className="h-full w-auto transform translate-y-full transition-transform duration-1000 ease-out"
           />
         </div>
+
         <div className="w-12 md:w-12 lg:w-14" />
+
+        {/* DEVELOPER */}
         <div
           ref={devWrapperRef}
           className="overflow-hidden h-full flex justify-end"
         >
-          <Image
+          <img
             src="/DEVELOPER.svg"
             alt="DEVELOPER"
-            width={1000}
-            height={400}
-            priority
             draggable={false}
             className="h-full w-auto transform translate-y-full transition-transform duration-1000 ease-out"
           />
