@@ -1,9 +1,11 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
   output: "export",
-  // Optional: configure caching for faster builds
-  // The .next/cache folder is automatically used by Next.js
-  // No need for experimental.appDir anymore
+
+  experimental: {
+    optimizeCss: true,
+  },
 };
 
 export default nextConfig;
