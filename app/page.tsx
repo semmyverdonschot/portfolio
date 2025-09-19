@@ -2,10 +2,6 @@
 
 import Image from "next/image";
 import { useRef, useState, useEffect } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 export default function Page() {
   const videoRef = useRef<HTMLDivElement>(null);
@@ -15,7 +11,6 @@ export default function Page() {
   const currentX = useRef(0);
   const [isMobile, setIsMobile] = useState(false);
 
-  // Detect mobile
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
@@ -23,19 +18,15 @@ export default function Page() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Try autoplay video
   useEffect(() => {
-    const tryPlay = async () => {
-      const v = videoElRef.current;
-      if (v) {
-        const p = v.play();
-        if (p && typeof p.then === "function") p.catch(() => {});
-      }
-    };
-    tryPlay();
+    const v = videoElRef.current;
+    if (v) {
+      const playPromise = v.play();
+      if (playPromise && typeof playPromise.then === "function")
+        playPromise.catch(() => {});
+    }
   }, [isMobile]);
 
-  // Horizontal mouse follow for desktop
   useEffect(() => {
     if (isMobile) return;
 
@@ -45,16 +36,17 @@ export default function Page() {
       const halfVideoWidth = videoRef.current.offsetWidth / 2;
       const maxX = rect.width / 2 - halfVideoWidth;
       const minX = -maxX;
-      let x = e.clientX - rect.left - rect.width / 2;
-      x = Math.max(minX, Math.min(maxX, x));
+      const x = Math.max(
+        minX,
+        Math.min(maxX, e.clientX - rect.left - rect.width / 2),
+      );
       targetX.current = x;
     };
 
     const animate = () => {
       currentX.current += (targetX.current - currentX.current) * 0.06;
-      if (videoRef.current) {
+      if (videoRef.current)
         videoRef.current.style.transform = `translateX(${currentX.current}px)`;
-      }
       requestAnimationFrame(animate);
     };
 
@@ -64,28 +56,10 @@ export default function Page() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [isMobile]);
 
-  // GSAP scroll animation: video scales up and fills a section
-  useEffect(() => {
-    if (!videoRef.current || isMobile) return;
-
-    gsap.to(videoRef.current, {
-      scale: 5, // adjust this for final size
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: videoRef.current,
-        start: "top center",
-        end: "bottom+=100% top", // extended end so video keeps scaling
-        scrub: true,
-      },
-    });
-  }, [isMobile]);
-
   return (
     <div className="min-h-screen bg-[var(--color-primary)] flex flex-col justify-start relative overflow-hidden">
-      {/* Top spacer */}
-      <div className="h-36 md:h-40 lg:h-44 w-full"></div>
+      <div className="h-36 md:h-40 lg:h-44 w-full" />
 
-      {/* Mobile: Text above video */}
       {isMobile && (
         <div className="flex w-full mt-2 mb-2 text-base md:text-xl font-medium text-[var(--color-dark)]">
           <span className="animate-down flex-1 text-left">A</span>
@@ -94,36 +68,27 @@ export default function Page() {
         </div>
       )}
 
-      {/* Video Section */}
       <div className="animate-down relative w-full flex justify-center">
         <div
           ref={videoRef}
-          className={`transition-transform duration-150 ease-out relative ${
-            isMobile ? "" : "pointer-events-none"
-          }`}
+          className={`transition-transform duration-150 ease-out relative ${isMobile ? "" : "pointer-events-none"}`}
+          style={{
+            aspectRatio: "16/9",
+            width: isMobile ? "100%" : "40vw",
+            maxWidth: isMobile ? "100%" : "600px",
+          }}
         >
           <video
-            ref={(el) => {
-              videoElRef.current = el;
-            }}
-            src="/1.mp4"
+            ref={videoElRef}
+            src="/1.webm"
             autoPlay
             playsInline
             preload="auto"
             muted={isMuted}
             loop
-            className={`rounded-2xl object-cover cursor-pointer pointer-events-auto ${
-              isMobile ? "w-full max-w-full" : "w-96 md:w-[40vw] lg:w-[600px]"
-            }`}
-            onCanPlay={() => {
-              try {
-                videoElRef.current?.play().catch(() => {});
-              } catch {}
-            }}
+            className="w-full h-full rounded-2xl object-cover cursor-pointer pointer-events-auto"
             onClick={() => setIsMuted(!isMuted)}
           />
-
-          {/* Mobile: Mute/unmute indicator */}
           {isMobile && (
             <div className="absolute bottom-2 right-2 pointer-events-none">
               <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[var(--color-primary)]/25 backdrop-blur-md transition-all duration-300 ease-out">
@@ -185,7 +150,6 @@ export default function Page() {
         </div>
       </div>
 
-      {/* Desktop: Text below video */}
       {!isMobile && (
         <div className="flex w-full mt-2 mb-2 text-[16px] font-normal">
           <span className="flex-1 text-left">A</span>
@@ -194,7 +158,6 @@ export default function Page() {
         </div>
       )}
 
-      {/* Bottom row */}
       <div className="w-full flex h-[20vw] md:h-[14vw] lg:h-[10vw] items-end">
         <div className="flex justify-start h-full">
           <Image
@@ -207,7 +170,7 @@ export default function Page() {
             priority
           />
         </div>
-        <div className="w-12 md:w-12 lg:w-14"></div>
+        <div className="w-12 md:w-12 lg:w-14" />
         <div className="flex justify-end h-full">
           <Image
             src="/DEVELOPER.svg"
