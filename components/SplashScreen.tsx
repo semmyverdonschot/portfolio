@@ -1,44 +1,44 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
 
 interface SplashScreenProps {
   onFinish: () => void;
-  progress?: number; // optional, can sync with real data loading
 }
 
-export default function SplashScreen({ onFinish, progress }: SplashScreenProps) {
+export default function SplashScreen({ onFinish }: SplashScreenProps) {
   const [count, setCount] = useState(0);
   const numberRef = useRef<HTMLDivElement>(null);
-  const targetRef = useRef(0);
+  const finishedRef = useRef(false);
 
   useEffect(() => {
-    const raf = () => {
-      setCount((prev) => {
-        const diff = targetRef.current - prev;
-        const step = Math.max(0.5, diff * 0.1);
-        const next = prev + step;
-        return next >= 100 ? 100 : next;
-      });
-      requestAnimationFrame(raf);
+    const DURATION = 1500;
+    const start = performance.now();
+
+    const updateCounter = (time: number) => {
+      if (finishedRef.current) return;
+
+      const elapsed = time - start;
+      const progress = Math.min((elapsed / DURATION) * 100, 100);
+      setCount(progress);
+
+      if (progress < 100) {
+        requestAnimationFrame(updateCounter);
+      } else {
+        // pause 200ms at 100
+        setTimeout(() => {
+          if (numberRef.current) {
+            numberRef.current.style.transition = "transform 0.6s ease-in-out";
+            numberRef.current.style.transform = "translateY(-100%)";
+          }
+          setTimeout(onFinish, 600);
+          finishedRef.current = true;
+        }, 200);
+      }
     };
-    raf();
-  }, []);
 
-  // Update target progress based on real loading or fallback
-  useEffect(() => {
-    if (progress !== undefined) targetRef.current = progress;
-    else targetRef.current = 100;
-  }, [progress]);
-
-  useEffect(() => {
-    if (count >= 100 && numberRef.current) {
-      numberRef.current.style.transition = "transform 0.6s ease-in-out";
-      numberRef.current.style.transform = "translateY(-100%)";
-      setTimeout(onFinish, 600);
-    }
-  }, [count, onFinish]);
+    requestAnimationFrame(updateCounter);
+  }, [onFinish]);
 
   return (
     <div className="fixed inset-0 z-[9999] bg-[var(--color-primary)] flex items-center justify-center overflow-hidden pointer-events-auto">
@@ -50,11 +50,6 @@ export default function SplashScreen({ onFinish, progress }: SplashScreenProps) 
           {Math.floor(count)}
         </div>
       </div>
-      <noscript>
-        <div className="text-[var(--color-dark)] font-bold absolute">
-          Your website is loading...
-        </div>
-      </noscript>
     </div>
   );
 }
