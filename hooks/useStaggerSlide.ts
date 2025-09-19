@@ -8,22 +8,27 @@ type Direction = "up" | "down";
 export function useSlideTogether<T extends HTMLElement = HTMLElement>(
   refs: RefObject<T>[],
   direction: Direction = "up",
-  duration = 2,
+  duration = 0.2,
 ) {
   useEffect(() => {
-    refs.forEach((ref) => {
-      if (!ref.current || !ref.current.parentElement) return;
+    const elements = refs
+      .map((r) => r.current)
+      .filter(Boolean) as HTMLElement[];
+    if (!elements.length) return;
 
-      const containerHeight = ref.current.parentElement.offsetHeight;
-      const yStart = direction === "up" ? containerHeight : -containerHeight;
+    gsap.set(elements, {
+      y: (i, target) => {
+        if (!target.parentElement) return 0;
+        const containerHeight = target.parentElement.offsetHeight;
+        return direction === "up" ? containerHeight : -containerHeight;
+      },
+    });
 
-      gsap.set(ref.current, { y: yStart });
-
-      gsap.to(ref.current, {
-        y: 0,
-        duration,
-        ease: "cubic-bezier(0.5, 0, 1, 1)",
-      });
+    gsap.to(elements, {
+      y: 0,
+      duration,
+      ease: "cubic-bezier(0.55, 0.06, 0.68, 0.19)",
+      stagger: 0.05,
     });
   }, [refs, direction, duration]);
 }

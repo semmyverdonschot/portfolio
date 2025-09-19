@@ -131,40 +131,47 @@ export default function Page() {
     [],
   );
 
-  useSlideTogether(animatedUpRefs, "up", 0.5);
-  useSlideTogether(animatedDownRefs, "down", 0.8);
+  useSlideTogether(animatedUpRefs, "up", 0.8);
+  useSlideTogether(animatedDownRefs, "down", 0.2);
 
   return (
     <div className="min-h-screen bg-[var(--color-primary)] flex flex-col justify-start relative overflow-hidden">
       <div className="h-36 md:h-40 lg:h-44 w-full" />
 
+      {/* Mobile "A VERY SECURE" */}
       {isMobile && (
         <div
-          className={`flex w-full mb-2 text-base font-medium text-[var(--color-dark)] overflow-visible justify-center transition-opacity duration-300 ${mounted ? "opacity-100" : "opacity-0"}`}
+          className={`overflow-hidden w-full mb-2 transition-opacity duration-300 ${
+            mounted ? "opacity-100" : "opacity-0"
+          }`}
         >
-          <span
-            ref={mobileARef}
-            className="flex-1 text-left transform translate-y-full transition-transform duration-1000 ease-out"
-          >
-            A
-          </span>
-          <span
-            ref={mobileVeryRef}
-            className="flex-1 text-center transform translate-y-full transition-transform duration-1000 ease-out"
-          >
-            VERY
-          </span>
-          <span
-            ref={mobileSecureRef}
-            className="flex-1 text-right transform translate-y-full transition-transform duration-1000 ease-out"
-          >
-            SECURE
-          </span>
+          <div className="flex w-full text-base font-medium text-[var(--color-dark)] justify-center">
+            <span
+              ref={mobileARef}
+              className="flex-1 text-left transform translate-y-full transition-transform duration-1000 ease-out"
+            >
+              A
+            </span>
+            <span
+              ref={mobileVeryRef}
+              className="flex-1 text-center transform translate-y-full transition-transform duration-1000 ease-out"
+            >
+              VERY
+            </span>
+            <span
+              ref={mobileSecureRef}
+              className="flex-1 text-right transform translate-y-full transition-transform duration-1000 ease-out"
+            >
+              SECURE
+            </span>
+          </div>
         </div>
       )}
 
       <div
-        className={`relative w-full flex justify-center overflow-hidden transition-opacity duration-300 ${mounted ? "opacity-100" : "opacity-0"}`}
+        className={`relative w-full flex justify-center overflow-hidden transition-opacity duration-300 ${
+          mounted ? "opacity-100" : "opacity-0"
+        }`}
       >
         <div
           ref={videoWrapperRef}
@@ -263,33 +270,40 @@ export default function Page() {
         </div>
       </div>
 
+      {/* Desktop "A VERY SECURE" */}
       {!isMobile && (
         <div
-          className={`flex w-full mt-4 mb-6 text-[16px] font-normal overflow-visible justify-center transition-opacity duration-300 ${mounted ? "opacity-100" : "opacity-0"}`}
+          className={`overflow-hidden w-full mt-4 mb-6 transition-opacity duration-300 ${
+            mounted ? "opacity-100" : "opacity-0"
+          }`}
         >
-          <span
-            ref={desktopARef}
-            className="flex-1 text-left transform translate-y-full transition-transform duration-1000 ease-out"
-          >
-            A
-          </span>
-          <span
-            ref={desktopVeryRef}
-            className="flex-1 text-center transform translate-y-full transition-transform duration-1000 ease-out"
-          >
-            VERY
-          </span>
-          <span
-            ref={desktopSecureRef}
-            className="flex-1 text-right transform translate-y-full transition-transform duration-1000 ease-out"
-          >
-            SECURE
-          </span>
+          <div className="flex w-full text-[16px] font-normal justify-center">
+            <span
+              ref={desktopARef}
+              className="flex-1 text-left transform translate-y-full transition-transform duration-1000 ease-out"
+            >
+              A
+            </span>
+            <span
+              ref={desktopVeryRef}
+              className="flex-1 text-center transform translate-y-full transition-transform duration-1000 ease-out"
+            >
+              VERY
+            </span>
+            <span
+              ref={desktopSecureRef}
+              className="flex-1 text-right transform translate-y-full transition-transform duration-1000 ease-out"
+            >
+              SECURE
+            </span>
+          </div>
         </div>
       )}
 
       <div
-        className={`w-full flex h-[20vw] md:h-[14vw] lg:h-[10vw] items-end mt-6 transition-opacity duration-300 ${mounted ? "opacity-100" : "opacity-0"}`}
+        className={`w-full flex h-[20vw] md:h-[14vw] lg:h-[10vw] items-end mt-6 transition-opacity duration-300 ${
+          mounted ? "opacity-100" : "opacity-0"
+        }`}
       >
         <div
           ref={webWrapperRef}
@@ -304,9 +318,12 @@ export default function Page() {
             priority
             draggable={false}
             className="h-full w-auto transform translate-y-full transition-transform duration-1000 ease-out"
+            style={{ height: "100%", width: "auto" }}
           />
         </div>
+
         <div className="w-12 md:w-12 lg:w-14" />
+
         <div
           ref={devWrapperRef}
           className="overflow-hidden h-full flex justify-end"
@@ -320,6 +337,7 @@ export default function Page() {
             priority
             draggable={false}
             className="h-full w-auto transform translate-y-full transition-transform duration-1000 ease-out"
+            style={{ height: "100%", width: "auto" }}
           />
         </div>
       </div>

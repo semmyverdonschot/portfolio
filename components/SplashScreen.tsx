@@ -16,7 +16,7 @@ export default function SplashScreen({
   const [count, setCount] = useState(0);
   const numberRef = useRef<HTMLDivElement>(null);
   const finishedRef = useRef(false);
-  const visualStartRef = useRef(performance.now());
+  const visualStartRef = useRef(0);
 
   useEffect(() => {
     const criticalAssets = ["/1.mp4", "/WEB.svg", "/DEVELOPER.svg"];
@@ -28,37 +28,47 @@ export default function SplashScreen({
         video.preload = "auto";
         video.muted = true;
         video.playsInline = true;
+
+        // start counter when video is ready
+        video.addEventListener(
+          "canplaythrough",
+          () => {
+            startCounter();
+          },
+          { once: true },
+        );
       } else {
         const img = new Image();
         img.src = src;
       }
     });
-  }, []);
 
-  useEffect(() => {
-    const updateCounter = (time: number) => {
-      if (finishedRef.current) return;
+    const startCounter = () => {
+      visualStartRef.current = performance.now();
 
-      const elapsed = time - visualStartRef.current;
-      const progress = Math.min((elapsed / visualDuration) * 100, 100);
+      const updateCounter = (time: number) => {
+        if (finishedRef.current) return;
 
-      setCount(progress);
+        const elapsed = time - visualStartRef.current;
+        const progress = Math.min((elapsed / visualDuration) * 100, 100);
+        setCount(progress);
 
-      if (progress < 100) {
-        requestAnimationFrame(updateCounter);
-      } else {
-        setTimeout(() => {
-          if (numberRef.current) {
-            numberRef.current.style.transition = "transform 0.6s ease-in-out";
-            numberRef.current.style.transform = "translateY(-100%)";
-          }
-          setTimeout(onFinish, 600);
-          finishedRef.current = true;
-        }, pause);
-      }
+        if (progress < 100) {
+          requestAnimationFrame(updateCounter);
+        } else {
+          setTimeout(() => {
+            if (numberRef.current) {
+              numberRef.current.style.transition = "transform 0.6s ease-in-out";
+              numberRef.current.style.transform = "translateY(-100%)";
+            }
+            setTimeout(onFinish, 600);
+            finishedRef.current = true;
+          }, pause);
+        }
+      };
+
+      requestAnimationFrame(updateCounter);
     };
-
-    requestAnimationFrame(updateCounter);
   }, [visualDuration, pause, onFinish]);
 
   return (
