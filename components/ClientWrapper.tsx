@@ -23,13 +23,7 @@ export default function ClientWrapper({ children }: { children: ReactNode }) {
         {!showSplash && children}
 
         {/* Hidden main video to preload / autoplay after splash */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="w-full h-auto hidden"
-        >
+        <video autoPlay muted loop playsInline className="w-full h-auto hidden">
           <source src="/hero-video-480.webm" type="video/webm" />
           <source
             src="/hero-video-720.webm"
