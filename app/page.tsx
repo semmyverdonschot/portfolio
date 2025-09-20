@@ -33,8 +33,10 @@ export default function Page() {
 
   const [mounted, setMounted] = useState(false);
 
+  // mark component as mounted
   useEffect(() => setMounted(true), []);
 
+  // detect mobile
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
@@ -42,6 +44,7 @@ export default function Page() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
+  // autoplay muted video immediately
   useEffect(() => {
     const v = videoElRef.current;
     if (!v) return;
@@ -49,6 +52,7 @@ export default function Page() {
     v.play().catch(() => {});
   }, []);
 
+  // mouse move parallax (desktop only)
   useEffect(() => {
     if (isMobile) return;
     let rafId: number | null = null;
@@ -71,10 +75,8 @@ export default function Page() {
         minX,
         Math.min(
           maxX,
-          e.clientX -
-            parentRectRef.current.left -
-            parentRectRef.current.width / 2,
-        ),
+          e.clientX - parentRectRef.current.left - parentRectRef.current.width / 2
+        )
       );
     };
 
@@ -95,6 +97,7 @@ export default function Page() {
     };
   }, [isMobile]);
 
+  // reset images for animation
   useEffect(() => {
     const resetImages = () => {
       if (webWrapperRef.current) {
@@ -130,13 +133,10 @@ export default function Page() {
           ? [mobileARef, mobileVeryRef, mobileSecureRef]
           : [desktopARef, desktopVeryRef, desktopSecureRef]),
       ] as unknown as React.RefObject<HTMLElement>[],
-    [isMobile],
+    [isMobile]
   );
 
-  const animatedDownRefs = useMemo(
-    () => [videoRef] as React.RefObject<HTMLElement>[],
-    [],
-  );
+  const animatedDownRefs = useMemo(() => [videoRef] as React.RefObject<HTMLElement>[], []);
 
   useSlideTogether(animatedUpRefs, "up", 0.8);
   useSlideTogether(animatedDownRefs, "down", 0.1);
@@ -147,31 +147,28 @@ export default function Page() {
 
   return (
     <>
-      {/* Preload poster + mobile video */}
       <Head>
         <link rel="preload" as="image" href="/placeholder.webp" />
         <link
           rel="preload"
           as="video"
-          href="/hero-video-720.webm"
-          type="video/mp4"
+          href="/hero-video-480.webm"
+          type="video/webm"
           media="(max-width:767px)"
         />
-        {desktopVideoVisible && (
-          <link
-            rel="preload"
-            as="video"
-            href="/hero-video-1080.webm"
-            type="video/mp4"
-            media="(min-width:768px)"
-          />
-        )}
+        <link
+          rel="preload"
+          as="video"
+          href="/hero-video-720.webm"
+          type="video/webm"
+          media="(min-width:768px)"
+        />
       </Head>
 
       <div className="min-h-screen bg-[var(--color-primary)] flex flex-col justify-start relative overflow-hidden">
         <div className="h-36 md:h-40 lg:h-44 w-full" />
 
-        {/* Mobile "A VERY SECURE" */}
+        {/* Mobile Text */}
         {isMobile && (
           <div
             className={`overflow-hidden w-full mb-2 transition-opacity duration-300 ${
@@ -179,34 +176,15 @@ export default function Page() {
             }`}
           >
             <div className="flex w-full text-base font-medium text-[var(--color-dark)] justify-center">
-              <span
-                ref={mobileARef}
-                className="flex-1 text-left translate-y-full"
-              >
-                A
-              </span>
-              <span
-                ref={mobileVeryRef}
-                className="flex-1 text-center translate-y-full"
-              >
-                VERY
-              </span>
-              <span
-                ref={mobileSecureRef}
-                className="flex-1 text-right translate-y-full"
-              >
-                SECURE
-              </span>
+              <span ref={mobileARef} className="flex-1 text-left translate-y-full">A</span>
+              <span ref={mobileVeryRef} className="flex-1 text-center translate-y-full">VERY</span>
+              <span ref={mobileSecureRef} className="flex-1 text-right translate-y-full">SECURE</span>
             </div>
           </div>
         )}
 
-        {/* Video Section (poster-first, mobile-optimized) */}
-        <div
-          className={`relative w-full flex justify-center overflow-hidden transition-opacity duration-300 ${
-            mounted ? "opacity-100" : "opacity-0"
-          }`}
-        >
+        {/* Video Section */}
+        <div className={`relative w-full flex justify-center overflow-hidden transition-opacity duration-300 ${mounted ? "opacity-100" : "opacity-0"}`}>
           <div
             ref={videoWrapperRef}
             className="relative"
@@ -216,10 +194,7 @@ export default function Page() {
               maxWidth: isMobile ? "100%" : "600px",
             }}
           >
-            <div
-              ref={videoRef}
-              className="translate-y-[-100%] transition-transform duration-1000 ease-out"
-            >
+            <div ref={videoRef} className="translate-y-[-100%] transition-transform duration-1000 ease-out">
               {!videoLoaded && (
                 <img
                   src="/placeholder.webp"
@@ -229,7 +204,7 @@ export default function Page() {
                   className="w-full h-full rounded-2xl object-cover"
                 />
               )}
-             <video
+              <video
                 ref={videoElRef}
                 poster="/placeholder.webp"
                 autoPlay
@@ -237,9 +212,7 @@ export default function Page() {
                 preload="auto"
                 muted
                 loop
-                className={`w-full h-full rounded-2xl object-cover cursor-pointer pointer-events-auto transition-opacity duration-500 ${
-                  videoLoaded ? "opacity-100" : "opacity-0 absolute top-0 left-0"
-                }`}
+                className={`w-full h-full rounded-2xl object-cover cursor-pointer pointer-events-auto transition-opacity duration-500 ${videoLoaded ? "opacity-100" : "opacity-0 absolute top-0 left-0"}`}
                 onLoadedData={() => setVideoLoaded(true)}
                 onClick={() => {
                   if (!videoElRef.current) return;
@@ -247,122 +220,26 @@ export default function Page() {
                   setIsMuted(videoElRef.current.muted);
                 }}
               >
-                <source
-                  src={isMobile ? "/hero-video-480.webm" : "/hero-video-720.webm"}
-                  type="video/webm"
-                />
+                <source src={isMobile ? "/hero-video-480.webm" : "/hero-video-720.webm"} type="video/webm" />
               </video>
-
-              {/* Mobile mute/unmute */}
-              {isMobile && (
-                <div className="absolute bottom-2 right-2 pointer-events-auto">
-                  <div
-                    onClick={() => {
-                      if (!videoElRef.current) return;
-                      videoElRef.current.muted = !videoElRef.current.muted;
-                      setIsMuted(videoElRef.current.muted);
-                    }}
-                    className="flex items-center justify-center w-10 h-10 rounded-full bg-[var(--color-primary)]/25 backdrop-blur-md cursor-pointer"
-                  >
-                    {isMuted ? (
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-5 h-5 text-[var(--color-dark)]"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M11 5L6 9H2v6h4l5 4V5z"
-                        />
-                        <line
-                          x1="15"
-                          y1="9"
-                          x2="21"
-                          y2="15"
-                          stroke="currentColor"
-                          strokeWidth={2}
-                        />
-                        <line
-                          x1="21"
-                          y1="9"
-                          x2="15"
-                          y2="15"
-                          stroke="currentColor"
-                          strokeWidth={2}
-                        />
-                      </svg>
-                    ) : (
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-5 h-5 text-[var(--color-dark)]"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M11 5L6 9H2v6h4l5 4V5z"
-                        />
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M15.54 8.46a5 5 0 010 7.08"
-                        />
-                      </svg>
-                    )}
-                  </div>
-                </div>
-              )}
             </div>
           </div>
         </div>
 
-        {/* Desktop "A VERY SECURE" */}
+        {/* Desktop Text */}
         {!isMobile && (
-          <div
-            className={`overflow-hidden w-full mt-4 mb-6 transition-opacity duration-300 ${
-              mounted ? "opacity-100" : "opacity-0"
-            }`}
-          >
+          <div className={`overflow-hidden w-full mt-4 mb-6 transition-opacity duration-300 ${mounted ? "opacity-100" : "opacity-0"}`}>
             <div className="flex w-full text-[16px] font-normal justify-center">
-              <span
-                ref={desktopARef}
-                className="flex-1 text-left translate-y-full"
-              >
-                A
-              </span>
-              <span
-                ref={desktopVeryRef}
-                className="flex-1 text-center translate-y-full"
-              >
-                VERY
-              </span>
-              <span
-                ref={desktopSecureRef}
-                className="flex-1 text-right translate-y-full"
-              >
-                SECURE
-              </span>
+              <span ref={desktopARef} className="flex-1 text-left translate-y-full">A</span>
+              <span ref={desktopVeryRef} className="flex-1 text-center translate-y-full">VERY</span>
+              <span ref={desktopSecureRef} className="flex-1 text-right translate-y-full">SECURE</span>
             </div>
           </div>
         )}
 
-        {/* WEB / DEVELOPER images */}
-        <div
-          className={`w-full flex h-[20vw] md:h-[14vw] lg:h-[10vw] items-end mt-6 transition-opacity duration-300 ${
-            mounted ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <div
-            ref={webWrapperRef}
-            className="overflow-hidden h-full flex justify-start"
-          >
+        {/* WEB / DEVELOPER Images */}
+        <div className={`w-full flex h-[20vw] md:h-[14vw] lg:h-[10vw] items-end mt-6 transition-opacity duration-300 ${mounted ? "opacity-100" : "opacity-0"}`}>
+          <div ref={webWrapperRef} className="overflow-hidden h-full flex justify-start">
             <img
               src="/WEB.svg"
               alt="WEB"
@@ -372,13 +249,8 @@ export default function Page() {
               className="h-full w-auto max-w-[100%] object-contain translate-y-full"
             />
           </div>
-
           <div className="w-12 md:w-12 lg:w-14" />
-
-          <div
-            ref={devWrapperRef}
-            className="overflow-hidden h-full flex justify-end"
-          >
+          <div ref={devWrapperRef} className="overflow-hidden h-full flex justify-end">
             <img
               src="/DEVELOPER.svg"
               alt="DEVELOPER"

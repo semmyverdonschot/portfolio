@@ -6,7 +6,6 @@ import Head from "next/head";
 interface SplashScreenProps {
   onFinish: () => void;
   visualDuration?: number;
-  pause?: number;
   videoRef?: React.RefObject<HTMLVideoElement | null>;
   videoSources?: { src: string; media?: string }[];
   posterSrc?: string;
@@ -14,8 +13,7 @@ interface SplashScreenProps {
 
 export default function SplashScreen({
   onFinish,
-  visualDuration = 1000,
-  pause = 400,
+  visualDuration = 800,
   videoRef,
   videoSources = [],
   posterSrc,
@@ -41,7 +39,7 @@ export default function SplashScreen({
     });
   }, [posterSrc, videoSources]);
 
-  // Counter animation
+  // Counter animation with upward slide
   useEffect(() => {
     const startCounter = () => {
       const numberEl = numberRef.current;
@@ -56,37 +54,24 @@ export default function SplashScreen({
         if (progress < 100) {
           requestAnimationFrame(step);
         } else {
+          // Keep 100 visible, then slide up
           setTimeout(() => {
-            // Simple upward slide, no opacity fade
             numberEl.style.transition = "transform 0.6s ease-in-out";
             numberEl.style.transform = "translateY(-100%)";
             setTimeout(() => {
               setShow(false);
               onFinish();
-              if (videoRef?.current) videoRef.current.play().catch(() => {});
-            }, 600);
-          }, pause);
+              videoRef?.current?.play().catch(() => {});
+            }, 600); // wait for slide-up
+          }, 200); // 200ms pause at 100
         }
       };
+
       requestAnimationFrame(step);
     };
 
-    const waitForVideo = () => {
-      if (videoRef?.current) {
-        if (videoRef.current.readyState >= 4) {
-          startCounter();
-        } else {
-          videoRef.current.addEventListener("canplaythrough", startCounter, {
-            once: true,
-          });
-        }
-      } else {
-        startCounter();
-      }
-    };
-
-    waitForVideo();
-  }, [visualDuration, pause, onFinish, videoRef]);
+    startCounter();
+  }, [visualDuration, onFinish, videoRef]);
 
   if (!show) return null;
 
