@@ -109,11 +109,14 @@ export default function SplashScreen({
 
       <div
         aria-hidden="true"
-        className="fixed inset-0 z-[9999] bg-[var(--color-primary)]flex items-center justify-center overflow-hidden pointer-events-none"
+        className="fixed inset-0 z-[9999] bg-[var(--color-primary)] flex items-center justify-center overflow-hidden pointer-events-none"
       >
         {/* Counter */}
         <div className="overflow-hidden h-[24px] w-[40px] flex justify-center items-center">
-          <div ref={numberRef} className="text-[18px] font-bold text-black">
+          <div
+            ref={numberRef}
+            className="text-[18px] font-bold text-black"
+          >
             0
           </div>
         </div>
