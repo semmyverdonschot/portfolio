@@ -1,85 +1,94 @@
 "use client";
 
-import { useRef } from "react";
-import Image from "next/image";
-import { useSlideTogether } from "@/hooks/useStaggerSlide";
+import { useRef, useEffect, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
-export default function WorkPage() {
-  const headingRef = useRef<HTMLHeadingElement>(null);
-  const paragraphRef = useRef<HTMLParagraphElement>(null);
+gsap.registerPlugin(ScrollTrigger);
 
-  // refs for wrappers around images
-  const imgWrapperRefs = [
-    useRef<HTMLDivElement>(null),
-    useRef<HTMLDivElement>(null),
-  ];
-  const videoWrapperRef = useRef<HTMLDivElement>(null);
+export default function HeroVideoPage() {
+  const videoRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Slide heading & paragraph **together**
-  useSlideTogether(
-    [
-      ...imgWrapperRefs,
-      headingRef,
-      paragraphRef,
-    ] as React.RefObject<HTMLElement>[],
-    "up",
-    2,
-  );
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
-  // Slide video **together**
-  useSlideTogether(
-    [videoWrapperRef] as React.RefObject<HTMLElement>[],
-    "down",
-    1.23,
-  );
+  useEffect(() => {
+    if (!videoRef.current) return;
+    const video = videoRef.current;
+
+    if (isMobile) {
+      gsap.set(video, {
+        position: "relative",
+        width: "100%",
+        height: 200,
+        borderRadius: "16px",
+        top: 0,
+        left: 0,
+      });
+    } else {
+      const padding = 32; // px: matches px-8 (md)
+      gsap.set(video, {
+        position: "fixed",
+        top: "100px",
+        left: "50%",
+        xPercent: -50,
+        width: 320,
+        height: 200,
+        borderRadius: "16px",
+        zIndex: 50,
+      });
+
+      gsap.to(video, {
+        scrollTrigger: {
+          trigger: video,
+          start: "top top+=100",
+          end: "+=1800",
+          scrub: 1.8,
+        },
+        width: `calc(100vw - ${padding * 2}px)`, // respect container padding
+        height: "90vh",
+        top: "100px",
+        xPercent: -50,
+        borderRadius: "16px",
+        ease: "power1.out",
+      });
+    }
+  }, [isMobile]);
 
   return (
-    <div className="p-10 space-y-8">
-      {/* Heading */}
-      <div className="overflow-hidden">
-        <h1 ref={headingRef} className="text-4xl font-bold">
-          Testing Animations
-        </h1>
-      </div>
+    <div className="px-4 md:px-8">
+      <div className="relative min-h-[450vh] bg-gray-100">
+        {/* Top spacer */}
+        <div className="h-screen flex items-center justify-center">
+          <h1 className="text-4xl font-bold text-gray-800">
+            Scroll to see the video grow
+          </h1>
+        </div>
 
-      {/* Paragraph */}
-      <div className="overflow-hidden">
-        <p ref={paragraphRef} className="text-lg">
-          Here’s a list of my projects.
-        </p>
-      </div>
-
-      {/* Images */}
-      <div className="grid grid-cols-2 gap-6 mt-6">
-        {["Project 1", "Project 2"].map((title, i) => (
+        {/* Video Section */}
+        <div className="relative w-full h-[60vh] flex justify-center">
           <div
-            key={i}
-            ref={imgWrapperRefs[i]}
-            className="overflow-hidden rounded-lg h-[300px] relative"
+            ref={videoRef}
+            className="overflow-hidden shadow-lg rounded-[16px]"
           >
-            <Image
-              src="/WEB.svg" // replace with your actual image
-              alt={title}
-              fill
-              className="object-cover"
-              priority
-              draggable={false}
+            <video
+              src="/hero-video-720.webm"
+              autoPlay
+              muted
+              loop
+              className="w-full h-full object-cover rounded-[16px]"
             />
           </div>
-        ))}
+        </div>
 
-        {/* Video */}
-        <div
-          ref={videoWrapperRef}
-          className="overflow-hidden rounded-lg h-[300px] col-span-2 relative"
-        >
-          <video
-            src="/hero-video.mp4" // replace with your video
-            autoPlay
-            muted
-            loop
-            className="w-full h-full object-cover"
-          />
+        {/* Bottom spacer */}
+        <div className="h-screen flex items-center justify-center">
+          <p className="text-xl text-gray-700">Video reached its final size!</p>
         </div>
       </div>
     </div>

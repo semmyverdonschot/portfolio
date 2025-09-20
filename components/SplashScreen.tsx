@@ -6,7 +6,6 @@ import Head from "next/head";
 interface SplashScreenProps {
   onFinish: () => void;
   visualDuration?: number;
-  videoRef?: React.RefObject<HTMLVideoElement | null>;
   videoSources?: { src: string; media?: string }[];
   posterSrc?: string;
 }
@@ -14,9 +13,8 @@ interface SplashScreenProps {
 export default function SplashScreen({
   onFinish,
   visualDuration = 1000,
-  videoRef,
-  videoSources = [],
   posterSrc,
+  videoSources = [],
 }: SplashScreenProps) {
   const numberRef = useRef<HTMLDivElement>(null);
   const [show, setShow] = useState(true);
@@ -39,38 +37,36 @@ export default function SplashScreen({
     });
   }, [posterSrc, videoSources]);
 
+  // Counter logic with pause at 100 and slide-up animation
   useEffect(() => {
-    const startCounter = () => {
-      const numberEl = numberRef.current;
-      if (!numberEl) return;
+    const numberEl = numberRef.current;
+    if (!numberEl) return;
 
-      const startTime = performance.now();
-      const step = (time: number) => {
-        const elapsed = time - startTime;
-        const progress = Math.min((elapsed / visualDuration) * 100, 100);
-        numberEl.textContent = Math.floor(progress).toString();
+    const startTime = performance.now();
+    const step = (time: number) => {
+      const elapsed = time - startTime;
+      const progress = Math.min((elapsed / visualDuration) * 100, 100);
+      numberEl.textContent = Math.floor(progress).toString();
 
-        if (progress < 100) {
-          requestAnimationFrame(step);
-        } else {
-          // Keep 100 visible, then slide up
+      if (progress < 100) {
+        requestAnimationFrame(step);
+      } else {
+        // Pause at 100, then slide up
+        setTimeout(() => {
+          numberEl.style.transition = "transform 0.6s ease-in-out";
+          numberEl.style.transform = "translateY(-100%)";
+
           setTimeout(() => {
-            numberEl.style.transition = "transform 0.6s ease-in-out";
-            numberEl.style.transform = "translateY(-100%)";
-            setTimeout(() => {
-              setShow(false);
-              onFinish();
-              videoRef?.current?.play().catch(() => {});
-            }, 600); 
-          }, 200); 
-        }
-      };
-
-      requestAnimationFrame(step);
+            setShow(false);
+            onFinish();
+            // Removed videoRef play, since video is handled elsewhere
+          }, 600);
+        }, 200);
+      }
     };
 
-    startCounter();
-  }, [visualDuration, onFinish, videoRef]);
+    requestAnimationFrame(step);
+  }, [visualDuration, onFinish]);
 
   if (!show) return null;
 
