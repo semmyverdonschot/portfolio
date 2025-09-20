@@ -229,33 +229,45 @@ export default function Page() {
                   className="w-full h-full rounded-2xl object-cover"
                 />
               )}
-              <video
-                ref={videoElRef}
-                poster="/placeholder.webp"
-                autoPlay
-                playsInline
-                preload="auto"
-                muted
-                loop
-                className={`w-full h-full rounded-2xl object-cover cursor-pointer pointer-events-auto transition-opacity duration-500 ${
-                  videoLoaded
-                    ? "opacity-100"
-                    : "opacity-0 absolute top-0 left-0"
-                }`}
-                onLoadedData={() => setVideoLoaded(true)}
-                onClick={() => {
-                  if (!videoElRef.current) return;
-                  videoElRef.current.muted = !videoElRef.current.muted;
-                  setIsMuted(videoElRef.current.muted);
-                }}
+              <div
+                ref={videoWrapperRef}
+                className="relative w-full"
+                style={{ aspectRatio: "16/9" }}
               >
-                <source
-                  src={
-                    isMobile ? "/hero-video-480.webm" : "/hero-video-720.webm"
-                  }
-                  type="video/webm"
-                />
-              </video>
+                {/* Poster overlay */}
+                {!videoLoaded && (
+                  <img
+                    src="/placeholder.webp"
+                    alt="Hero placeholder"
+                    className="absolute inset-0 w-full h-full object-cover rounded-2xl z-10"
+                  />
+                )}
+
+                {/* Video always visible */}
+                <video
+                  ref={videoElRef}
+                  poster="/placeholder.webp"
+                  autoPlay
+                  playsInline
+                  preload="auto"
+                  muted
+                  loop
+                  className="w-full h-full object-cover rounded-2xl cursor-pointer relative"
+                  onLoadedData={() => setVideoLoaded(true)}
+                  onClick={() => {
+                    if (!videoElRef.current) return;
+                    videoElRef.current.muted = !videoElRef.current.muted;
+                    setIsMuted(videoElRef.current.muted);
+                  }}
+                >
+                  <source
+                    src={
+                      isMobile ? "/hero-video-480.webm" : "/hero-video-720.webm"
+                    }
+                    type="video/webm"
+                  />
+                </video>
+              </div>
 
               {/* Mobile mute/unmute */}
               {isMobile && (
