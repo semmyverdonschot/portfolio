@@ -229,28 +229,38 @@ export default function Page() {
                   className="w-full h-full rounded-2xl object-cover"
                 />
               )}
-           <video
-            ref={videoElRef}
-            poster="/placeholder.webp"
-            autoPlay
-            playsInline
-            preload="auto"
-            muted
-            loop
-            className="w-full h-full rounded-2xl object-cover cursor-pointer pointer-events-auto"
-            onClick={() => {
-              if (!videoElRef.current) return;
-              videoElRef.current.muted = !videoElRef.current.muted;
-              setIsMuted(videoElRef.current.muted);
-            }}
-          >
-            {isMobile ? (
-              <source src="/hero-video-480.webm" type="video/webm" />
-            ) : (
-              <source src="/hero-video-720.webm" type="video/webm" />
-            )}
-          </video>
+              <div className="relative w-full h-full rounded-2xl overflow-hidden">
+                {!videoLoaded && (
+                  <img
+                    src="/placeholder.webp"
+                    className="absolute top-0 left-0 w-full h-full object-cover"
+                    alt="placeholder"
+                  />
+                )}
 
+                <video
+                  ref={videoElRef}
+                  autoPlay
+                  playsInline
+                  preload="auto"
+                  muted
+                  loop
+                  className="w-full h-full object-cover cursor-pointer"
+                  onLoadedData={() => setVideoLoaded(true)}
+                  onClick={() => {
+                    if (!videoElRef.current) return;
+                    videoElRef.current.muted = !videoElRef.current.muted;
+                    setIsMuted(videoElRef.current.muted);
+                  }}
+                >
+                  <source
+                    src={
+                      isMobile ? "/hero-video-480.webm" : "/hero-video-720.webm"
+                    }
+                    type="video/webm"
+                  />
+                </video>
+              </div>
 
               {/* Mobile mute/unmute */}
               {isMobile && (
