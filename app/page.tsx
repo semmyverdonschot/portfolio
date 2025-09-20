@@ -220,6 +220,7 @@ export default function Page() {
               ref={videoRef}
               className="translate-y-[-100%] transition-transform duration-1000 ease-out"
             >
+              {/* Placeholder Image */}
               {!videoLoaded && (
                 <img
                   src="/placeholder.webp"
@@ -229,38 +230,30 @@ export default function Page() {
                   className="w-full h-full rounded-2xl object-cover"
                 />
               )}
-              <div className="relative w-full h-full rounded-2xl overflow-hidden">
-                {!videoLoaded && (
-                  <img
-                    src="/placeholder.webp"
-                    className="absolute top-0 left-0 w-full h-full object-cover"
-                    alt="placeholder"
-                  />
-                )}
 
-                <video
-                  ref={videoElRef}
-                  autoPlay
-                  playsInline
-                  preload="auto"
-                  muted
-                  loop
-                  className="w-full h-full object-cover cursor-pointer"
-                  onLoadedData={() => setVideoLoaded(true)}
-                  onClick={() => {
-                    if (!videoElRef.current) return;
-                    videoElRef.current.muted = !videoElRef.current.muted;
-                    setIsMuted(videoElRef.current.muted);
-                  }}
-                >
-                  <source
-                    src={
-                      isMobile ? "/hero-video-480.webm" : "/hero-video-720.webm"
-                    }
-                    type="video/webm"
-                  />
-                </video>
-              </div>
+              {/* Video */}
+              <video
+                ref={videoElRef}
+                autoPlay
+                playsInline
+                preload="auto"
+                muted
+                loop
+                className="w-full h-full object-cover cursor-pointer rounded-2xl"
+                onLoadedData={() => setVideoLoaded(true)}
+                onClick={() => {
+                  if (!videoElRef.current) return;
+                  videoElRef.current.muted = !videoElRef.current.muted;
+                  setIsMuted(videoElRef.current.muted);
+                }}
+              >
+                <source
+                  src={
+                    isMobile ? "/hero-video-480.webm" : "/hero-video-720.webm"
+                  }
+                  type="video/webm"
+                />
+              </video>
 
               {/* Mobile mute/unmute */}
               {isMobile && (
