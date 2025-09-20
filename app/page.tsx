@@ -139,7 +139,7 @@ export default function Page() {
   );
 
   useSlideTogether(animatedUpRefs, "up", 0.8);
-  useSlideTogether(animatedDownRefs, "down", 0.4);
+  useSlideTogether(animatedDownRefs, "down", 0.1);
 
   useEffect(() => {
     if (!isMobile) setDesktopVideoVisible(true);
@@ -201,8 +201,9 @@ export default function Page() {
           </div>
         )}
 
+        {/* Video Section (poster-first, mobile-optimized) */}
         <div
-          className={`relative w-full flex justify-center overflow-hidden ${
+          className={`relative w-full flex justify-center overflow-hidden transition-opacity duration-300 ${
             mounted ? "opacity-100" : "opacity-0"
           }`}
         >
@@ -215,30 +216,32 @@ export default function Page() {
               maxWidth: isMobile ? "100%" : "600px",
             }}
           >
-            {/* Placeholder Image (static) */}
-            <img
-              src="/placeholder.webp"
-              alt="Hero placeholder"
-              width={1200}
-              height={675}
-              className="w-full h-full rounded-2xl object-cover absolute top-0 left-0"
-            />
-
-            {/* Animated Video Container */}
             <div
               ref={videoRef}
-              className={`transition-transform duration-1000 ease-out ${
-                videoLoaded ? "translate-y-[-100%]" : "translate-y-[0]"
-              }`}
+              className="translate-y-[-100%] transition-transform duration-1000 ease-out"
             >
+              {!videoLoaded && (
+                <img
+                  src="/placeholder.webp"
+                  alt="Hero placeholder"
+                  width={1200}
+                  height={675}
+                  className="w-full h-full rounded-2xl object-cover"
+                />
+              )}
               <video
                 ref={videoElRef}
+                poster="/placeholder.webp"
                 autoPlay
                 playsInline
                 preload="auto"
                 muted
                 loop
-                className="w-full h-full object-cover cursor-pointer rounded-2xl relative"
+                className={`w-full h-full rounded-2xl object-cover cursor-pointer pointer-events-auto transition-opacity duration-500 ${
+                  videoLoaded
+                    ? "opacity-100"
+                    : "opacity-0 absolute top-0 left-0"
+                }`}
                 onLoadedData={() => setVideoLoaded(true)}
                 onClick={() => {
                   if (!videoElRef.current) return;
