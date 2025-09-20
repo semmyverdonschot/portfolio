@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect, useMemo } from "react";
 import Head from "next/head";
 import { useSlideTogether } from "@/hooks/useStaggerSlide";
+/* eslint-disable @next/next/no-img-element */
 
 export default function Page() {
   const videoWrapperRef = useRef<HTMLDivElement | null>(null);
@@ -32,10 +33,8 @@ export default function Page() {
 
   const [mounted, setMounted] = useState(false);
 
-  // Fade-in mounted state
   useEffect(() => setMounted(true), []);
 
-  // Detect mobile viewport
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
@@ -43,7 +42,6 @@ export default function Page() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Video autoplay & muted
   useEffect(() => {
     const v = videoElRef.current;
     if (!v) return;
@@ -51,7 +49,6 @@ export default function Page() {
     v.play().catch(() => {});
   }, []);
 
-  // Desktop mouse-follow animation
   useEffect(() => {
     if (isMobile) return;
     let rafId: number | null = null;
@@ -74,8 +71,10 @@ export default function Page() {
         minX,
         Math.min(
           maxX,
-          e.clientX - parentRectRef.current.left - parentRectRef.current.width / 2
-        )
+          e.clientX -
+            parentRectRef.current.left -
+            parentRectRef.current.width / 2,
+        ),
       );
     };
 
@@ -96,7 +95,6 @@ export default function Page() {
     };
   }, [isMobile]);
 
-  // Reset WEB / DEVELOPER images positions
   useEffect(() => {
     const resetImages = () => {
       if (webWrapperRef.current) {
@@ -132,18 +130,17 @@ export default function Page() {
           ? [mobileARef, mobileVeryRef, mobileSecureRef]
           : [desktopARef, desktopVeryRef, desktopSecureRef]),
       ] as unknown as React.RefObject<HTMLElement>[],
-    [isMobile]
+    [isMobile],
   );
 
   const animatedDownRefs = useMemo(
     () => [videoRef] as React.RefObject<HTMLElement>[],
-    []
+    [],
   );
 
   useSlideTogether(animatedUpRefs, "up", 0.8);
   useSlideTogether(animatedDownRefs, "down", 0.1);
 
-  // Lazy-load desktop video after mobile video paints
   useEffect(() => {
     if (!isMobile) setDesktopVideoVisible(true);
   }, [isMobile]);
@@ -156,7 +153,7 @@ export default function Page() {
         <link
           rel="preload"
           as="video"
-          href="/hero-video-720.mp4"
+          href="/hero-video-720.webm"
           type="video/mp4"
           media="(max-width:767px)"
         />
@@ -164,7 +161,7 @@ export default function Page() {
           <link
             rel="preload"
             as="video"
-            href="/hero-video-1080.mp4"
+            href="/hero-video-1080.webm"
             type="video/mp4"
             media="(min-width:768px)"
           />
@@ -182,13 +179,22 @@ export default function Page() {
             }`}
           >
             <div className="flex w-full text-base font-medium text-[var(--color-dark)] justify-center">
-              <span ref={mobileARef} className="flex-1 text-left translate-y-full">
+              <span
+                ref={mobileARef}
+                className="flex-1 text-left translate-y-full"
+              >
                 A
               </span>
-              <span ref={mobileVeryRef} className="flex-1 text-center translate-y-full">
+              <span
+                ref={mobileVeryRef}
+                className="flex-1 text-center translate-y-full"
+              >
                 VERY
               </span>
-              <span ref={mobileSecureRef} className="flex-1 text-right translate-y-full">
+              <span
+                ref={mobileSecureRef}
+                className="flex-1 text-right translate-y-full"
+              >
                 SECURE
               </span>
             </div>
@@ -228,11 +234,13 @@ export default function Page() {
                 poster="/placeholder.webp"
                 autoPlay
                 playsInline
-                preload={isMobile ? "metadata" : "auto"}
+                preload="auto"
                 muted
                 loop
                 className={`w-full h-full rounded-2xl object-cover cursor-pointer pointer-events-auto transition-opacity duration-500 ${
-                  videoLoaded ? "opacity-100" : "opacity-0 absolute top-0 left-0"
+                  videoLoaded
+                    ? "opacity-100"
+                    : "opacity-0 absolute top-0 left-0"
                 }`}
                 onLoadedData={() => setVideoLoaded(true)}
                 onClick={() => {
@@ -242,17 +250,11 @@ export default function Page() {
                 }}
               >
                 <source
-                  src="/hero-video-480.webm"
+                  src={
+                    isMobile ? "/hero-video-480.webm" : "/hero-video-720.webm"
+                  }
                   type="video/webm"
-                  media="(max-width:767px)"
                 />
-                {desktopVideoVisible && (
-                  <source
-                    src="/hero-video-720.webm"
-                    type="video/webm"
-                    media="(min-width:768px)"
-                  />
-                )}
               </video>
 
               {/* Mobile mute/unmute */}
@@ -280,8 +282,22 @@ export default function Page() {
                           strokeLinejoin="round"
                           d="M11 5L6 9H2v6h4l5 4V5z"
                         />
-                        <line x1="15" y1="9" x2="21" y2="15" stroke="currentColor" strokeWidth={2} />
-                        <line x1="21" y1="9" x2="15" y2="15" stroke="currentColor" strokeWidth={2} />
+                        <line
+                          x1="15"
+                          y1="9"
+                          x2="21"
+                          y2="15"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                        />
+                        <line
+                          x1="21"
+                          y1="9"
+                          x2="15"
+                          y2="15"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                        />
                       </svg>
                     ) : (
                       <svg
@@ -292,8 +308,16 @@ export default function Page() {
                         stroke="currentColor"
                         strokeWidth={2}
                       >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M11 5L6 9H2v6h4l5 4V5z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.54 8.46a5 5 0 010 7.08" />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M11 5L6 9H2v6h4l5 4V5z"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M15.54 8.46a5 5 0 010 7.08"
+                        />
                       </svg>
                     )}
                   </div>
@@ -311,13 +335,22 @@ export default function Page() {
             }`}
           >
             <div className="flex w-full text-[16px] font-normal justify-center">
-              <span ref={desktopARef} className="flex-1 text-left translate-y-full">
+              <span
+                ref={desktopARef}
+                className="flex-1 text-left translate-y-full"
+              >
                 A
               </span>
-              <span ref={desktopVeryRef} className="flex-1 text-center translate-y-full">
+              <span
+                ref={desktopVeryRef}
+                className="flex-1 text-center translate-y-full"
+              >
                 VERY
               </span>
-              <span ref={desktopSecureRef} className="flex-1 text-right translate-y-full">
+              <span
+                ref={desktopSecureRef}
+                className="flex-1 text-right translate-y-full"
+              >
                 SECURE
               </span>
             </div>
@@ -330,7 +363,10 @@ export default function Page() {
             mounted ? "opacity-100" : "opacity-0"
           }`}
         >
-          <div ref={webWrapperRef} className="overflow-hidden h-full flex justify-start">
+          <div
+            ref={webWrapperRef}
+            className="overflow-hidden h-full flex justify-start"
+          >
             <img
               src="/WEB.svg"
               alt="WEB"
@@ -343,7 +379,10 @@ export default function Page() {
 
           <div className="w-12 md:w-12 lg:w-14" />
 
-          <div ref={devWrapperRef} className="overflow-hidden h-full flex justify-end">
+          <div
+            ref={devWrapperRef}
+            className="overflow-hidden h-full flex justify-end"
+          >
             <img
               src="/DEVELOPER.svg"
               alt="DEVELOPER"

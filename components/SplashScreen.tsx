@@ -51,7 +51,6 @@ export default function SplashScreen({
       if (progress < 100) {
         requestAnimationFrame(step);
       } else {
-        // Pause at 100, then slide up
         setTimeout(() => {
           numberEl.style.transition = "transform 0.6s ease-in-out";
           numberEl.style.transform = "translateY(-100%)";
@@ -59,7 +58,6 @@ export default function SplashScreen({
           setTimeout(() => {
             setShow(false);
             onFinish();
-            // Removed videoRef play, since video is handled elsewhere
           }, 600);
         }, 200);
       }
