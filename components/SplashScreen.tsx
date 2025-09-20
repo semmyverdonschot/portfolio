@@ -19,7 +19,6 @@ export default function SplashScreen({
   const numberRef = useRef<HTMLDivElement>(null);
   const [show, setShow] = useState(true);
 
-  // Preload assets
   useEffect(() => {
     const assets = [posterSrc, "/WEB.svg", "/DEVELOPER.svg"];
     videoSources.forEach((v) => assets.push(v.src));

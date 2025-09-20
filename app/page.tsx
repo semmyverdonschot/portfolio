@@ -138,7 +138,7 @@ export default function Page() {
     [],
   );
 
-  useSlideTogether(animatedUpRefs, "up", 0.8);
+  useSlideTogether(animatedUpRefs, "up", 1.5);
   useSlideTogether(animatedDownRefs, "down", 0.1);
 
   useEffect(() => {
