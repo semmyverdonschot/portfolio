@@ -1,30 +1,14 @@
 "use client";
 
-import { ReactNode, useState, useEffect } from "react";
+import { ReactNode, useRef, useState, useEffect } from "react";
 import SplashScreen from "@/components/SplashScreen";
 import Navbar from "@/components/NavBar";
 
 export default function ClientWrapper({ children }: { children: ReactNode }) {
   const [showSplash, setShowSplash] = useState(true);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
-    // Preload LCP video
-    const video = document.createElement("link");
-    video.rel = "preload";
-    video.as = "video";
-    video.href = "/hero-video.mp4";
-    video.type = "video/mp4";
-    document.head.appendChild(video);
-
-    // Preload poster
-    const poster = document.createElement("link");
-    poster.rel = "preload";
-    poster.as = "image";
-    poster.href = "/placeholder.webp";
-    poster.type = "image/webp";
-    poster.fetchPriority = "high";
-    document.head.appendChild(poster);
-
     // Preload SVGs
     ["/WEB.svg", "/DEVELOPER.svg"].forEach((src) => {
       const img = new Image();
@@ -37,12 +21,39 @@ export default function ClientWrapper({ children }: { children: ReactNode }) {
       <Navbar />
 
       <main className="relative">
-        {/* Render children immediately after splash */}
         {!showSplash && children}
+
+        {/* Hidden main video to start playing after splash */}
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full h-auto hidden"
+        >
+          <source src="/hero-video-480.webm" type="video/webm" />
+          <source
+            src="/hero-video-720.webm"
+            type="video/webm"
+            media="(min-width:768px)"
+          />
+        </video>
       </main>
 
       {/* Splash overlay */}
-      {showSplash && <SplashScreen onFinish={() => setShowSplash(false)} />}
+      {showSplash && (
+       <SplashScreen
+        onFinish={() => setShowSplash(false)}
+        videoRef={videoRef}
+        posterSrc="/placeholder.webp"
+        videoSources={[
+          { src: "/hero-video-480.webm" },
+          { src: "/hero-video-720.webm", media: "(min-width:768px)" },
+        ]}
+      />
+
+      )}
     </>
   );
 }

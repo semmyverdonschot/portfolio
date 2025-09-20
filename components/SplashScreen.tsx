@@ -7,15 +7,16 @@ interface SplashScreenProps {
   onFinish: () => void;
   visualDuration?: number;
   pause?: number;
-  videoRef: React.RefObject<HTMLVideoElement>;
+  videoRef: React.RefObject<HTMLVideoElement | null>;
   videoSources?: { src: string; media?: string }[];
-  posterSrc: string; // must always be a valid string
+  posterSrc: string;
 }
+
 
 export default function SplashScreen({
   onFinish,
-  visualDuration = 1200,
-  pause = 300,
+  visualDuration = 1000,
+  pause = 500,
   videoRef,
   videoSources = [],
   posterSrc,
@@ -113,17 +114,6 @@ export default function SplashScreen({
         aria-hidden="true"
         className="fixed inset-0 z-[9999] bg-[var(--color-primary)] flex items-center justify-center overflow-hidden pointer-events-none"
       >
-        {/* LCP-friendly poster */}
-        <div className="absolute inset-0 -z-10">
-          {posterSrc && (
-            <img
-              src={posterSrc}
-              alt="Hero poster"
-              className="w-full h-full object-cover"
-              decoding="async"
-            />
-          )}
-        </div>
 
         {/* Counter */}
         <div className="overflow-hidden h-[24px] w-[40px] flex justify-center items-center">

@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect, useMemo } from "react";
 import Head from "next/head";
 import { useSlideTogether } from "@/hooks/useStaggerSlide";
+/* eslint-disable @next/next/no-img-element */
 
 export default function Page() {
   const videoWrapperRef = useRef<HTMLDivElement | null>(null);
@@ -32,10 +33,8 @@ export default function Page() {
 
   const [mounted, setMounted] = useState(false);
 
-  // Fade-in mounted state
   useEffect(() => setMounted(true), []);
 
-  // Detect mobile viewport
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
@@ -43,7 +42,6 @@ export default function Page() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Video autoplay & muted
   useEffect(() => {
     const v = videoElRef.current;
     if (!v) return;
@@ -51,7 +49,6 @@ export default function Page() {
     v.play().catch(() => {});
   }, []);
 
-  // Desktop mouse-follow animation
   useEffect(() => {
     if (isMobile) return;
     let rafId: number | null = null;
