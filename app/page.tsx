@@ -229,30 +229,26 @@ export default function Page() {
                   className="w-full h-full rounded-2xl object-cover"
                 />
               )}
-              <div
-                ref={videoWrapperRef}
-                className="relative w-full"
-                style={{ aspectRatio: "16/9" }}
-              >
+              <div className="relative w-full h-full rounded-2xl overflow-hidden">
                 {/* Poster overlay */}
                 {!videoLoaded && (
                   <img
                     src="/placeholder.webp"
                     alt="Hero placeholder"
-                    className="absolute inset-0 w-full h-full object-cover rounded-2xl z-10"
+                    className="absolute top-0 left-0 w-full h-full object-cover rounded-2xl"
                   />
                 )}
 
-                {/* Video always visible */}
+                {/* Video */}
                 <video
                   ref={videoElRef}
-                  poster="/placeholder.webp"
                   autoPlay
                   playsInline
                   preload="auto"
                   muted
                   loop
-                  className="w-full h-full object-cover rounded-2xl cursor-pointer relative"
+                  poster="/placeholder.webp" // still optional
+                  className="w-full h-full object-cover rounded-2xl cursor-pointer"
                   onLoadedData={() => setVideoLoaded(true)}
                   onClick={() => {
                     if (!videoElRef.current) return;
