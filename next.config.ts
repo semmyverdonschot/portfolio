@@ -2,7 +2,6 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: "export",
-  swcMinify: true,
   experimental: {
     optimizeCss: true,
     esmExternals: true,
@@ -12,6 +11,10 @@ const nextConfig: NextConfig = {
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",
+    reactRemoveProperties: process.env.NODE_ENV === "production",
+  },
+  future: {
+    strictPostcssConfiguration: true,
   },
 };
 
