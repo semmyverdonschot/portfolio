@@ -201,59 +201,55 @@ export default function Page() {
           </div>
         )}
 
-        {/* Video Section (poster-first, mobile-optimized) */}
-        <div
-          className={`relative w-full flex justify-center overflow-hidden transition-opacity duration-300 ${
-            mounted ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <div
-            ref={videoWrapperRef}
-            className="relative"
-            style={{
-              aspectRatio: "16/9",
-              width: isMobile ? "100%" : "40vw",
-              maxWidth: isMobile ? "100%" : "600px",
-            }}
-          >
-            <div
-              ref={videoRef}
-              className="translate-y-[-100%] transition-transform duration-1000 ease-out"
-            >
-              {/* Placeholder Image */}
-              {!videoLoaded && (
-                <img
-                  src="/placeholder.webp"
-                  alt="Hero placeholder"
-                  width={1200}
-                  height={675}
-                  className="w-full h-full rounded-2xl object-cover"
-                />
-              )}
+    {/* Video Section (poster-first, mobile-optimized, seamless) */}
+<div
+  className={`relative w-full flex justify-center overflow-hidden ${
+    mounted ? "opacity-100" : "opacity-0"
+  }`}
+>
+  <div
+    ref={videoWrapperRef}
+    className="relative"
+    style={{
+      aspectRatio: "16/9",
+      width: isMobile ? "100%" : "40vw",
+      maxWidth: isMobile ? "100%" : "600px",
+    }}
+  >
+    <div
+      ref={videoRef}
+      className="transition-transform duration-1000 ease-out translate-y-[-100%]" // video animation
+    >
+      {/* Placeholder Image (static) */}
+      <img
+        src="/placeholder.webp"
+        alt="Hero placeholder"
+        width={1200}
+        height={675}
+        className="w-full h-full rounded-2xl object-cover absolute top-0 left-0"
+      />
 
-              {/* Video */}
-              <video
-                ref={videoElRef}
-                autoPlay
-                playsInline
-                preload="auto"
-                muted
-                loop
-                className="w-full h-full object-cover cursor-pointer rounded-2xl"
-                onLoadedData={() => setVideoLoaded(true)}
-                onClick={() => {
-                  if (!videoElRef.current) return;
-                  videoElRef.current.muted = !videoElRef.current.muted;
-                  setIsMuted(videoElRef.current.muted);
-                }}
-              >
-                <source
-                  src={
-                    isMobile ? "/hero-video-480.webm" : "/hero-video-720.webm"
-                  }
-                  type="video/webm"
-                />
-              </video>
+      {/* Video */}
+      <video
+        ref={videoElRef}
+        autoPlay
+        playsInline
+        preload="auto"
+        muted
+        loop
+        className="w-full h-full object-cover cursor-pointer rounded-2xl relative"
+        onLoadedData={() => setVideoLoaded(true)}
+        onClick={() => {
+          if (!videoElRef.current) return;
+          videoElRef.current.muted = !videoElRef.current.muted;
+          setIsMuted(videoElRef.current.muted);
+        }}
+      >
+        <source
+          src={isMobile ? "/hero-video-480.webm" : "/hero-video-720.webm"}
+          type="video/webm"
+        />
+      </video>
 
               {/* Mobile mute/unmute */}
               {isMobile && (
