@@ -11,9 +11,8 @@ export default function Page() {
   const videoElRef = useRef<HTMLVideoElement | null>(null);
   const [isMuted, setIsMuted] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
   const [desktopVideoVisible, setDesktopVideoVisible] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
   const targetX = useRef(0);
   const currentX = useRef(0);
   const parentRectRef = useRef<DOMRect | null>(null);
@@ -31,6 +30,8 @@ export default function Page() {
   const mobileARef = useRef<HTMLSpanElement | null>(null);
   const mobileVeryRef = useRef<HTMLSpanElement | null>(null);
   const mobileSecureRef = useRef<HTMLSpanElement | null>(null);
+
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);
 
@@ -95,7 +96,29 @@ export default function Page() {
   }, [isMobile]);
 
   useEffect(() => {
-    if (!isMobile) setDesktopVideoVisible(true);
+    const resetImages = () => {
+      if (webWrapperRef.current) {
+        const img = webWrapperRef.current.querySelector("img");
+        if (img) {
+          webImgRef.current = img;
+          img.style.transform = "translateY(100%)";
+        }
+        if (isMobile)
+          webWrapperRef.current.style.height = `${webWrapperRef.current.offsetHeight}px`;
+      }
+      if (devWrapperRef.current) {
+        const img = devWrapperRef.current.querySelector("img");
+        if (img) {
+          devImgRef.current = img;
+          img.style.transform = "translateY(100%)";
+        }
+        if (isMobile)
+          devWrapperRef.current.style.height = `${devWrapperRef.current.offsetHeight}px`;
+      }
+    };
+    resetImages();
+    const timeoutId = setTimeout(resetImages, 50);
+    return () => clearTimeout(timeoutId);
   }, [isMobile]);
 
   const animatedUpRefs = useMemo(
@@ -115,34 +138,31 @@ export default function Page() {
     [],
   );
 
-  useSlideTogether(animatedUpRefs, "up", 1.5);
-  useSlideTogether(animatedDownRefs, "down", 0.1);
+  useSlideTogether(animatedUpRefs, "up", 0.8);
+  useSlideTogether(animatedDownRefs, "down", 0.4);
+
+  useEffect(() => {
+    if (!isMobile) setDesktopVideoVisible(true);
+  }, [isMobile]);
 
   return (
     <>
+      {/* Preload poster + mobile video */}
       <Head>
-        {/* Preconnect to origin */}
-        <link
-          rel="preconnect"
-          href="https://semmyverdonschot.com"
-          crossOrigin=""
-        />
-
-        {/* Preload poster + video assets */}
         <link rel="preload" as="image" href="/placeholder.webp" />
         <link
           rel="preload"
           as="video"
-          href="/hero-video-480.webm"
-          type="video/webm"
+          href="/hero-video-720.webm"
+          type="video/mp4"
           media="(max-width:767px)"
         />
         {desktopVideoVisible && (
           <link
             rel="preload"
             as="video"
-            href="/hero-video-720.webm"
-            type="video/webm"
+            href="/hero-video-1080.webm"
+            type="video/mp4"
             media="(min-width:768px)"
           />
         )}
@@ -151,7 +171,7 @@ export default function Page() {
       <div className="min-h-screen bg-[var(--color-primary)] flex flex-col justify-start relative overflow-hidden">
         <div className="h-36 md:h-40 lg:h-44 w-full" />
 
-        {/* Mobile heading */}
+        {/* Mobile "A VERY SECURE" */}
         {isMobile && (
           <div
             className={`overflow-hidden w-full mb-2 transition-opacity duration-300 ${
@@ -181,7 +201,7 @@ export default function Page() {
           </div>
         )}
 
-        {/* Video */}
+        {/* Video Section (poster-first, mobile-optimized) */}
         <div
           className={`relative w-full flex justify-center overflow-hidden transition-opacity duration-300 ${
             mounted ? "opacity-100" : "opacity-0"
@@ -200,30 +220,34 @@ export default function Page() {
               ref={videoRef}
               className="translate-y-[-100%] transition-transform duration-1000 ease-out"
             >
-              <video
-                ref={videoElRef}
-                poster="/placeholder.webp"
-                autoPlay
-                playsInline
-                preload="auto"
-                muted
-                loop
-                className="w-full h-full rounded-2xl object-cover cursor-pointer pointer-events-auto absolute top-0 left-0"
-                onClick={() => {
-                  if (!videoElRef.current) return;
-                  videoElRef.current.muted = !videoElRef.current.muted;
-                  setIsMuted(videoElRef.current.muted);
-                }}
-              >
-                <source
-                  src={
-                    isMobile ? "/hero-video-480.webm" : "/hero-video-720.webm"
-                  }
-                  type="video/webm"
+              {!videoLoaded && (
+                <img
+                  src="/placeholder.webp"
+                  alt="Hero placeholder"
+                  width={1200}
+                  height={675}
+                  className="w-full h-full rounded-2xl object-cover"
                 />
-              </video>
+              )}
+           <video
+              ref={videoElRef}
+              poster="/placeholder.webp"
+              autoPlay
+              playsInline
+              preload="auto"
+              muted
+              loop
+              className="w-full h-full rounded-2xl object-cover cursor-pointer pointer-events-auto absolute top-0 left-0"
+              onClick={() => {
+                if (!videoElRef.current) return;
+                videoElRef.current.muted = !videoElRef.current.muted;
+                setIsMuted(videoElRef.current.muted);
+              }}
+            >
+              <source src="/hero-video-720.webm" type="video/webm" />
+            </video>
 
-              {/* Mobile mute toggle */}
+              {/* Mobile mute/unmute */}
               {isMobile && (
                 <div className="absolute bottom-2 right-2 pointer-events-auto">
                   <div
@@ -234,7 +258,58 @@ export default function Page() {
                     }}
                     className="flex items-center justify-center w-10 h-10 rounded-full bg-[var(--color-primary)]/25 backdrop-blur-md cursor-pointer"
                   >
-                    {isMuted ? <span>🔇</span> : <span>🔊</span>}
+                    {isMuted ? (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-5 h-5 text-[var(--color-dark)]"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M11 5L6 9H2v6h4l5 4V5z"
+                        />
+                        <line
+                          x1="15"
+                          y1="9"
+                          x2="21"
+                          y2="15"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                        />
+                        <line
+                          x1="21"
+                          y1="9"
+                          x2="15"
+                          y2="15"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                        />
+                      </svg>
+                    ) : (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-5 h-5 text-[var(--color-dark)]"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M11 5L6 9H2v6h4l5 4V5z"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M15.54 8.46a5 5 0 010 7.08"
+                        />
+                      </svg>
+                    )}
                   </div>
                 </div>
               )}
@@ -242,7 +317,7 @@ export default function Page() {
           </div>
         </div>
 
-        {/* Desktop heading */}
+        {/* Desktop "A VERY SECURE" */}
         {!isMobile && (
           <div
             className={`overflow-hidden w-full mt-4 mb-6 transition-opacity duration-300 ${
@@ -272,7 +347,7 @@ export default function Page() {
           </div>
         )}
 
-        {/* WEB / DEVELOPER */}
+        {/* WEB / DEVELOPER images */}
         <div
           className={`w-full flex h-[20vw] md:h-[14vw] lg:h-[10vw] items-end mt-6 transition-opacity duration-300 ${
             mounted ? "opacity-100" : "opacity-0"
