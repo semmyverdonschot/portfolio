@@ -153,7 +153,7 @@ export default function Page() {
         <link
           rel="preload"
           as="video"
-          href="/hero-video-720.webm"
+          href="/hero-video-480.webm"
           type="video/mp4"
           media="(max-width:767px)"
         />
@@ -161,7 +161,7 @@ export default function Page() {
           <link
             rel="preload"
             as="video"
-            href="/hero-video-1080.webm"
+            href="/hero-video-720.webm"
             type="video/mp4"
             media="(min-width:768px)"
           />

@@ -77,7 +77,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <link
           rel="preload"
           as="video"
-          href="/hero-video.mp4"
+          href="/hero-video-720.mp4"
+          type="video/mp4"
+        />
+        {/* Preload LCP video */}
+        <link
+          rel="preload"
+          as="video"
+          href="/hero-video-480.mp4"
           type="video/mp4"
         />
 
