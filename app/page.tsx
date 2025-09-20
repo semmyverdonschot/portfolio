@@ -15,8 +15,6 @@ export default function Page() {
   const [desktopVideoVisible, setDesktopVideoVisible] = useState(false);
   const targetX = useRef(0);
   const currentX = useRef(0);
-  const parentRectRef = useRef<DOMRect | null>(null);
-  const halfVideoWidthRef = useRef<number>(0);
 
   const webWrapperRef = useRef<HTMLDivElement | null>(null);
   const devWrapperRef = useRef<HTMLDivElement | null>(null);
@@ -46,46 +44,45 @@ export default function Page() {
   // Autoplay muted video
   useEffect(() => {
     const v = videoElRef.current;
-    if (v) v.play().catch(() => {});
+    if (v) {
+      v.muted = true;
+      v.play().catch(() => {});
+    }
   }, []);
 
   // Desktop parallax
   useEffect(() => {
     if (isMobile) return;
-    let rafId: number | null = null;
+    const wrapper = videoWrapperRef.current;
+    if (!wrapper) return;
 
-    const recalcSizes = () => {
-      if (videoWrapperRef.current?.parentElement) {
-        parentRectRef.current = videoWrapperRef.current.parentElement.getBoundingClientRect();
-        halfVideoWidthRef.current = videoWrapperRef.current.offsetWidth / 2;
-      }
-    };
-    recalcSizes();
-    window.addEventListener("resize", recalcSizes);
+    let parentWidth = wrapper.parentElement?.offsetWidth || 0;
+    let halfWidth = wrapper.offsetWidth / 2;
 
     const handleMouseMove = (e: MouseEvent) => {
-      if (!parentRectRef.current) return;
-      const maxX = parentRectRef.current.width / 2 - halfVideoWidthRef.current;
+      const maxX = parentWidth / 2 - halfWidth;
       const minX = -maxX;
-      targetX.current = Math.max(
-        minX,
-        Math.min(maxX, e.clientX - parentRectRef.current.left - parentRectRef.current.width / 2)
-      );
+      targetX.current = Math.max(minX, Math.min(maxX, e.clientX - (wrapper.parentElement?.getBoundingClientRect().left || 0) - parentWidth / 2));
     };
 
     const animate = () => {
-      currentX.current += (targetX.current - currentX.current) * 0.06;
-      if (videoWrapperRef.current) videoWrapperRef.current.style.transform = `translateX(${currentX.current}px)`;
-      rafId = requestAnimationFrame(animate);
+      currentX.current += (targetX.current - currentX.current) * 0.08;
+      wrapper.style.transform = `translateX(${currentX.current}px)`;
+      requestAnimationFrame(animate);
     };
 
     window.addEventListener("mousemove", handleMouseMove);
     animate();
 
+    const handleResize = () => {
+      parentWidth = wrapper.parentElement?.offsetWidth || 0;
+      halfWidth = wrapper.offsetWidth / 2;
+    };
+    window.addEventListener("resize", handleResize);
+
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("resize", recalcSizes);
-      if (rafId !== null) cancelAnimationFrame(rafId);
+      window.removeEventListener("resize", handleResize);
     };
   }, [isMobile]);
 
@@ -94,18 +91,14 @@ export default function Page() {
     const resetImages = () => {
       if (webWrapperRef.current) {
         const img = webWrapperRef.current.querySelector("img");
-        if (img) {
-          webImgRef.current = img;
-          img.style.transform = "translateY(100%)";
-        }
+        if (img) webImgRef.current = img;
+        if (img) img.style.transform = "translateY(100%)";
         if (isMobile) webWrapperRef.current.style.height = `${webWrapperRef.current.offsetHeight}px`;
       }
       if (devWrapperRef.current) {
         const img = devWrapperRef.current.querySelector("img");
-        if (img) {
-          devImgRef.current = img;
-          img.style.transform = "translateY(100%)";
-        }
+        if (img) devImgRef.current = img;
+        if (img) img.style.transform = "translateY(100%)";
         if (isMobile) devWrapperRef.current.style.height = `${devWrapperRef.current.offsetHeight}px`;
       }
     };
@@ -129,7 +122,7 @@ export default function Page() {
   const animatedDownRefs = useMemo(() => [videoRef] as React.RefObject<HTMLElement>[], []);
 
   useSlideTogether(animatedUpRefs, "up", 0.8);
-  useSlideTogether(animatedDownRefs, "down", 0.1);
+  useSlideTogether(animatedDownRefs, "down", 0.2);
 
   useEffect(() => {
     if (!isMobile) setDesktopVideoVisible(true);
@@ -137,7 +130,6 @@ export default function Page() {
 
   return (
     <>
-      {/* Preload poster + video */}
       <Head>
         <link rel="preload" as="image" href="/placeholder.webp" />
         <link rel="preload" as="video" href="/hero-video-480.webm" type="video/webm" media="(max-width:767px)" />
@@ -150,7 +142,7 @@ export default function Page() {
       <div className="min-h-screen bg-[var(--color-primary)] flex flex-col justify-start relative overflow-hidden">
         <div className="h-36 md:h-40 lg:h-44 w-full" />
 
-        {/* Mobile "A VERY SECURE" */}
+        {/* Mobile text */}
         {isMobile && (
           <div className={`overflow-hidden w-full mb-2 transition-opacity duration-300 ${mounted ? "opacity-100" : "opacity-0"}`}>
             <div className="flex w-full text-base font-medium text-[var(--color-dark)] justify-center">
@@ -161,17 +153,11 @@ export default function Page() {
           </div>
         )}
 
-        {/* Video Section */}
+        {/* Video section */}
         <div className={`relative w-full flex justify-center overflow-hidden transition-opacity duration-300 ${mounted ? "opacity-100" : "opacity-0"}`}>
-          <div
-            ref={videoWrapperRef}
-            className="relative"
-            style={{ aspectRatio: "16/9", width: isMobile ? "100%" : "40vw", maxWidth: isMobile ? "100%" : "600px" }}
-          >
+          <div ref={videoWrapperRef} className="relative" style={{ aspectRatio: "16/9", width: isMobile ? "100%" : "40vw", maxWidth: isMobile ? "100%" : "600px" }}>
             <div ref={videoRef} className="translate-y-[-100%] transition-transform duration-1000 ease-out">
-              {!videoLoaded && (
-                <img src="/placeholder.webp" alt="Hero placeholder" width={1200} height={675} className="w-full h-full rounded-2xl object-cover" />
-              )}
+              {!videoLoaded && <img src="/placeholder.webp" alt="Hero placeholder" className="w-full h-full rounded-2xl object-cover" />}
               <video
                 ref={videoElRef}
                 poster="/placeholder.webp"
@@ -180,7 +166,7 @@ export default function Page() {
                 preload="auto"
                 muted
                 loop
-                className={`w-full h-full rounded-2xl object-cover cursor-pointer pointer-events-auto ${videoLoaded ? "" : "absolute top-0 left-0"}`}
+                className="w-full h-full rounded-2xl object-cover cursor-pointer pointer-events-auto"
                 onLoadedData={() => setVideoLoaded(true)}
                 onClick={() => {
                   if (!videoElRef.current) return;
@@ -221,7 +207,7 @@ export default function Page() {
           </div>
         </div>
 
-        {/* Desktop "A VERY SECURE" */}
+        {/* Desktop text */}
         {!isMobile && (
           <div className={`overflow-hidden w-full mt-4 mb-6 transition-opacity duration-300 ${mounted ? "opacity-100" : "opacity-0"}`}>
             <div className="flex w-full text-[16px] font-normal justify-center">
@@ -232,16 +218,14 @@ export default function Page() {
           </div>
         )}
 
-        {/* WEB / DEVELOPER images */}
+        {/* Web / Developer images */}
         <div className={`w-full flex h-[20vw] md:h-[14vw] lg:h-[10vw] items-end mt-6 transition-opacity duration-300 ${mounted ? "opacity-100" : "opacity-0"}`}>
           <div ref={webWrapperRef} className="overflow-hidden h-full flex justify-start">
-            <img src="/WEB.svg" alt="WEB" width={1000} height={400} draggable={false} className="h-full w-auto max-w-[100%] object-contain translate-y-full" />
+            <img src="/WEB.svg" alt="WEB" className="h-full w-auto max-w-[100%] object-contain translate-y-full" />
           </div>
-
           <div className="w-12 md:w-12 lg:w-14" />
-
           <div ref={devWrapperRef} className="overflow-hidden h-full flex justify-end">
-            <img src="/DEVELOPER.svg" alt="DEVELOPER" width={1000} height={400} draggable={false} className="h-full w-auto max-w-[100%] object-contain translate-y-full" />
+            <img src="/DEVELOPER.svg" alt="DEVELOPER" className="h-full w-auto max-w-[100%] object-contain translate-y-full" />
           </div>
         </div>
       </div>

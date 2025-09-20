@@ -13,7 +13,7 @@ interface SplashScreenProps {
 
 export default function SplashScreen({
   onFinish,
-  visualDuration = 800,
+  visualDuration = 1000,
   videoRef,
   videoSources = [],
   posterSrc,
@@ -61,8 +61,8 @@ export default function SplashScreen({
               setShow(false);
               onFinish();
               videoRef?.current?.play().catch(() => {});
-            }, 600); // wait for slide-up
-          }, 200); // 200ms pause at 100
+            }, 600); 
+          }, 200); 
         }
       };
 
