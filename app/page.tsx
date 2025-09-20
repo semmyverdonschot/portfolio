@@ -229,7 +229,7 @@ export default function Page() {
                   className="w-full h-full rounded-2xl object-cover"
                 />
               )}
-           <video
+             <video
               ref={videoElRef}
               poster="/placeholder.webp"
               autoPlay
@@ -244,8 +244,12 @@ export default function Page() {
                 setIsMuted(videoElRef.current.muted);
               }}
             >
-              <source src="/hero-video-720.webm" type="video/webm" />
+              <source
+                src={isMobile ? "/hero-video-480.webm" : "/hero-video-720.webm"}
+                type="video/webm"
+              />
             </video>
+
 
               {/* Mobile mute/unmute */}
               {isMobile && (

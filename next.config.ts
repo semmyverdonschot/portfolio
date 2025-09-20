@@ -1,12 +1,18 @@
-import { NextConfig } from "next";
+import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "export", // for static export
+  output: "export",
+  swcMinify: true,
   experimental: {
-    optimizeCss: true, // optional, your previous experiments
+    optimizeCss: true,
+    esmExternals: true,
   },
-  // Remove swcMinify & future
-  // Remove headers (not supported with static export)
+  images: {
+    unoptimized: true,
+  },
+  compiler: {
+    removeConsole: process.env.NODE_ENV === "production",
+  },
 };
 
 export default nextConfig;
