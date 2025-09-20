@@ -39,7 +39,6 @@ export default function SplashScreen({
     });
   }, [posterSrc, videoSources]);
 
-  // Counter animation with upward slide
   useEffect(() => {
     const startCounter = () => {
       const numberEl = numberRef.current;
