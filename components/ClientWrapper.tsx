@@ -6,7 +6,6 @@ import Navbar from "@/components/NavBar";
 
 export default function ClientWrapper({ children }: { children: ReactNode }) {
   const [showSplash, setShowSplash] = useState(true);
-  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
     // Preload SVGs
@@ -23,9 +22,8 @@ export default function ClientWrapper({ children }: { children: ReactNode }) {
       <main className="relative">
         {!showSplash && children}
 
-        {/* Hidden main video to start playing after splash */}
+        {/* Hidden main video to preload / autoplay after splash */}
         <video
-          ref={videoRef}
           autoPlay
           muted
           loop
@@ -45,7 +43,6 @@ export default function ClientWrapper({ children }: { children: ReactNode }) {
       {showSplash && (
         <SplashScreen
           onFinish={() => setShowSplash(false)}
-          videoRef={videoRef}
           posterSrc="/placeholder.webp"
           videoSources={[
             { src: "/hero-video-480.webm" },
