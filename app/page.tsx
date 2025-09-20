@@ -237,12 +237,7 @@ export default function Page() {
                 preload="auto"
                 muted
                 loop
-                className={`w-full h-full rounded-2xl object-cover cursor-pointer pointer-events-auto transition-opacity duration-500 ${
-                  videoLoaded
-                    ? "opacity-100"
-                    : "opacity-0 absolute top-0 left-0"
-                }`}
-                onLoadedData={() => setVideoLoaded(true)}
+                className="w-full h-full rounded-2xl object-cover cursor-pointer pointer-events-auto absolute top-0 left-0"
                 onClick={() => {
                   if (!videoElRef.current) return;
                   videoElRef.current.muted = !videoElRef.current.muted;
