@@ -37,7 +37,6 @@ export default function SplashScreen({
     });
   }, [posterSrc, videoSources]);
 
-  // Counter logic with pause at 100 and slide-up animation
   useEffect(() => {
     const numberEl = numberRef.current;
     if (!numberEl) return;

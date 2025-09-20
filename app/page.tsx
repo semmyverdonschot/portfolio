@@ -229,28 +229,23 @@ export default function Page() {
                   className="w-full h-full rounded-2xl object-cover"
                 />
               )}
-              <video
-                ref={videoElRef}
-                poster="/placeholder.webp"
-                autoPlay
-                playsInline
-                preload="auto"
-                muted
-                loop
-                className="w-full h-full rounded-2xl object-cover cursor-pointer pointer-events-auto absolute top-0 left-0"
-                onClick={() => {
-                  if (!videoElRef.current) return;
-                  videoElRef.current.muted = !videoElRef.current.muted;
-                  setIsMuted(videoElRef.current.muted);
-                }}
-              >
-                <source
-                  src={
-                    isMobile ? "/hero-video-480.webm" : "/hero-video-720.webm"
-                  }
-                  type="video/webm"
-                />
-              </video>
+           <video
+              ref={videoElRef}
+              poster="/placeholder.webp"
+              autoPlay
+              playsInline
+              preload="auto"
+              muted
+              loop
+              className="w-full h-full rounded-2xl object-cover cursor-pointer pointer-events-auto absolute top-0 left-0"
+              onClick={() => {
+                if (!videoElRef.current) return;
+                videoElRef.current.muted = !videoElRef.current.muted;
+                setIsMuted(videoElRef.current.muted);
+              }}
+            >
+              <source src="/hero-video-720.webm" type="video/webm" />
+            </video>
 
               {/* Mobile mute/unmute */}
               {isMobile && (
