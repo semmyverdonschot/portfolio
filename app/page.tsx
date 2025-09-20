@@ -229,18 +229,16 @@ export default function Page() {
                   className="w-full h-full rounded-2xl object-cover"
                 />
               )}
-              <video
+             <video
                 ref={videoElRef}
                 poster="/placeholder.webp"
                 autoPlay
                 playsInline
-                preload={isMobile ? "metadata" : "auto"}
+                preload="auto"
                 muted
                 loop
                 className={`w-full h-full rounded-2xl object-cover cursor-pointer pointer-events-auto transition-opacity duration-500 ${
-                  videoLoaded
-                    ? "opacity-100"
-                    : "opacity-0 absolute top-0 left-0"
+                  videoLoaded ? "opacity-100" : "opacity-0 absolute top-0 left-0"
                 }`}
                 onLoadedData={() => setVideoLoaded(true)}
                 onClick={() => {
@@ -250,17 +248,9 @@ export default function Page() {
                 }}
               >
                 <source
-                  src="/hero-video-480.webm"
+                  src={isMobile ? "/hero-video-480.webm" : "/hero-video-720.webm"}
                   type="video/webm"
-                  media="(max-width:767px)"
                 />
-                {desktopVideoVisible && (
-                  <source
-                    src="/hero-video-720.webm"
-                    type="video/webm"
-                    media="(min-width:768px)"
-                  />
-                )}
               </video>
 
               {/* Mobile mute/unmute */}
