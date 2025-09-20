@@ -12,7 +12,6 @@ interface SplashScreenProps {
   posterSrc: string;
 }
 
-
 export default function SplashScreen({
   onFinish,
   visualDuration = 1000,
@@ -83,7 +82,7 @@ export default function SplashScreen({
               clearTimeout(timeout);
               startCounter();
             },
-            { once: true }
+            { once: true },
           );
         }
       } else {
@@ -100,9 +99,7 @@ export default function SplashScreen({
     <>
       {/* Preload assets for LCP */}
       <Head>
-        {posterSrc && (
-          <link rel="preload" as="image" href={posterSrc} />
-        )}
+        {posterSrc && <link rel="preload" as="image" href={posterSrc} />}
         {videoSources.map((v) => (
           <link key={v.src} rel="preload" as="video" href={v.src} />
         ))}
@@ -112,15 +109,11 @@ export default function SplashScreen({
 
       <div
         aria-hidden="true"
-        className="fixed inset-0 z-[9999] bg-[var(--color-primary)] flex items-center justify-center overflow-hidden pointer-events-none"
+        className="fixed inset-0 z-[9999] bg-[var(--color-primary)]flex items-center justify-center overflow-hidden pointer-events-none"
       >
-
         {/* Counter */}
         <div className="overflow-hidden h-[24px] w-[40px] flex justify-center items-center">
-          <div
-            ref={numberRef}
-            className="text-[18px] font-bold text-[var(--color-dark)]"
-          >
+          <div ref={numberRef} className="text-[18px] font-bold text-black">
             0
           </div>
         </div>

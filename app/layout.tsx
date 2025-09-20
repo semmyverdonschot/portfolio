@@ -24,7 +24,6 @@ export const metadata = {
   ],
   authors: [{ name: "Semmy Verdonschot" }],
   robots: "index, follow",
-  themeColor: "#171717",
   openGraph: {
     title: "Semmy Verdonschot | Web Developer",
     description: "Semmy Verdonschot | Web Developer based in The Netherlands.",
@@ -42,6 +41,16 @@ export const metadata = {
     type: "website",
   },
 };
+
+export function generateViewport() {
+  return {
+    viewport: {
+      width: "device-width",
+      initialScale: 1,
+    },
+    themeColor: "#171717",
+  };
+}
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
@@ -81,8 +90,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           fetchPriority="high"
         />
 
-        {/* Theme for Chrome, Android, Windows */}
-        <meta name="theme-color" content="#171717" />
         {/* Dark translucent status bar for iOS Safari */}
         <meta
           name="apple-mobile-web-app-status-bar-style"

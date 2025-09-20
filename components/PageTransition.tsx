@@ -38,7 +38,10 @@ export default function PageTransition({
   }, [pathname]);
 
   return (
-    <div ref={containerRef} className="min-h-screen w-full bg-white">
+    <div
+      ref={containerRef}
+      className="min-h-screen w-full bg-[var(--color-primary)]"
+    >
       {children}
     </div>
   );

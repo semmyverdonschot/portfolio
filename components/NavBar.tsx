@@ -187,7 +187,7 @@ export default function Navbar() {
             href="mailto:hello@semmyverdonschot.com"
             className={`px-4 py-2 rounded-full font-semibold transition-colors duration-500 ${
               menuOpen
-                ? "bg-white text-[var(--color-dark)]"
+                ? "bg-[var(--color-primary)] text-[var(--color-dark)]"
                 : "bg-[var(--color-dark)] text-white"
             }`}
           >

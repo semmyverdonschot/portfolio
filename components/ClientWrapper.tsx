@@ -43,16 +43,15 @@ export default function ClientWrapper({ children }: { children: ReactNode }) {
 
       {/* Splash overlay */}
       {showSplash && (
-       <SplashScreen
-        onFinish={() => setShowSplash(false)}
-        videoRef={videoRef}
-        posterSrc="/placeholder.webp"
-        videoSources={[
-          { src: "/hero-video-480.webm" },
-          { src: "/hero-video-720.webm", media: "(min-width:768px)" },
-        ]}
-      />
-
+        <SplashScreen
+          onFinish={() => setShowSplash(false)}
+          videoRef={videoRef}
+          posterSrc="/placeholder.webp"
+          videoSources={[
+            { src: "/hero-video-480.webm" },
+            { src: "/hero-video-720.webm", media: "(min-width:768px)" },
+          ]}
+        />
       )}
     </>
   );
