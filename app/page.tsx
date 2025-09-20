@@ -138,8 +138,8 @@ export default function Page() {
     [],
   );
 
-  useSlideTogether(animatedUpRefs, "up", 1);
-  useSlideTogether(animatedDownRefs, "down", 0.5);
+  useSlideTogether(animatedUpRefs, "up", 0.8);
+  useSlideTogether(animatedDownRefs, "down", 0.4);
 
   useEffect(() => {
     if (!isMobile) setDesktopVideoVisible(true);
@@ -229,7 +229,7 @@ export default function Page() {
                   className="w-full h-full rounded-2xl object-cover"
                 />
               )}
-             <video
+           <video
               ref={videoElRef}
               poster="/placeholder.webp"
               autoPlay
@@ -244,12 +244,8 @@ export default function Page() {
                 setIsMuted(videoElRef.current.muted);
               }}
             >
-              <source
-                src={isMobile ? "/hero-video-480.webm" : "/hero-video-720.webm"}
-                type="video/webm"
-              />
+              <source src="/hero-video-720.webm" type="video/webm" />
             </video>
-
 
               {/* Mobile mute/unmute */}
               {isMobile && (
