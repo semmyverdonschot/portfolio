@@ -1,18 +1,12 @@
-import type { NextConfig } from "next";
-const nextConfig: NextConfig = {
-  swcMinify: true,
-  output: "export",
-  experimental: {
-    optimizeCss: true,
-    esmExternals: true,
-  },
+import { NextConfig } from "next";
 
-  future: {
-    webpack5: true,
+const nextConfig: NextConfig = {
+  output: "export", // for static export
+  experimental: {
+    optimizeCss: true, // optional, your previous experiments
   },
-  compiler: {
-    styledComponents: false,
-  },
+  // Remove swcMinify & future
+  // Remove headers (not supported with static export)
 };
 
 export default nextConfig;

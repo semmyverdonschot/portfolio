@@ -1,0 +1,15 @@
+{
+  "version": 3,
+  "builds": [
+    { "src": "out/**", "use": "@vercel/static" }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)\\.(js|css|mp4|webm|woff2|webp|svg)$",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
+    },
+    { "src": "/(.*)", "dest": "/$1" }
+  ]
+}
