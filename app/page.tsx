@@ -139,7 +139,7 @@ export default function Page() {
   );
 
   useSlideTogether(animatedUpRefs, "up", 0.8);
-  useSlideTogether(animatedDownRefs, "down", 0.4);
+  useSlideTogether(animatedDownRefs, "down", 0.8);
 
   useEffect(() => {
     if (!isMobile) setDesktopVideoVisible(true);
