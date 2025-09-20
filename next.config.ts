@@ -13,9 +13,6 @@ const nextConfig: NextConfig = {
     removeConsole: process.env.NODE_ENV === "production",
     reactRemoveProperties: process.env.NODE_ENV === "production",
   },
-  future: {
-    strictPostcssConfiguration: true,
-  },
 };
 
 export default nextConfig;
