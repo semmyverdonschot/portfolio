@@ -11,7 +11,7 @@ export default function Page() {
   const videoElRef = useRef<HTMLVideoElement | null>(null);
   const [isMuted, setIsMuted] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
-  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [videoLoaded] = useState(false);
   const [desktopVideoVisible, setDesktopVideoVisible] = useState(false);
   const targetX = useRef(0);
   const currentX = useRef(0);
