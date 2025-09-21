@@ -80,8 +80,17 @@ export default function Page() {
 
     const animate = () => {
       currentX.current += (targetX.current - currentX.current) * 0.06;
-      if (videoWrapperRef.current)
-        videoWrapperRef.current.style.transform = `translateX(${currentX.current}px)`;
+
+      if (Math.abs(targetX.current - currentX.current) < 0.5) {
+        currentX.current = targetX.current;
+      }
+
+      if (videoWrapperRef.current) {
+        const roundedX = Math.round(currentX.current);
+        videoWrapperRef.current.style.transform = `translateX(${roundedX}px)`;
+        videoWrapperRef.current.style.willChange = "transform";
+      }
+
       rafId = requestAnimationFrame(animate);
     };
 
@@ -227,19 +236,28 @@ export default function Page() {
               )}
 
               <video
+                ref={videoElRef}
                 poster="/placeholder.webp"
                 autoPlay
                 playsInline
                 preload="auto"
                 muted
                 loop
-                className="w-full h-full rounded-2xl object-cover absolute top-0 left-0"
+                className="w-full h-full rounded-2xl object-cover cursor-pointer pointer-events-auto absolute top-0 left-0"
+                onClick={() => {
+                  if (!videoElRef.current) return;
+                  videoElRef.current.muted = !videoElRef.current.muted;
+                  setIsMuted(videoElRef.current.muted);
+                }}
               >
+                {" "}
+                {/* Mobile optimized video */}
                 <source
                   src="/hero-video-480.webm"
                   type="video/webm"
                   media="(max-width: 767px)"
                 />
+                {/* Desktop video */}
                 <source
                   src="/hero-video-720.webm"
                   type="video/webm"
