@@ -100,7 +100,7 @@ export default function Page() {
         alt="WEB"
         width={1200}
         height={400}
-        className="w-[90vw] max-w-full object-contain"
+        className="w-[95vw] max-w-full object-contain"
         draggable={false}
       />
     </div>
@@ -113,7 +113,7 @@ export default function Page() {
         alt="DEVELOPER"
         width={1200}
         height={400}
-        className="w-[85vw] max-w-full object-contain"
+        className="w-[95vw] max-w-full object-contain"
         draggable={false}
       />
     </div>
