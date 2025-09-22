@@ -197,73 +197,122 @@ export default function HeroVideo() {
             </video>
 
             {isMobile && (
-              <div className="absolute bottom-2 right-2 pointer-events-auto">
-                <div
-                  onClick={() => {
-                    if (!videoElRef.current) return;
-                    videoElRef.current.muted = !videoElRef.current.muted;
-                    setIsMuted(videoElRef.current.muted);
-                  }}
-                  className="flex items-center justify-center w-10 h-10 rounded-full bg-[var(--color-primary)]/25 backdrop-blur-md cursor-pointer"
-                >
-                  {isMuted ? (
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-5 h-5 text-[var(--color-dark)]"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
+              <>
+                <div className="absolute inset-0 flex items-end justify-end pointer-events-none">
+                  <div className="pointer-events-auto absolute bottom-2 right-2">
+                    <div
+                      onClick={() => {
+                        if (!videoElRef.current) return;
+                        videoElRef.current.muted = !videoElRef.current.muted;
+                        setIsMuted(videoElRef.current.muted);
+                      }}
+                      className="flex items-center justify-center w-10 h-10 rounded-full bg-[var(--color-primary)]/25 backdrop-blur-md cursor-pointer"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M11 5L6 9H2v6h4l5 4V5z"
-                      />
-                      <line
-                        x1="15"
-                        y1="9"
-                        x2="21"
-                        y2="15"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                      />
-                      <line
-                        x1="21"
-                        y1="9"
-                        x2="15"
-                        y2="15"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                      />
-                    </svg>
-                  ) : (
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-5 h-5 text-[var(--color-dark)]"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
+                      {isMuted ? (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="w-5 h-5 text-[var(--color-dark)]"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M11 5L6 9H2v6h4l5 4V5z"
+                          />
+                          <line
+                            x1="15"
+                            y1="9"
+                            x2="21"
+                            y2="15"
+                            stroke="currentColor"
+                            strokeWidth={2}
+                          />
+                          <line
+                            x1="21"
+                            y1="9"
+                            x2="15"
+                            y2="15"
+                            stroke="currentColor"
+                            strokeWidth={2}
+                          />
+                        </svg>
+                      ) : (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="w-5 h-5 text-[var(--color-dark)]"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M11 5L6 9H2v6h4l5 4V5z"
+                          />
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M15.54 8.46a5 5 0 010 7.08"
+                          />
+                        </svg>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Place the user's exact mobile block on top of the video */}
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div
+                      className={`overflow-hidden w-full mb-2 transition-opacity duration-300 ${
+                        mounted ? "opacity-100" : "opacity-0"
+                      }`}
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M11 5L6 9H2v6h4l5 4V5z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M15.54 8.46a5 5 0 010 7.08"
-                      />
-                    </svg>
-                  )}
+                      <div className="flex w-full text-base font-medium text-[var(--color-dark)] justify-center">
+                        <span ref={mobileARef} className="flex-1 text-left translate-y-full">A</span>
+                        <span ref={mobileVeryRef} className="flex-1 text-center translate-y-full">VERY</span>
+                        <span ref={mobileSecureRef} className="flex-1 text-right translate-y-full">SECURE</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              </>
             )}
           </div>
         </div>
       </div>
+
+      {/* Mobile "A VERY SECURE" */}
+      {isMobile && (
+        <div
+          className={`overflow-hidden w-full mb-2 transition-opacity duration-300 ${
+            mounted ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <div className="flex w-full text-base font-medium text-[var(--color-dark)] justify-center">
+            <span
+              ref={mobileARef}
+              className="flex-1 text-left translate-y-full"
+            >
+              A
+            </span>
+            <span
+              ref={mobileVeryRef}
+              className="flex-1 text-center translate-y-full"
+            >
+              VERY
+            </span>
+            <span
+              ref={mobileSecureRef}
+              className="flex-1 text-right translate-y-full"
+            >
+              SECURE
+            </span>
+          </div>
+        </div>
+      )}
 
       {/* Desktop "A VERY SECURE" */}
       {!isMobile && (
