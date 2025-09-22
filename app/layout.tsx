@@ -3,7 +3,7 @@ import "./globals.css";
 import { ReactNode } from "react";
 import ClientWrapper from "@/components/ClientWrapper";
 import Script from "next/script";
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const albertSans = Albert_Sans({
   variable: "--font-albert-sans",
@@ -57,15 +57,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={albertSans.variable}>
       <head>
-        {/* Preconnect to Google Fonts */}
+        {/* Preconnect and preload assets */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-
-        {/* Preload Albert Sans font */}
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
           rel="preload"
           as="font"
@@ -73,43 +67,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           type="font/woff2"
           crossOrigin="anonymous"
         />
-
-        {/* Preload LCP video */}
-        <link
-          rel="preload"
-          as="video"
-          href="/hero-video-720.mp4"
-          type="video/mp4"
-        />
-        {/* Preload LCP video */}
-        <link
-          rel="preload"
-          as="video"
-          href="/hero-video-480.mp4"
-          type="video/mp4"
-        />
-
-        {/* Preload LCP poster */}
-        <link
-          rel="preload"
-          as="image"
-          href="/placeholder.webp"
-          type="image/webp"
-          fetchPriority="high"
-        />
-
-        {/* Dark translucent status bar for iOS Safari */}
-        <meta
-          name="apple-mobile-web-app-status-bar-style"
-          content="black-translucent"
-        />
+        <link rel="preload" as="video" href="/hero-video-720.mp4" type="video/mp4" />
+        <link rel="preload" as="video" href="/hero-video-480.mp4" type="video/mp4" />
+        <link rel="preload" as="image" href="/placeholder.webp" type="image/webp" fetchPriority="high" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </head>
       <body className="antialiased bg-[#171717] text-[var(--color-light)] transition-colors duration-300">
         {/* Google Analytics */}
-        <Script
-          strategy="afterInteractive"
-          src="https://www.googletagmanager.com/gtag/js?id=G-0CS17B888C"
-        />
+        <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-0CS17B888C" />
         <Script id="gtag-init" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
@@ -118,6 +83,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             gtag('config', 'G-0CS17B888C', { send_page_view: false });
           `}
         </Script>
+
+        {/* Speed Insights */}
+        <SpeedInsights />
 
         <div className="px-4 md:px-8">
           <ClientWrapper>{children}</ClientWrapper>
