@@ -4,45 +4,50 @@ import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import gsap from "gsap";
 
-export default function PageTransition({
-  children,
-}: {
+interface PageTransitionProps {
   children: React.ReactNode;
-}) {
-  const containerRef = useRef<HTMLDivElement>(null);
+}
+
+export default function PageTransition({ children }: PageTransitionProps) {
+  const overlayRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+  const hasMounted = useRef(false); // Track first mount
 
   useEffect(() => {
-    const element = containerRef.current;
-    if (!element) return;
+    if (!hasMounted.current) {
+      // Skip the transition on first mount
+      hasMounted.current = true;
+      return;
+    }
 
-    gsap.set(element, { y: "100%", opacity: 0 });
+    const overlay = overlayRef.current;
+    if (!overlay) return;
+
+    // Start off-screen bottom
+    gsap.set(overlay, { y: "100%", opacity: 1 });
 
     const tl = gsap.timeline();
-    tl.to(element, {
+    tl.to(overlay, {
       y: "0%",
-      opacity: 1,
-      duration: 0.8,
+      duration: 0.5,
       ease: "power4.out",
     });
-
-    return () => {
-      if (!element) return;
-      gsap.to(element, {
-        y: "-20%",
-        opacity: 0,
-        duration: 0.6,
-        ease: "power4.inOut",
-      });
-    };
+    tl.to(overlay, {
+      y: "-100%",
+      duration: 0.5,
+      ease: "power4.in",
+      delay: 0.3,
+    });
   }, [pathname]);
 
   return (
-    <div
-      ref={containerRef}
-      className="min-h-screen w-full bg-[var(--color-primary)]"
-    >
+    <div className="relative min-h-screen w-full">
       {children}
+
+      <div
+        ref={overlayRef}
+        className="fixed inset-0 bg-[var(--color-primary)] z-[9999] pointer-events-none"
+      />
     </div>
   );
 }
