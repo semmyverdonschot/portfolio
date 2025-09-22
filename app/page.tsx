@@ -256,7 +256,6 @@ export default function Page() {
             />
           </video>
 
-
               {/* Mobile mute/unmute */}
               {isMobile && (
                 <div className="absolute bottom-2 right-2 pointer-events-auto">

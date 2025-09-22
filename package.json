@@ -3,14 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
-    "export": "next build",
+    "dev": "next dev --turbo",
+    "build": "next build --turbo",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "analyze": "cross-env ANALYZE=true next build"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
+    "@vercel/speed-insights": "^1.2.0",
     "critters": "^0.0.23",
     "lodash-es": "^4.17.21",
     "motion": "^12.23.12",
@@ -29,7 +30,8 @@
     "eslint": "^9",
     "eslint-config-next": "15.5.3",
     "eslint-config-prettier": "^10.1.8",
-    "prettier": "3.6.2",
+    "next-optimized-images": "^2.0.2",
+    "prettier": "^3.6.2",
     "tailwindcss": "^4",
     "typescript": "^5"
   },

@@ -3,6 +3,7 @@ import "./globals.css";
 import { ReactNode } from "react";
 import ClientWrapper from "@/components/ClientWrapper";
 import Script from "next/script";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const albertSans = Albert_Sans({
   variable: "--font-albert-sans",
