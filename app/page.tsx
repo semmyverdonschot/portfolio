@@ -78,7 +78,7 @@ export default function Page() {
           rel="preload"
           as="video"
           href="/hero-video-480.webm"
-          type="video/mp4"
+          type="video/webm"
           media="(max-width:767px)"
         />
       </Head>
@@ -91,7 +91,7 @@ export default function Page() {
 
         {/* WEB / DEVELOPER images */}
        {isMobile ? (
-  <div className="flex flex-col items-center mt-32 mb-32 space-y-8">
+  <div className="flex flex-col items-center mt-20 mb-16 space-y-4">
     {/* WEB */}
     <div className="overflow-hidden w-full flex justify-center">
       <Image
