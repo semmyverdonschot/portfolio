@@ -3,7 +3,7 @@ import "./globals.css";
 import { ReactNode } from "react";
 import ClientWrapper from "@/components/ClientWrapper";
 import Script from "next/script";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const albertSans = Albert_Sans({
   variable: "--font-albert-sans",
@@ -84,12 +84,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           `}
         </Script>
 
-        {/* Speed Insights */}
-        <SpeedInsights />
+    
 
         <div className="px-4 md:px-8">
           <ClientWrapper>{children}</ClientWrapper>
         </div>
+ <SpeedInsights />
       </body>
     </html>
   );
