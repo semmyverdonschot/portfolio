@@ -8,6 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function HeroVideoPage() {
   const videoRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -18,8 +19,12 @@ export default function HeroVideoPage() {
   }, []);
 
   useEffect(() => {
-    if (!videoRef.current) return;
+    if (!videoRef.current || !sectionRef.current) return;
+
     const video = videoRef.current;
+    const section = sectionRef.current;
+
+    ScrollTrigger.getAll().forEach((t) => t.kill());
 
     if (isMobile) {
       gsap.set(video, {
@@ -31,30 +36,43 @@ export default function HeroVideoPage() {
         left: 0,
       });
     } else {
-      const padding = 32; // px: matches px-8 (md)
+      const padding = 32;
+      const startWidth = 320;
+      const startHeight = 200;
+      const endWidth = window.innerWidth - padding * 2;
+      const endHeight = window.innerHeight * 0.9;
+
+      // Make the section tall enough to allow scroll
+      section.style.height = `${window.innerHeight * 3}px`; // increase height for normal scroll
+
       gsap.set(video, {
         position: "fixed",
-        top: "100px",
+        top: "50%",
         left: "50%",
         xPercent: -50,
-        width: 320,
-        height: 200,
+        yPercent: -50,
+        width: startWidth,
+        height: startHeight,
         borderRadius: "16px",
         zIndex: 50,
       });
 
       gsap.to(video, {
         scrollTrigger: {
-          trigger: video,
-          start: "top top+=100",
-          end: "+=1800",
-          scrub: 1.8,
+          trigger: section,
+          start: "top top",
+          end: "+=600", // scroll distance over which growth happens
+          scrub: 1.5,
+          pin: true,       // keep video fixed while growing
+          pinSpacing: true // after growth, scroll continues normally
         },
-        width: `calc(100vw - ${padding * 2}px)`, // respect container padding
-        height: "90vh",
-        top: "100px",
-        xPercent: -50,
+        width: endWidth,
+        height: endHeight,
         borderRadius: "16px",
+        top: "50%",
+        left: "50%",
+        xPercent: -50,
+        yPercent: -50,
         ease: "power1.out",
       });
     }
@@ -71,7 +89,10 @@ export default function HeroVideoPage() {
         </div>
 
         {/* Video Section */}
-        <div className="relative w-full h-[60vh] flex justify-center">
+        <div
+          ref={sectionRef}
+          className="relative w-full flex justify-center"
+        >
           <div
             ref={videoRef}
             className="overflow-hidden shadow-lg rounded-[16px]"
@@ -86,9 +107,17 @@ export default function HeroVideoPage() {
           </div>
         </div>
 
-        {/* Bottom spacer */}
-        <div className="h-screen flex items-center justify-center">
-          <p className="text-xl text-gray-700">Video reached its final size!</p>
+        {/* Bottom section */}
+        <div className="h-screen flex items-center justify-center bg-white">
+          <p className="text-xl text-gray-700">
+            Now you can scroll normally! The video finished growing.
+          </p>
+        </div>
+
+        <div className="h-screen flex items-center justify-center bg-gray-200">
+          <p className="text-xl text-gray-700">
+            Keep scrolling...
+          </p>
         </div>
       </div>
     </div>

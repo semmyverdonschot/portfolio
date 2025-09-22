@@ -71,7 +71,6 @@
           <div className="px-4 md:px-8">
             <ClientWrapper>{children}</ClientWrapper>
           </div>
-
           <SpeedInsights />
         </body>
       </html>
