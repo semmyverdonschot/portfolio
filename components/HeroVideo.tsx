@@ -69,9 +69,7 @@ export default function HeroVideo() {
         minX,
         Math.min(
           maxX,
-          e.clientX -
-            parentRectRef.current.left -
-            parentRectRef.current.width / 2,
+          e.clientX - parentRectRef.current.left - parentRectRef.current.width / 2,
         ),
       );
     };
@@ -150,7 +148,7 @@ export default function HeroVideo() {
 
   return (
     <>
-      {/* Mobile "A VERY SECURE" - render above the video on mobile */}
+      {/* Mobile "A VERY SECURE" - only above the video */}
       {isMobile && (
         <div
           className={`overflow-hidden w-full mb-2 transition-opacity duration-300 ${
@@ -165,6 +163,7 @@ export default function HeroVideo() {
         </div>
       )}
 
+      {/* 🎥 Video */}
       <div className="relative w-full flex justify-center overflow-hidden">
         <div
           ref={videoWrapperRef}
@@ -280,36 +279,6 @@ export default function HeroVideo() {
         </div>
       </div>
 
-      {/* Mobile "A VERY SECURE" */}
-      {isMobile && (
-        <div
-          className={`overflow-hidden w-full mb-2 transition-opacity duration-300 ${
-            mounted ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <div className="flex w-full text-base font-medium text-[var(--color-dark)] justify-center">
-            <span
-              ref={mobileARef}
-              className="flex-1 text-left translate-y-full"
-            >
-              A
-            </span>
-            <span
-              ref={mobileVeryRef}
-              className="flex-1 text-center translate-y-full"
-            >
-              VERY
-            </span>
-            <span
-              ref={mobileSecureRef}
-              className="flex-1 text-right translate-y-full"
-            >
-              SECURE
-            </span>
-          </div>
-        </div>
-      )}
-
       {/* Desktop "A VERY SECURE" */}
       {!isMobile && (
         <div
@@ -318,20 +287,14 @@ export default function HeroVideo() {
           }`}
         >
           <div className="flex w-full text-[16px] font-normal justify-center">
-            <span ref={desktopARef} className="flex-1 text-left translate-y-full">
-              A
-            </span>
-            <span ref={desktopVeryRef} className="flex-1 text-center translate-y-full">
-              VERY
-            </span>
-            <span ref={desktopSecureRef} className="flex-1 text-right translate-y-full">
-              SECURE
-            </span>
+            <span ref={desktopARef} className="flex-1 text-left translate-y-full">A</span>
+            <span ref={desktopVeryRef} className="flex-1 text-center translate-y-full">VERY</span>
+            <span ref={desktopSecureRef} className="flex-1 text-right translate-y-full">SECURE</span>
           </div>
         </div>
       )}
 
-      {/* WEB / DEVELOPER images moved to app/page.tsx to avoid duplication */}
+      {/* WEB / DEVELOPER images moved to app/page.tsx */}
     </>
   );
 }
