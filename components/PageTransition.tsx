@@ -6,48 +6,73 @@ import gsap from "gsap";
 
 interface PageTransitionProps {
   children: React.ReactNode;
+  // when true, skip transitions (used during splash)
+  disabled?: boolean;
 }
 
-export default function PageTransition({ children }: PageTransitionProps) {
-  const overlayRef = useRef<HTMLDivElement>(null);
+export default function PageTransition({ children, disabled }: PageTransitionProps) {
+  const contentRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
-  const hasMounted = useRef(false); // Track first mount
+  const hasMounted = useRef(false);
 
   useEffect(() => {
+    if (disabled) return;
     if (!hasMounted.current) {
-      // Skip the transition on first mount
       hasMounted.current = true;
-      return;
+      return; // skip initial mount animation
     }
 
-    const overlay = overlayRef.current;
-    if (!overlay) return;
+    const el = contentRef.current;
+    if (!el) return;
 
-    // Start off-screen bottom
-    gsap.set(overlay, { y: "100%", opacity: 1 });
+      // Prepare element to act as a full-screen fixed overlay that will
+      // slide in from the bottom and cover the whole viewport (including navbar)
+      Object.assign(el.style, {
+        position: "fixed",
+        inset: "0px",
+        width: "100%",
+        height: "100%",
+        zIndex: "9999",
+        pointerEvents: "none",
+        background: "transparent",
+        borderRadius: "16px",
+        overflow: "hidden",
+      });
 
-    const tl = gsap.timeline();
-    tl.to(overlay, {
-      y: "0%",
-      duration: 0.5,
-      ease: "power4.out",
-    });
-    tl.to(overlay, {
-      y: "-100%",
-      duration: 0.5,
-      ease: "power4.in",
-      delay: 0.3,
-    });
-  }, [pathname]);
+      // Start off-screen bottom as a rounded card and animate to full-screen
+      gsap.set(el, { yPercent: 100, scale: 0.98, borderRadius: 16 });
+      const tl = gsap.timeline({ defaults: { duration: 0.45, ease: "back.out(0.4)" } });
+      // block pointer events during the animation to avoid accidental clicks
+      el.style.pointerEvents = "auto";
+      // slide up while removing border radius to 0
+      tl.to(el, { yPercent: 0, scale: 1, borderRadius: 0, ease: "back.out(0.45)" });
+      // release pointer-events shortly after animation completes
+      tl.call(() => {
+        el.style.pointerEvents = "none";
+      }, [], ">+=0.05");
+
+
+    return () => {
+      tl.kill();
+      if (el) {
+        // clear inline styles we set
+        el.style.position = "";
+        el.style.inset = "";
+        el.style.width = "";
+        el.style.height = "";
+        el.style.zIndex = "";
+        el.style.pointerEvents = "";
+        el.style.background = "";
+        gsap.set(el, { clearProps: "all" });
+      }
+    };
+  }, [pathname, disabled]);
 
   return (
     <div className="relative min-h-screen w-full">
-      {children}
-
-      <div
-        ref={overlayRef}
-        className="fixed inset-0 bg-[var(--color-primary)] z-[9999] pointer-events-none"
-      />
+      <div ref={contentRef} className="w-full h-full">
+        {children}
+      </div>
     </div>
   );
 }
