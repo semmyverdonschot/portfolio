@@ -82,7 +82,12 @@ export default function Navbar() {
             gsap.fromTo(
               inner,
               { yPercent: 100 },
-              { yPercent: 0, duration: 0.8, delay: i * 0.05, ease: "power3.out" }
+              {
+                yPercent: 0,
+                duration: 0.8,
+                delay: i * 0.05,
+                ease: "power3.out",
+              },
             );
           }
         });
@@ -93,7 +98,13 @@ export default function Navbar() {
           gsap.fromTo(
             child as HTMLElement,
             { opacity: 0, yPercent: 10 },
-            { opacity: 1, yPercent: 0, duration: 0.5, delay: i * 0.05, ease: "power3.out" }
+            {
+              opacity: 1,
+              yPercent: 0,
+              duration: 0.5,
+              delay: i * 0.05,
+              ease: "power3.out",
+            },
           );
         });
       }
@@ -111,7 +122,12 @@ export default function Navbar() {
 
       if (bottomLinksRef.current) {
         Array.from(bottomLinksRef.current.children).forEach((child, i) => {
-          gsap.to(child as HTMLElement, { opacity: 0, yPercent: 10, duration: 0.3, delay: i * 0.02 });
+          gsap.to(child as HTMLElement, {
+            opacity: 0,
+            yPercent: 10,
+            duration: 0.3,
+            delay: i * 0.02,
+          });
         });
       }
 
@@ -184,12 +200,16 @@ export default function Navbar() {
           >
             <span
               className={`block absolute h-[1px] w-full bg-[var(--color-dark)] transition-all duration-500 origin-center ${
-                menuOpen ? "rotate-45 bg-[var(--color-primary)]" : "translate-y-[-0.42rem]"
+                menuOpen
+                  ? "rotate-45 bg-[var(--color-primary)]"
+                  : "translate-y-[-0.42rem]"
               }`}
             />
             <span
               className={`block absolute h-[1px] w-full bg-[var(--color-dark)] transition-all duration-500 origin-center ${
-                menuOpen ? "-rotate-45 bg-[var(--color-primary)]" : "translate-y-[0.42rem]"
+                menuOpen
+                  ? "-rotate-45 bg-[var(--color-primary)]"
+                  : "translate-y-[0.42rem]"
               }`}
             />
           </button>
@@ -201,7 +221,10 @@ export default function Navbar() {
         ref={menuRef}
         className="fixed top-0 left-0 h-full w-full bg-[var(--color-dark)] flex flex-col justify-start pl-6 pt-28 text-[60px] transform translate-x-full overflow-hidden"
       >
-        <div ref={navItemsRef} className="flex flex-col space-y-2 overflow-hidden">
+        <div
+          ref={navItemsRef}
+          className="flex flex-col space-y-2 overflow-hidden"
+        >
           {navItems.map((item) => (
             <Link
               key={item.href}
@@ -216,7 +239,10 @@ export default function Navbar() {
           ))}
         </div>
 
-        <div ref={bottomLinksRef} className="flex flex-col space-y-4 mt-20 text-white text-[16px]">
+        <div
+          ref={bottomLinksRef}
+          className="flex flex-col space-y-4 mt-20 text-white text-[16px]"
+        >
           <a
             href="https://www.linkedin.com/in/semmyverdonschot/"
             target="_blank"
@@ -231,7 +257,11 @@ export default function Navbar() {
               strokeWidth="2"
               viewBox="0 0 24 24"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M5 12h14M12 5l7 7-7 7"
+              />
             </svg>
             <span>]</span>
           </a>
@@ -250,7 +280,33 @@ export default function Navbar() {
               strokeWidth="2"
               viewBox="0 0 24 24"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M5 12h14M12 5l7 7-7 7"
+              />
+            </svg>
+            <span>]</span>
+          </a>
+          <a
+            href="https://wa.me/0641760992"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center overflow-hidden w-max group"
+          >
+            <span>[WHATSAPP</span>
+            <svg
+              className="w-4 h-4 ml-1 transform rotate-45 transition-transform duration-300 group-hover:translate-x-1 group-hover:translate-y-1"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M5 12h14M12 5l7 7-7 7"
+              />
             </svg>
             <span>]</span>
           </a>

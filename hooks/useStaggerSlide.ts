@@ -8,7 +8,7 @@ type Direction = "up" | "down";
 export function useSlideTogether<T extends HTMLElement = HTMLElement>(
   refs: RefObject<T>[],
   direction: Direction = "up",
-  duration = 0.2
+  duration = 0.2,
 ) {
   useEffect(() => {
     // Filter out nulls but keep type as T

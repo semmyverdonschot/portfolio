@@ -67,10 +67,7 @@ export default function HeroVideoPage() {
       </div>
 
       {/* Video wrapper */}
-      <div
-        ref={wrapperRef}
-        className="relative w-full flex justify-center"
-      >
+      <div ref={wrapperRef} className="relative w-full flex justify-center">
         <div
           ref={videoRef}
           className="overflow-hidden shadow-lg rounded-[16px] w-[320px] h-[200px]"

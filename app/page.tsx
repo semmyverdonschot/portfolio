@@ -62,10 +62,13 @@ export default function Page() {
           ? [mobileARef, mobileVeryRef, mobileSecureRef]
           : [desktopARef, desktopVeryRef, desktopSecureRef]),
       ] as unknown as React.RefObject<HTMLElement>[],
-    [isMobile]
+    [isMobile],
   );
 
-  const animatedDownRefs = useMemo(() => [] as React.RefObject<HTMLElement>[], []);
+  const animatedDownRefs = useMemo(
+    () => [] as React.RefObject<HTMLElement>[],
+    [],
+  );
 
   useSlideTogether(animatedUpRefs, "up", 0.8);
   useSlideTogether(animatedDownRefs, "down", 0.8);
@@ -90,66 +93,71 @@ export default function Page() {
         <HeroVideo />
 
         {/* WEB / DEVELOPER images */}
-       {isMobile ? (
-  <div className="flex flex-col items-center mt-20 mb-16 space-y-4">
-    {/* WEB */}
-    <div className="overflow-hidden w-full flex justify-center">
-      <Image
-        ref={webImgRef}
-        src="/INTERACTIVE.svg"
-        alt="WEB"
-        width={1200}
-        height={400}
-        className="w-[95vw] max-w-full object-contain"
-        draggable={false}
-      />
-    </div>
+        {isMobile ? (
+          <div className="flex flex-col items-center mt-20 mb-16 space-y-4">
+            {/* WEB */}
+            <div className="overflow-hidden w-full flex justify-center">
+              <Image
+                ref={webImgRef}
+                src="/INTERACTIVE.svg"
+                alt="WEB"
+                width={1200}
+                height={400}
+                className="w-[95vw] max-w-full object-contain"
+                draggable={false}
+              />
+            </div>
 
-    {/* DEVELOPER */}
-    <div className="overflow-hidden w-full flex justify-center">
-      <Image
-        ref={devImgRef}
-        src="/DEVELOPER.svg"
-        alt="DEVELOPER"
-        width={1200}
-        height={400}
-        className="w-[95vw] max-w-full object-contain"
-        draggable={false}
-      />
-    </div>
-  </div>
-) : (
-   <div
-  className={`w-full flex h-[20vw] md:h-[14vw] lg:h-[10vw] items-end transition-opacity duration-300 ${
-    mounted ? "opacity-100" : "opacity-0"
-  }`}
->
-  <div ref={webWrapperRef} className="overflow-hidden h-full flex justify-start">
-    <Image
-      src="/WEB.svg"
-      alt="WEB"
-      width={1000}
-      height={400}
-      draggable={false}
-      className="h-full w-auto max-w-[100%] object-contain translate-y-full"
-    />
-  </div>
+            {/* DEVELOPER */}
+            <div className="overflow-hidden w-full flex justify-center">
+              <Image
+                ref={devImgRef}
+                src="/DEVELOPER.svg"
+                alt="DEVELOPER"
+                width={1200}
+                height={400}
+                className="w-[95vw] max-w-full object-contain"
+                draggable={false}
+              />
+            </div>
+          </div>
+        ) : (
+          <div
+            className={`w-full flex h-[20vw] md:h-[14vw] lg:h-[10vw] items-end transition-opacity duration-300 ${
+              mounted ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <div
+              ref={webWrapperRef}
+              className="overflow-hidden h-full flex justify-start"
+            >
+              <Image
+                src="/WEB.svg"
+                alt="WEB"
+                width={1000}
+                height={400}
+                draggable={false}
+                className="h-full w-auto max-w-[100%] object-contain translate-y-full"
+              />
+            </div>
 
-  {/* spacer - increased widths for more separation */}
-  <div className="w-11 md:w-14 lg:w-14" />
+            {/* spacer - increased widths for more separation */}
+            <div className="w-11 md:w-14 lg:w-14" />
 
-  <div ref={devWrapperRef} className="overflow-hidden h-full flex justify-end">
-    <Image
-      src="/DEVELOPER.svg"
-      alt="DEVELOPER"
-      width={1000}
-      height={400}
-      draggable={false}
-      className="h-full w-auto max-w-[100%] object-contain translate-y-full"
-    />
-  </div>
-</div>
-
+            <div
+              ref={devWrapperRef}
+              className="overflow-hidden h-full flex justify-end"
+            >
+              <Image
+                src="/DEVELOPER.svg"
+                alt="DEVELOPER"
+                width={1000}
+                height={400}
+                draggable={false}
+                className="h-full w-auto max-w-[100%] object-contain translate-y-full"
+              />
+            </div>
+          </div>
         )}
       </div>
     </>

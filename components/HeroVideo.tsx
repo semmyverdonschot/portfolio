@@ -69,7 +69,9 @@ export default function HeroVideo() {
         minX,
         Math.min(
           maxX,
-          e.clientX - parentRectRef.current.left - parentRectRef.current.width / 2,
+          e.clientX -
+            parentRectRef.current.left -
+            parentRectRef.current.width / 2,
         ),
       );
     };
@@ -156,9 +158,24 @@ export default function HeroVideo() {
           }`}
         >
           <div className="flex w-full text-base font-medium text-[var(--color-dark)] justify-center">
-            <span ref={mobileARef} className="flex-1 text-left translate-y-full">A</span>
-            <span ref={mobileVeryRef} className="flex-1 text-center translate-y-full">VERY</span>
-            <span ref={mobileSecureRef} className="flex-1 text-right translate-y-full">SECURE</span>
+            <span
+              ref={mobileARef}
+              className="flex-1 text-left translate-y-full"
+            >
+              A
+            </span>
+            <span
+              ref={mobileVeryRef}
+              className="flex-1 text-center translate-y-full"
+            >
+              VERY
+            </span>
+            <span
+              ref={mobileSecureRef}
+              className="flex-1 text-right translate-y-full"
+            >
+              SECURE
+            </span>
           </div>
         </div>
       )}
@@ -287,9 +304,24 @@ export default function HeroVideo() {
           }`}
         >
           <div className="flex w-full text-[16px] font-normal justify-center">
-            <span ref={desktopARef} className="flex-1 text-left translate-y-full">A</span>
-            <span ref={desktopVeryRef} className="flex-1 text-center translate-y-full">VERY</span>
-            <span ref={desktopSecureRef} className="flex-1 text-right translate-y-full">SECURE</span>
+            <span
+              ref={desktopARef}
+              className="flex-1 text-left translate-y-full"
+            >
+              A
+            </span>
+            <span
+              ref={desktopVeryRef}
+              className="flex-1 text-center translate-y-full"
+            >
+              VERY
+            </span>
+            <span
+              ref={desktopSecureRef}
+              className="flex-1 text-right translate-y-full"
+            >
+              SECURE
+            </span>
           </div>
         </div>
       )}
