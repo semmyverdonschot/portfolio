@@ -1,11 +1,22 @@
 "use client";
-
 import { Albert_Sans } from "next/font/google";
 import "./globals.css";
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import ClientWrapper from "@/components/ClientWrapper";
 import Script from "next/script";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+
+// Declare global Lenis type
+declare global {
+  interface Window {
+    lenis?: {
+      scroll: number;
+      on: (event: string, callback: () => void) => void;
+      off: (event: string, callback: () => void) => void;
+      raf: (time: number) => void;
+    };
+  }
+}
 
 const albertSans = Albert_Sans({
   variable: "--font-albert-sans",
@@ -14,6 +25,47 @@ const albertSans = Albert_Sans({
 });
 
 export default function RootLayout({ children }: { children: ReactNode }) {
+  useEffect(() => {
+    // Import and initialize Lenis only on client side
+    const initLenis = async () => {
+      try {
+        const Lenis = (await import("@studio-freight/lenis")).default;
+
+        const lenis = new Lenis({
+          duration: 1.2,
+          easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          touchMultiplier: 2,
+          infinite: false,
+        });
+
+        function raf(time: number) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+
+        requestAnimationFrame(raf);
+
+        window.lenis = {
+          scroll: 0,
+          on: lenis.on.bind(lenis),
+          off: lenis.off.bind(lenis),
+          raf: lenis.raf.bind(lenis),
+        };
+
+        // Update scroll value
+        lenis.on("scroll", () => {
+          if (window.lenis) {
+            window.lenis.scroll = lenis.scroll;
+          }
+        });
+      } catch (error) {
+        console.warn("Lenis failed to initialize:", error);
+      }
+    };
+
+    initLenis();
+  }, []);
+
   return (
     <html lang="en" className={albertSans.variable}>
       <head>
@@ -81,7 +133,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             `}
         </Script>
 
-        <div className="px-4 md:px-8">
+        <div className="px-4 md:px-8" style={{ overflow: "visible" }}>
           <ClientWrapper>{children}</ClientWrapper>
         </div>
         <SpeedInsights />

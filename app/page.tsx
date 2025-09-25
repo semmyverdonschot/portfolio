@@ -93,11 +93,11 @@ export default function Page() {
 
       if (scrollY >= startScale && scrollY <= endScale) {
         const progress = (scrollY - startScale) / (endScale - startScale);
-        const scale = 1 + progress * 2.5; // Scale from 1 to 3.5
+        const scale = 1 + progress * 1.715; // Scale from 1 to 2.715
         setVideoScale(scale);
         setIsVideoExpanded(progress > 0.01); // Very early expansion
       } else if (scrollY > endScale) {
-        setVideoScale(3.2);
+        setVideoScale(2.715); // Max scale is 2.715
         setIsVideoExpanded(true);
       } else {
         setVideoScale(1);

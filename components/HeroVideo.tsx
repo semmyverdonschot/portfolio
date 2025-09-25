@@ -66,31 +66,36 @@ export default function HeroVideo({
 
     const handleMouseMove = (e: MouseEvent) => {
       // Only disable mouse movement when video is fully scaled (scale >= 3.3)
-      if (videoScale >= 3.3) return;
-      
+      if (videoScale >= 2.6) return;
+
       if (!parentRectRef.current) return;
 
       const containerWidth = parentRectRef.current.width;
       const videoWidth = halfVideoWidthRef.current * 2;
       const scaledVideoWidth = videoWidth * videoScale;
-      
+
       let maxX, minX;
       if (isVideoExpanded && videoScale < 3.3) {
         // When scaling, calculate boundaries based on scaled video size
         const overflow = Math.max(0, (scaledVideoWidth - containerWidth) / 2);
         const movementRange = Math.min(60, overflow * 0.9); // Increased range and percentage
-        
+
         maxX = movementRange;
         minX = -movementRange;
       } else {
         // Normal movement - keep scaled video within container bounds
-        const maxMovement = Math.max(0, (containerWidth - scaledVideoWidth) / 2);
+        const maxMovement = Math.max(
+          0,
+          (containerWidth - scaledVideoWidth) / 2,
+        );
         maxX = maxMovement;
         minX = -maxMovement;
       }
 
       const mouseRelativeX =
-        e.clientX - parentRectRef.current.left - parentRectRef.current.width / 2;
+        e.clientX -
+        parentRectRef.current.left -
+        parentRectRef.current.width / 2;
 
       // Increased sensitivity for more responsive movement
       targetX.current = Math.max(minX, Math.min(maxX, mouseRelativeX * 0.8));
@@ -98,7 +103,7 @@ export default function HeroVideo({
 
     const animate = () => {
       if (isVideoExpanded && videoScale > 1.1) {
-        const centeringFactor = Math.min(1, (videoScale - 1.1) /0.5); // Much more gradual
+        const centeringFactor = Math.min(1, (videoScale - 1.1) / 0.5); // Much more gradual
         targetX.current = targetX.current * (1 - centeringFactor);
       }
 
@@ -106,7 +111,7 @@ export default function HeroVideo({
       const containerWidth = parentRectRef.current?.width || 0;
       const videoWidth = halfVideoWidthRef.current * 2;
       const scaledVideoWidth = videoWidth * videoScale;
-      
+
       let maxX, minX;
       if (isVideoExpanded && videoScale < 3.3) {
         const overflow = Math.max(0, (scaledVideoWidth - containerWidth) / 2);
@@ -114,7 +119,10 @@ export default function HeroVideo({
         maxX = movementRange;
         minX = -movementRange;
       } else {
-        const maxMovement = Math.max(0, (containerWidth - scaledVideoWidth) / 2);
+        const maxMovement = Math.max(
+          0,
+          (containerWidth - scaledVideoWidth) / 2,
+        );
         maxX = maxMovement;
         minX = -maxMovement;
       }
@@ -124,12 +132,15 @@ export default function HeroVideo({
 
       currentX.current += (targetX.current - currentX.current) * 0.08; // Slower, smoother movement
 
-      if (Math.abs(targetX.current - currentX.current) < 0.1) { // Tighter tolerance
+      if (Math.abs(targetX.current - currentX.current) < 0.1) {
+        // Tighter tolerance
         currentX.current = targetX.current;
       }
-
       if (videoWrapperRef.current) {
-        const roundedX = Math.round(currentX.current * 10) / 10; // Smoother rounding
+        // Clamp currentX between -510 and 510
+        const clampedX = Math.max(-510, Math.min(510, currentX.current));
+
+        const roundedX = Math.round(clampedX * 10) / 10; // Smoother rounding
         videoWrapperRef.current.style.transform = `translateX(${roundedX}px)`;
         videoWrapperRef.current.style.willChange = "transform";
       }
@@ -201,13 +212,13 @@ export default function HeroVideo({
       <div
         className="relative w-full flex justify-center"
         style={{
-          transform: `scale(${videoScale}) translateY(${videoScale > 1.1 ? `${(videoScale - 1.1) * 10}vh` : '0'})`,
+          transform: `scale(${videoScale}) translateY(${videoScale > 1.1 ? `${(videoScale - 1.1) * 15}vh` : "0"})`,
           transformOrigin: "center top",
           zIndex: isVideoExpanded ? 40 : 10,
           position: "relative",
-          borderRadius: '16px',
-          overflow: 'visible',
-          transition: 'transform 0.5s ease-out',
+          borderRadius: "16px",
+          overflow: "hidden",
+          transition: "transform 0.5s ease-out",
         }}
       >
         <div
@@ -217,15 +228,16 @@ export default function HeroVideo({
             aspectRatio: "16/9",
             width: isMobile ? "100%" : "40vw",
             maxWidth: isMobile ? "100%" : "600px",
-            borderRadius: '16px',
-            overflow: 'hidden',
+            borderRadius: "16px",
+            overflow: "hidden",
           }}
         >
           <div
             ref={videoRef}
-            className="translate-y-[-100%] transition-transform duration-1000 ease-out"
+            className="w-full h-full" // Removed translate-y-[-100%] that was moving it out of view
             style={{
-              borderRadius: '16px', // Maintain on video container
+              borderRadius: "16px",
+              transform: "translate(0px, 0px)", // Keep it in its natural position
             }}
           >
             {!videoLoaded && (
@@ -234,7 +246,13 @@ export default function HeroVideo({
                 alt="Hero placeholder"
                 width={1200}
                 height={675}
-                className="w-full h-full rounded-2xl object-cover"
+                className="w-full h-full rounded-2xl object-cover absolute top-0 left-0"
+                style={{
+                  borderRadius: "16px",
+                  objectFit: "cover",
+                  maxWidth: "100%",
+                  maxHeight: "100%",
+                }}
                 priority
               />
             )}
@@ -249,7 +267,10 @@ export default function HeroVideo({
               loop
               className="w-full h-full rounded-2xl object-cover cursor-pointer pointer-events-auto absolute top-0 left-0"
               style={{
-                borderRadius: '16px',
+                borderRadius: "16px",
+                maxWidth: "100%",
+                maxHeight: "100%",
+                objectFit: "cover",
               }}
               onClick={() => {
                 if (!videoElRef.current) return;
@@ -258,7 +279,9 @@ export default function HeroVideo({
               }}
             >
               <source
-                src={isMobile ? "/hero-video-480.webm" : "/hero-video-720p.webm"}
+                src={
+                  isMobile ? "/hero-video-480.webm" : "/hero-video-720p.webm"
+                }
                 type="video/webm"
               />
             </video>
