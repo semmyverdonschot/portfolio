@@ -73,7 +73,7 @@ export default function HeroVideoPage() {
           className="overflow-hidden shadow-lg rounded-[16px] w-[320px] h-[200px]"
         >
           <video
-            src="/hero-video-720.webm"
+            src="/hero-video-720p.webm"
             autoPlay
             muted
             loop

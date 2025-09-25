@@ -116,7 +116,7 @@ export default function Page() {
         <link
           rel="preload"
           as="video"
-          href="/hero-video-480.webm"
+          href="/hero-video-480p.webm"
           type="video/webm"
           media="(max-width:767px)"
         />

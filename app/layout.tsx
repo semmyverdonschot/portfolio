@@ -45,13 +45,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <link
           rel="preload"
           as="video"
-          href="/hero-video-720.mp4"
+          href="/hero-video-720p.webm"
           type="video/mp4"
         />
         <link
           rel="preload"
           as="video"
-          href="/hero-video-480.mp4"
+          href="/hero-video-480p.webm"
           type="video/mp4"
         />
         <link

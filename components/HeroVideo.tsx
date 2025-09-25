@@ -65,7 +65,6 @@ export default function HeroVideo({
     window.addEventListener("resize", recalcSizes);
 
     const handleMouseMove = (e: MouseEvent) => {
-      // Only disable mouse movement when video is fully scaled (scale >= 3.3)
       if (videoScale >= 3.3) return;
       
       if (!parentRectRef.current) return;
@@ -76,14 +75,12 @@ export default function HeroVideo({
       
       let maxX, minX;
       if (isVideoExpanded && videoScale < 3.3) {
-        // When scaling, calculate boundaries based on scaled video size
         const overflow = Math.max(0, (scaledVideoWidth - containerWidth) / 2);
-        const movementRange = Math.min(60, overflow * 0.9); // Increased range and percentage
+        const movementRange = Math.min(60, overflow * 0.9);
         
         maxX = movementRange;
         minX = -movementRange;
       } else {
-        // Normal movement - keep scaled video within container bounds
         const maxMovement = Math.max(0, (containerWidth - scaledVideoWidth) / 2);
         maxX = maxMovement;
         minX = -maxMovement;
@@ -92,17 +89,15 @@ export default function HeroVideo({
       const mouseRelativeX =
         e.clientX - parentRectRef.current.left - parentRectRef.current.width / 2;
 
-      // Increased sensitivity for more responsive movement
       targetX.current = Math.max(minX, Math.min(maxX, mouseRelativeX * 0.8));
     };
 
     const animate = () => {
       if (isVideoExpanded && videoScale > 1.1) {
-        const centeringFactor = Math.min(1, (videoScale - 1.1) /0.5); // Much more gradual
+        const centeringFactor = Math.min(1, (videoScale - 1.1) /0.5);
         targetX.current = targetX.current * (1 - centeringFactor);
       }
 
-      // Clamp currentX to current scale boundaries to prevent going through
       const containerWidth = parentRectRef.current?.width || 0;
       const videoWidth = halfVideoWidthRef.current * 2;
       const scaledVideoWidth = videoWidth * videoScale;
@@ -119,17 +114,15 @@ export default function HeroVideo({
         minX = -maxMovement;
       }
 
-      // Clamp targetX to current boundaries
       targetX.current = Math.max(minX, Math.min(maxX, targetX.current));
+      currentX.current += (targetX.current - currentX.current) * 0.08;
 
-      currentX.current += (targetX.current - currentX.current) * 0.08; // Slower, smoother movement
-
-      if (Math.abs(targetX.current - currentX.current) < 0.1) { // Tighter tolerance
+      if (Math.abs(targetX.current - currentX.current) < 0.1) {
         currentX.current = targetX.current;
       }
 
       if (videoWrapperRef.current) {
-        const roundedX = Math.round(currentX.current * 10) / 10; // Smoother rounding
+        const roundedX = Math.round(currentX.current * 10) / 10;
         videoWrapperRef.current.style.transform = `translateX(${roundedX}px)`;
         videoWrapperRef.current.style.willChange = "transform";
       }
@@ -166,15 +159,15 @@ export default function HeroVideo({
   useSlideTogether(animatedDownRefs, "down", 0.8);
 
   return (
-    <>
-      {/* Mobile "A VERY SECURE" - NOT scaled */}
+    <section itemScope itemType="https://schema.org/VideoObject">
       {isMobile && (
-        <div
+        <header
           className={`overflow-hidden w-full mb-2 transition-opacity duration-300 ${
             mounted ? "opacity-100" : "opacity-0"
           }`}
+          role="banner"
         >
-          <div className="flex w-full text-base font-medium text-[var(--color-dark)] justify-center">
+          <h1 className="flex w-full text-base font-medium text-[var(--color-dark)] justify-center">
             <span
               ref={mobileARef}
               className="flex-1 text-left translate-y-full"
@@ -193,21 +186,17 @@ export default function HeroVideo({
             >
               SECURE
             </span>
-          </div>
-        </div>
+          </h1>
+        </header>
       )}
 
-      {/* Video*/}
       <div
         className="relative w-full flex justify-center"
         style={{
-          transform: `scale(${videoScale}) translateY(${videoScale > 1.1 ? `${(videoScale - 1.1) * 10}vh` : '0'})`,
-          transformOrigin: "center top",
           zIndex: isVideoExpanded ? 40 : 10,
           position: "relative",
-          borderRadius: '16px',
-          overflow: 'visible',
-          transition: 'transform 0.2s ease-out',
+          borderRadius: "16px",
+          transition: "width 0.3s ease-out, height 0.3s ease-out",
         }}
       >
         <div
@@ -215,23 +204,24 @@ export default function HeroVideo({
           className="relative"
           style={{
             aspectRatio: "16/9",
-            width: isMobile ? "100%" : "40vw",
-            maxWidth: isMobile ? "100%" : "600px",
-            borderRadius: '16px',
-            overflow: 'hidden',
+            width: isMobile ? "100%" : `${40 * videoScale}vw`,
+            maxWidth: isMobile ? "100%" : "1000px",
+            borderRadius: "16px",
+            overflow: "hidden",
+            margin: "0 auto",
           }}
         >
           <div
             ref={videoRef}
             className="translate-y-[-100%] transition-transform duration-1000 ease-out"
             style={{
-              borderRadius: '16px', // Maintain on video container
+              borderRadius: '16px',
             }}
           >
             {!videoLoaded && (
               <Image
                 src="/placeholder.webp"
-                alt="Hero placeholder"
+                alt="Portfolio showcase preview - secure web development"
                 width={1200}
                 height={675}
                 className="w-full h-full rounded-2xl object-cover"
@@ -244,7 +234,7 @@ export default function HeroVideo({
               poster="/placeholder.webp"
               autoPlay
               playsInline
-              preload="auto"
+              preload="metadata"
               muted
               loop
               className="w-full h-full rounded-2xl object-cover cursor-pointer pointer-events-auto absolute top-0 left-0"
@@ -256,22 +246,26 @@ export default function HeroVideo({
                 videoElRef.current.muted = !videoElRef.current.muted;
                 setIsMuted(videoElRef.current.muted);
               }}
+              aria-label="Portfolio showcase video - click to toggle sound"
+              itemProp="contentUrl"
             >
               <source
-                src={isMobile ? "/hero-video-480.webm" : "/hero-video-720.webm"}
+                src={isMobile ? "/hero-video-480.webm" : "/hero-video-720p.webm"}
                 type="video/webm"
               />
             </video>
 
             {isMobile && (
               <div className="absolute bottom-2 right-2 pointer-events-auto">
-                <div
+                <button
                   onClick={() => {
                     if (!videoElRef.current) return;
                     videoElRef.current.muted = !videoElRef.current.muted;
                     setIsMuted(videoElRef.current.muted);
                   }}
                   className="flex items-center justify-center w-10 h-10 rounded-full bg-[var(--color-primary)]/25 backdrop-blur-md cursor-pointer"
+                  aria-label={isMuted ? "Unmute video" : "Mute video"}
+                  type="button"
                 >
                   {isMuted ? (
                     <svg
@@ -281,6 +275,7 @@ export default function HeroVideo({
                       viewBox="0 0 24 24"
                       stroke="currentColor"
                       strokeWidth={2}
+                      aria-hidden="true"
                     >
                       <path
                         strokeLinecap="round"
@@ -312,6 +307,7 @@ export default function HeroVideo({
                       viewBox="0 0 24 24"
                       stroke="currentColor"
                       strokeWidth={2}
+                      aria-hidden="true"
                     >
                       <path
                         strokeLinecap="round"
@@ -325,21 +321,21 @@ export default function HeroVideo({
                       />
                     </svg>
                   )}
-                </div>
+                </button>
               </div>
             )}
           </div>
         </div>
       </div>
 
-      {/* Desktop "A VERY SECURE" - NOT scaled */}
       {!isMobile && (
-        <div
+        <header
           className={`overflow-hidden w-full mt-4 mb-6 transition-opacity duration-300 ${
             mounted ? "opacity-100" : "opacity-0"
           }`}
+          role="banner"
         >
-          <div className="flex w-full text-[16px] font-normal justify-center">
+          <h1 className="flex w-full text-[16px] font-normal justify-center">
             <span
               ref={desktopARef}
               className="flex-1 text-left translate-y-full"
@@ -358,9 +354,9 @@ export default function HeroVideo({
             >
               SECURE
             </span>
-          </div>
-        </div>
+          </h1>
+        </header>
       )}
-    </>
+    </section>
   );
 }
