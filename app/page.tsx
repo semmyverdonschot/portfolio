@@ -73,6 +73,42 @@ export default function Page() {
   useSlideTogether(animatedUpRefs, "up", 0.8);
   useSlideTogether(animatedDownRefs, "down", 0.8);
 
+  const [videoScale, setVideoScale] = useState(1);
+  const [isVideoExpanded, setIsVideoExpanded] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Only apply scroll effect on desktop
+      if (isMobile) {
+        setVideoScale(1);
+        setIsVideoExpanded(false);
+        return;
+      }
+
+      const scrollY = window.scrollY;
+
+      // Start scaling much earlier
+      const startScale = 0.01; // Much earlier start
+      const endScale = 700;
+
+      if (scrollY >= startScale && scrollY <= endScale) {
+        const progress = (scrollY - startScale) / (endScale - startScale);
+        const scale = 1 + progress * 2.5; // Scale from 1 to 3.5
+        setVideoScale(scale);
+        setIsVideoExpanded(progress > 0.01); // Very early expansion
+      } else if (scrollY > endScale) {
+        setVideoScale(3.2);
+        setIsVideoExpanded(true);
+      } else {
+        setVideoScale(1);
+        setIsVideoExpanded(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isMobile]);
+
   return (
     <>
       <Head>
@@ -90,7 +126,10 @@ export default function Page() {
         <div className="h-36 md:h-40 lg:h-44 w-full" />
 
         {/* Hero video */}
-        <HeroVideo />
+        <HeroVideo
+          videoScale={isMobile ? 1 : videoScale}
+          isVideoExpanded={isMobile ? false : isVideoExpanded}
+        />
 
         {/* WEB / DEVELOPER images */}
         {isMobile ? (
@@ -159,6 +198,26 @@ export default function Page() {
             </div>
           </div>
         )}
+
+        {/* Extra scroll space for video scaling effect - only on desktop */}
+        {!isMobile && <div className="h-[100vh]" />}
+
+        {/* Test section for normal scrolling */}
+        <div className="min-h-screen bg-slate-900 text-white flex items-center justify-center">
+          <div className="text-center">
+            <h2 className="text-4xl font-bold mb-4">Normal Scroll Section</h2>
+            <p className="text-xl">This is a test section to verify normal scrolling works after the video scaling effect.</p>
+          </div>
+        </div>
+
+        {/* Another test section */}
+        <div className="min-h-screen bg-slate-700 text-white flex items-center justify-center">
+          <div className="text-center">
+            <h2 className="text-4xl font-bold mb-4">Another Section</h2>
+            <p className="text-xl">Keep scrolling to test that everything works normally.</p>
+          </div>
+        </div>
+
       </div>
     </>
   );
