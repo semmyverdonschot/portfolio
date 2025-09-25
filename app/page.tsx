@@ -206,7 +206,10 @@ export default function Page() {
         <div className="min-h-screen bg-slate-900 text-white flex items-center justify-center">
           <div className="text-center">
             <h2 className="text-4xl font-bold mb-4">Normal Scroll Section</h2>
-            <p className="text-xl">This is a test section to verify normal scrolling works after the video scaling effect.</p>
+            <p className="text-xl">
+              This is a test section to verify normal scrolling works after the
+              video scaling effect.
+            </p>
           </div>
         </div>
 
@@ -214,10 +217,11 @@ export default function Page() {
         <div className="min-h-screen bg-slate-700 text-white flex items-center justify-center">
           <div className="text-center">
             <h2 className="text-4xl font-bold mb-4">Another Section</h2>
-            <p className="text-xl">Keep scrolling to test that everything works normally.</p>
+            <p className="text-xl">
+              Keep scrolling to test that everything works normally.
+            </p>
           </div>
         </div>
-
       </div>
     </>
   );

@@ -71,47 +71,52 @@ export default function HeroVideo({
 
       const containerWidth = parentRectRef.current.width;
       const videoWidth = halfVideoWidthRef.current * 2;
-      const scaledVideoWidth = videoWidth * videoScale;
+      const actualScale = Math.min(videoScale, 2.25); // Cap at 90% instead of 100%
+      const scaledVideoWidth = videoWidth * actualScale;
       
       let maxX, minX;
       if (isVideoExpanded && videoScale < 3.3) {
         const overflow = Math.max(0, (scaledVideoWidth - containerWidth) / 2);
-        const movementRange = Math.min(60, overflow * 0.9);
+        const movementRange = Math.min(40, overflow * 0.7); // Reduced range for better boundary control
         
         maxX = movementRange;
         minX = -movementRange;
       } else {
+        // When not expanded, limit movement more strictly
         const maxMovement = Math.max(0, (containerWidth - scaledVideoWidth) / 2);
-        maxX = maxMovement;
-        minX = -maxMovement;
+        const boundaryPadding = 20; // Add padding to prevent edge overflow
+        maxX = Math.max(0, maxMovement - boundaryPadding);
+        minX = Math.min(0, -maxMovement + boundaryPadding);
       }
 
       const mouseRelativeX =
         e.clientX - parentRectRef.current.left - parentRectRef.current.width / 2;
 
-      targetX.current = Math.max(minX, Math.min(maxX, mouseRelativeX * 0.8));
+      targetX.current = Math.max(minX, Math.min(maxX, mouseRelativeX * 0.6)); // Reduced sensitivity
     };
 
     const animate = () => {
       if (isVideoExpanded && videoScale > 1.1) {
-        const centeringFactor = Math.min(1, (videoScale - 1.1) /0.5);
+        const centeringFactor = Math.min(1, (videoScale - 1.1) / 0.5);
         targetX.current = targetX.current * (1 - centeringFactor);
       }
 
       const containerWidth = parentRectRef.current?.width || 0;
       const videoWidth = halfVideoWidthRef.current * 2;
-      const scaledVideoWidth = videoWidth * videoScale;
+      const actualScale = Math.min(videoScale, 2.25); // Cap at 90% instead of 100%
+      const scaledVideoWidth = videoWidth * actualScale;
       
       let maxX, minX;
       if (isVideoExpanded && videoScale < 3.3) {
         const overflow = Math.max(0, (scaledVideoWidth - containerWidth) / 2);
-        const movementRange = Math.min(60, overflow * 0.9);
+        const movementRange = Math.min(40, overflow * 0.7);
         maxX = movementRange;
         minX = -movementRange;
       } else {
         const maxMovement = Math.max(0, (containerWidth - scaledVideoWidth) / 2);
-        maxX = maxMovement;
-        minX = -maxMovement;
+        const boundaryPadding = 20;
+        maxX = Math.max(0, maxMovement - boundaryPadding);
+        minX = Math.min(0, -maxMovement + boundaryPadding);
       }
 
       targetX.current = Math.max(minX, Math.min(maxX, targetX.current));
@@ -159,7 +164,7 @@ export default function HeroVideo({
   useSlideTogether(animatedDownRefs, "down", 0.8);
 
   return (
-    <section itemScope itemType="https://schema.org/VideoObject">
+    <section itemScope itemType="https://schema.org/VideoObject" aria-label="Portfolio showcase">
       {isMobile && (
         <header
           className={`overflow-hidden w-full mb-2 transition-opacity duration-300 ${
@@ -193,10 +198,15 @@ export default function HeroVideo({
       <div
         className="relative w-full flex justify-center"
         style={{
+          transform: `scale(${Math.min(videoScale, 1.5)}) translateY(${videoScale > 1 ? `${Math.min((videoScale - 1.1) * 6, 20)}vh` : '0'})`,
+          transformOrigin: "center top",
           zIndex: isVideoExpanded ? 40 : 10,
           position: "relative",
-          borderRadius: "16px",
-          transition: "width 0.3s ease-out, height 0.3s ease-out",
+          borderRadius: '16px',
+          overflow: 'visible',
+          transition: 'transform 0.2s ease-out',
+          maxWidth: '90vw',
+          margin: '0 auto',
         }}
       >
         <div
@@ -204,11 +214,10 @@ export default function HeroVideo({
           className="relative"
           style={{
             aspectRatio: "16/9",
-            width: isMobile ? "100%" : `${40 * videoScale}vw`,
-            maxWidth: isMobile ? "100%" : "1000px",
-            borderRadius: "16px",
-            overflow: "hidden",
-            margin: "0 auto",
+            width: isMobile ? "100%" : "40vw",
+            maxWidth: isMobile ? "100%" : "600px",
+            borderRadius: '16px',
+            overflow: 'hidden',
           }}
         >
           <div
@@ -221,7 +230,7 @@ export default function HeroVideo({
             {!videoLoaded && (
               <Image
                 src="/placeholder.webp"
-                alt="Portfolio showcase preview - secure web development"
+                alt="Secure web development portfolio showcase - professional software engineering"
                 width={1200}
                 height={675}
                 className="w-full h-full rounded-2xl object-cover"
@@ -246,8 +255,9 @@ export default function HeroVideo({
                 videoElRef.current.muted = !videoElRef.current.muted;
                 setIsMuted(videoElRef.current.muted);
               }}
-              aria-label="Portfolio showcase video - click to toggle sound"
+              aria-label="Portfolio demonstration video - click to toggle audio"
               itemProp="contentUrl"
+              title="Secure Web Development Portfolio Showcase"
             >
               <source
                 src={isMobile ? "/hero-video-480.webm" : "/hero-video-720p.webm"}
