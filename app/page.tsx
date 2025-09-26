@@ -9,23 +9,18 @@ import HeroVideo from "@/components/HeroVideo";
 export default function Page() {
   const [isMobile, setIsMobile] = useState(false);
 
+  // Image refs for animation
   const webWrapperRef = useRef<HTMLDivElement | null>(null);
   const devWrapperRef = useRef<HTMLDivElement | null>(null);
   const webImgRef = useRef<HTMLImageElement | null>(null);
   const devImgRef = useRef<HTMLImageElement | null>(null);
 
-  const desktopARef = useRef<HTMLSpanElement | null>(null);
-  const desktopVeryRef = useRef<HTMLSpanElement | null>(null);
-  const desktopSecureRef = useRef<HTMLSpanElement | null>(null);
-
-  const mobileARef = useRef<HTMLSpanElement | null>(null);
-  const mobileVeryRef = useRef<HTMLSpanElement | null>(null);
-  const mobileSecureRef = useRef<HTMLSpanElement | null>(null);
-
   const [mounted, setMounted] = useState(false);
 
+  // Component initialization
   useEffect(() => setMounted(true), []);
 
+  // Mobile detection
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
@@ -33,6 +28,7 @@ export default function Page() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
+  // Image setup for animations
   useEffect(() => {
     const resetImages = () => {
       if (webWrapperRef.current) {
@@ -53,32 +49,21 @@ export default function Page() {
     return () => clearTimeout(timeoutId);
   }, [isMobile]);
 
+  // Animation setup
   const animatedUpRefs = useMemo(
-    () =>
-      [
-        webImgRef,
-        devImgRef,
-        ...(isMobile
-          ? [mobileARef, mobileVeryRef, mobileSecureRef]
-          : [desktopARef, desktopVeryRef, desktopSecureRef]),
-      ] as unknown as React.RefObject<HTMLElement>[],
-    [isMobile],
-  );
-
-  const animatedDownRefs = useMemo(
-    () => [] as React.RefObject<HTMLElement>[],
+    () => [webImgRef, devImgRef] as unknown as React.RefObject<HTMLElement>[],
     [],
   );
 
   useSlideTogether(animatedUpRefs, "up", 0.8);
-  useSlideTogether(animatedDownRefs, "down", 0.8);
 
+  // Video scaling state
   const [videoScale, setVideoScale] = useState(1);
   const [isVideoExpanded, setIsVideoExpanded] = useState(false);
 
+  // Scroll-based video scaling (desktop only)
   useEffect(() => {
     const handleScroll = () => {
-      // Only apply scroll effect on desktop
       if (isMobile) {
         setVideoScale(1);
         setIsVideoExpanded(false);
@@ -87,17 +72,16 @@ export default function Page() {
 
       const scrollY = window.scrollY;
 
-      // Start scaling much earlier
-      const startScale = 0.01; // Much earlier start
+      const startScale = 0.01;
       const endScale = 700;
 
       if (scrollY >= startScale && scrollY <= endScale) {
         const progress = (scrollY - startScale) / (endScale - startScale);
-        const scale = 1 + progress * 1.715; // Scale from 1 to 2.715
+        const scale = 1 + progress * 1.715;
         setVideoScale(scale);
-        setIsVideoExpanded(progress > 0.01); // Very early expansion
+        setIsVideoExpanded(progress > 0.01);
       } else if (scrollY > endScale) {
-        setVideoScale(2.715); // Max scale is 2.715
+        setVideoScale(2.715);
         setIsVideoExpanded(true);
       } else {
         setVideoScale(1);
@@ -111,21 +95,35 @@ export default function Page() {
 
   return (
     <>
+      {/* SEO and preloading */}
       <Head>
+        <title>Interactive Web Developer - Secure Digital Solutions</title>
+        <meta name="description" content="Professional web developer specializing in interactive, secure digital solutions. Modern web applications with cutting-edge technology and user-focused design." />
+        <meta name="keywords" content="web developer, interactive design, secure applications, modern web development, digital solutions" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="Interactive Web Developer - Secure Digital Solutions" />
+        <meta property="og:description" content="Professional web developer specializing in interactive, secure digital solutions." />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="/placeholder.webp" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Interactive Web Developer" />
+        <meta name="twitter:description" content="Professional web developer specializing in interactive, secure digital solutions." />
+        <meta name="twitter:image" content="/placeholder.webp" />
+        <link rel="canonical" href="/" />
         <link rel="preload" as="image" href="/placeholder.webp" />
-        <link
-          rel="preload"
-          as="video"
-          href="/hero-video-480p.webm"
-          type="video/webm"
-          media="(max-width:767px)"
-        />
+        <link rel="preload" as="image" href="/WEB.svg" />
+        <link rel="preload" as="image" href="/DEVELOPER.svg" />
+        <link rel="preload" as="image" href="/INTERACTIVE.svg" />
+        <link rel="preload" as="video" href="/hero-video-720p.webm" type="video/webm" media="(min-width:768px)" />
+        <link rel="preload" as="video" href="/hero-video-480p.webm" type="video/webm" media="(max-width:767px)" />
       </Head>
 
       <div className="min-h-screen bg-[var(--color-primary)] flex flex-col justify-start relative overflow-hidden">
+        {/* Top spacing */}
         <div className="h-36 md:h-40 lg:h-44 w-full" />
 
-        {/* Hero video */}
+        {/* Hero video section */}
         <HeroVideo
           videoScale={isMobile ? 1 : videoScale}
           isVideoExpanded={isMobile ? false : isVideoExpanded}
@@ -133,34 +131,36 @@ export default function Page() {
 
         {/* WEB / DEVELOPER images */}
         {isMobile ? (
+          // Mobile layout - stacked
           <div className="flex flex-col items-center mt-20 mb-16 space-y-4">
-            {/* WEB */}
             <div className="overflow-hidden w-full flex justify-center">
               <Image
                 ref={webImgRef}
                 src="/INTERACTIVE.svg"
-                alt="WEB"
+                alt="Interactive Web Solutions"
                 width={1200}
                 height={400}
                 className="w-[95vw] max-w-full object-contain"
                 draggable={false}
+                priority
               />
             </div>
 
-            {/* DEVELOPER */}
             <div className="overflow-hidden w-full flex justify-center">
               <Image
                 ref={devImgRef}
                 src="/DEVELOPER.svg"
-                alt="DEVELOPER"
+                alt="Web Developer"
                 width={1200}
                 height={400}
                 className="w-[95vw] max-w-full object-contain"
                 draggable={false}
+                priority
               />
             </div>
           </div>
         ) : (
+          // Desktop layout - side by side
           <div
             className={`w-full flex h-[20vw] md:h-[14vw] lg:h-[10vw] items-end transition-opacity duration-300 ${
               mounted ? "opacity-100" : "opacity-0"
@@ -172,15 +172,15 @@ export default function Page() {
             >
               <Image
                 src="/WEB.svg"
-                alt="WEB"
+                alt="Web Solutions"
                 width={1000}
                 height={400}
                 draggable={false}
                 className="h-full w-auto max-w-[100%] object-contain translate-y-full"
+                priority
               />
             </div>
 
-            {/* spacer - increased widths for more separation */}
             <div className="w-11 md:w-14 lg:w-14" />
 
             <div
@@ -189,39 +189,40 @@ export default function Page() {
             >
               <Image
                 src="/DEVELOPER.svg"
-                alt="DEVELOPER"
+                alt="Developer"
                 width={1000}
                 height={400}
                 draggable={false}
                 className="h-full w-auto max-w-[100%] object-contain translate-y-full"
+                priority
               />
             </div>
           </div>
         )}
 
-        {/* Extra scroll space for video scaling effect - only on desktop */}
+        {/* Extra scroll space for video scaling (desktop only) */}
         {!isMobile && <div className="h-[100vh]" />}
 
-        {/* Test section for normal scrolling */}
-        <div className="min-h-screen bg-slate-900 text-white flex items-center justify-center">
+        {/* Content sections */}
+        <section className="min-h-screen bg-slate-900 text-white flex items-center justify-center">
           <div className="text-center">
-            <h2 className="text-4xl font-bold mb-4">Normal Scroll Section</h2>
-            <p className="text-xl">
-              This is a test section to verify normal scrolling works after the
-              video scaling effect.
+            <h1 className="text-4xl font-bold mb-4">Professional Web Development</h1>
+            <p className="text-xl max-w-2xl mx-auto">
+              Crafting secure, interactive digital experiences with modern technology 
+              and user-focused design principles.
             </p>
           </div>
-        </div>
+        </section>
 
-        {/* Another test section */}
-        <div className="min-h-screen bg-slate-700 text-white flex items-center justify-center">
+        <section className="min-h-screen bg-slate-700 text-white flex items-center justify-center">
           <div className="text-center">
-            <h2 className="text-4xl font-bold mb-4">Another Section</h2>
-            <p className="text-xl">
-              Keep scrolling to test that everything works normally.
+            <h2 className="text-4xl font-bold mb-4">Innovative Solutions</h2>
+            <p className="text-xl max-w-2xl mx-auto">
+              Building the future of web applications with cutting-edge technology 
+              and seamless user experiences.
             </p>
           </div>
-        </div>
+        </section>
       </div>
     </>
   );

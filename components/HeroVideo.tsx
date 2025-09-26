@@ -13,29 +13,33 @@ export default function HeroVideo({
   videoScale = 1,
   isVideoExpanded = false,
 }: HeroVideoProps) {
+  // Refs and state
   const videoWrapperRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLDivElement | null>(null);
   const videoElRef = useRef<HTMLVideoElement | null>(null);
   const [isMuted, setIsMuted] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
-  const [videoLoaded] = useState(false);
   const targetX = useRef(0);
   const currentX = useRef(0);
   const parentRectRef = useRef<DOMRect | null>(null);
   const halfVideoWidthRef = useRef<number>(0);
 
+  // Text animation refs - desktop
   const desktopARef = useRef<HTMLSpanElement | null>(null);
   const desktopVeryRef = useRef<HTMLSpanElement | null>(null);
   const desktopSecureRef = useRef<HTMLSpanElement | null>(null);
 
+  // Text animation refs - mobile
   const mobileARef = useRef<HTMLSpanElement | null>(null);
   const mobileVeryRef = useRef<HTMLSpanElement | null>(null);
   const mobileSecureRef = useRef<HTMLSpanElement | null>(null);
 
   const [mounted, setMounted] = useState(false);
 
+  // Component initialization
   useEffect(() => setMounted(true), []);
 
+  // Mobile detection
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
@@ -43,6 +47,7 @@ export default function HeroVideo({
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
+  // Video autoplay setup
   useEffect(() => {
     const v = videoElRef.current;
     if (!v) return;
@@ -50,6 +55,7 @@ export default function HeroVideo({
     v.play().catch(() => {});
   }, []);
 
+  // Mouse tracking and video movement (desktop only)
   useEffect(() => {
     if (isMobile) return;
     let rafId: number | null = null;
@@ -65,7 +71,6 @@ export default function HeroVideo({
     window.addEventListener("resize", recalcSizes);
 
     const handleMouseMove = (e: MouseEvent) => {
-      // Only disable mouse movement when video is fully scaled (scale >= 3.3)
       if (videoScale >= 2.6) return;
 
       if (!parentRectRef.current) return;
@@ -76,14 +81,12 @@ export default function HeroVideo({
 
       let maxX, minX;
       if (isVideoExpanded && videoScale < 3.3) {
-        // When scaling, calculate boundaries based on scaled video size
         const overflow = Math.max(0, (scaledVideoWidth - containerWidth) / 2);
-        const movementRange = Math.min(60, overflow * 0.9); // Increased range and percentage
+        const movementRange = Math.min(60, overflow * 0.9);
 
         maxX = movementRange;
         minX = -movementRange;
       } else {
-        // Normal movement - keep scaled video within container bounds
         const maxMovement = Math.max(
           0,
           (containerWidth - scaledVideoWidth) / 2,
@@ -97,17 +100,15 @@ export default function HeroVideo({
         parentRectRef.current.left -
         parentRectRef.current.width / 2;
 
-      // Increased sensitivity for more responsive movement
       targetX.current = Math.max(minX, Math.min(maxX, mouseRelativeX * 0.8));
     };
 
     const animate = () => {
       if (isVideoExpanded && videoScale > 1.1) {
-        const centeringFactor = Math.min(1, (videoScale - 1.1) / 0.5); // Much more gradual
+        const centeringFactor = Math.min(1, (videoScale - 1.1) / 0.5);
         targetX.current = targetX.current * (1 - centeringFactor);
       }
 
-      // Clamp currentX to current scale boundaries to prevent going through
       const containerWidth = parentRectRef.current?.width || 0;
       const videoWidth = halfVideoWidthRef.current * 2;
       const scaledVideoWidth = videoWidth * videoScale;
@@ -127,20 +128,17 @@ export default function HeroVideo({
         minX = -maxMovement;
       }
 
-      // Clamp targetX to current boundaries
       targetX.current = Math.max(minX, Math.min(maxX, targetX.current));
 
-      currentX.current += (targetX.current - currentX.current) * 0.08; // Slower, smoother movement
+      currentX.current += (targetX.current - currentX.current) * 0.08;
 
       if (Math.abs(targetX.current - currentX.current) < 0.1) {
-        // Tighter tolerance
         currentX.current = targetX.current;
       }
       if (videoWrapperRef.current) {
-        // Clamp currentX between -510 and 510
         const clampedX = Math.max(-510, Math.min(510, currentX.current));
 
-        const roundedX = Math.round(clampedX * 10) / 10; // Smoother rounding
+        const roundedX = Math.round(clampedX * 10) / 10;
         videoWrapperRef.current.style.transform = `translateX(${roundedX}px)`;
         videoWrapperRef.current.style.willChange = "transform";
       }
@@ -158,6 +156,7 @@ export default function HeroVideo({
     };
   }, [isMobile, isVideoExpanded, videoScale]);
 
+  // Animation setup
   const animatedUpRefs = useMemo(
     () =>
       [
@@ -178,7 +177,7 @@ export default function HeroVideo({
 
   return (
     <>
-      {/* Mobile "A VERY SECURE" - NOT scaled */}
+      {/* Mobile "A VERY SECURE" text */}
       {isMobile && (
         <div
           className={`overflow-hidden w-full mb-2 transition-opacity duration-300 ${
@@ -208,17 +207,17 @@ export default function HeroVideo({
         </div>
       )}
 
-      {/* Video*/}
+      {/* Hero video container */}
       <div
         className="relative w-full flex justify-center"
         style={{
-          transform: `scale(${videoScale}) translateY(${videoScale > 1.1 ? `${(videoScale - 1.1) * 15}vh` : "0"})`,
+          transform: `scale(${videoScale}) translateY(${videoScale > 1.1 ? `${(videoScale - 1.1) * 17}vh` : "0"})`,
           transformOrigin: "center top",
           zIndex: isVideoExpanded ? 40 : 10,
           position: "relative",
           borderRadius: "16px",
           overflow: "hidden",
-          transition: "transform 0.5s ease-out",
+          transition: "transform 0.3s ease-out",
         }}
       >
         <div
@@ -228,7 +227,7 @@ export default function HeroVideo({
             aspectRatio: "16/9",
             width: isMobile ? "100%" : "40vw",
             maxWidth: isMobile ? "100%" : "600px",
-            minHeight: isMobile ? "200px" : "auto", // Add minimum height for mobile
+            minHeight: isMobile ? "200px" : "auto",
             height: isMobile ? "auto" : "auto",
             borderRadius: "16px",
             overflow: "hidden",
@@ -236,26 +235,26 @@ export default function HeroVideo({
         >
           <div
             ref={videoRef}
-            className="w-full h-full absolute inset-0" // Use absolute positioning and inset-0
+            className="w-full h-full absolute inset-0"
             style={{
               borderRadius: "16px",
             }}
           >
-            {!videoLoaded && (
-              <Image
-                src="/placeholder.webp"
-                alt="Hero placeholder"
-                width={1200}
-                height={675}
-                className="w-full h-full rounded-2xl object-cover absolute top-0 left-0"
-                style={{
-                  borderRadius: "16px",
-                  objectFit: "cover",
-                }}
-                priority
-              />
-            )}
+            {/* Video placeholder image */}
+            <Image
+              src="/placeholder.webp"
+              alt="Portfolio video preview"
+              width={1200}
+              height={675}
+              className="w-full h-full rounded-2xl object-cover absolute top-0 left-0"
+              style={{
+                borderRadius: "16px",
+                objectFit: "cover",
+              }}
+              priority
+            />
 
+            {/* Video element */}
             <video
               ref={videoElRef}
               poster="/placeholder.webp"
@@ -268,7 +267,7 @@ export default function HeroVideo({
               style={{
                 borderRadius: "16px",
                 objectFit: "cover",
-                minHeight: isMobile ? "200px" : "auto", // Ensure minimum height
+                minHeight: isMobile ? "200px" : "auto",
               }}
               onClick={() => {
                 if (!videoElRef.current) return;
@@ -284,6 +283,7 @@ export default function HeroVideo({
               />
             </video>
 
+            {/* Mobile mute button */}
             {isMobile && (
               <div className="absolute bottom-2 right-2 pointer-events-auto">
                 <div
@@ -353,7 +353,7 @@ export default function HeroVideo({
         </div>
       </div>
 
-      {/* Desktop "A VERY SECURE" - NOT scaled */}
+      {/* Desktop "A VERY SECURE" text */}
       {!isMobile && (
         <div
           className={`overflow-hidden w-full mt-4 mb-6 transition-opacity duration-300 ${

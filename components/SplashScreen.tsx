@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Head from "next/head";
 
 interface SplashScreenProps {
   onFinish: () => void;
@@ -19,8 +18,9 @@ export default function SplashScreen({
   const numberRef = useRef<HTMLDivElement>(null);
   const [show, setShow] = useState(true);
 
+  // Asset preloading
   useEffect(() => {
-    const assets = [posterSrc, "/WEB.svg", "/DEVELOPER.svg"];
+    const assets = [posterSrc, "/WEB.svg", "/DEVELOPER.svg", "/INTERACTIVE.svg"];
     videoSources.forEach((v) => assets.push(v.src));
 
     assets.forEach((src) => {
@@ -36,6 +36,7 @@ export default function SplashScreen({
     });
   }, [posterSrc, videoSources]);
 
+  // Counter animation
   useEffect(() => {
     const numberEl = numberRef.current;
     if (!numberEl) return;
@@ -67,26 +68,15 @@ export default function SplashScreen({
   if (!show) return null;
 
   return (
-    <>
-      <Head>
-        {posterSrc && <link rel="preload" as="image" href={posterSrc} />}
-        {videoSources.map((v) => (
-          <link key={v.src} rel="preload" as="video" href={v.src} />
-        ))}
-        <link rel="preload" as="image" href="/WEB.svg" />
-        <link rel="preload" as="image" href="/DEVELOPER.svg" />
-      </Head>
-
-      <div className="fixed inset-0 z-[9999] bg-[var(--color-primary)] flex items-center justify-center pointer-events-none">
-        <div className="overflow-hidden h-[24px] w-[40px] flex justify-center items-center">
-          <div
-            ref={numberRef}
-            className="text-[18px] font-bold text-[var(--color-dark)]"
-          >
-            0
-          </div>
+    <div className="fixed inset-0 z-[9999] bg-[var(--color-primary)] flex items-center justify-center pointer-events-none">
+      <div className="overflow-hidden h-[24px] w-[40px] flex justify-center items-center">
+        <div
+          ref={numberRef}
+          className="text-[18px] font-bold text-[var(--color-dark)]"
+        >
+          0
         </div>
       </div>
-    </>
+    </div>
   );
 }
