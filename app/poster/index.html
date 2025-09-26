@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Interactive Poster</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: #0e0e0e;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    overflow: hidden;
+  }
+
+
+  .poster {
+    position: relative;
+    width: 80%;
+    max-width: 450px;
+    aspect-ratio: 450 / 700;
+    background: #111;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(255,255,255,0.1);
+  }
+
+
+  .poster img.base {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 20px;
+  }
+
+  .hotspot {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden; 
+  }
+
+  .hotspot img {
+    width: 90%;
+    height: 90%;
+    object-fit: contain; 
+  }
+
+  .hotspot:hover {
+    transform: scale(1.1);
+  }
+
+  .gaming {
+    width: 31%;
+    aspect-ratio: 1 / 1;
+    bottom: 25%;
+    left: -10%;
+    background: white;
+    border-radius: 50%;
+  }
+
+  .boxing {
+    width: 35%;
+    aspect-ratio: 1 / 1;
+    top: 7%;
+    right: -8%;
+    border-radius: 50%;
+  }
+
+  .security {
+    width: 25%;
+    aspect-ratio: 1 / 1;
+    top: 40%;
+    right: 0%;
+    border-radius: 20px;
+  }
+
+  .flag {
+    width: 28%;
+    aspect-ratio: 1 / 1;
+    bottom: 14%;
+    right: -8%;
+    border-radius: 10px;
+  }
+</style>
+</head>
+<body>
+
+<div class="poster">
+  <img src="Semmy_poster.png" alt="Poster Background" class="base">
+
+  <a href="" target="_blank" class="hotspot gaming">
+    <img src="Layer 10.png" alt="Gaming">
+  </a>
+
+  <a href="" target="_blank" class="hotspot boxing">
+    <img src="Layer 5.png" alt="Boxing">
+  </a>
+
+  <a href="" target="_blank" class="hotspot security">
+    <img src="Layer 8.png" alt="Cybersecurity">
+  </a>
+
+  <a href="https://example.com/flag" target="_blank" class="hotspot flag">
+    <img src="Layer 3.png" alt="Flag">
+  </a>
+</div>
+
+</body>
+</html>
