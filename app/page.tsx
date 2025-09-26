@@ -206,20 +206,18 @@ export default function Page() {
         {/* Content sections */}
         <section className="min-h-screen bg-slate-900 text-white flex items-center justify-center">
           <div className="text-center">
-            <h1 className="text-4xl font-bold mb-4">Professional Web Development</h1>
+            <h1 className="text-4xl font-bold mb-4">een section</h1>
             <p className="text-xl max-w-2xl mx-auto">
-              Crafting secure, interactive digital experiences with modern technology 
-              and user-focused design principles.
+              scroll test
             </p>
           </div>
         </section>
 
         <section className="min-h-screen bg-slate-700 text-white flex items-center justify-center">
           <div className="text-center">
-            <h2 className="text-4xl font-bold mb-4">Innovative Solutions</h2>
+            <h2 className="text-4xl font-bold mb-4">nog een section</h2>
             <p className="text-xl max-w-2xl mx-auto">
-              Building the future of web applications with cutting-edge technology 
-              and seamless user experiences.
+              scroll test
             </p>
           </div>
         </section>
