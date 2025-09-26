@@ -280,7 +280,7 @@ export default function HeroVideo({
             >
               <source
                 src={
-                  isMobile ? "/hero-video-480.webm" : "/hero-video-720p.webm"
+                  isMobile ? "/hero-video-480p.webm" : "/hero-video-720p.webm"
                 }
                 type="video/webm"
               />
