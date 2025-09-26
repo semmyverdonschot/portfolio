@@ -228,16 +228,17 @@ export default function HeroVideo({
             aspectRatio: "16/9",
             width: isMobile ? "100%" : "40vw",
             maxWidth: isMobile ? "100%" : "600px",
+            minHeight: isMobile ? "200px" : "auto", // Add minimum height for mobile
+            height: isMobile ? "auto" : "auto",
             borderRadius: "16px",
             overflow: "hidden",
           }}
         >
           <div
             ref={videoRef}
-            className="w-full h-full" // Removed translate-y-[-100%] that was moving it out of view
+            className="w-full h-full absolute inset-0" // Use absolute positioning and inset-0
             style={{
               borderRadius: "16px",
-              transform: "translate(0px, 0px)", // Keep it in its natural position
             }}
           >
             {!videoLoaded && (
@@ -250,8 +251,6 @@ export default function HeroVideo({
                 style={{
                   borderRadius: "16px",
                   objectFit: "cover",
-                  maxWidth: "100%",
-                  maxHeight: "100%",
                 }}
                 priority
               />
@@ -268,9 +267,8 @@ export default function HeroVideo({
               className="w-full h-full rounded-2xl object-cover cursor-pointer pointer-events-auto absolute top-0 left-0"
               style={{
                 borderRadius: "16px",
-                maxWidth: "100%",
-                maxHeight: "100%",
                 objectFit: "cover",
+                minHeight: isMobile ? "200px" : "auto", // Ensure minimum height
               }}
               onClick={() => {
                 if (!videoElRef.current) return;
