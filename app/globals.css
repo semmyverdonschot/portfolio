@@ -9,6 +9,7 @@
   --color-grayish: #404040;
   --color-light: #e5e5e5;
   --color-selection: #bfdbfe;
+  --color-graylight: #a1a1a1;
 
   --font-albert-sans: "Albert Sans", sans-serif;
   font-family: var(--font-albert-sans);
@@ -44,4 +45,22 @@ h1 {
 .animated-wrapper {
   display: inline-block;
   overflow: hidden;
+}
+
+/* Infinite scroll animation */
+@keyframes slide {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-slide {
+  animation: slide 5s linear infinite;
+}
+
+.animate-slide-slow {
+  animation: slide 6s linear infinite;
 }

@@ -13,7 +13,6 @@ export default function HeroVideo({
   videoScale = 1,
   isVideoExpanded = false,
 }: HeroVideoProps) {
-  // Refs and state
   const videoWrapperRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLDivElement | null>(null);
   const videoElRef = useRef<HTMLVideoElement | null>(null);
@@ -24,7 +23,6 @@ export default function HeroVideo({
   const parentRectRef = useRef<DOMRect | null>(null);
   const halfVideoWidthRef = useRef<number>(0);
 
-  // Text animation refs - desktop
   const desktopARef = useRef<HTMLSpanElement | null>(null);
   const desktopVeryRef = useRef<HTMLSpanElement | null>(null);
   const desktopSecureRef = useRef<HTMLSpanElement | null>(null);
@@ -211,7 +209,7 @@ export default function HeroVideo({
       <div
         className="relative w-full flex justify-center"
         style={{
-          transform: `scale(${videoScale}) translateY(${videoScale > 1.1 ? `${(videoScale - 1.1) * 17}vh` : "0"})`,
+          transform: `scale(${videoScale}) translateY(${videoScale > 1.1 ? `${(videoScale - 1.1) * 19}vh` : "0"})`,
           transformOrigin: "center top",
           zIndex: isVideoExpanded ? 40 : 10,
           position: "relative",
@@ -360,7 +358,7 @@ export default function HeroVideo({
             mounted ? "opacity-100" : "opacity-0"
           }`}
         >
-          <div className="flex w-full text-[16px] font-normal justify-center">
+          <div className="flex w-full text-base font-normal justify-center">
             <span
               ref={desktopARef}
               className="flex-1 text-left translate-y-full"

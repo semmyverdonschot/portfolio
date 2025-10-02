@@ -18,9 +18,13 @@ export default function SplashScreen({
   const numberRef = useRef<HTMLDivElement>(null);
   const [show, setShow] = useState(true);
 
-  // Asset preloading
   useEffect(() => {
-    const assets = [posterSrc, "/WEB.svg", "/DEVELOPER.svg", "/INTERACTIVE.svg"];
+    const assets = [
+      posterSrc,
+      "/WEB.svg",
+      "/DEVELOPER.svg",
+      "/INTERACTIVE.svg",
+    ];
     videoSources.forEach((v) => assets.push(v.src));
 
     assets.forEach((src) => {
@@ -36,7 +40,6 @@ export default function SplashScreen({
     });
   }, [posterSrc, videoSources]);
 
-  // Counter animation
   useEffect(() => {
     const numberEl = numberRef.current;
     if (!numberEl) return;

@@ -20,6 +20,64 @@ interface NavButtonProps {
 
 function NavButton({ item, idx, activeIndex, onClick }: NavButtonProps) {
   const dotRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLSpanElement>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.scrollY > 100;
+      if (scrolled !== isScrolled) {
+        setIsScrolled(scrolled);
+
+        if (item.isHome && textRef.current) {
+          if (scrolled) {
+            gsap
+              .timeline()
+              .to(textRef.current, {
+                opacity: 0.3,
+                scale: 0.95,
+                duration: 0.2,
+                ease: "power2.out",
+              })
+              .call(() => {
+                if (textRef.current) {
+                  textRef.current.textContent = "SV";
+                }
+              })
+              .to(textRef.current, {
+                opacity: 1,
+                scale: 1,
+                duration: 0.3,
+                ease: "power2.out",
+              });
+          } else {
+            gsap
+              .timeline()
+              .to(textRef.current, {
+                opacity: 0.3,
+                scale: 0.95,
+                duration: 0.2,
+                ease: "power2.out",
+              })
+              .call(() => {
+                if (textRef.current) {
+                  textRef.current.textContent = "SEMMY VERDONSCHOT";
+                }
+              })
+              .to(textRef.current, {
+                opacity: 1,
+                scale: 1,
+                duration: 0.3,
+                ease: "power2.out",
+              });
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isScrolled, item.isHome]);
 
   useEffect(() => {
     if (dotRef.current) {
@@ -47,7 +105,16 @@ function NavButton({ item, idx, activeIndex, onClick }: NavButtonProps) {
         className="w-3 h-3 mr-2 rounded-full border-2 border-[var(--color-dark)]"
         style={{ transformOrigin: "center", transform: "scale(0)" }}
       />
-      <span className={item.isHome ? "uppercase" : ""}>{item.name}</span>
+      <span
+        ref={textRef}
+        className={item.isHome ? "uppercase" : ""}
+        style={{
+          minWidth: item.isHome ? "200px" : "auto",
+          display: "inline-block",
+        }}
+      >
+        {item.isHome ? "SEMMY VERDONSCHOT" : item.name}
+      </span>
     </Link>
   );
 }
@@ -251,7 +318,7 @@ export default function Navbar() {
           >
             <span>[LINKEDIN</span>
             <svg
-              className="w-4 h-4 ml-1 transform rotate-45 transition-transform duration-300 group-hover:translate-x-1 group-hover:translate-y-1"
+              className="w-4 h-4 ml-1 transform -rotate-45 transition-transform duration-300 group-hover:translate-x-1 group-hover:translate-y-1"
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
@@ -274,7 +341,7 @@ export default function Navbar() {
           >
             <span>[GITHUB</span>
             <svg
-              className="w-4 h-4 ml-1 transform rotate-45 transition-transform duration-300 group-hover:translate-x-1 group-hover:translate-y-1"
+              className="w-4 h-4 ml-1 transform -rotate-45 transition-transform duration-300 group-hover:translate-x-1 group-hover:translate-y-1"
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
@@ -296,7 +363,7 @@ export default function Navbar() {
           >
             <span>[WHATSAPP</span>
             <svg
-              className="w-4 h-4 ml-1 transform rotate-45 transition-transform duration-300 group-hover:translate-x-1 group-hover:translate-y-1"
+              className="w-4 h-4 ml-1 transform -rotate-45 transition-transform duration-300 group-hover:translate-x-1 group-hover:translate-y-1"
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
