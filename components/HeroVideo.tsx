@@ -27,14 +27,12 @@ export default function HeroVideo({
   const desktopVeryRef = useRef<HTMLSpanElement | null>(null);
   const desktopSecureRef = useRef<HTMLSpanElement | null>(null);
 
-  // Text animation refs - mobile
   const mobileARef = useRef<HTMLSpanElement | null>(null);
   const mobileVeryRef = useRef<HTMLSpanElement | null>(null);
   const mobileSecureRef = useRef<HTMLSpanElement | null>(null);
 
   const [mounted, setMounted] = useState(false);
 
-  // Component initialization
   useEffect(() => setMounted(true), []);
 
   // Mobile detection
@@ -209,7 +207,7 @@ export default function HeroVideo({
       <div
         className="relative w-full flex justify-center"
         style={{
-          transform: `scale(${videoScale}) translateY(${videoScale > 1.1 ? `${(videoScale - 1.1) * 19}vh` : "0"})`,
+          transform: `scale(${videoScale}) translateY(${videoScale > 1.1 ? `${(videoScale - 1.1) * 20}vh` : "0"})`,
           transformOrigin: "center top",
           zIndex: isVideoExpanded ? 40 : 10,
           position: "relative",

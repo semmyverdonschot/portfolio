@@ -7,7 +7,6 @@ export default function Template({ children }: { children: React.ReactNode }) {
   const [transitionComplete, setTransitionComplete] = useState(false);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
     setTransitionComplete(false);
   }, []);
 
@@ -38,7 +37,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
         overflowX: "hidden",
         boxSizing: "border-box",
       }}
-      className="px-2md:px-4" // Add layout padding to match your layout.tsx
+      className="px-2md:px-4"
       onAnimationStart={() => {
         const element = document.querySelector(
           "[data-template]",
@@ -48,6 +47,8 @@ export default function Template({ children }: { children: React.ReactNode }) {
         }
       }}
       onAnimationComplete={() => {
+        window.scrollTo(0, 0);
+
         const element = document.querySelector(
           "[data-template]",
         ) as HTMLElement;

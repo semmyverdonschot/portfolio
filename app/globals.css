@@ -28,39 +28,17 @@ body {
   box-sizing: border-box;
 }
 
-h1 {
-  display: none;
-  overflow: hidden;
-}
-
 ::selection {
   background-color: var(--color-selection);
   color: var(--color-dark);
 }
-.sentence {
-  display: inline-block;
-  transform: translateY(70px);
-  white-space: pre-wrap;
+
+::-moz-selection {
+  background-color: var(--color-dark);
+  color: var(--color-dark);
 }
-.animated-wrapper {
-  display: inline-block;
+
+h1 {
+  display: none;
   overflow: hidden;
-}
-
-/* Infinite scroll animation */
-@keyframes slide {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.animate-slide {
-  animation: slide 5s linear infinite;
-}
-
-.animate-slide-slow {
-  animation: slide 6s linear infinite;
 }

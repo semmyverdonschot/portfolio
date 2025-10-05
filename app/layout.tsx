@@ -26,13 +26,13 @@ export const metadata: Metadata = {
       "Interactive web developer from the Netherlands, studying at Fontys. Specializing in secure digital solutions.",
     type: "website",
     url: "https://semmyverdonschot.com",
-    images: ["/placeholder.webp"],
+    images: ["/og_image.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Semmy Verdonschot - Web Developer",
     description: "Web developer from the Netherlands",
-    images: ["/placeholder.webp"],
+    images: ["/og_image.png"],
   },
   alternates: {
     canonical: "/",
@@ -86,10 +86,8 @@ export default function RootLayout({
           content="black-translucent"
         />
       </head>
-      <body
-        className={`${albertSans.className} antialiased bg-[#171717] text-[var(--color-light)] transition-colors duration-300`}
-      >
-        {/* Lenis smooth scrolling */}
+      <body>
+        {/* Lenis*/}
         <Script
           strategy="beforeInteractive"
           src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"

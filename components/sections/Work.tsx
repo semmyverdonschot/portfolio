@@ -2,22 +2,20 @@
 
 import { useRef } from "react";
 import Image from "next/image";
+import InfiniteCarousel from "../InfiniteCarousel";
 
 export default function Work() {
   const sectionRef = useRef<HTMLElement>(null);
   return (
-    <section ref={sectionRef}>
+    <section ref={sectionRef} className="pt-32 md:pt-48">
       <div className="w-full max-w-none mx-auto">
         <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start">
           <div className="md:col-span-12 space-y-8 md:space-y-10 overflow-x-hidden">
-            {/* WORK */}
+            {/* Projects*/}
             <div className="w-full flex justify-between items-center">
-              <h2 className="text-[20vw] md:text-[12vw] lg:text-[10vw] leading-none font-black text-[var(--color-dark)]">
-                WORK
+              <h2 className="text-[17.9vw] md:text-[12vw] lg:text-[10vw] uppercase leading-none font-black text-[var(--color-dark)]">
+                MY WORK
               </h2>
-              <span className="text-[20vw] md:text-[12vw] lg:text-[10vw] leading-none font-black text-[var(--color-dark)]">
-                25
-              </span>
             </div>
 
             {/* Project Cards */}
@@ -55,16 +53,23 @@ export default function Work() {
                         Garage Hans
                       </p>
                     </div>
-                    <p className="text-sm md:text-sm uppercase font-semibold text-[var(--color-primary)] tracking-wide flex-shrink-0 ml-2">
+                    <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-wide flex-shrink-0 ml-2">
                       Website 2024
                     </p>
                   </div>
 
-                  {/* Static tech list */}
+                  {/* tech*/}
                   <div className="w-full min-w-0">
-                    <p className="text-xs md:text-sm uppercase font-medium text-[var(--color-graylight)] tracking-wider truncate">
-                      Next.js • TypeScript • Tailwind • GSAP
-                    </p>
+                    <InfiniteCarousel
+                      items={[
+                        "React",
+                        "Node.js",
+                        "MongoDB",
+                        "Express",
+                        "Socket.io",
+                        "JWT",
+                      ]}
+                    />
                   </div>
                 </div>
               </a>
@@ -102,16 +107,23 @@ export default function Work() {
                         Project Two
                       </p>
                     </div>
-                    <p className="text-sm md:text-sm uppercase font-semibold text-[var(--color-primary)] tracking-wide flex-shrink-0 ml-2">
+                    <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-wide flex-shrink-0 ml-2">
                       2024
                     </p>
                   </div>
 
                   {/* Static tech list */}
                   <div className="w-full min-w-0">
-                    <p className="text-xs md:text-sm uppercase font-medium text-[var(--color-graylight)] tracking-wider truncate">
-                      React • Node.js • MongoDB • Express
-                    </p>
+                    <InfiniteCarousel
+                      items={[
+                        "React",
+                        "Node.js",
+                        "MongoDB",
+                        "Express",
+                        "Socket.io",
+                        "JWT",
+                      ]}
+                    />
                   </div>
                 </div>
               </a>
@@ -119,8 +131,7 @@ export default function Work() {
           </div>
         </div>
       </div>
-
-      <div className="flex flex-row justify-center space-x-6 md:space-x-8 pt-8 md:pt-12">
+      <div className="flex flex-row justify-center space-x-6 md:space-x-8 pt-12 md:pt-16">
         <a
           href="/projects"
           className="flex items-center overflow-hidden w-max group text-[var(--color-dark)] hover:text-[var(--color-dark)] transition-colors text-lg md:text-base"

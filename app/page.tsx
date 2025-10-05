@@ -5,6 +5,7 @@ import { useSlideTogether } from "@/hooks/useStaggerSlide";
 import HeroVideo from "@/components/HeroVideo";
 import About from "@/components/sections/About";
 import Work from "@/components/sections/Work";
+import Footer from "@/components/sections/Footer";
 
 export default function Page() {
   const [isMobile, setIsMobile] = useState(false);
@@ -198,20 +199,24 @@ export default function Page() {
         <div
           className={`w-full flex justify-between items-center ${isMobile ? "mt-8" : "mt-16"}`}
         >
-          <div
-            ref={scrollLeftRef}
-            className={`flex items-center space-x-2 text-[var(--color-dark)] font-normal ${isMobile ? "text-base" : "text-base hover:text-[var(--color-dark)] transition-colors duration-300"}`}
-          >
-            <span className={isMobile ? "text-xl" : "text-2xl"}>↓</span>
-            <span>Scroll for</span>
+          <div className="overflow-hidden">
+            <div
+              ref={scrollLeftRef}
+              className={`flex items-center space-x-2 text-[var(--color-dark)] font-normal ${isMobile ? "text-base" : "text-base hover:text-[var(--color-dark)] transition-colors duration-300"}`}
+            >
+              <span className={isMobile ? "text-xl" : "text-2xl"}>↓</span>
+              <span>Scroll for</span>
+            </div>
           </div>
 
-          <div
-            ref={scrollRightRef}
-            className={`flex items-center space-x-2 text-[var(--color-dark)] font-normal ${isMobile ? "text-base" : "text-base hover:text-[var(--color-dark)] transition-colors duration-300"}`}
-          >
-            <span>the good stuff</span>
-            <span className={isMobile ? "text-xl" : "text-2xl"}>↓</span>
+          <div className="overflow-hidden">
+            <div
+              ref={scrollRightRef}
+              className={`flex items-center space-x-2 text-[var(--color-dark)] font-normal ${isMobile ? "text-base" : "text-base hover:text-[var(--color-dark)] transition-colors duration-300"}`}
+            >
+              <span>the good stuff</span>
+              <span className={isMobile ? "text-xl" : "text-2xl"}>↓</span>
+            </div>
           </div>
         </div>
 
@@ -221,6 +226,7 @@ export default function Page() {
 
       <About />
       <Work />
+      <Footer />
     </div>
   );
 }

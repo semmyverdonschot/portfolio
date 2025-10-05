@@ -8,7 +8,7 @@ export default function About() {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen bg-[var(--color-primary)] flex items-center justify-center w-full"
+      className="min-h-screen bg-[var(--color-primary)] flex items-center justify-center w-full pt-48 md:pt-56"
       id="about"
       aria-labelledby="about-heading"
     >
@@ -25,10 +25,9 @@ export default function About() {
             </header>
             <div className="flex flex-col md:flex-row md:items-start md:space-x-20 space-y-3 md:space-y-0">
               <p className="text-2xl md:text-4xl lg:text-5xl font-normal text-[var(--color-dark)] leading-tight flex-1 max-w-full md:max-w-4xl">
-                I&apos;m web development&apos;s jack-of-all-trades from
-                big-picture concepts to full-stack execution. My focus is
-                building secure digital identities and interactions that are as
-                trustworthy as they are impactful.
+                I&apos;m a web developer with a focus on building secure digital
+                experiences, a <i>jack-of-all-trades</i> who enjoys helping
+                brands do things they didn&apos;t know they could do.{" "}
               </p>
               <aside
                 className="text-lg md:text-2xl text-[var(--color-graylight)] hidden md:block flex-shrink-0 leading-relaxed text-left ml-auto"
@@ -37,7 +36,7 @@ export default function About() {
                 <address className="not-italic">
                   <p>Raised in the southern</p>
                   <p>Netherlands, now studying</p>
-                  <p>cybersecurity at Fontys</p>
+                  <p>at Fontys</p>
                 </address>
               </aside>
             </div>
@@ -48,7 +47,7 @@ export default function About() {
             >
               <a
                 href="/about"
-                className="flex items-center overflow-hidden w-max group text-[var(--color-dark)] hover:text-[var(--color-dark)] transition-colors text-lg md:text-base"
+                className="flex items-center overflow-hidden w-max group text-[var(--color-dark)] hover:text-[var(--color-dark)] transition-colors text-base md:text-base"
                 aria-label="Learn more about my background and experience"
               >
                 <span>[ABOUT</span>
@@ -72,8 +71,7 @@ export default function About() {
                 className="text-base md:hidden text-[var(--color-graylight)] leading-relaxed"
                 aria-label="Personal background"
               >
-                <p>Raised in the southern Netherlands,</p>
-                <p>now studying at Fontys</p>
+                <p>Raised in the southern Netherlands.</p>
               </div>
             </nav>
           </div>
