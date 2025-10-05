@@ -21,17 +21,17 @@ export const metadata: Metadata = {
   robots: "index, follow",
   themeColor: "#171717",
   openGraph: {
-    title: "Semmy Verdonschot - Interactive Web Developer",
+    title: "Semmy Verdonschot | Web Developer",
     description:
-      "Interactive web developer from the Netherlands, studying at Fontys. Specializing in secure digital solutions.",
+      "Web developer based in the Netherlands",
     type: "website",
     url: "https://semmyverdonschot.com",
     images: ["/og_image.png"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Semmy Verdonschot - Web Developer",
-    description: "Web developer from the Netherlands",
+    title: "Semmy Verdonschot | Web Developer",
+    description: "Web developer based in the Netherlands",
     images: ["/og_image.png"],
   },
   alternates: {

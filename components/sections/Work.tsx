@@ -61,14 +61,13 @@ export default function Work() {
                   {/* tech*/}
                   <div className="w-full min-w-0">
                     <InfiniteCarousel
-                      items={[
-                        "React",
-                        "Node.js",
-                        "MongoDB",
-                        "Express",
-                        "Socket.io",
-                        "JWT",
-                      ]}
+                       items={[
+                              "HTML",
+                              "CSS",
+                              "JAVASCRIPT",
+                              "FORMSPREE",
+                              "API INTEGRATION",
+                            ]}
                     />
                   </div>
                 </div>

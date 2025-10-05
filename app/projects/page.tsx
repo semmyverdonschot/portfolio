@@ -100,12 +100,11 @@ export default function Work() {
                         <div className="w-full min-w-0">
                           <InfiniteCarousel
                             items={[
-                              "Next.js",
-                              "TypeScript",
-                              "Tailwind",
-                              "GSAP",
-                              "Framer Motion",
-                              "Vercel",
+                              "HTML",
+                              "CSS",
+                              "JAVASCRIPT",
+                              "FORMSPREE",
+                              "API INTEGRATION",
                             ]}
                           />
                         </div>
@@ -156,13 +155,12 @@ export default function Work() {
                         {/* Infinite carousel tech list */}
                         <div className="w-full min-w-0">
                           <InfiniteCarousel
-                            items={[
-                              "React",
-                              "Node.js",
-                              "MongoDB",
-                              "Express",
-                              "Socket.io",
-                              "JWT",
+                              items={[
+                              "HTML",
+                              "CSS",
+                              "JAVASCRIPT",
+                              "FORMSPREE",
+                              "API INTEGRATION",
                             ]}
                           />
                         </div>
@@ -215,13 +213,12 @@ export default function Work() {
                         {/* Infinite carousel tech list */}
                         <div className="w-full min-w-0">
                           <InfiniteCarousel
-                            items={[
-                              "React",
-                              "Node.js",
-                              "MongoDB",
-                              "Express",
-                              "Socket.io",
-                              "JWT",
+                              items={[
+                              "HTML",
+                              "CSS",
+                              "JAVASCRIPT",
+                              "FORMSPREE",
+                              "API INTEGRATION",
                             ]}
                           />
                         </div>
@@ -271,13 +268,12 @@ export default function Work() {
                         {/* Infinite carousel tech list */}
                         <div className="w-full min-w-0">
                           <InfiniteCarousel
-                            items={[
-                              "React",
-                              "Node.js",
-                              "MongoDB",
-                              "Express",
-                              "Socket.io",
-                              "JWT",
+                              items={[
+                              "HTML",
+                              "CSS",
+                              "JAVASCRIPT",
+                              "FORMSPREE",
+                              "API INTEGRATION",
                             ]}
                           />
                         </div>
