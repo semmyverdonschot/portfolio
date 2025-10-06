@@ -82,7 +82,7 @@ export default function Work() {
                                   type="video/webm"
                                 />
                                 <Image
-                                  src="/Garagehansverdonschot/preview.webp"
+                                  src="/Garagehansverdonschot/garage hans mockup.png"
                                   alt="Garage Hans Preview"
                                   width={480}
                                   height={288}
@@ -153,7 +153,7 @@ export default function Work() {
                         {/* Animated overlay content */}
                         <div className="absolute inset-0 z-20 flex items-center justify-center">
                           <div className="overflow-hidden">
-                            <div className="w-80 h-48 md:w-[30rem] md:h-72 rounded-xl overflow-hidden transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                            <div className="w-80 h-48 md:w-[30rem] md:h-72 overflow-hidden transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
                               <video
                                 autoPlay
                                 loop
@@ -162,8 +162,8 @@ export default function Work() {
                                 className="w-full h-full object-cover"
                               >
                                 <source
-                                  src="/Revivor/preview.mp4"
-                                  type="video/mp4"
+                                  src="/Garagehansverdonschot/preview.webm"
+                                  type="video/webm"
                                 />
                                 <Image
                                   src="/Revivor/preview.webp"

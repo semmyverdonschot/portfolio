@@ -164,7 +164,7 @@ export default function Work() {
                     </p>
                   </div>
 
-                  {/* Static tech list */}
+                  {/* dynamic tech list */}
                   <div className="w-full min-w-0">
                     <InfiniteCarousel
                       items={[

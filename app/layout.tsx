@@ -19,7 +19,6 @@ export const metadata: Metadata = {
     "web developer, full-stack developer, interactive design, secure applications, modern web development, digital solutions, cybersecurity, Next.js, React, TypeScript, Fontys, Netherlands",
   authors: [{ name: "Semmy Verdonschot" }],
   robots: "index, follow",
-  themeColor: "#171717",
   openGraph: {
     title: "Semmy Verdonschot | Web Developer",
     description: "Web developer based in the Netherlands",
@@ -34,8 +33,12 @@ export const metadata: Metadata = {
     images: ["/og_image.png"],
   },
   alternates: {
-    canonical: "/",
+    canonical: "https://semmyverdonschot.com",
   },
+};
+
+export const viewport = {
+  themeColor: "#171717",
 };
 
 export default function RootLayout({
