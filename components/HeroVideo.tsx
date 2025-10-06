@@ -189,6 +189,29 @@ export default function HeroVideo({
   useSlideTogether(animatedUpRefs, "up", 0.8);
   useSlideTogether(animatedDownRefs, "down", 0.8);
 
+  const getDynamicTranslateY = () => {
+    if (typeof window === "undefined") return 20;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    
+    // Reference: 2560x1440 = 20vh (perfect)
+    // Calculate dynamic value based on screen size
+    const referenceWidth = 2560;
+    const referenceHeight = 1440;
+    const referenceValue = 20;
+    
+    // Calculate scaling factors
+    const widthRatio = width / referenceWidth;
+    const heightRatio = height / referenceHeight;
+    const avgRatio = (widthRatio + heightRatio) / 2;
+    
+    // Inverse relationship: smaller screens need higher values
+    const dynamicValue = referenceValue / avgRatio;
+    
+    // Clamp between reasonable bounds
+    return Math.max(15, Math.min(35, dynamicValue));
+  };
+
   return (
     <>
       {/* Mobile "A VERY SECURE" text */}
@@ -225,7 +248,7 @@ export default function HeroVideo({
       <div
         className="relative w-full flex justify-center px-4"
         style={{
-          transform: `scale(${Math.min(videoScale, dynamicMaxScale)}) translateY(${videoScale > 1.1 ? `${(Math.min(videoScale, dynamicMaxScale) - 1.1) * 20}vh` : "0"})`,
+          transform: `scale(${Math.min(videoScale, dynamicMaxScale)}) translateY(${videoScale > 1.1 ? `${(Math.min(videoScale, dynamicMaxScale) - 1.1) * getDynamicTranslateY()}vh` : "0"})`,
           transformOrigin: "center top",
           zIndex: isVideoExpanded ? 40 : 10,
           position: "relative",
