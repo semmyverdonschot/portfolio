@@ -210,9 +210,11 @@ export default function HeroVideo({
   const getDynamicTranslateY = () => {
     if (typeof window === "undefined" || isMobile) return 20;
     const width = window.innerWidth;
-    if (width < 1024) return 25; 
-    if (width < 1440) return 25;
-    return 15;
+    if (width < 1024) return 33;
+    if (width < 1440) return 30;
+    if (width < 1600) return 25;
+    if (width < 1920) return 18; 
+    return 13;
   };
 
   return (
