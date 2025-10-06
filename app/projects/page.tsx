@@ -82,8 +82,8 @@ export default function Work() {
                                   type="video/webm"
                                 />
                                 <Image
-                                  src="/Garagehansverdonschot/garage hans mockup.png"
-                                  alt="Garage Hans Preview"
+                                  src="/Garagehansverdonschot/Garage Hans mockup.png"
+                                  alt="Garage Hans Mockup"
                                   width={480}
                                   height={288}
                                   className="w-full h-full object-cover"
@@ -94,8 +94,8 @@ export default function Work() {
                         </div>
 
                         <Image
-                          src="/garagehansverdonschot/Garage Hans mockup.png"
-                          alt="Garage Hans Verdonschot Preview"
+                          src="/Garagehansverdonschot/Garage Hans mockup.png"
+                          alt="Garage Hans Verdonschot Mockup"
                           width={400}
                           height={250}
                           className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-500 ease-in-out"
