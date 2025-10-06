@@ -20,9 +20,9 @@ export default function Work() {
 
             {/* Project Cards */}
             <div className="flex flex-col md:flex-row gap-4 md:gap-6 w-full mb-6 overflow-x-hidden">
-              {/* garage hans verdonschot*/}
+              {/* garage hans*/}
               <a
-                href="/projects/garage-hans-verdonschot"
+                href="/projects/garage-hans"
                 className="flex flex-col gap-3 p-4 rounded-2xl bg-[var(--color-dark)] cursor-pointer group relative w-full md:flex-1 min-w-0"
               >
                 <div className="relative rounded-lg lg:rounded-xl overflow-hidden w-full h-[260px] md:h-[350px] lg:h-[clamp(500px,32vw,800px)]">
@@ -31,21 +31,30 @@ export default function Work() {
                   {/* Animated overlay content */}
                   <div className="absolute inset-0 z-20 flex items-center justify-center">
                     <div className="overflow-hidden">
-                      <div className="w-32 h-32 md:w-40 md:h-40 rounded-xl overflow-hidden transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                        <Image
-                          src="/placeholder.webp"
-                          alt="Garage Hans Preview"
-                          width={160}
-                          height={160}
+                      <div className="w-80 h-48 md:w-[30rem] md:h-72 overflow-hidden transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                        <video
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
                           className="w-full h-full object-cover"
-                        />
+                        >
+                          <source src="/Garagehansverdonschot/preview.webm" type="video/webm" />
+                          <Image
+                            src="/Garagehansverdonschot/preview.webp"
+                            alt="Garage Hans Preview"
+                            width={480}
+                            height={288}
+                            className="w-full h-full object-cover"
+                          />
+                        </video>
                       </div>
                     </div>
                   </div>
 
                   <Image
-                    src="/placeholder.webp"
-                    alt="Garage Hans Verdonschot Preview"
+                    src="/Garagehansverdonschot/Garage Hans mockup.png"
+                    alt="Garage Hans Verdonschot mockup"
                     width={400}
                     height={250}
                     className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-500 ease-in-out rounded-lg lg:rounded-xl"
@@ -100,7 +109,7 @@ export default function Work() {
                   {/* Animated overlay content */}
                   <div className="absolute inset-0 z-20 flex items-center justify-center">
                     <div className="overflow-hidden">
-                      <div className="w-32 h-32 md:w-40 md:h-40 rounded-xl overflow-hidden transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                      <div className="w-80 h-48 md:w-[30rem] md:h-72 rounded-xl overflow-hidden transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
                         <video
                           autoPlay
                           loop
@@ -108,12 +117,12 @@ export default function Work() {
                           playsInline
                           className="w-full h-full object-cover"
                         >
-                          <source src="/Revivor/preview.webm" type="video/webm" />
+                          <source src="/Revivor/preview.mp4" type="video/mp4" />
                           <Image
                             src="/Revivor/preview.webp"
                             alt="Revivor Preview"
-                            width={160}
-                            height={160}
+                            width={480}
+                            height={288}
                             className="w-full h-full object-cover"
                           />
                         </video>
@@ -156,12 +165,11 @@ export default function Work() {
                   <div className="w-full min-w-0">
                     <InfiniteCarousel
                       items={[
-                        "React",
-                        "Node.js",
-                        "MongoDB",
-                        "Express",
-                        "Socket.io",
-                        "JWT",
+                        "HTML",
+                        "CSS",
+                        "JAVASCRIPT",
+                        "FORMSPREE",
+                        "API INTEGRATION",
                       ]}
                     />
                   </div>
