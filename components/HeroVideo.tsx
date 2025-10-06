@@ -56,9 +56,7 @@ export default function HeroVideo({
   useEffect(() => {
     const calculateMaxScale = () => {
       const viewportWidth = window.innerWidth;
-      const videoWidth = isMobile
-        ? viewportWidth * 0.9
-        : Math.min(600, viewportWidth * 0.4);
+      const videoWidth = isMobile ? viewportWidth * 0.9 : Math.min(600, viewportWidth * 0.4);
 
       // Leave margin for border radius (64px total - 32px each side)
       const maxScale = (viewportWidth - 64) / videoWidth;
@@ -91,29 +89,20 @@ export default function HeroVideo({
       if (!parentRectRef.current) return;
 
       const viewportWidth = window.innerWidth;
-      const layoutPadding = 64;
+      const layoutPadding = 64; 
       const videoWidth = halfVideoWidthRef.current * 2;
-
-      const videoLeft =
-        parentRectRef.current.left -
-        videoWidth / 2 +
-        parentRectRef.current.width / 2;
+      
+      const videoLeft = parentRectRef.current.left - (videoWidth / 2) + (parentRectRef.current.width / 2);
       const videoRight = videoLeft + videoWidth;
-
-      const maxLeftMovement = Math.max(0, videoLeft - layoutPadding / 2);
-      const maxRightMovement = Math.max(
-        0,
-        viewportWidth - layoutPadding / 2 - videoRight,
-      );
-
-      const mouseRelativeX =
-        e.clientX -
-        parentRectRef.current.left -
-        parentRectRef.current.width / 2;
-
+      
+      const maxLeftMovement = Math.max(0, videoLeft - (layoutPadding / 2));
+      const maxRightMovement = Math.max(0, (viewportWidth - layoutPadding / 2) - videoRight);
+      
+      const mouseRelativeX = e.clientX - parentRectRef.current.left - parentRectRef.current.width / 2;
+      
       const maxX = maxRightMovement;
       const minX = -maxLeftMovement;
-
+      
       targetX.current = Math.max(minX, Math.min(maxX, mouseRelativeX * 0.8));
     };
 
@@ -154,22 +143,15 @@ export default function HeroVideo({
         const layoutPadding = 64;
         const videoWidth = halfVideoWidthRef.current * 2;
         const parentRect = parentRectRef.current;
-
+        
         if (parentRect) {
-          const videoLeft =
-            parentRect.left - videoWidth / 2 + parentRect.width / 2;
+          const videoLeft = parentRect.left - (videoWidth / 2) + (parentRect.width / 2);
           const videoRight = videoLeft + videoWidth;
-
-          const maxLeftMovement = Math.max(0, videoLeft - layoutPadding / 2);
-          const maxRightMovement = Math.max(
-            0,
-            viewportWidth - layoutPadding / 2 - videoRight,
-          );
-
-          const clampedX = Math.max(
-            -maxLeftMovement,
-            Math.min(maxRightMovement, currentX.current),
-          );
+          
+          const maxLeftMovement = Math.max(0, videoLeft - (layoutPadding / 2));
+          const maxRightMovement = Math.max(0, (viewportWidth - layoutPadding / 2) - videoRight);
+          
+          const clampedX = Math.max(-maxLeftMovement, Math.min(maxRightMovement, currentX.current));
           const roundedX = Math.round(clampedX * 10) / 10;
           videoWrapperRef.current.style.transform = `translateX(${roundedX}px)`;
           videoWrapperRef.current.style.willChange = "transform";
@@ -207,15 +189,6 @@ export default function HeroVideo({
   useSlideTogether(animatedUpRefs, "up", 0.8);
   useSlideTogether(animatedDownRefs, "down", 0.8);
 
-  const getDynamicTranslateY = () => {
-    if (typeof window === "undefined" || isMobile) return 20;
-    const width = window.innerWidth;
-    if (width <= 1440) return 30;
-    if (width <= 1600) return 23;
-    if (width <= 1920) return 13; 
-    return 15;
-  };
-
   return (
     <>
       {/* Mobile "A VERY SECURE" text */}
@@ -252,7 +225,7 @@ export default function HeroVideo({
       <div
         className="relative w-full flex justify-center px-4"
         style={{
-          transform: `scale(${Math.min(videoScale, dynamicMaxScale)}) translateY(${videoScale > 1.1 ? `${(Math.min(videoScale, dynamicMaxScale) - 1.1) * getDynamicTranslateY()}vh` : "0"})`,
+          transform: `scale(${Math.min(videoScale, dynamicMaxScale)}) translateY(${videoScale > 1.1 ? `${(Math.min(videoScale, dynamicMaxScale) - 1.1) * 20}vh` : "0"})`,
           transformOrigin: "center top",
           zIndex: isVideoExpanded ? 40 : 10,
           position: "relative",
