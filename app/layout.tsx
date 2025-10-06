@@ -22,8 +22,7 @@ export const metadata: Metadata = {
   themeColor: "#171717",
   openGraph: {
     title: "Semmy Verdonschot | Web Developer",
-    description:
-      "Web developer based in the Netherlands",
+    description: "Web developer based in the Netherlands",
     type: "website",
     url: "https://semmyverdonschot.com",
     images: ["/og_image.png"],

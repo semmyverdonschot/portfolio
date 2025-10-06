@@ -129,9 +129,7 @@ export default function Page() {
 
   return (
     <div className="min-h-screen bg-[var(--color-primary)] flex flex-col justify-start relative overflow-hidden">
-      <h1 className="sr-only">
-        Semmy Verdonschot | Web Developer
-      </h1>
+      <h1 className="sr-only">Semmy Verdonschot | Web Developer</h1>
 
       <section className="relative" aria-label="Hero introduction">
         <div className="h-28 md:h-36 lg:h-44 w-full" />

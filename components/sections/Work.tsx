@@ -39,7 +39,10 @@ export default function Work() {
                           playsInline
                           className="w-full h-full object-cover"
                         >
-                          <source src="/Garagehansverdonschot/preview.webm" type="video/webm" />
+                          <source
+                            src="/Garagehansverdonschot/preview.webm"
+                            type="video/webm"
+                          />
                           <Image
                             src="/Garagehansverdonschot/preview.webp"
                             alt="Garage Hans Preview"
