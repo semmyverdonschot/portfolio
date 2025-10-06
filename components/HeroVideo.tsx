@@ -199,7 +199,6 @@ export default function HeroVideo({
       { min: 2560, value: 13 },
       { min: 1920, value: 15 },
       { min: 1600, value: 16 }, 
-      { min: 1440, value: 27 },
       { min: 768,  value: 28 },
     ];
 
