@@ -198,7 +198,8 @@ export default function HeroVideo({
     const breakpoints = [
       { min: 2560, value: 13 },
       { min: 1920, value: 15 },
-      { min: 1600, value: 18 }, 
+      { min: 1600, value: 17 }, 
+      { min: 1536, value: 27 }, 
       { min: 1440, value: 25 },
       { min: 768,  value: 28 },
     ];
