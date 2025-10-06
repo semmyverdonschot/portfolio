@@ -190,14 +190,26 @@ export default function HeroVideo({
   useSlideTogether(animatedDownRefs, "down", 0.8);
 
   const getDynamicTranslateY = () => {
-    if (typeof window === "undefined") return 20;
+    if (typeof window === "undefined") return 15;
+
     const width = window.innerWidth;
-    if (width >= 1536) return 25;
-    if (width >= 1200) return 25;
-    if (width >= 1024) return 28;
-    if (width >= 768) return 32;
-    return 15; 
+
+    
+    const breakpoints = [
+      { min: 2560, value: 13 },
+      { min: 1920, value: 15 },
+      { min: 1600, value: 18 }, 
+      { min: 1440, value: 25 },
+      { min: 768,  value: 28 },
+    ];
+
+    for (const bp of breakpoints) {
+      if (width >= bp.min) return bp.value;
+    }
+
+    return 32;
   };
+
 
   return (
     <>
