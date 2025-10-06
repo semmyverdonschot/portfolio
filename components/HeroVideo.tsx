@@ -189,6 +189,16 @@ export default function HeroVideo({
   useSlideTogether(animatedUpRefs, "up", 0.8);
   useSlideTogether(animatedDownRefs, "down", 0.8);
 
+  const getDynamicTranslateY = () => {
+    if (typeof window === "undefined") return 20;
+    const width = window.innerWidth;
+    if (width >= 1536) return 25;
+    if (width >= 1200) return 25;
+    if (width >= 1024) return 28;
+    if (width >= 768) return 32;
+    return 15; 
+  };
+
   return (
     <>
       {/* Mobile "A VERY SECURE" text */}
@@ -225,7 +235,7 @@ export default function HeroVideo({
       <div
         className="relative w-full flex justify-center px-4"
         style={{
-          transform: `scale(${Math.min(videoScale, dynamicMaxScale)}) translateY(${videoScale > 1.1 ? `${(Math.min(videoScale, dynamicMaxScale) - 1.1) * 20}vh` : "0"})`,
+          transform: `scale(${Math.min(videoScale, dynamicMaxScale)}) translateY(${videoScale > 1.1 ? `${(Math.min(videoScale, dynamicMaxScale) - 1.1) * getDynamicTranslateY()}vh` : "0"})`,
           transformOrigin: "center top",
           zIndex: isVideoExpanded ? 40 : 10,
           position: "relative",
