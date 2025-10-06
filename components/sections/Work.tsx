@@ -27,6 +27,22 @@ export default function Work() {
               >
                 <div className="relative rounded-lg lg:rounded-xl overflow-hidden w-full h-[260px] md:h-[350px] lg:h-[clamp(500px,32vw,800px)]">
                   <div className="absolute inset-0 bg-[var(--color-dark)]/30 backdrop-blur-md z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out"></div>
+
+                  {/* Animated overlay content */}
+                  <div className="absolute inset-0 z-20 flex items-center justify-center">
+                    <div className="overflow-hidden">
+                      <div className="w-32 h-32 md:w-40 md:h-40 rounded-xl overflow-hidden transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                        <Image
+                          src="/placeholder.webp"
+                          alt="Garage Hans Preview"
+                          width={160}
+                          height={160}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
                   <Image
                     src="/placeholder.webp"
                     alt="Garage Hans Verdonschot Preview"
@@ -61,13 +77,13 @@ export default function Work() {
                   {/* tech*/}
                   <div className="w-full min-w-0">
                     <InfiniteCarousel
-                       items={[
-                              "HTML",
-                              "CSS",
-                              "JAVASCRIPT",
-                              "FORMSPREE",
-                              "API INTEGRATION",
-                            ]}
+                      items={[
+                        "HTML",
+                        "CSS",
+                        "JAVASCRIPT",
+                        "FORMSPREE",
+                        "API INTEGRATION",
+                      ]}
                     />
                   </div>
                 </div>
@@ -80,6 +96,31 @@ export default function Work() {
               >
                 <div className="relative rounded-lg lg:rounded-xl overflow-hidden w-full h-[260px] md:h-[350px] lg:h-[clamp(500px,32vw,800px)]">
                   <div className="absolute inset-0 bg-[var(--color-dark)]/30 backdrop-blur-md z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out"></div>
+
+                  {/* Animated overlay content */}
+                  <div className="absolute inset-0 z-20 flex items-center justify-center">
+                    <div className="overflow-hidden">
+                      <div className="w-32 h-32 md:w-40 md:h-40 rounded-xl overflow-hidden transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                        <video
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          className="w-full h-full object-cover"
+                        >
+                          <source src="/Revivor/preview.webm" type="video/webm" />
+                          <Image
+                            src="/Revivor/preview.webp"
+                            alt="Revivor Preview"
+                            width={160}
+                            height={160}
+                            className="w-full h-full object-cover"
+                          />
+                        </video>
+                      </div>
+                    </div>
+                  </div>
+
                   <Image
                     src="/Revivor/revivorbanner.webp"
                     alt="Revivor Preview"

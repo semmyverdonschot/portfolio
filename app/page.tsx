@@ -12,6 +12,7 @@ export default function Page() {
   const [, setMounted] = useState(false);
   const [videoScale, setVideoScale] = useState(1);
   const [isVideoExpanded, setIsVideoExpanded] = useState(false);
+  const [dynamicMaxScale, setDynamicMaxScale] = useState(2.715);
 
   const webWrapperRef = useRef<HTMLDivElement | null>(null);
   const devWrapperRef = useRef<HTMLDivElement | null>(null);
@@ -34,6 +35,19 @@ export default function Page() {
   }, [checkMobile]);
 
   useEffect(() => {
+    const calculateMaxScale = () => {
+      const viewportWidth = window.innerWidth;
+      const videoWidth = Math.min(600, viewportWidth * 0.4);
+      const maxScale = (viewportWidth - 64) / videoWidth;
+      setDynamicMaxScale(Math.max(1, Math.min(maxScale, 3.5)));
+    };
+
+    calculateMaxScale();
+    window.addEventListener("resize", calculateMaxScale);
+    return () => window.removeEventListener("resize", calculateMaxScale);
+  }, []);
+
+  useEffect(() => {
     if (isMobile) return;
 
     let ticking = false;
@@ -47,11 +61,11 @@ export default function Page() {
 
           if (scrollY >= startScale && scrollY <= endScale) {
             const progress = (scrollY - startScale) / (endScale - startScale);
-            const scale = 1 + progress * 1.715;
+            const scale = 1 + progress * (dynamicMaxScale - 1);
             setVideoScale(scale);
             setIsVideoExpanded(progress > 0.01);
           } else if (scrollY > endScale) {
-            setVideoScale(2.715);
+            setVideoScale(dynamicMaxScale);
             setIsVideoExpanded(true);
           } else {
             setVideoScale(1);
@@ -65,7 +79,7 @@ export default function Page() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isMobile]);
+  }, [isMobile, dynamicMaxScale]);
 
   useEffect(() => {
     const resetImages = () => {
@@ -116,7 +130,7 @@ export default function Page() {
   return (
     <div className="min-h-screen bg-[var(--color-primary)] flex flex-col justify-start relative overflow-hidden">
       <h1 className="sr-only">
-        Semmy Verdonschot - Interactive Web Developer Portfolio
+        Semmy Verdonschot | Web Developer
       </h1>
 
       <section className="relative" aria-label="Hero introduction">
@@ -197,7 +211,7 @@ export default function Page() {
 
         {/* Scroll indicators */}
         <div
-          className={`w-full flex justify-between items-center ${isMobile ? "mt-8" : "mt-16"}`}
+          className={`w-full flex justify-between items-center ${isMobile ? "mt-8" : "mt-10"}`}
         >
           <div className="overflow-hidden">
             <div

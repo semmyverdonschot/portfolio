@@ -32,6 +32,7 @@ export default function HeroVideo({
   const mobileSecureRef = useRef<HTMLSpanElement | null>(null);
 
   const [mounted, setMounted] = useState(false);
+  const [dynamicMaxScale, setDynamicMaxScale] = useState(2.715);
 
   useEffect(() => setMounted(true), []);
 
@@ -51,6 +52,22 @@ export default function HeroVideo({
     v.play().catch(() => {});
   }, []);
 
+  // Calculate dynamic max scale based on viewport
+  useEffect(() => {
+    const calculateMaxScale = () => {
+      const viewportWidth = window.innerWidth;
+      const videoWidth = isMobile ? viewportWidth * 0.9 : Math.min(600, viewportWidth * 0.4);
+
+      // Leave margin for border radius (64px total - 32px each side)
+      const maxScale = (viewportWidth - 64) / videoWidth;
+      setDynamicMaxScale(Math.max(1, Math.min(maxScale, 3.5)));
+    };
+
+    calculateMaxScale();
+    window.addEventListener("resize", calculateMaxScale);
+    return () => window.removeEventListener("resize", calculateMaxScale);
+  }, [isMobile]);
+
   // Mouse tracking and video movement (desktop only)
   useEffect(() => {
     if (isMobile) return;
@@ -67,41 +84,31 @@ export default function HeroVideo({
     window.addEventListener("resize", recalcSizes);
 
     const handleMouseMove = (e: MouseEvent) => {
-      if (videoScale >= 2.6) return;
+      if (videoScale > 1.1 || isVideoExpanded) return;
 
       if (!parentRectRef.current) return;
 
-      const containerWidth = parentRectRef.current.width;
+      const viewportWidth = window.innerWidth;
+      const layoutPadding = 64; 
       const videoWidth = halfVideoWidthRef.current * 2;
-      const scaledVideoWidth = videoWidth * videoScale;
-
-      let maxX, minX;
-      if (isVideoExpanded && videoScale < 3.3) {
-        const overflow = Math.max(0, (scaledVideoWidth - containerWidth) / 2);
-        const movementRange = Math.min(60, overflow * 0.9);
-
-        maxX = movementRange;
-        minX = -movementRange;
-      } else {
-        const maxMovement = Math.max(
-          0,
-          (containerWidth - scaledVideoWidth) / 2,
-        );
-        maxX = maxMovement;
-        minX = -maxMovement;
-      }
-
-      const mouseRelativeX =
-        e.clientX -
-        parentRectRef.current.left -
-        parentRectRef.current.width / 2;
-
+      
+      const videoLeft = parentRectRef.current.left - (videoWidth / 2) + (parentRectRef.current.width / 2);
+      const videoRight = videoLeft + videoWidth;
+      
+      const maxLeftMovement = Math.max(0, videoLeft - (layoutPadding / 2));
+      const maxRightMovement = Math.max(0, (viewportWidth - layoutPadding / 2) - videoRight);
+      
+      const mouseRelativeX = e.clientX - parentRectRef.current.left - parentRectRef.current.width / 2;
+      
+      const maxX = maxRightMovement;
+      const minX = -maxLeftMovement;
+      
       targetX.current = Math.max(minX, Math.min(maxX, mouseRelativeX * 0.8));
     };
 
     const animate = () => {
       if (isVideoExpanded && videoScale > 1.1) {
-        const centeringFactor = Math.min(1, (videoScale - 1.1) / 0.5);
+        const centeringFactor = Math.min(1, (videoScale - 1.1) / 0.3);
         targetX.current = targetX.current * (1 - centeringFactor);
       }
 
@@ -110,7 +117,7 @@ export default function HeroVideo({
       const scaledVideoWidth = videoWidth * videoScale;
 
       let maxX, minX;
-      if (isVideoExpanded && videoScale < 3.3) {
+      if (isVideoExpanded && videoScale < dynamicMaxScale) {
         const overflow = Math.max(0, (scaledVideoWidth - containerWidth) / 2);
         const movementRange = Math.min(60, overflow * 0.9);
         maxX = movementRange;
@@ -132,11 +139,23 @@ export default function HeroVideo({
         currentX.current = targetX.current;
       }
       if (videoWrapperRef.current) {
-        const clampedX = Math.max(-510, Math.min(510, currentX.current));
-
-        const roundedX = Math.round(clampedX * 10) / 10;
-        videoWrapperRef.current.style.transform = `translateX(${roundedX}px)`;
-        videoWrapperRef.current.style.willChange = "transform";
+        const viewportWidth = window.innerWidth;
+        const layoutPadding = 64;
+        const videoWidth = halfVideoWidthRef.current * 2;
+        const parentRect = parentRectRef.current;
+        
+        if (parentRect) {
+          const videoLeft = parentRect.left - (videoWidth / 2) + (parentRect.width / 2);
+          const videoRight = videoLeft + videoWidth;
+          
+          const maxLeftMovement = Math.max(0, videoLeft - (layoutPadding / 2));
+          const maxRightMovement = Math.max(0, (viewportWidth - layoutPadding / 2) - videoRight);
+          
+          const clampedX = Math.max(-maxLeftMovement, Math.min(maxRightMovement, currentX.current));
+          const roundedX = Math.round(clampedX * 10) / 10;
+          videoWrapperRef.current.style.transform = `translateX(${roundedX}px)`;
+          videoWrapperRef.current.style.willChange = "transform";
+        }
       }
 
       rafId = requestAnimationFrame(animate);
@@ -150,9 +169,8 @@ export default function HeroVideo({
       window.removeEventListener("resize", recalcSizes);
       if (rafId !== null) cancelAnimationFrame(rafId);
     };
-  }, [isMobile, isVideoExpanded, videoScale]);
+  }, [isMobile, isVideoExpanded, videoScale, dynamicMaxScale]);
 
-  // Animation setup
   const animatedUpRefs = useMemo(
     () =>
       [
@@ -205,9 +223,9 @@ export default function HeroVideo({
 
       {/* Hero video container */}
       <div
-        className="relative w-full flex justify-center"
+        className="relative w-full flex justify-center px-4"
         style={{
-          transform: `scale(${videoScale}) translateY(${videoScale > 1.1 ? `${(videoScale - 1.1) * 20}vh` : "0"})`,
+          transform: `scale(${Math.min(videoScale, dynamicMaxScale)}) translateY(${videoScale > 1.1 ? `${(Math.min(videoScale, dynamicMaxScale) - 1.1) * 25}vh` : "0"})`,
           transformOrigin: "center top",
           zIndex: isVideoExpanded ? 40 : 10,
           position: "relative",
@@ -218,13 +236,11 @@ export default function HeroVideo({
       >
         <div
           ref={videoWrapperRef}
-          className="relative"
+          className="relative w-full max-w-[90vw] md:max-w-[600px]"
           style={{
             aspectRatio: "16/9",
             width: isMobile ? "100%" : "40vw",
-            maxWidth: isMobile ? "100%" : "600px",
             minHeight: isMobile ? "200px" : "auto",
-            height: isMobile ? "auto" : "auto",
             borderRadius: "16px",
             overflow: "hidden",
           }}
