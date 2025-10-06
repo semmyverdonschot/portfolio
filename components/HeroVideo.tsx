@@ -200,7 +200,7 @@ export default function HeroVideo({
       { min: 1920, value: 15 },
       { min: 1600, value: 16 }, 
       { min: 1440, value: 27 },
-      { min: 768,  value: 28 },
+      { min: 768,  value: 30 },
     ];
 
     for (const bp of breakpoints) {
