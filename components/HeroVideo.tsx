@@ -199,7 +199,7 @@ export default function HeroVideo({
       { min: 2560, value: 13 },
       { min: 1920, value: 15 },
       { min: 1600, value: 16 }, 
-      { min: 1440, value: 28 },
+      { min: 1440, value: 27 },
       { min: 768,  value: 30 },
     ];
 
@@ -297,7 +297,7 @@ export default function HeroVideo({
               preload="auto"
               muted
               loop
-              className="w-full h-full rounded-2xl object-cover cursor-pointer pointer-events-auto absolute top-0 left-0"
+              className="w-full h-full rounded-2xl object-cover cursor-none pointer-events-auto absolute top-0 left-0"
               style={{
                 borderRadius: "16px",
                 objectFit: "cover",
