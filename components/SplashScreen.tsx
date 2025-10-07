@@ -11,7 +11,7 @@ interface SplashScreenProps {
 
 export default function SplashScreen({
   onFinish,
-  visualDuration = 2000,
+  visualDuration = 1600,
   posterSrc,
   videoSources = [],
 }: SplashScreenProps) {
