@@ -5,6 +5,7 @@ import { useSlideTogether } from "@/hooks/useStaggerSlide";
 import HeroVideo from "@/components/HeroVideo";
 import About from "@/components/sections/About";
 import Work from "@/components/sections/Work";
+import Techstack from "@/components/sections/Techstack";
 import Footer from "@/components/sections/Footer";
 
 export default function Page() {
@@ -235,9 +236,9 @@ export default function Page() {
         {/**/}
         {!isMobile && <div className="h-[100vh]" />}
       </section>
-
       <About />
       <Work />
+      <Techstack />
       <Footer />
     </div>
   );

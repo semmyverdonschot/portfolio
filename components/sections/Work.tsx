@@ -160,7 +160,7 @@ export default function Work() {
                       </p>
                     </div>
                     <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-wide flex-shrink-0 ml-2">
-                      2024
+                      CONCEPT 2024
                     </p>
                   </div>
 
@@ -185,7 +185,7 @@ export default function Work() {
       <div className="flex flex-row justify-center space-x-6 md:space-x-8 pt-12 md:pt-16">
         <a
           href="/projects"
-          className="flex items-center overflow-hidden w-max group text-[var(--color-dark)] hover:text-[var(--color-dark)] transition-colors text-lg md:text-base"
+          className="flex items-center font-bold aoverflow-hidden w-max group text-[var(--color-dark)] hover:text-[var(--color-dark)] transition-colors text-lg md:text-base"
           aria-label="see more about my work and projects"
         >
           <span>[SEE ALL</span>
@@ -193,7 +193,7 @@ export default function Work() {
             className="w-5 h-5 ml-1 transform -rotate-45 transition-transform duration-300 group-hover:-translate-y-1"
             fill="none"
             stroke="currentColor"
-            strokeWidth="1"
+            strokeWidth="2"
             viewBox="0 0 24 24"
             aria-hidden="true"
           >
