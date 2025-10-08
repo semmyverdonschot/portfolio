@@ -54,7 +54,7 @@ export default function Footer() {
                   margin: showGif ? "24px auto" : "0 auto",
                   borderRadius: "16px",
                   overflow: "hidden",
-                  background: "#000",
+                  background: "#262626",
                   boxShadow: showGif ? "0 4px 24px rgba(0,0,0,0.18)" : "none",
                   transition:
                     "height 0.5s cubic-bezier(.77,.2,.18,1), width 0.5s cubic-bezier(.77,.2,.18,1), opacity 0.5s cubic-bezier(.77,.2,.18,1), margin 0.5s cubic-bezier(.77,.2,.18,1)",
@@ -65,7 +65,7 @@ export default function Footer() {
               >
                 {showGif && (
                   <img
-                    src="/DjangoGIF.gif"
+                    src="/djangoGIF.gif"
                     alt="Django GIF"
                     style={{
                       width: "100%",

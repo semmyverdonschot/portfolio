@@ -10,16 +10,16 @@ export default function Techstack() {
 	const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
 
 	const allTechs = [
-		{ name: "React",  href: "https://reactjs.org/" },
-		{ name: "Next.js",  href: "https://nextjs.org/" },
-		{ name: "TypeScript", href: "https://www.typescriptlang.org/" },
-		{ name: "JavaScript",  href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
-		{ name: "Vercel",  href: "https://vercel.com/" },
-		{ name: "Supabase",  href: "https://supabase.com/" },
-		{ name: "Gsap",  href: "https://greensock.com/gsap/" },
-		{ name: "Tailwind",  href: "https://tailwindcss.com/" },
-		{ name: "Mongodb",  href: "https://www.mongodb.com/" },
-		{ name: "Angular",  href: "https://angular.io/" },
+		{ name: "React", target: "_blank", href: "https://reactjs.org/" },
+		{ name: "Next.js", target: "_blank", href: "https://nextjs.org/" },
+		{ name: "TypeScript",target: "_blank", href: "https://www.typescriptlang.org/" },
+		{ name: "JavaScript", target: "_blank", href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
+		{ name: "Vercel", target: "_blank", href: "https://vercel.com/" },
+		{ name: "Supabase", target: "_blank", href: "https://supabase.com/" },
+		{ name: "Gsap", target: "_blank", href: "https://greensock.com/gsap/" },
+		{ name: "Tailwind", target: "_blank", href: "https://tailwindcss.com/" },
+		{ name: "Mongodb", target: "_blank", href: "https://www.mongodb.com/" },
+		{ name: "Angular",target: "_blank",  href: "https://angular.io/" },
 	];
 
 	const desktopTopCount = 3;
@@ -71,27 +71,35 @@ export default function Techstack() {
 							const isLeftCol = i % 2 === 0;
 							const isLastItem = i === allTechs.length - 1;
 							const showRightBorder = isLeftCol && !isLastItem;
-							const showBottomBorder = i < allTechs.length - 2; // fix: only show for rows except last
+							const showBottomBorder = i < allTechs.length - 2;
 							const iconSrc = `/svg/${slugify(tech.name)}.svg`;
+							const isActive = hoveredIdx === i;
 							return (
 								<Link
 									key={tech.name + i}
 									href={tech.href}
 									data-index={i}
-									className={`group flex items-center justify-center cursor-pointer ${hoveredIdx === i ? "bg-[var(--color-dark)]" : "bg-[var(--color-primary)]"} ${showRightBorder ? "border-r border-[#c6c6c6]" : ""} ${showBottomBorder ? "border-b border-[#c6c6c6]" : ""}`}
+									className={`group flex items-center justify-center cursor-pointer ${isActive ? "bg-[var(--color-dark)]" : "bg-[var(--color-primary)]"} ${showRightBorder ? "border-r border-[#c6c6c6]" : ""} ${showBottomBorder ? "border-b border-[#c6c6c6]" : ""}`}
 									style={{
 										height: "220px",
 										transition: "background-color 0.12s ease",
 									}}
 									onMouseEnter={() => setHoveredIdx(i)}
 									onMouseLeave={() => setHoveredIdx(null)}
+									onClick={() => setHoveredIdx(i)}
 									aria-label={tech.name}
 								>
 									<div className="relative w-[72px] h-[72px]">
-										<Image src={iconSrc} alt={tech.name} fill sizes="72px" className="object-contain" />
+										<Image
+											src={iconSrc}
+											alt={tech.name}
+											fill
+											sizes="72px"
+											className={`object-contain ${isActive ? "brightness-0 invert" : ""}`}
+										/>
 										{/* overlay shows primary color using SVG as mask */}
 										<div
-											className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none"
+											className={`absolute inset-0 pointer-events-none`}
 											style={{
 												background: "var(--color-primary)",
 												WebkitMaskImage: `url(${iconSrc})`,
@@ -102,6 +110,8 @@ export default function Techstack() {
 												maskSize: "contain",
 												maskRepeat: "no-repeat",
 												maskPosition: "center",
+												opacity: isActive ? 1 : 0,
+												transition: "opacity 0.12s ease",
 											}}
 										/>
 									</div>

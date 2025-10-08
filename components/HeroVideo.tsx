@@ -44,7 +44,6 @@ export default function HeroVideo({
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Video autoplay setup
   useEffect(() => {
     const v = videoElRef.current;
     if (!v) return;
@@ -52,13 +51,11 @@ export default function HeroVideo({
     v.play().catch(() => {});
   }, []);
 
-  // Calculate dynamic max scale based on viewport
   useEffect(() => {
     const calculateMaxScale = () => {
       const viewportWidth = window.innerWidth;
       const videoWidth = isMobile ? viewportWidth * 0.9 : Math.min(600, viewportWidth * 0.4);
 
-      // Leave margin for border radius (64px total - 32px each side)
       const maxScale = (viewportWidth - 64) / videoWidth;
       setDynamicMaxScale(Math.max(1, Math.min(maxScale, 3.5)));
     };
@@ -68,7 +65,6 @@ export default function HeroVideo({
     return () => window.removeEventListener("resize", calculateMaxScale);
   }, [isMobile]);
 
-  // Mouse tracking and video movement (desktop only)
   useEffect(() => {
     if (isMobile) return;
     let rafId: number | null = null;
@@ -197,7 +193,7 @@ export default function HeroVideo({
     
     const breakpoints = [
       { min: 2560, value: 13 },
-      { min: 1920, value: 15 },
+      { min: 1920, value: 14 },
       { min: 1600, value: 16 }, 
       { min: 1440, value: 27 },
       { min: 768,  value: 30 },
@@ -245,7 +241,7 @@ export default function HeroVideo({
 
       {/* Hero video container */}
       <div
-        className="relative w-full flex justify-center px-4"
+        className={`relative w-full flex justify-center${!isMobile ? " px-4" : ""}`}
         style={{
           transform: `scale(${Math.min(videoScale, dynamicMaxScale)}) translateY(${videoScale > 1.1 ? `${(Math.min(videoScale, dynamicMaxScale) - 1.1) * getDynamicTranslateY()}vh` : "0"})`,
           transformOrigin: "center top",

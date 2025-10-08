@@ -10,31 +10,37 @@ export default function CursorDot() {
   const target = useRef({ x: 0, y: 0 });
   const pos = useRef({ x: 0, y: 0 });
 
-  const [visible, setVisible] = useState(true); // always true so dot stays visible
+  const [visible, setVisible] = useState(true);
+
+  // Hide on mobile
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile, { passive: true });
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   useEffect(() => {
+    if (isMobile) return;
+
     const onMove = (e: MouseEvent) => {
       target.current.x = e.clientX;
       target.current.y = e.clientY;
-      // setVisible(true); // no longer needed, always visible
     };
 
     window.addEventListener("mousemove", onMove, { passive: true });
 
-    // smooth follow loop
     const tick = () => {
       const d = dotRef.current;
       if (!d) {
         rafRef.current = requestAnimationFrame(tick);
         return;
       }
-      // lerp for smooth movement
       pos.current.x += (target.current.x - pos.current.x) * 0.18;
       pos.current.y += (target.current.y - pos.current.y) * 0.18;
-
       d.style.transform = `translate3d(${pos.current.x}px, ${pos.current.y}px, 0) translate(-50%, -50%)`;
       d.style.opacity = visible ? "1" : "0";
-
       rafRef.current = requestAnimationFrame(tick);
     };
     rafRef.current = requestAnimationFrame(tick);
@@ -43,7 +49,9 @@ export default function CursorDot() {
       window.removeEventListener("mousemove", onMove);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-  }, [visible]);
+  }, [visible, isMobile]);
+
+  if (isMobile) return null;
 
   return (
     <div
@@ -60,7 +68,7 @@ export default function CursorDot() {
         boxShadow: "0 0 8px 2px rgba(0,0,0,0.10)",
         mixBlendMode: "difference",
         transition: "transform 0.1s, opacity 0.2s",
-        opacity: 1, // always visible
+        opacity: 1,
         willChange: "transform, opacity",
       }}
     />

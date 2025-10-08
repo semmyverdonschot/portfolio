@@ -59,8 +59,8 @@ export default function Copy({
 
             const animationProps = {
               yPercent: 0,
-              duration: 0.55, // faster animation
-              stagger: 0.07,  // slightly faster stagger
+              duration: 0.55, 
+              stagger: 0.07,  
               ease: "power4.out",
               delay: delay,
             };
@@ -68,14 +68,13 @@ export default function Copy({
             if (animateOnScroll) {
               let startValue = "top 100%";
               if (typeof window !== "undefined") {
-                // Only About section: use top 100% for mobile, top 180% for big screens
                 const isAboutSection = containerRef.current?.id === "about-heading" ||
                   containerRef.current?.closest("#about");
                 const isBigScreen = window.innerWidth >= 1024;
                 if (isAboutSection) {
-                  startValue = isBigScreen ? "top 180%" : "top 100%";
+                  startValue = isBigScreen ? "top 180%" : "top 90%";
                 } else {
-                  startValue = isBigScreen ? "top 180%" : "top 105%";
+                  startValue = isBigScreen ? "top 180%" : "top 210%";
                 }
               }
               gsap.to(self.lines, {

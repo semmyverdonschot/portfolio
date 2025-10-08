@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import InfiniteCarousel from "../InfiniteCarousel";
-import Copy from "@/components/hooks/Splitext scroll"; // add import
+import Copy from "@/components/hooks/Splitext scroll"; 
 
 export default function Work() {
   const sectionRef = useRef<HTMLElement>(null);

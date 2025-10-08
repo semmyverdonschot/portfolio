@@ -14,7 +14,6 @@ export default function Page() {
   const [videoScale, setVideoScale] = useState(1);
   const [isVideoExpanded, setIsVideoExpanded] = useState(false);
   const [dynamicMaxScale, setDynamicMaxScale] = useState(2.715);
-
   const webWrapperRef = useRef<HTMLDivElement | null>(null);
   const devWrapperRef = useRef<HTMLDivElement | null>(null);
   const webImgRef = useRef<HTMLImageElement | null>(null);

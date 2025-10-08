@@ -4,6 +4,8 @@ import { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useSlideTogether } from "@/components/hooks/useStaggerSlide";
+import React from "react";
 
 interface NavItem {
   name: string;
@@ -16,108 +18,112 @@ interface NavButtonProps {
   idx: number;
   activeIndex: number;
   onClick: () => void;
+  className?: string;
 }
 
-function NavButton({ item, idx, activeIndex, onClick }: NavButtonProps) {
-  const dotRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLSpanElement>(null);
-  const [isScrolled, setIsScrolled] = useState(false);
+const NavButton = React.forwardRef<HTMLAnchorElement, NavButtonProps>(
+  function NavButton({ item, idx, activeIndex, onClick, className }, ref) {
+    const dotRef = useRef<HTMLDivElement>(null);
+    const textRef = useRef<HTMLSpanElement>(null);
+    const [isScrolled, setIsScrolled] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrolled = window.scrollY > 100;
-      if (scrolled !== isScrolled) {
-        setIsScrolled(scrolled);
+    useEffect(() => {
+      const handleScroll = () => {
+        const scrolled = window.scrollY > 100;
+        if (scrolled !== isScrolled) {
+          setIsScrolled(scrolled);
 
-        if (item.isHome && textRef.current) {
-          if (scrolled) {
-            gsap
-              .timeline()
-              .to(textRef.current, {
-                opacity: 0.3,
-                scale: 0.95,
-                duration: 0.2,
-                ease: "power2.out",
-              })
-              .call(() => {
-                if (textRef.current) {
-                  textRef.current.textContent = "SV";
-                }
-              })
-              .to(textRef.current, {
-                opacity: 1,
-                scale: 1,
-                duration: 0.3,
-                ease: "power2.out",
-              });
-          } else {
-            gsap
-              .timeline()
-              .to(textRef.current, {
-                opacity: 0.3,
-                scale: 0.95,
-                duration: 0.2,
-                ease: "power2.out",
-              })
-              .call(() => {
-                if (textRef.current) {
-                  textRef.current.textContent = "SEMMY VERDONSCHOT";
-                }
-              })
-              .to(textRef.current, {
-                opacity: 1,
-                scale: 1,
-                duration: 0.3,
-                ease: "power2.out",
-              });
+          if (item.isHome && textRef.current) {
+            if (scrolled) {
+              gsap
+                .timeline()
+                .to(textRef.current, {
+                  opacity: 0.3,
+                  scale: 0.95,
+                  duration: 0.2,
+                  ease: "power2.out",
+                })
+                .call(() => {
+                  if (textRef.current) {
+                    textRef.current.textContent = "SV";
+                  }
+                })
+                .to(textRef.current, {
+                  opacity: 1,
+                  scale: 1,
+                  duration: 0.3,
+                  ease: "power2.out",
+                });
+            } else {
+              gsap
+                .timeline()
+                .to(textRef.current, {
+                  opacity: 0.3,
+                  scale: 0.95,
+                  duration: 0.2,
+                  ease: "power2.out",
+                })
+                .call(() => {
+                  if (textRef.current) {
+                    textRef.current.textContent = "SEMMY VERDONSCHOT";
+                  }
+                })
+                .to(textRef.current, {
+                  opacity: 1,
+                  scale: 1,
+                  duration: 0.3,
+                  ease: "power2.out",
+                });
+            }
           }
         }
+      };
+
+      window.addEventListener("scroll", handleScroll, { passive: true });
+      return () => window.removeEventListener("scroll", handleScroll);
+    }, [isScrolled, item.isHome]);
+
+    useEffect(() => {
+      if (dotRef.current) {
+        gsap.to(dotRef.current, {
+          scale: activeIndex === idx ? 1 : 0,
+          backgroundColor:
+            activeIndex === idx ? "var(--color-dark)" : "transparent",
+          duration: 0.15,
+          ease: "power3.out",
+        });
       }
-    };
+    }, [activeIndex, idx]);
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [isScrolled, item.isHome]);
-
-  useEffect(() => {
-    if (dotRef.current) {
-      gsap.to(dotRef.current, {
-        scale: activeIndex === idx ? 1 : 0,
-        backgroundColor:
-          activeIndex === idx ? "var(--color-dark)" : "transparent",
-        duration: 0.15,
-        ease: "power3.out",
-      });
-    }
-  }, [activeIndex, idx]);
-
-  return (
-    <Link
-      href={item.href}
-      onClick={onClick}
-      className="flex items-center cursor-pointer group relative"
-    >
-      {activeIndex !== idx && (
-        <div className="absolute w-3 h-3 rounded-full border border-[var(--color-dark)] top-1/2 left-0 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-      )}
-      <div
-        ref={dotRef}
-        className="w-3 h-3 mr-2 rounded-full border-2 border-[var(--color-dark)]"
-        style={{ transformOrigin: "center", transform: "scale(0)" }}
-      />
-      <span
-        ref={textRef}
-        className={item.isHome ? "uppercase" : ""}
-        style={{
-          minWidth: item.isHome ? "200px" : "auto",
-          display: "inline-block",
-        }}
+    return (
+      <Link
+        ref={ref}
+        href={item.href}
+        onClick={onClick}
+        className={`flex items-center cursor-pointer group relative ${className ?? ""}`}
       >
-        {item.isHome ? "SEMMY VERDONSCHOT" : item.name}
-      </span>
-    </Link>
-  );
-}
+        {activeIndex !== idx && (
+          <div className="absolute w-3 h-3 rounded-full border border-[var(--color-dark)] top-1/2 left-0 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+        )}
+        <div
+          ref={dotRef}
+          className="w-3 h-3 mr-2 rounded-full border-2 border-[var(--color-dark)]"
+          style={{ transformOrigin: "center", transform: "scale(0)" }}
+        />
+        <span
+          ref={textRef}
+          className={item.isHome ? "uppercase" : ""}
+          style={{
+            minWidth: item.isHome ? "200px" : "auto",
+            display: "inline-block",
+          }}
+        >
+          {item.isHome ? "SEMMY VERDONSCHOT" : item.name}
+        </span>
+      </Link>
+    );
+  },
+);
 
 export default function Navbar() {
   const menuRef = useRef<HTMLDivElement>(null);
@@ -131,6 +137,9 @@ export default function Navbar() {
     { name: "PROJECTS", href: "/projects" },
     { name: "ABOUT", href: "/about" },
   ];
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const navItemRefs = navItems.map(() => useRef<HTMLAnchorElement>(null));
 
   const activeIndex = navItems.findIndex((item) => item.href === pathname);
   const finalActiveIndex = activeIndex === -1 ? 0 : activeIndex;
@@ -204,18 +213,23 @@ export default function Navbar() {
     }
   }, [menuOpen]);
 
+  useSlideTogether(navItemRefs as React.RefObject<HTMLElement>[], "up", 0.8);
+
   return (
     <nav className="fixed top-0 left-0 w-full px-4 md:px-8 py-5 font-[var(--font-albert-sans)] z-50">
       {/* Desktop */}
       <div className="hidden md:flex w-full justify-between items-center text-[16px] text-[var(--color-dark)]">
         {navItems.map((item, idx) => (
-          <NavButton
-            key={idx}
-            item={item}
-            idx={idx}
-            activeIndex={finalActiveIndex}
-            onClick={handleNavClick}
-          />
+          <div key={idx} className="overflow-hidden">
+            <NavButton
+              item={item}
+              idx={idx}
+              activeIndex={finalActiveIndex}
+              onClick={handleNavClick}
+              ref={navItemRefs[idx]}
+              className="translate-y-full"
+            />
+          </div>
         ))}
         <Link
           href="mailto:hello@semmyverdonschot.com"
@@ -226,28 +240,32 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Header */}
-      <div className="md:hidden flex justify-between items-center relative z-50 w-full">
-        <Link
-          href="/"
-          onClick={handleNavClick}
-          className="flex items-center space-x-2 z-50 cursor-pointer"
-        >
-          <div
-            className={`w-3 h-3 rounded-full border-2 transition-all duration-300 ${
-              menuOpen
-                ? "bg-[var(--color-primary)] border-[var(--color-primary)]"
-                : "bg-[var(--color-dark)] border-[var(--color-dark)]"
-            }`}
-          />
-          <span
-            className={`font-normal uppercase transition-colors duration-500 ${
-              menuOpen ? "text-white" : "text-[var(--color-dark)]"
-            }`}
+      <div className={`md:hidden flex justify-between items-center w-full
+          ${menuOpen ? "fixed top-0 left-0 z-[100] bg-[var(--color-dark)]" : "relative z-50"}
+          py-5 px-4`}
+      >
+        <div className="flex items-center space-x-2 z-50 cursor-pointer">
+          <Link
+            href="/"
+            onClick={handleNavClick}
+            className="flex items-center space-x-2 z-50 cursor-pointer"
           >
-            SV
-          </span>
-        </Link>
-
+            <div
+              className={`w-3 h-3 rounded-full border-2 transition-all duration-300 ${
+                menuOpen
+                  ? "bg-[var(--color-primary)] border-[var(--color-primary)]"
+                  : "bg-[var(--color-dark)] border-[var(--color-dark)]"
+              }`}
+            />
+            <span
+              className={`font-normal uppercase transition-colors duration-500 ${
+                menuOpen ? "text-[var(--color-primary)]" : "text-[var(--color-dark)]"
+              }`}
+            >
+              SV
+            </span>
+          </Link>
+        </div>
         <div className="flex items-center space-x-4">
           <Link
             href="mailto:hello@semmyverdonschot.com"
@@ -259,7 +277,6 @@ export default function Navbar() {
           >
             CONTACT
           </Link>
-
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="relative w-8 h-4 flex items-center justify-center z-50"
@@ -299,7 +316,7 @@ export default function Navbar() {
               onClick={handleNavClick}
               className="relative overflow-hidden w-max cursor-pointer"
             >
-              <span className="block text-[70px] font-semibold text-white">
+              <span className="block text-[70px] font-semibold text-[var(--color-primary)]">
                 {item.isHome ? "HOME" : item.name}
               </span>
             </Link>
@@ -308,7 +325,7 @@ export default function Navbar() {
 
         <div
           ref={bottomLinksRef}
-          className="flex flex-col space-y-4 mt-20 text-white text-[16px]"
+          className="flex flex-col space-y-4 mt-20 text-[var(--color-primary)] text-[16px]"
         >
           <a
             href="https://www.linkedin.com/in/semmyverdonschot/"

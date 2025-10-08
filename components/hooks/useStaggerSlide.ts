@@ -17,15 +17,12 @@ export function useSlideTogether<T extends HTMLElement = HTMLElement>(
 
     if (!elements.length) return;
 
-    // Set initial state immediately
     gsap.set(elements, {
       y: direction === "up" ? "100%" : "-100%",
       force3D: true,
     });
 
-    // Listen for page transition completion
     const handleTransitionComplete = () => {
-      // Start GSAP animations after page transition
       setTimeout(() => {
         gsap.to(elements, {
           y: 0,
