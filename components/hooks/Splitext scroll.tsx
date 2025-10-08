@@ -59,8 +59,8 @@ export default function Copy({
 
             const animationProps = {
               yPercent: 0,
-              duration: 1,
-              stagger: 0.1,
+              duration: 0.55, // faster animation
+              stagger: 0.07,  // slightly faster stagger
               ease: "power4.out",
               delay: delay,
             };
@@ -70,7 +70,7 @@ export default function Copy({
                 ...animationProps,
                 scrollTrigger: {
                   trigger: containerRef.current,
-                  start: "top 75%",
+                  start: "top 190%", // triggers even earlier (before element enters viewport)
                   once: true,
                 },
               });

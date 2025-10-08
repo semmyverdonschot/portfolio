@@ -138,6 +138,7 @@ export default function RootLayout({
         </div>
           <Analytics />
         <SpeedInsights />
+             <CursorDot />
       </body>
     </html>
   );
