@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Copy from "@/components/hooks/Splitext scroll";
 
 export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -16,12 +17,14 @@ export default function About() {
         <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start">
           <div className="md:col-span-12 space-y-12 md:space-y-14">
             <header>
-              <h2
-                id="about-heading"
-                className="text-sm md:text-base text-[var(--color-dark)] uppercase tracking-wider font-bold mb-2 md:mb-3"
-              >
-                About Myself
-              </h2>
+              <Copy animateOnScroll>
+                <h2
+                  id="about-heading"
+                  className="text-sm md:text-base text-[var(--color-dark)] uppercase tracking-wider font-bold mb-2 md:mb-3"
+                >
+                  About Myself
+                </h2>
+              </Copy>
             </header>
             <div className="flex flex-col md:flex-row md:items-start md:space-x-20 space-y-3 md:space-y-0">
               <p className="text-2xl md:text-4xl lg:text-5xl font-normal text-[var(--color-dark)] leading-tight flex-1 max-w-full md:max-w-4xl">

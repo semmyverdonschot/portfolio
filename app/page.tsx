@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useState, useEffect, useMemo, useCallback } from "react";
 import Image from "next/image";
-import { useSlideTogether } from "@/hooks/useStaggerSlide";
+import { useSlideTogether } from "@/components/hooks/useStaggerSlide";
 import HeroVideo from "@/components/HeroVideo";
 import About from "@/components/sections/About";
 import Work from "@/components/sections/Work";
@@ -147,7 +147,7 @@ export default function Page() {
             <div className="overflow-hidden w-full flex justify-center">
               <Image
                 ref={webImgRef}
-                src="/INTERACTIVE.svg"
+                src="/svg/INTERACTIVE.svg"
                 alt="Interactive"
                 width={800}
                 height={267}
@@ -161,7 +161,7 @@ export default function Page() {
             <div className="overflow-hidden w-full flex justify-center">
               <Image
                 ref={devImgRef}
-                src="/DEVELOPER.svg"
+                src="/svg/DEVELOPER.svg"
                 alt="Web Developer"
                 width={800}
                 height={267}
@@ -179,7 +179,7 @@ export default function Page() {
               className="overflow-hidden h-full flex justify-start"
             >
               <Image
-                src="/WEB.svg"
+                src="/svg/WEB.svg"
                 alt="Web Solutions"
                 width={1000}
                 height={400}
@@ -196,7 +196,7 @@ export default function Page() {
               className="overflow-hidden h-full flex justify-end"
             >
               <Image
-                src="/DEVELOPER.svg"
+                src="/svg/DEVELOPER.svg"
                 alt="Developer"
                 width={1000}
                 height={400}

@@ -14,7 +14,24 @@
   --font-albert-sans: "Albert Sans", sans-serif;
   font-family: var(--font-albert-sans);
 }
+.cursor-dot {
+  display: none;
+  width: 8px;
+  height: 8px;
+  background-color: #EFEFEF;
+  border-radius: 9999px;
+  position: fixed;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 10;
+  mix-blend-mode: difference;
+}
 
+@media (min-width: 640px) {
+  .cursor-dot {
+    display: flex;
+  }
+}
 html,
 body {
   margin: 0;

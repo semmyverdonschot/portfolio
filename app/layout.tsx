@@ -4,6 +4,10 @@ import Script from "next/script";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import ClientWrapper from "@/components/ClientWrapper";
+import { Analytics } from "@vercel/analytics/react";
+import CursorDot from "@/components/CursorDot";
+
+
 
 const albertSans = Albert_Sans({
   subsets: ["latin"],
@@ -58,9 +62,9 @@ export default function RootLayout({
         />
 
         {/* Critical resources first */}
-        <link rel="preload" as="image" href="/WEB.svg" />
-        <link rel="preload" as="image" href="/DEVELOPER.svg" />
-        <link rel="preload" as="image" href="/INTERACTIVE.svg" />
+        <link rel="preload" as="image" href="/svg/WEB.svg" />
+        <link rel="preload" as="image" href="/svg/DEVELOPER.svg" />
+        <link rel="preload" as="image" href="/svg/INTERACTIVE.svg" />
         <link
           rel="preload"
           as="image"
@@ -132,6 +136,7 @@ export default function RootLayout({
         <div className="px-4 md:px-8" style={{ overflow: "visible" }}>
           <ClientWrapper>{children}</ClientWrapper>
         </div>
+          <Analytics />
         <SpeedInsights />
       </body>
     </html>

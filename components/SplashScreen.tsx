@@ -23,9 +23,9 @@ export default function SplashScreen({
   useEffect(() => {
     const assets = [
       posterSrc,
-      "/WEB.svg",
-      "/DEVELOPER.svg",
-      "/INTERACTIVE.svg",
+      "/svg/WEB.svg",
+      "/svg/DEVELOPER.svg",
+      "/svg/INTERACTIVE.svg",
     ];
     videoSources.forEach((v) => assets.push(v.src));
 

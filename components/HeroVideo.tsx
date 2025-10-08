@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect, useMemo } from "react";
 import Image from "next/image";
-import { useSlideTogether } from "@/hooks/useStaggerSlide";
+import { useSlideTogether } from "@/components/hooks/useStaggerSlide";
 
 interface HeroVideoProps {
   videoScale?: number;
