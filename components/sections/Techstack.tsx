@@ -65,13 +65,13 @@ export default function Techstack() {
 					</span>
 
 					{/* Mobile: 2 columns, all techs */}
-					<div className="grid grid-cols-2 md:hidden w-full bg-[var(--color-primary)]">z
+					<div className="grid grid-cols-2 md:hidden w-full bg-[var(--color-primary)]">
 						{allTechs.map((tech, i) => {
 							const isLastRow = i >= allTechs.length - 2;
 							const isLeftCol = i % 2 === 0;
 							const isLastItem = i === allTechs.length - 1;
 							const showRightBorder = isLeftCol && !isLastItem;
-							const showBottomBorder = !isLastRow;
+							const showBottomBorder = i < allTechs.length - 2; // fix: only show for rows except last
 							const iconSrc = `/svg/${slugify(tech.name)}.svg`;
 							return (
 								<Link
@@ -80,7 +80,7 @@ export default function Techstack() {
 									data-index={i}
 									className={`group flex items-center justify-center cursor-pointer ${hoveredIdx === i ? "bg-[var(--color-dark)]" : "bg-[var(--color-primary)]"} ${showRightBorder ? "border-r border-[#c6c6c6]" : ""} ${showBottomBorder ? "border-b border-[#c6c6c6]" : ""}`}
 									style={{
-										height: "220px", 
+										height: "220px",
 										transition: "background-color 0.12s ease",
 									}}
 									onMouseEnter={() => setHoveredIdx(i)}

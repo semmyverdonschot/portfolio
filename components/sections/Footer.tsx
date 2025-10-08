@@ -1,25 +1,87 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 export default function Footer() {
   const sectionRef = useRef<HTMLElement>(null);
+  const [showGif, setShowGif] = useState(false);
+
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
+  const handleWordEnter = () => {
+    if (isMobile) setShowGif((prev) => !prev);
+    else setShowGif(true);
+  };
+  const handleFooterLeave = () => {
+    if (!isMobile) setShowGif(false);
+  };
 
   return (
     <footer
       ref={sectionRef}
       className="bg-[var(--color-dark)] text-[var(--color-primary)] py-16 md:py-24 rounded-2xl mb-8 mt-24 md:mt-32"
+      onMouseLeave={handleFooterLeave}
     >
       <div className="w-full max-w-none">
         {/* Main Content*/}
-        <div className="flex flex-col items-center justify-center mb-24 md:mb-48 mt-12 md:mt-20 space-y-4">
+        <div
+          className={`flex flex-col items-center justify-center mt-12 md:mt-20 space-y-4 ${
+            showGif
+              ? isMobile
+                ? "mb-8"
+                : "mb-24"
+              : isMobile
+                ? "mb-24"
+                : "mb-48"
+          }`}
+        >
           <div className="flex items-center space-x-4">
             {/* Logo text */}
             <div className="text-center">
-              <h2 className="text-4xl md:text-6xl lg:text-8xl xl:text-9xl font-black uppercase leading-none">
+              <h2
+                className="text-4xl md:text-6xl lg:text-8xl xl:text-9xl font-black uppercase leading-none"
+                onMouseEnter={!isMobile ? handleWordEnter : undefined}
+                onClick={isMobile ? handleWordEnter : undefined}
+              >
                 Semmy
               </h2>
-              <h3 className="text-4xl md:text-6xl lg:text-8xl xl:text-9xl font-black uppercase leading-none">
+              {/* Animated GIF reveal */}
+              <div
+                style={{
+                  height: showGif ? (isMobile ? "120px" : "180px") : "0px",
+                  width: showGif ? (isMobile ? "220px" : "360px") : "0px",
+                  opacity: showGif ? 1 : 0,
+                  margin: showGif ? "24px auto" : "0 auto",
+                  borderRadius: "16px",
+                  overflow: "hidden",
+                  background: "#000",
+                  boxShadow: showGif ? "0 4px 24px rgba(0,0,0,0.18)" : "none",
+                  transition:
+                    "height 0.5s cubic-bezier(.77,.2,.18,1), width 0.5s cubic-bezier(.77,.2,.18,1), opacity 0.5s cubic-bezier(.77,.2,.18,1), margin 0.5s cubic-bezier(.77,.2,.18,1)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                {showGif && (
+                  <img
+                    src="/DjangoGIF.gif"
+                    alt="Django GIF"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      borderRadius: "16px",
+                      display: "block",
+                    }}
+                  />
+                )}
+              </div>
+              <h3
+                className="text-4xl md:text-6xl lg:text-8xl xl:text-9xl font-black uppercase leading-none"
+                onMouseEnter={!isMobile ? handleWordEnter : undefined}
+                onClick={isMobile ? handleWordEnter : undefined}
+              >
                 Verdonschot
               </h3>
             </div>

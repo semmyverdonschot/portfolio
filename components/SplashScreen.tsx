@@ -26,6 +26,9 @@ export default function SplashScreen({
       "/svg/WEB.svg",
       "/svg/DEVELOPER.svg",
       "/svg/INTERACTIVE.svg",
+      "/svg/INTERACTIVE.svg",
+      "/djangoGIF.gif",
+
     ];
     videoSources.forEach((v) => assets.push(v.src));
 
@@ -140,7 +143,7 @@ export default function SplashScreen({
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 w-full h-[20px] bg-[var(--color-dark)]/10">
+      <div className="absolute bottom-0 left-0 w-full h-[50px] bg-[var(--color-dark)]/10">
         <div
           ref={loadingBarRef}
           className="h-full bg-[var(--color-dark)] transition-all duration-100 ease-out"
