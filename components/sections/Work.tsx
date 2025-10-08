@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import InfiniteCarousel from "../InfiniteCarousel";
+import Copy from "@/components/hooks/Splitext scroll"; // add import
 
 export default function Work() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -13,9 +14,11 @@ export default function Work() {
           <div className="md:col-span-12 space-y-8 md:space-y-10 overflow-x-hidden">
             {/* Projects*/}
             <div className="w-full flex justify-between items-center">
-              <h2 className="text-[17.9vw] md:text-[12vw] lg:text-[10vw] uppercase leading-none font-black text-[var(--color-dark)]">
-                MY WORK
-              </h2>
+              <Copy animateOnScroll>
+                <h2 className="text-[17.9vw] md:text-[12vw] lg:text-[10vw] uppercase leading-none font-black text-[var(--color-dark)]">
+                  MY WORK
+                </h2>
+              </Copy>
             </div>
 
             {/* Project Cards */}
