@@ -65,7 +65,7 @@ export default function Techstack() {
 					</span>
 
 					{/* Mobile: 2 columns, all techs */}
-					<div className="grid grid-cols-2 md:hidden w-full bg-[var(--color-primary)]">
+					<div className="grid grid-cols-2 md:hidden w-full bg-[var(--color-primary)]">z
 						{allTechs.map((tech, i) => {
 							const isLastRow = i >= allTechs.length - 2;
 							const isLeftCol = i % 2 === 0;
