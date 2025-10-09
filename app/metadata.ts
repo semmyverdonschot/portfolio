@@ -1,4 +1,4 @@
-import type { Metadata} from "next";
+import type { Metadata, Viewport } from "next";
 
 export const metadata: Metadata = {
   title: "Semmy Verdonschot | Web Developer based in The Netherlands",
@@ -72,7 +72,7 @@ export const metadata: Metadata = {
   },
   appleWebApp: {
     title: "Semmy Verdonschot Portfolio",
-    statusBarStyle: "default",
+    statusBarStyle: "black-translucent",
   },
   icons: {
     icon: "/favicon.ico",

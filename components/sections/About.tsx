@@ -30,7 +30,7 @@ export default function About() {
               <Copy animateOnScroll>
                 <p className="text-2xl md:text-4xl lg:text-5xl font-normal text-[var(--color-dark)] leading-tight flex-1 max-w-full md:max-w-4xl">
                   I&apos;m a web developer with a focus on building secure
-                  digital experiences, a <i>jack-of-all-trades</i> who enjoys
+                  digital experiences, a jack-of-all-trades who enjoys
                   helping brands do things they didn&apos;t know they could
                   do.{" "}
                 </p>
