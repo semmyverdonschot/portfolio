@@ -6,8 +6,7 @@ import "./globals.css";
 import ClientWrapper from "@/components/ClientWrapper";
 import { Analytics } from "@vercel/analytics/react";
 import CursorDot from "@/components/CursorDot";
-import { metadata, viewport } from "./metadata";
-export { metadata, viewport };
+export { metadata } from "./metadata";;
 
 const albertSans = Albert_Sans({
   subsets: ["latin"],
@@ -29,37 +28,6 @@ export default function RootLayout({
           rel="preconnect"
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
-        />
-
-        {/* Critical resources first */}
-        <link rel="preload" as="image" href="/svg/WEB.svg" />
-        <link rel="preload" as="image" href="/svg/DEVELOPER.svg" />
-        <link rel="preload" as="image" href="/svg/INTERACTIVE.svg" />
-        <link
-          rel="preload"
-          as="image"
-          href="/placeholder.webp"
-          type="image/webp"
-          fetchPriority="high"
-        />
-
-        {/* Video resources */}
-        <link
-          rel="preload"
-          as="video"
-          href="/hero-video-720p.webm"
-          type="video/webm"
-        />
-        <link
-          rel="preload"
-          as="video"
-          href="/hero-video-480p.webm"
-          type="video/webm"
-        />
-
-        <meta
-          name="apple-mobile-web-app-status-bar-style"
-          content="black-translucent"
         />
       </head>
       <ReactLenis root>
