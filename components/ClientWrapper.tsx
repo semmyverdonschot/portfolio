@@ -2,9 +2,9 @@
 
 import { ReactNode, useState, useEffect } from "react";
 import dynamic from "next/dynamic";
-import Navbar from "@/components/NavBar";
+import Navbar from "@/components/ui/NavBar";
 
-const SplashScreen = dynamic(() => import("@/components/SplashScreen"), {
+const SplashScreen = dynamic(() => import("@/components/ui/SplashScreen"), {
   ssr: false,
 });
 

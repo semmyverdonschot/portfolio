@@ -80,10 +80,17 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   category: "Portfolio",
-  colorScheme: "light dark",
-  themeColor: "#171717",
 };
 
 export const viewport = {
-  themeColor: "#171717",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#F5F5F5" },
+    { media: "(prefers-color-scheme: dark)", color: "#171717" },
+  ],
+  colorScheme: "light dark",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
+

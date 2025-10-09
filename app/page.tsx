@@ -2,7 +2,7 @@
 import { useRef, useState, useEffect, useMemo, useCallback } from "react";
 import Image from "next/image";
 import { useSlideTogether } from "@/hooks/useStaggerSlide";
-import HeroVideo from "@/components/HeroVideo";
+import HeroVideo from "@/components/ui/HeroVideo";
 import About from "@/components/sections/About";
 import Work from "@/components/sections/Work";
 import Techstack from "@/components/sections/Techstack";

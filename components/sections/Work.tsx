@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import Image from "next/image";
-import InfiniteCarousel from "../InfiniteCarousel";
+import InfiniteCarousel from "@/components/ui/InfiniteCarousel";
 import Copy from "@/hooks/Scrollanimate";
 
 export default function Work() {

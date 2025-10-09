@@ -5,7 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import ClientWrapper from "@/components/ClientWrapper";
 import { Analytics } from "@vercel/analytics/react";
-import CursorDot from "@/components/CursorDot";
+import CursorDot from "@/components/ui/CursorDot";
 export { metadata, viewport } from "./metadata";;
 
 const albertSans = Albert_Sans({
