@@ -2,7 +2,7 @@
 
 import { useRef, useMemo } from "react";
 import Image from "next/image";
-import { useSlideTogether } from "@/components/hooks/useStaggerSlide";
+import { useSlideTogether } from "@/hooks/useStaggerSlide";
 import InfiniteCarousel from "@/components/InfiniteCarousel";
 import Footer from "@/components/sections/Footer";
 

@@ -28,7 +28,6 @@ export default function SplashScreen({
       "/svg/INTERACTIVE.svg",
       "/svg/INTERACTIVE.svg",
       "/djangoGIF.gif",
-
     ];
     videoSources.forEach((v) => assets.push(v.src));
 

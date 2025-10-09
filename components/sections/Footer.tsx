@@ -1,5 +1,5 @@
 "use client";
-
+import LiveClock from "../ui/LiveClock";
 import { useRef, useState } from "react";
 
 export default function Footer() {
@@ -23,9 +23,21 @@ export default function Footer() {
       onMouseLeave={handleFooterLeave}
     >
       <div className="w-full max-w-none">
-        {/* Main Content*/}
+        {/* Top Section*/}
+        <div className="flex flex-col md:flex-row justify-between items-center w-full px-8 space-y-4 md:space-y-0 mb-8">
+          <div className="text-sm md:text-base font-normal text-[var(--color-primary)] uppercase tracking-wider">
+            Netherlands, LI
+          </div>
+          <div className="flex-shrink-0">
+            <LiveClock
+              className="font-normal text-sm md:text-base text-[var(--color-primary)]"
+            />
+          </div>
+        </div>
+
+        {/* Main Content */}
         <div
-          className={`flex flex-col items-center justify-center mt-12 md:mt-20 space-y-4 ${
+          className={`flex flex-col items-center justify-center md:mt-20 space-y-4 ${
             showGif
               ? isMobile
                 ? "mb-8"
@@ -54,7 +66,7 @@ export default function Footer() {
                   margin: showGif ? "24px auto" : "0 auto",
                   borderRadius: "16px",
                   overflow: "hidden",
-                  background: "#262626",
+                  background: "var(--color-secondary)",
                   boxShadow: showGif ? "0 4px 24px rgba(0,0,0,0.18)" : "none",
                   transition:
                     "height 0.5s cubic-bezier(.77,.2,.18,1), width 0.5s cubic-bezier(.77,.2,.18,1), opacity 0.5s cubic-bezier(.77,.2,.18,1), margin 0.5s cubic-bezier(.77,.2,.18,1)",
@@ -99,7 +111,6 @@ export default function Footer() {
               HELLO@SEMMYVERDONSCHOT.COM
             </a>
           </div>
-
           {/* GitHub */}
           <div className="order-2 md:order-3">
             <a
@@ -110,7 +121,6 @@ export default function Footer() {
               GITHUB
             </a>
           </div>
-
           {/* LinkedIn */}
           <div className="order-3 md:order-4">
             <a
@@ -121,7 +131,6 @@ export default function Footer() {
               LINKEDIN
             </a>
           </div>
-
           {/* WhatsApp */}
           <div className="order-4 md:order-5">
             <a
@@ -132,7 +141,6 @@ export default function Footer() {
               WHATSAPP
             </a>
           </div>
-
           {/* Copyright */}
           <div className="order-5 md:order-1">
             <p className="text-sm text-[var(--color-primary)]">© 2025</p>

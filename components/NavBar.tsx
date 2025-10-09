@@ -4,7 +4,7 @@ import { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useSlideTogether } from "@/components/hooks/useStaggerSlide";
+import { useSlideTogether } from "@/hooks/useStaggerSlide";
 import React from "react";
 
 interface NavItem {
@@ -240,7 +240,8 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Header */}
-      <div className={`md:hidden flex justify-between items-center w-full
+      <div
+        className={`md:hidden flex justify-between items-center w-full
           ${menuOpen ? "fixed top-0 left-0 z-[100] bg-[var(--color-dark)]" : "relative z-50"}
           py-5 px-4`}
       >
@@ -259,7 +260,9 @@ export default function Navbar() {
             />
             <span
               className={`font-normal uppercase transition-colors duration-500 ${
-                menuOpen ? "text-[var(--color-primary)]" : "text-[var(--color-dark)]"
+                menuOpen
+                  ? "text-[var(--color-primary)]"
+                  : "text-[var(--color-dark)]"
               }`}
             >
               SV

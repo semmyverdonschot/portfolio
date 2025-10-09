@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect, useMemo } from "react";
 import Image from "next/image";
-import { useSlideTogether } from "@/components/hooks/useStaggerSlide";
+import { useSlideTogether } from "@/hooks/useStaggerSlide";
 
 interface HeroVideoProps {
   videoScale?: number;
@@ -54,7 +54,9 @@ export default function HeroVideo({
   useEffect(() => {
     const calculateMaxScale = () => {
       const viewportWidth = window.innerWidth;
-      const videoWidth = isMobile ? viewportWidth * 0.9 : Math.min(600, viewportWidth * 0.4);
+      const videoWidth = isMobile
+        ? viewportWidth * 0.9
+        : Math.min(600, viewportWidth * 0.4);
 
       const maxScale = (viewportWidth - 64) / videoWidth;
       setDynamicMaxScale(Math.max(1, Math.min(maxScale, 3.5)));
@@ -85,20 +87,29 @@ export default function HeroVideo({
       if (!parentRectRef.current) return;
 
       const viewportWidth = window.innerWidth;
-      const layoutPadding = 64; 
+      const layoutPadding = 64;
       const videoWidth = halfVideoWidthRef.current * 2;
-      
-      const videoLeft = parentRectRef.current.left - (videoWidth / 2) + (parentRectRef.current.width / 2);
+
+      const videoLeft =
+        parentRectRef.current.left -
+        videoWidth / 2 +
+        parentRectRef.current.width / 2;
       const videoRight = videoLeft + videoWidth;
-      
-      const maxLeftMovement = Math.max(0, videoLeft - (layoutPadding / 2));
-      const maxRightMovement = Math.max(0, (viewportWidth - layoutPadding / 2) - videoRight);
-      
-      const mouseRelativeX = e.clientX - parentRectRef.current.left - parentRectRef.current.width / 2;
-      
+
+      const maxLeftMovement = Math.max(0, videoLeft - layoutPadding / 2);
+      const maxRightMovement = Math.max(
+        0,
+        viewportWidth - layoutPadding / 2 - videoRight,
+      );
+
+      const mouseRelativeX =
+        e.clientX -
+        parentRectRef.current.left -
+        parentRectRef.current.width / 2;
+
       const maxX = maxRightMovement;
       const minX = -maxLeftMovement;
-      
+
       targetX.current = Math.max(minX, Math.min(maxX, mouseRelativeX * 0.8));
     };
 
@@ -139,15 +150,22 @@ export default function HeroVideo({
         const layoutPadding = 64;
         const videoWidth = halfVideoWidthRef.current * 2;
         const parentRect = parentRectRef.current;
-        
+
         if (parentRect) {
-          const videoLeft = parentRect.left - (videoWidth / 2) + (parentRect.width / 2);
+          const videoLeft =
+            parentRect.left - videoWidth / 2 + parentRect.width / 2;
           const videoRight = videoLeft + videoWidth;
-          
-          const maxLeftMovement = Math.max(0, videoLeft - (layoutPadding / 2));
-          const maxRightMovement = Math.max(0, (viewportWidth - layoutPadding / 2) - videoRight);
-          
-          const clampedX = Math.max(-maxLeftMovement, Math.min(maxRightMovement, currentX.current));
+
+          const maxLeftMovement = Math.max(0, videoLeft - layoutPadding / 2);
+          const maxRightMovement = Math.max(
+            0,
+            viewportWidth - layoutPadding / 2 - videoRight,
+          );
+
+          const clampedX = Math.max(
+            -maxLeftMovement,
+            Math.min(maxRightMovement, currentX.current),
+          );
           const roundedX = Math.round(clampedX * 10) / 10;
           videoWrapperRef.current.style.transform = `translateX(${roundedX}px)`;
           videoWrapperRef.current.style.willChange = "transform";
@@ -190,13 +208,12 @@ export default function HeroVideo({
 
     const width = window.innerWidth;
 
-    
     const breakpoints = [
       { min: 2560, value: 13 },
       { min: 1920, value: 14 },
-      { min: 1600, value: 16 }, 
+      { min: 1600, value: 16 },
       { min: 1440, value: 27 },
-      { min: 768,  value: 30 },
+      { min: 768, value: 30 },
     ];
 
     for (const bp of breakpoints) {
@@ -205,7 +222,6 @@ export default function HeroVideo({
 
     return 32;
   };
-
 
   return (
     <>

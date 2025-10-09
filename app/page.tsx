@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useState, useEffect, useMemo, useCallback } from "react";
 import Image from "next/image";
-import { useSlideTogether } from "@/components/hooks/useStaggerSlide";
+import { useSlideTogether } from "@/hooks/useStaggerSlide";
 import HeroVideo from "@/components/HeroVideo";
 import About from "@/components/sections/About";
 import Work from "@/components/sections/Work";

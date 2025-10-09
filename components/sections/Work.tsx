@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import InfiniteCarousel from "../InfiniteCarousel";
-import Copy from "@/components/hooks/Splitext scroll"; 
+import Copy from "@/hooks/Scrollanimate";
 
 export default function Work() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -57,7 +57,7 @@ export default function Work() {
                       </div>
                     </div>
                   </div>
-
+                  
                   <Image
                     src="/Garagehansverdonschot/Garage Hans mockup.png"
                     alt="Garage Hans Verdonschot mockup"
@@ -80,13 +80,17 @@ export default function Work() {
                         className="w-6 h-6 lg:w-8 lg:h-8 rounded-full flex-shrink-0 object-contain"
                         src="/Garagehansverdonschot/small logo.png"
                       />
-                      <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-wide truncate">
-                        Garage Hans
-                      </p>
+                      <Copy animateOnScroll>
+                        <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-wide truncate">
+                          Garage Hans
+                        </p>
+                      </Copy>
                     </div>
-                    <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-wide flex-shrink-0 ml-2">
-                      Website 2024
-                    </p>
+                    <Copy animateOnScroll>
+                      <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-wide flex-shrink-0 ml-2">
+                        Website 2024
+                      </p>
+                    </Copy>
                   </div>
 
                   {/* tech*/}
@@ -103,7 +107,6 @@ export default function Work() {
                   </div>
                 </div>
               </a>
-
               {/* revivor*/}
               <a
                 href="/projects/revivor"
@@ -158,13 +161,17 @@ export default function Work() {
                         className="w-6 h-6 lg:w-8 lg:h-8 rounded-full flex-shrink-0 object-contain"
                         src="/Revivor/revivor logo.webp"
                       />
-                      <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-wide truncate">
-                        Project Two
-                      </p>
+                      <Copy animateOnScroll>
+                        <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-wide truncate">
+                          Project Two
+                        </p>
+                      </Copy>
                     </div>
-                    <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-wide flex-shrink-0 ml-2">
-                      CONCEPT 2024
-                    </p>
+                    <Copy animateOnScroll>
+                      <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-wide flex-shrink-0 ml-2">
+                        CONCEPT 2024
+                      </p>
+                    </Copy>
                   </div>
 
                   {/* dynamic tech list */}

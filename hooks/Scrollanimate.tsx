@@ -59,8 +59,8 @@ export default function Copy({
 
             const animationProps = {
               yPercent: 0,
-              duration: 0.55, 
-              stagger: 0.07,  
+              duration: 0.55,
+              stagger: 0.07,
               ease: "power4.out",
               delay: delay,
             };
@@ -68,7 +68,8 @@ export default function Copy({
             if (animateOnScroll) {
               let startValue = "top 100%";
               if (typeof window !== "undefined") {
-                const isAboutSection = containerRef.current?.id === "about-heading" ||
+                const isAboutSection =
+                  containerRef.current?.id === "about-heading" ||
                   containerRef.current?.closest("#about");
                 const isBigScreen = window.innerWidth >= 1024;
                 if (isAboutSection) {
@@ -115,7 +116,7 @@ export default function Copy({
     {
       scope: containerRef,
       dependencies: [animateOnScroll, delay],
-    }
+    },
   );
 
   if (React.Children.count(children) === 1 && React.isValidElement(children)) {
