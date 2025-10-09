@@ -22,7 +22,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={albertSans.variable}>
-
       <head>
         {/* Preconnect and preload assets */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -64,29 +63,28 @@ export default function RootLayout({
         />
       </head>
       <ReactLenis root>
-      <body>
-
-        {/* Google Analytics */}
-        <Script
-          strategy="afterInteractive"
-          src="https://www.googletagmanager.com/gtag/js?id=G-0CS17B888C"
-        />
-        <Script id="gtag-init" strategy="afterInteractive">
-          {`
+        <body>
+          {/* Google Analytics */}
+          <Script
+            strategy="afterInteractive"
+            src="https://www.googletagmanager.com/gtag/js?id=G-0CS17B888C"
+          />
+          <Script id="gtag-init" strategy="afterInteractive">
+            {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'G-0CS17B888C', { send_page_view: false });
           `}
-        </Script>
+          </Script>
 
-        <div className="px-4 md:px-8" style={{ overflow: "visible" }}>
-          <ClientWrapper>{children}</ClientWrapper>
-        </div>
-        <Analytics />
-        <SpeedInsights />
-        <CursorDot />
-      </body>
+          <div className="px-4 md:px-8" style={{ overflow: "visible" }}>
+            <ClientWrapper>{children}</ClientWrapper>
+          </div>
+          <Analytics />
+          <SpeedInsights />
+          <CursorDot />
+        </body>
       </ReactLenis>
     </html>
   );

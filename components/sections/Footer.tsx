@@ -1,6 +1,7 @@
 "use client";
 import LiveClock from "../ui/LiveClock";
 import { useRef, useState } from "react";
+import Image from "next/image";
 
 export default function Footer() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -29,9 +30,7 @@ export default function Footer() {
             Netherlands, LI
           </div>
           <div className="flex-shrink-0">
-            <LiveClock
-              className="font-normal text-sm md:text-base text-[var(--color-primary)]"
-            />
+            <LiveClock className="font-normal text-sm md:text-base text-[var(--color-primary)]" />
           </div>
         </div>
 
@@ -76,9 +75,11 @@ export default function Footer() {
                 }}
               >
                 {showGif && (
-                  <img
+                  <Image
                     src="/djangoGIF.gif"
                     alt="Django GIF"
+                    width={isMobile ? 220 : 360}
+                    height={isMobile ? 120 : 180}
                     style={{
                       width: "100%",
                       height: "100%",
@@ -86,6 +87,7 @@ export default function Footer() {
                       borderRadius: "16px",
                       display: "block",
                     }}
+                    priority
                   />
                 )}
               </div>

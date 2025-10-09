@@ -57,7 +57,7 @@ export default function Work() {
                       </div>
                     </div>
                   </div>
-                  
+
                   <Image
                     src="/Garagehansverdonschot/Garage Hans mockup.png"
                     alt="Garage Hans Verdonschot mockup"
