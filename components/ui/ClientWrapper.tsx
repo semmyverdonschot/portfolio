@@ -12,8 +12,11 @@ export default function ClientWrapper({ children }: { children: ReactNode }) {
   const [showSplash, setShowSplash] = useState(true);
 
   useEffect(() => {
-    const navigationEntries = performance.getEntriesByType("navigation") as PerformanceNavigationTiming[];
-    const isReload = navigationEntries.length > 0 && navigationEntries[0].type === "reload";
+    const navigationEntries = performance.getEntriesByType(
+      "navigation",
+    ) as PerformanceNavigationTiming[];
+    const isReload =
+      navigationEntries.length > 0 && navigationEntries[0].type === "reload";
     const hasShownSplash = localStorage.getItem("splashShown");
 
     if (!isReload && hasShownSplash) {

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import Copy from "@/hooks/Scrollanimate";
 
 export default function Techstack() {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
@@ -43,25 +44,14 @@ export default function Techstack() {
       .replace(/-/g, "");
 
   return (
-    <section className="pt-64 md:pt-64">
+    <section className="pt-24 md:pt-48">
       <div className="w-full max-w-none mx-auto">
-        <div className="flex flex-col justify-center items-center mb-12">
-          <span
-            className="uppercase font-black text-[var(--color-dark)] mb-2 tracking-tight leading-none"
-            style={{
-              fontSize: "15vw",
-            }}
-          >
-            MODERN
-          </span>
-          <h2
-            className="uppercase font-black text-[var(--color-dark)] leading-none"
-            style={{
-              fontSize: "15vw",
-            }}
-          >
-            TECHSTACK
-          </h2>
+        <div className="flex flex-col justify-left items-center mb-12">
+          <Copy animateOnScroll>
+            <h2 className="text-[15vw] md:text-[10vw] lg:text-[10vw] uppercase leading-none font-black text-[var(--color-dark)]">
+              TECHSTACK
+            </h2>
+          </Copy>
         </div>
         <div className="flex flex-col w-full pt-24 md:pt-24">
           <span className="text-sm md:text-base text-[var(--color-dark)] uppercase tracking-wider font-bold mb-2 md:mb-3">

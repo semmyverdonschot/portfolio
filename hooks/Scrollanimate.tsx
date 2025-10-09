@@ -71,8 +71,13 @@ export default function Copy({
                 const isAboutSection =
                   containerRef.current?.id === "about-heading" ||
                   containerRef.current?.closest("#about");
+                const isServiceSection =
+                  containerRef.current?.id === "services-title" ||
+                  containerRef.current?.closest("#services");
                 const isBigScreen = window.innerWidth >= 1024;
                 if (isAboutSection) {
+                  startValue = isBigScreen ? "top 180%" : "top 90%";
+                } else if (isServiceSection) {
                   startValue = isBigScreen ? "top 180%" : "top 90%";
                 } else {
                   startValue = isBigScreen ? "top 180%" : "top 230%";

@@ -15,7 +15,7 @@ export default function Work() {
             {/* Projects*/}
             <div className="w-full flex justify-between items-center">
               <Copy animateOnScroll>
-                <h2 className="text-[17.9vw] md:text-[12vw] lg:text-[10vw] uppercase leading-none font-black text-[var(--color-dark)]">
+                <h2 className="text-[17.8vw] md:text-[12vw] lg:text-[10vw] uppercase leading-none font-black text-[var(--color-dark)]">
                   MY WORK
                 </h2>
               </Copy>
@@ -195,7 +195,7 @@ export default function Work() {
       <div className="flex flex-row justify-center space-x-6 md:space-x-8 pt-12 md:pt-16">
         <a
           href="/projects"
-          className="flex items-center font-bold aoverflow-hidden w-max group text-[var(--color-dark)] hover:text-[var(--color-dark)] transition-colors text-lg md:text-base"
+          className="flex items-center font-bold aoverflow-hidden w-max group text-[var(--color-dark)] hover:text-[var(--color-dark)] transition-colors text-lg md:text-lg"
           aria-label="see more about my work and projects"
         >
           <span>[SEE ALL</span>

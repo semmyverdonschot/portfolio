@@ -75,3 +75,18 @@ h1 {
 .blink-animation {
   animation: blink 1s infinite;
 }
+#card-0 .card-inner {
+  @apply bg-[#ffbed6] text-[#4B0018];
+}
+
+#card-1 .card-inner {
+  @apply bg-[#BAD6DA] text-[#1A4A4A];
+}
+
+#card-2 .card-inner {
+  @apply bg-[#A5C572] text-[#3D7337];
+}
+
+#card-3 .card-inner {
+  @apply bg-[#F4E89B] text-[#EF4A74];
+}

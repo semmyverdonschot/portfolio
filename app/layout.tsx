@@ -35,7 +35,7 @@ export default function RootLayout({
               gtag('config', 'G-0CS17B888C', { send_page_view: false });
             `}
           </Script>
-                      <DocumentTitleChanger />
+          <DocumentTitleChanger />
 
           <div className="px-4 md:px-8" style={{ overflow: "visible" }}>
             <ClientWrapper>{children}</ClientWrapper>
