@@ -6,7 +6,11 @@ import ClientWrapper from "@/components/ui/ClientWrapper";
 import { Analytics } from "@vercel/analytics/react";
 import CursorDot from "@/components/ui/CursorDot";
 import { albertSans } from "./fonts";
-export { metadata, viewport } from "./metadata";
+export { metadata } from "./metadata";
+
+export const viewport = {
+  themeColor: "#171717",
+};
 
 export default function RootLayout({
   children,
@@ -25,7 +29,7 @@ export default function RootLayout({
         />
       </head>
       <ReactLenis root>
-        <body className={albertSans.variable}> {/* 👈 apply font here */}
+        <body className={albertSans.variable}>
           {/* Google Analytics */}
           <Script
             strategy="afterInteractive"
