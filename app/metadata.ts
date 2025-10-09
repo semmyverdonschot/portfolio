@@ -1,4 +1,4 @@
-import type { Metadata} from "next";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Semmy Verdonschot | Web Developer based in The Netherlands",
@@ -80,5 +80,5 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   category: "Portfolio",
-  colorScheme: "light dark",
+  metadataBase: new URL("https://semmyverdonschot.com"),
 };

@@ -15,9 +15,12 @@ const albertSans = Albert_Sans({
   display: "swap",
 });
 
-export const viewport: Viewport = {
-  themeColor: "black",
-};
+export function generateViewport() {
+  return {
+    themeColor: "#171717",
+    colorScheme: "light dark",
+  };
+}
 
 export default function RootLayout({
   children,
