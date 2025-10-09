@@ -6,13 +6,19 @@ import "./globals.css";
 import ClientWrapper from "@/components/ClientWrapper";
 import { Analytics } from "@vercel/analytics/react";
 import CursorDot from "@/components/ui/CursorDot";
-export { metadata, viewport } from "./metadata";;
+import { Viewport } from "next";
+export { metadata} from "./metadata";;
 
 const albertSans = Albert_Sans({
   subsets: ["latin"],
   variable: "--font-albert-sans",
   display: "swap",
 });
+
+export const viewport: Viewport = {
+  themeColor: "black",
+};
+
 
 export default function RootLayout({
   children,
@@ -29,6 +35,7 @@ export default function RootLayout({
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
+
       </head>
       <ReactLenis root>
         <body>

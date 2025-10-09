@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 
 export const metadata: Metadata = {
   title: "Semmy Verdonschot | Web Developer based in The Netherlands",
@@ -80,17 +80,6 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   category: "Portfolio",
-};
-
-export const viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#F5F5F5" },
-    { media: "(prefers-color-scheme: dark)", color: "#171717" },
-  ],
   colorScheme: "light dark",
-  width: "device-width",
-  initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
 };
 
