@@ -3,7 +3,7 @@
 import { useRef, useMemo } from "react";
 import Image from "next/image";
 import { useSlideTogether } from "@/hooks/useStaggerSlide";
-import InfiniteCarousel from "@/components/InfiniteCarousel";
+import InfiniteCarousel from "@/components/ui/InfiniteCarousel";
 import Footer from "@/components/sections/Footer";
 
 export default function Work() {

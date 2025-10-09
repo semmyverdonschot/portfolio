@@ -241,9 +241,12 @@ export default function Navbar() {
 
       {/* Mobile Header */}
       <div
-        className={`md:hidden flex justify-between items-center w-full
-          ${menuOpen ? "fixed top-0 left-0 z-[100] bg-[var(--color-dark)]" : "relative z-50"}
-          py-5 px-4`}
+        className="md:hidden flex justify-between items-center w-full px-4"
+        style={{
+          position: "fixed",
+          left: 0,
+          zIndex: 100,
+        }}
       >
         <div className="flex items-center space-x-2 z-50 cursor-pointer">
           <Link
@@ -275,7 +278,7 @@ export default function Navbar() {
             className={`px-4 py-2 rounded-full font-semibold transition-colors duration-500 ${
               menuOpen
                 ? "bg-[var(--color-primary)] text-[var(--color-dark)]"
-                : "bg-[var(--color-dark)] text-white"
+                : "bg-[var(--color-dark)] text-[var(--color-primary)]"
             }`}
           >
             CONTACT
