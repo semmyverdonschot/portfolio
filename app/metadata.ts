@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 
 export const metadata: Metadata = {
   title: "Semmy Verdonschot | Web Developer based in The Netherlands",
@@ -81,4 +81,8 @@ export const metadata: Metadata = {
   },
   category: "Portfolio",
   metadataBase: new URL("https://semmyverdonschot.com"),
+};
+
+export const viewport: Viewport = {
+  themeColor: "#171717",
 };

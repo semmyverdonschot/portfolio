@@ -10,7 +10,7 @@ export default function CursorDot() {
   const target = useRef({ x: 0, y: 0 });
   const pos = useRef({ x: 0, y: 0 });
 
-  const [visible, setVisible] = useState(true);
+  const [visible] = useState(true);
 
   // Hide on mobile
   const [isMobile, setIsMobile] = useState(false);

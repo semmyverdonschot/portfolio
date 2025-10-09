@@ -6,8 +6,8 @@ import "./globals.css";
 import ClientWrapper from "@/components/ui/ClientWrapper";
 import { Analytics } from "@vercel/analytics/react";
 import CursorDot from "@/components/ui/CursorDot";
-import { Viewport } from "next";
-export { metadata } from "./metadata";
+
+export { metadata, viewport } from "./metadata";
 
 const albertSans = Albert_Sans({
   subsets: ["latin"],
@@ -15,12 +15,7 @@ const albertSans = Albert_Sans({
   display: "swap",
 });
 
-export function generateViewport() {
-  return {
-    themeColor: "#171717",
-    colorScheme: "light dark",
-  };
-}
+
 
 export default function RootLayout({
   children,

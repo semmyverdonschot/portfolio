@@ -75,7 +75,7 @@ export default function Copy({
                 if (isAboutSection) {
                   startValue = isBigScreen ? "top 180%" : "top 90%";
                 } else {
-                  startValue = isBigScreen ? "top 180%" : "top 210%";
+                  startValue = isBigScreen ? "top 180%" : "top 230%";
                 }
               }
               gsap.to(self.lines, {
