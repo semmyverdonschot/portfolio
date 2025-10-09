@@ -2,6 +2,7 @@ import Script from "next/script";
 import { ReactLenis } from "lenis/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
+import DocumentTitleChanger from "@/components/DocumentTitleChanger";
 import ClientWrapper from "@/components/ui/ClientWrapper";
 import { Analytics } from "@vercel/analytics/react";
 import CursorDot from "@/components/ui/CursorDot";
@@ -34,6 +35,7 @@ export default function RootLayout({
               gtag('config', 'G-0CS17B888C', { send_page_view: false });
             `}
           </Script>
+                      <DocumentTitleChanger />
 
           <div className="px-4 md:px-8" style={{ overflow: "visible" }}>
             <ClientWrapper>{children}</ClientWrapper>
