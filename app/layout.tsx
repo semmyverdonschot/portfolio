@@ -10,7 +10,7 @@ import { albertSans } from "./fonts";
 export { metadata } from "./metadata";
 
 export const viewport = {
-  themeColor: "#171717",
+  themeColor: "#f5f5f5",
 };
 
 export default function RootLayout({

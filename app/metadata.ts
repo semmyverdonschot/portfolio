@@ -72,7 +72,7 @@ export const metadata: Metadata = {
   },
   appleWebApp: {
     title: "Semmy Verdonschot Portfolio",
-    statusBarStyle: "black-translucent",
+    statusBarStyle: "default",
   },
   icons: {
     icon: "/favicon.ico",
