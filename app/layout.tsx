@@ -1,4 +1,3 @@
-import { Albert_Sans } from "next/font/google";
 import Script from "next/script";
 import { ReactLenis } from "lenis/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -6,16 +5,8 @@ import "./globals.css";
 import ClientWrapper from "@/components/ui/ClientWrapper";
 import { Analytics } from "@vercel/analytics/react";
 import CursorDot from "@/components/ui/CursorDot";
-
+import { albertSans } from "./fonts";
 export { metadata, viewport } from "./metadata";
-
-const albertSans = Albert_Sans({
-  subsets: ["latin"],
-  variable: "--font-albert-sans",
-  display: "swap",
-});
-
-
 
 export default function RootLayout({
   children,
@@ -23,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={albertSans.variable}>
+    <html lang="en">
       <head>
         {/* Preconnect and preload assets */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -34,7 +25,7 @@ export default function RootLayout({
         />
       </head>
       <ReactLenis root>
-        <body>
+        <body className={albertSans.variable}> {/* 👈 apply font here */}
           {/* Google Analytics */}
           <Script
             strategy="afterInteractive"
@@ -42,11 +33,11 @@ export default function RootLayout({
           />
           <Script id="gtag-init" strategy="afterInteractive">
             {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-0CS17B888C', { send_page_view: false });
-          `}
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-0CS17B888C', { send_page_view: false });
+            `}
           </Script>
 
           <div className="px-4 md:px-8" style={{ overflow: "visible" }}>
