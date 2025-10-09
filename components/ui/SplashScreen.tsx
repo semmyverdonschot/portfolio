@@ -127,7 +127,12 @@ export default function SplashScreen({
   if (!show) return null;
 
   return (
-    <div className="fixed inset-0 z-[9999] bg-[var(--color-primary)] flex items-center justify-center pointer-events-none overflow-hidden font-[var(--font-albert-sans)]">
+    <div
+      className="fixed inset-0 z-[9999] bg-[var(--color-primary)] flex items-center justify-center overflow-hidden font-[var(--font-albert-sans)]"
+      aria-live="polite"
+      role="status"
+      style={{ pointerEvents: "auto" }} // allow interaction during splash
+    >
       <div
         ref={containerRef}
         className="text-center flex flex-col items-center justify-center"
