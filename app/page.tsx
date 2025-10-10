@@ -8,7 +8,7 @@ import Work from "@/components/sections/Work";
 import Techstack from "@/components/sections/Techstack";
 import Footer from "@/components/sections/Footer";
 import Services from "@/components/sections/Services";
-import Samples from "@/components/sections/Samples";
+import Marquee from "@/components/sections/Marquee";
 
 export default function Page() {
   const [isMobile, setIsMobile] = useState(false);
@@ -240,7 +240,7 @@ export default function Page() {
       <About />
       <Work />
       <Services />
-      <Samples />
+      <Marquee />
       <Techstack />
       <Footer />
     </div>

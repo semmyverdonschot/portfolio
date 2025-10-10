@@ -288,7 +288,7 @@ export default function HeroVideo({
           >
             {/* Video placeholder image */}
             <Image
-              src="/placeholder.webp"
+              src="/img/placeholder.webp"
               alt="Portfolio video preview"
               width={1200}
               height={675}
@@ -303,7 +303,7 @@ export default function HeroVideo({
             {/* Video element */}
             <video
               ref={videoElRef}
-              poster="/placeholder.webp"
+              poster="/img/placeholder.webp"
               autoPlay
               playsInline
               preload="auto"
@@ -323,7 +323,9 @@ export default function HeroVideo({
             >
               <source
                 src={
-                  isMobile ? "/hero-video-480p.webm" : "/hero-video-720p.webm"
+                  isMobile
+                    ? "/videos/hero-video-480p.webm"
+                    : "/videos/hero-video-720p.webm"
                 }
                 type="video/webm"
               />

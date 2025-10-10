@@ -2,33 +2,45 @@
 import Image from "next/image";
 import { useTransform, useScroll, motion } from "framer-motion";
 import { useRef } from "react";
-import useDimension from "@/hooks/useDiamensions";
+import useWindowDimensions from "@/hooks/useWindowDimensions";
 
 const images = [
-  "sample1.png",
-  "sample1.png",
-  "sample1.png",
-  "sample1.png",
-  "sample1.png",
-  "sample1.png",
-  "sample1.png",
+  "GarageHomepage.png",
+  "LoginCrimequest.png",
+  "Portfoliomenu.png",
+  "Portfoliomenu.png",
+  "Portfoliomenu.png",
+  "Portfoliomenu.png",
+  "Portfoliomenu.png",
 ];
 
-export default function Samples() {
+export default function Marquee() {
   const galleryRef = useRef(null);
-  const { width, height } = useDimension();
+  const { width, height } = useWindowDimensions();
   const { scrollYProgress } = useScroll({
     target: galleryRef,
     offset: ["start end", "end start"],
   });
-  const y = useTransform(scrollYProgress, [0, 1], [0, height * 0.8]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, height * 1.2]);
-  const y3 = useTransform(scrollYProgress, [0, 1], [0, height * 0.5]);
-  const y4 = useTransform(scrollYProgress, [0, 1], [0, height * 1]);
+  const y = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [-height * 0.3, height * 0.8],
+  );
+  const y2 = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [-height * 0.5, height * 1.2],
+  );
+  const y3 = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [-height * 0.2, height * 0.5],
+  );
+  const y4 = useTransform(scrollYProgress, [0, 1], [-height * 0.4, height * 1]);
 
   return (
     <section
-      id="samples"
+      id="marquee"
       style={{
         background: "var(--color-dark)",
         borderTopLeftRadius: "16px",

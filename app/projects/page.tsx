@@ -236,7 +236,7 @@ export default function Work() {
                       <div className="relative rounded-lg lg:rounded-xl overflow-hidden w-full h-[260px] md:h-[350px] lg:h-[clamp(500px,32vw,800px)]">
                         <div className="absolute inset-0 bg-[var(--color-dark)]/30 backdrop-blur-md rounded-lg lg:rounded-xl z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out"></div>
                         <Image
-                          src="/placeholder.webp"
+                          src="/img/placeholder.webp"
                           alt="Project Three Preview"
                           width={400}
                           height={250}
@@ -255,7 +255,7 @@ export default function Work() {
                               height="32"
                               decoding="async"
                               className="w-6 h-6 lg:w-8 lg:h-8 rounded-full flex-shrink-0 object-contain"
-                              src="/placeholder.webp"
+                              src="/img/placeholder.webp"
                             />
                             <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-wide truncate">
                               Weldas
@@ -291,7 +291,7 @@ export default function Work() {
                       <div className="relative rounded-lg lg:rounded-xl overflow-hidden w-full h-[260px] md:h-[350px] lg:h-[clamp(500px,32vw,800px)]">
                         <div className="absolute inset-0 bg-[var(--color-dark)]/30 backdrop-blur-md rounded-lg lg:rounded-xl z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out"></div>
                         <Image
-                          src="/placeholder.webp"
+                          src="/img/placeholder.webp"
                           alt="Project Four Preview"
                           width={400}
                           height={250}
@@ -310,7 +310,7 @@ export default function Work() {
                               height="32"
                               decoding="async"
                               className="w-6 h-6 lg:w-8 lg:h-8 rounded-full flex-shrink-0 object-contain"
-                              src="/placeholder.webp"
+                              src="/img/placeholder.webp"
                             />
                             <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-wide truncate">
                               Crime Quest

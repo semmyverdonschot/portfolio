@@ -1,6 +1,5 @@
 import Image from "next/image";
-import img1 from "@/public/img/sample1.png";
-import img2 from "@/public/img/sample1.png";
+
 import Copy from "@/hooks/Scrollanimate";
 
 export default function Services() {
@@ -14,43 +13,43 @@ export default function Services() {
         borderRadius: "16px",
       }}
     >
-      <div className="flex flex-col gap-4 md:gap-8">
-        <h3 className="text-sm md:text-base text-[var(--color-dark)] uppercase tracking-wider font-bold mb-2 md:mb-3">
+      <div className="flex flex-col gap-8 md:gap-12">
+        <h3 className="text-sm md:text-base text-[var(--color-dark)] uppercase tracking-wider font-bold mb-4 md:mb-6">
           Services
         </h3>
         <Copy animateOnScroll>
-          <p className="text-2xl md:text-4xl lg:text-5xl font-normal text-[var(--color-dark)] leading-tight flex-1 max-w-full md:max-w-4xl">
+          <p className="text-2xl md:text-4xl lg:text-5xl font-normal text-[var(--color-dark)] leading-tight flex-1 max-w-full md:max-w-4xl mb-8 md:mb-12">
             Constantly learning and growing, I develop full-stack solutions that
             improve with every project—focused on quality, security and
-            performance.{" "}
+            performance.
           </p>
         </Copy>
       </div>
-      <div className="flex flex-col lg:flex-row gap-4 md:gap-6">
+      <div className="flex flex-col lg:flex-row gap-8 md:gap-12">
         <div className="flex flex-col w-full lg:w-1/2 lg:max-w-7xl">
-          <div className="h-[250px] md:h-[400px] w-full relative mb-8">
+          <div className="h-[250px] md:h-[400px] w-full relative mb-12">
             <Image
-              src={img2}
-              alt="desktop"
+              src="/img/ServiceDevelopment.png"
+              alt="Service Development picture"
               className="object-cover object-center rounded-[16px]"
               fill
             />
           </div>
-          <div className="flex flex-col gap-6 items-start w-full">
+          <div className="flex flex-col gap-8 items-start w-full">
             <div className="w-full max-w-2xl">
               <label
                 htmlFor="service-development"
-                className="text-2xl md:text-6xl mb-4 font-bold"
+                className="text-4xl md:text-6xl mb-6 font-bold"
               >
                 Development
               </label>
               <Copy animateOnScroll>
-                <p className="text-base md:text-lg text-[var(--color-dark)] mt-8 mb-6 max-w-2xl">
+                <p className="text-base md:text-lg text-[var(--color-dark)] mt-10 mb-8 max-w-2xl">
                   Building digital products that combine design, technology, and
                   business strategy to deliver seamless user experiences.
                 </p>
               </Copy>
-              <div className="flex flex-wrap gap-2 mb-4">
+              <div className="flex flex-wrap gap-3 mb-6">
                 {[
                   "Frontend",
                   "Backend",
@@ -58,8 +57,8 @@ export default function Services() {
                   "Responsive Design",
                   "Secure Authentication",
                   "API",
-                ].map((tag, i) => (
-                  <Copy key={tag} animateOnScroll delay={i * 0.05}>
+                ].map((tag) => (
+                  <Copy key={tag} animateOnScroll>
                     <span
                       style={{ color: "var(--color-light)" }}
                       className="bg-[var(--color-dark)] text-xs md:text-sm uppercase px-4 py-2 rounded-lg inline-block"
@@ -73,40 +72,37 @@ export default function Services() {
           </div>
         </div>
         <div className="flex flex-col w-full lg:w-1/2 lg:max-w-7xl">
-          <div className="h-[250px] md:h-[400px] w-full relative mb-8">
+          <div className="h-[250px] md:h-[400px] w-full relative mb-12">
             <Image
-              src={img1}
-              alt="desktop"
+              src="/img/ServiceSEO.png"
+              alt="Service SEO picture"
               className="object-cover object-center rounded-[16px]"
               fill
             />
           </div>
-          <div className="flex flex-col gap-6 items-start w-full">
+          <div className="flex flex-col gap-8 items-start w-full">
             <div className="w-full max-w-2xl">
-              <label
-                className="text-2xl md:text-6xl font-bold mb-4"
-              >
+              <label className="text-4xl md:text-6xl font-bold mb-6">
                 Optimization
               </label>
               <Copy animateOnScroll>
-                <p className="text-base md:text-lg text-[var(--color-dark)] mt-8 mb-6 max-w-2xl">
-                  Enhancing performance, accessibility, and user experience
-                  through thoughtful improvements—making sure every product is
-                  fast, secure, and ready to grow.
+                <p className="text-base md:text-lg text-[var(--color-dark)] mt-10 mb-8 max-w-2xl">
+                  Enhancing performance and accessibility making sure every
+                  product is fast, secure, and ready to grow.
                 </p>
               </Copy>
-              <div className="flex flex-wrap gap-2 mb-4">
+              <div className="flex flex-wrap gap-3 mb-6">
                 {[
                   "SEO & online presence",
                   "Performance",
                   "Accessibility",
                   "Progressive Web Apps",
                   "Google Analytics",
-                ].map((tag, i) => (
-                  <Copy key={tag} animateOnScroll delay={i * 0.05}>
+                ].map((tag) => (
+                  <Copy key={tag} animateOnScroll>
                     <span
                       style={{ color: "var(--color-light)" }}
-                      className="bg-[var(--color-dark)] text-sm md:text-sm uppercase px-4 py-2 rounded-lg inline-block"
+                      className="bg-[var(--color-dark)] text-xs md:text-sm uppercase px-4 py-2 rounded-lg inline-block"
                     >
                       {tag}
                     </span>

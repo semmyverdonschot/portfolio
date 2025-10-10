@@ -102,6 +102,7 @@ export default function Work() {
                         "JAVASCRIPT",
                         "FORMSPREE",
                         "API INTEGRATION",
+                        "SEO",
                       ]}
                     />
                   </div>

@@ -44,7 +44,7 @@ export default function Techstack() {
       .replace(/-/g, "");
 
   return (
-    <section className="pt-24 md:pt-48">
+    <section className="pt-24 mb-24 md:pt-48">
       <div className="w-full max-w-none mx-auto">
         <div className="flex flex-col justify-left items-center mb-12">
           <Copy animateOnScroll>

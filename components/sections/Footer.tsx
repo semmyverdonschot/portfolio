@@ -76,8 +76,8 @@ export default function Footer() {
               >
                 {showGif && (
                   <Image
-                    src="/djangoGIF.gif"
-                    alt="Django GIF"
+                    src="videos/BadBoys.gif"
+                    alt="BadBoys GIF"
                     width={isMobile ? 220 : 360}
                     height={isMobile ? 120 : 180}
                     style={{
