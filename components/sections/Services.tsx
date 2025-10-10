@@ -58,14 +58,16 @@ export default function Services() {
                   "Secure Authentication",
                   "API",
                 ].map((tag) => (
-                  <Copy key={tag} animateOnScroll>
-                    <span
-                      style={{ color: "var(--color-light)" }}
-                      className="bg-[var(--color-dark)] text-xs md:text-sm uppercase px-4 py-2 rounded-lg inline-block"
-                    >
-                      {tag}
+                  <span
+                    key={tag}
+                    style={{ color: "var(--color-light)" }}
+                    className="bg-[var(--color-dark)] text-xs md:text-sm uppercase px-4 py-2 rounded-lg inline-block"
+                  >
+                    <span className="hidden md:inline">
+                      <Copy animateOnScroll>{tag}</Copy>
                     </span>
-                  </Copy>
+                    <span className="md:hidden">{tag}</span>
+                  </span>
                 ))}
               </div>
             </div>
@@ -99,14 +101,16 @@ export default function Services() {
                   "Progressive Web Apps",
                   "Google Analytics",
                 ].map((tag) => (
-                  <Copy key={tag} animateOnScroll>
-                    <span
-                      style={{ color: "var(--color-light)" }}
-                      className="bg-[var(--color-dark)] text-xs md:text-sm uppercase px-4 py-2 rounded-lg inline-block"
-                    >
-                      {tag}
+                  <span
+                    key={tag}
+                    style={{ color: "var(--color-light)" }}
+                    className="bg-[var(--color-dark)] text-xs md:text-sm uppercase px-4 py-2 rounded-lg inline-block"
+                  >
+                    <span className="hidden md:inline">
+                      <Copy animateOnScroll>{tag}</Copy>
                     </span>
-                  </Copy>
+                    <span className="md:hidden">{tag}</span>
+                  </span>
                 ))}
               </div>
             </div>
