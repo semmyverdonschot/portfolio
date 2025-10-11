@@ -67,7 +67,7 @@ export default function InfiniteCarousel({
         {[...items, ...items, ...items].map((item, index) => (
           <span
             key={index}
-            className="text-sm md:text-medium uppercase font-medium text-[var(--color-graylight)] tracking-wide flex-shrink-0 px-1"
+            className="text-sm md:text-medium uppercase font-medium text-[var(--color-graylight)] tracking-wider flex-shrink-0 px-1"
             style={{ minWidth: "fit-content" }}
           >
             {item},

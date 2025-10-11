@@ -55,7 +55,6 @@ body {
   color: var(--color-dark);
 }
 
-
 @keyframes blink {
   0% {
     opacity: 1;

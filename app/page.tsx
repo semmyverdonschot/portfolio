@@ -218,7 +218,23 @@ export default function Page() {
               ref={scrollLeftRef}
               className={`flex items-center space-x-2 text-[var(--color-dark)] font-semibold tracking-tight ${isMobile ? "text-base" : "text-xl"}`}
             >
-              <span className={isMobile ? "text-xl" : "text-2xl"}>↓</span>
+              {/* Custom arrow-down SVG */}
+              <span>
+                <svg
+                  width={isMobile ? 24 : 32}
+                  height={isMobile ? 24 : 32}
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <line x1="12" y1="5" x2="12" y2="19" />
+                  <polyline points="5 12 12 19 19 12" />
+                </svg>
+              </span>
               <span>Scroll for</span>
             </div>
           </div>
@@ -229,7 +245,23 @@ export default function Page() {
               className={`flex items-center space-x-2 text-[var(--color-dark)] font-semibold tracking-tight ${isMobile ? "text-base" : "text-xl"}`}
             >
               <span>the good stuff</span>
-              <span className={isMobile ? "text-xl" : "text-2xl"}>↓</span>
+              {/* Custom arrow-down SVG */}
+              <span>
+                <svg
+                  width={isMobile ? 24 : 32}
+                  height={isMobile ? 24 : 32}
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <line x1="12" y1="5" x2="12" y2="19" />
+                  <polyline points="5 12 12 19 19 12" />
+                </svg>
+              </span>
             </div>
           </div>
         </div>

@@ -49,7 +49,7 @@ export default function Services() {
                   business strategy to deliver seamless user experiences.
                 </p>
               </Scrollanimate>
-              <div className="flex flex-wrap gap-3 mb-6">
+              <div className="flex flex-wrap gap-2 mb-6">
                 {[
                   "Frontend",
                   "Backend",
@@ -93,7 +93,7 @@ export default function Services() {
                   product is fast, secure, and ready to grow.
                 </p>
               </Scrollanimate>
-              <div className="flex flex-wrap gap-3 mb-6">
+              <div className="flex flex-wrap gap-2 mb-6">
                 {[
                   "SEO & online presence",
                   "Performance",

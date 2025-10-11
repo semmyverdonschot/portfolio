@@ -22,7 +22,11 @@ export default function Techstack() {
       href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
     },
     { name: "Vercel", target: "_blank", href: "https://vercel.com/" },
-    { name: "PostgreSQL", target: "_blank", href: "https://www.postgresql.org/" },
+    {
+      name: "PostgreSQL",
+      target: "_blank",
+      href: "https://www.postgresql.org/",
+    },
     { name: "Gsap", target: "_blank", href: "https://greensock.com/gsap/" },
     { name: "Tailwind", target: "_blank", href: "https://tailwindcss.com/" },
     { name: "Mongodb", target: "_blank", href: "https://www.mongodb.com/" },
