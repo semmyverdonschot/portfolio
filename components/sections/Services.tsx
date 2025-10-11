@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import Copy from "@/hooks/Scrollanimate";
+import Scrollanimate from "@/hooks/Scrollanimate";
 
 export default function Services() {
   return (
@@ -17,13 +17,13 @@ export default function Services() {
         <h3 className="text-sm md:text-base text-[var(--color-dark)] uppercase tracking-wider font-bold mb-4 md:mb-6">
           Services
         </h3>
-        <Copy animateOnScroll>
+        <Scrollanimate animateOnScroll>
           <p className="text-2xl md:text-4xl lg:text-5xl font-normal text-[var(--color-dark)] leading-tight flex-1 max-w-full md:max-w-4xl mb-8 md:mb-12">
             Constantly learning and growing, I develop full-stack solutions that
             improve with every project—focused on quality, security and
             performance.
           </p>
-        </Copy>
+        </Scrollanimate>
       </div>
       <div className="flex flex-col lg:flex-row gap-8 md:gap-12">
         <div className="flex flex-col w-full lg:w-1/2 lg:max-w-7xl">
@@ -43,12 +43,12 @@ export default function Services() {
               >
                 Development
               </label>
-              <Copy animateOnScroll>
+              <Scrollanimate animateOnScroll>
                 <p className="text-base md:text-lg text-[var(--color-dark)] mt-10 mb-8 max-w-2xl">
                   Building digital products that combine design, technology, and
                   business strategy to deliver seamless user experiences.
                 </p>
-              </Copy>
+              </Scrollanimate>
               <div className="flex flex-wrap gap-3 mb-6">
                 {[
                   "Frontend",
@@ -64,7 +64,7 @@ export default function Services() {
                     className="bg-[var(--color-dark)] text-xs md:text-sm uppercase px-4 py-2 rounded-lg inline-block"
                   >
                     <span className="hidden md:inline">
-                      <Copy animateOnScroll>{tag}</Copy>
+                      <Scrollanimate animateOnScroll>{tag}</Scrollanimate>
                     </span>
                     <span className="md:hidden">{tag}</span>
                   </span>
@@ -87,12 +87,12 @@ export default function Services() {
               <label className="text-4xl md:text-6xl font-bold mb-6">
                 Optimization
               </label>
-              <Copy animateOnScroll>
+              <Scrollanimate animateOnScroll>
                 <p className="text-base md:text-lg text-[var(--color-dark)] mt-10 mb-8 max-w-2xl">
                   Enhancing performance and accessibility making sure every
                   product is fast, secure, and ready to grow.
                 </p>
-              </Copy>
+              </Scrollanimate>
               <div className="flex flex-wrap gap-3 mb-6">
                 {[
                   "SEO & online presence",
@@ -107,7 +107,7 @@ export default function Services() {
                     className="bg-[var(--color-dark)] text-xs md:text-sm uppercase px-4 py-2 rounded-lg inline-block"
                   >
                     <span className="hidden md:inline">
-                      <Copy animateOnScroll>{tag}</Copy>
+                      <Scrollanimate animateOnScroll>{tag}</Scrollanimate>
                     </span>
                     <span className="md:hidden">{tag}</span>
                   </span>

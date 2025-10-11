@@ -22,43 +22,17 @@ export function useSlideTogether<T extends HTMLElement = HTMLElement>(
       force3D: true,
     });
 
-    const handleTransitionComplete = () => {
-      setTimeout(() => {
-        gsap.to(elements, {
-          y: 0,
-          duration,
-          ease: "cubic-bezier(0.55, 0.06, 0.68, 0.19)",
-          stagger: 0.05,
-        });
-      }, 200);
-    };
-
-    // Check if we're on initial load (no page transition)
-    const isInitialLoad = !document.querySelector("[data-template]");
-
-    if (isInitialLoad) {
-      // For initial load, start animations immediately
-      setTimeout(() => {
-        gsap.to(elements, {
-          y: 0,
-          duration,
-          ease: "cubic-bezier(0.55, 0.06, 0.68, 0.19)",
-          stagger: 0.05,
-        });
-      }, 200);
-    } else {
-      // For page transitions, wait for transition complete event
-      window.addEventListener(
-        "pageTransitionComplete",
-        handleTransitionComplete,
-      );
-    }
+    const timeout = setTimeout(() => {
+      gsap.to(elements, {
+        y: 0,
+        duration,
+        ease: "cubic-bezier(0.55, 0.06, 0.68, 0.19)",
+        stagger: 0.05,
+      });
+    }, 600);
 
     return () => {
-      window.removeEventListener(
-        "pageTransitionComplete",
-        handleTransitionComplete,
-      );
+      clearTimeout(timeout);
     };
   }, [refs, direction, duration]);
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import Copy from "@/hooks/Scrollanimate";
+import Scrollanimate from "@/hooks/Scrollanimate";
 
 export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -17,24 +17,24 @@ export default function About() {
         <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start">
           <div className="md:col-span-12 space-y-12 md:space-y-14">
             <header>
-              <Copy animateOnScroll>
+              <Scrollanimate animateOnScroll>
                 <h2
                   id="about-heading"
                   className="text-sm md:text-base text-[var(--color-dark)] uppercase tracking-wider font-bold mb-2 md:mb-3"
                 >
                   About Myself
                 </h2>
-              </Copy>
+              </Scrollanimate>
             </header>
             <div className="flex flex-col md:flex-row md:items-start md:space-x-20 space-y-3 md:space-y-0">
-              <Copy animateOnScroll>
+              <Scrollanimate animateOnScroll>
                 <p className="text-2xl md:text-4xl lg:text-5xl font-normal text-[var(--color-dark)] leading-tight flex-1 max-w-full md:max-w-4xl">
                   I&apos;m a web developer with a focus on building secure
                   digital experiences, a jack-of-all-trades who enjoys helping
                   brands do things they didn&apos;t know they could do.{" "}
                 </p>
-              </Copy>
-              <Copy animateOnScroll>
+              </Scrollanimate>
+              <Scrollanimate animateOnScroll>
                 <aside
                   className="text-lg md:text-2xl text-[var(--color-graylight)] hidden md:block flex-shrink-0 leading-relaxed text-left ml-auto"
                   aria-label="Personal background information"
@@ -45,7 +45,7 @@ export default function About() {
                     <p>at Fontys</p>
                   </address>
                 </aside>
-              </Copy>
+              </Scrollanimate>
             </div>
             <nav
               className="flex flex-row items-start space-x-6 md:space-x-8 pt-4 md:pt-8"

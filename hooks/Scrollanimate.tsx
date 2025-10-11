@@ -13,17 +13,17 @@ interface SplitTextInstance {
   revert: () => void;
 }
 
-interface CopyProps {
+interface ScrollanimateProps {
   children: React.ReactNode;
   animateOnScroll?: boolean;
   delay?: number;
 }
 
-export default function Copy({
+export default function ScrollAnimate({
   children,
   animateOnScroll = true,
   delay = 0,
-}: CopyProps) {
+}: ScrollanimateProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const elementRef = useRef<HTMLElement[]>([]);
   const splitRef = useRef<SplitTextInstance[]>([]);
@@ -39,7 +39,7 @@ export default function Copy({
 
       let elements: HTMLElement[] = [];
 
-      if (containerRef.current.hasAttribute("data-copy-wrapper")) {
+      if (containerRef.current.hasAttribute("data-Scrollanimate-wrapper")) {
         elements = Array.from(containerRef.current.children) as HTMLElement[];
       } else {
         elements = [containerRef.current];
@@ -130,7 +130,7 @@ export default function Copy({
   }
 
   return (
-    <div ref={containerRef} data-copy-wrapper="true">
+    <div ref={containerRef} data-Scrollanimate-wrapper="true">
       {children}
     </div>
   );

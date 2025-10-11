@@ -224,7 +224,7 @@ export default function Navbar() {
             <NavButton
               item={item}
               idx={idx}
-              activeIndex={finalActiveIndex}
+              activeIndex={activeIndex}
               onClick={handleNavClick}
               ref={navItemRefs[idx]}
               className="translate-y-full"
@@ -233,7 +233,7 @@ export default function Navbar() {
         ))}
         <Link
           href="mailto:hello@semmyverdonschot.com"
-          className="px-6 py-3 rounded-full bg-[var(--color-dark)] text-white font-semibold hover:opacity-80 transition-opacity duration-300"
+          className="px-6 py-3 rounded-full bg-[var(--color-dark)] text-[var(--color-primary)] font-semibold hover:opacity-80 transition-opacity duration-300"
         >
           CONTACT
         </Link>

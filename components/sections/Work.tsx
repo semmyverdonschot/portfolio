@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import InfiniteCarousel from "@/components/ui/InfiniteCarousel";
-import Copy from "@/hooks/Scrollanimate";
+import Scrollanimate from "@/hooks/Scrollanimate";
 
 export default function Work() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -14,11 +14,11 @@ export default function Work() {
           <div className="md:col-span-12 space-y-8 md:space-y-10 overflow-x-hidden">
             {/* Projects*/}
             <div className="w-full flex justify-between items-center">
-              <Copy animateOnScroll>
+              <Scrollanimate animateOnScroll>
                 <h2 className="text-[17.8vw] md:text-[12vw] lg:text-[10vw] uppercase leading-none font-black text-[var(--color-dark)]">
                   MY WORK
                 </h2>
-              </Copy>
+              </Scrollanimate>
             </div>
 
             {/* Project Cards */}
@@ -80,17 +80,17 @@ export default function Work() {
                         className="w-6 h-6 lg:w-8 lg:h-8 rounded-full flex-shrink-0 object-contain"
                         src="/Garagehansverdonschot/small logo.png"
                       />
-                      <Copy animateOnScroll>
+                      <Scrollanimate animateOnScroll>
                         <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-wide truncate">
                           Garage Hans
                         </p>
-                      </Copy>
+                      </Scrollanimate>
                     </div>
-                    <Copy animateOnScroll>
+                    <Scrollanimate animateOnScroll>
                       <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-wide flex-shrink-0 ml-2">
                         Website 2024
                       </p>
-                    </Copy>
+                    </Scrollanimate>
                   </div>
 
                   {/* tech*/}
@@ -162,17 +162,17 @@ export default function Work() {
                         className="w-6 h-6 lg:w-8 lg:h-8 rounded-full flex-shrink-0 object-contain"
                         src="/Revivor/revivor logo.webp"
                       />
-                      <Copy animateOnScroll>
+                      <Scrollanimate animateOnScroll>
                         <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-wide truncate">
                           Project Two
                         </p>
-                      </Copy>
+                      </Scrollanimate>
                     </div>
-                    <Copy animateOnScroll>
+                    <Scrollanimate animateOnScroll>
                       <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-wide flex-shrink-0 ml-2">
                         CONCEPT 2024
                       </p>
-                    </Copy>
+                    </Scrollanimate>
                   </div>
 
                   {/* dynamic tech list */}

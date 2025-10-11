@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Copy from "@/hooks/Scrollanimate";
+import Scrollanimate from "@/hooks/Scrollanimate";
 
 export default function Techstack() {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
@@ -22,7 +22,7 @@ export default function Techstack() {
       href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
     },
     { name: "Vercel", target: "_blank", href: "https://vercel.com/" },
-    { name: "Supabase", target: "_blank", href: "https://supabase.com/" },
+    { name: "PostgreSQL", target: "_blank", href: "https://www.postgresql.org/" },
     { name: "Gsap", target: "_blank", href: "https://greensock.com/gsap/" },
     { name: "Tailwind", target: "_blank", href: "https://tailwindcss.com/" },
     { name: "Mongodb", target: "_blank", href: "https://www.mongodb.com/" },
@@ -47,11 +47,11 @@ export default function Techstack() {
     <section className="pt-24 mb-24 md:pt-48">
       <div className="w-full max-w-none mx-auto">
         <div className="flex flex-col justify-left items-center mb-12">
-          <Copy animateOnScroll>
+          <Scrollanimate animateOnScroll>
             <h2 className="text-[15vw] md:text-[10vw] lg:text-[10vw] uppercase leading-none font-black text-[var(--color-dark)]">
               TECHSTACK
             </h2>
-          </Copy>
+          </Scrollanimate>
         </div>
         <div className="flex flex-col w-full pt-24 md:pt-24">
           <span className="text-sm md:text-base text-[var(--color-dark)] uppercase tracking-wider font-bold mb-2 md:mb-3">
