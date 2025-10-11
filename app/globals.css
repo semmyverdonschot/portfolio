@@ -55,10 +55,6 @@ body {
   color: var(--color-dark);
 }
 
-h1 {
-  display: none;
-  overflow: hidden;
-}
 
 @keyframes blink {
   0% {

@@ -13,7 +13,7 @@ export default function Services() {
         borderRadius: "16px",
       }}
     >
-      <div className="flex flex-col gap-8 md:gap-12">
+      <div className="flex flex-col gap-6">
         <h3 className="text-sm md:text-base text-[var(--color-dark)] uppercase tracking-wider font-bold mb-4 md:mb-6">
           Services
         </h3>
@@ -27,11 +27,11 @@ export default function Services() {
       </div>
       <div className="flex flex-col lg:flex-row gap-8 md:gap-12">
         <div className="flex flex-col w-full lg:w-1/2 lg:max-w-7xl">
-          <div className="h-[250px] md:h-[400px] w-full relative mb-12">
+          <div className="h-[340px] md:h-[520px] w-full relative mb-12">
             <Image
-              src="/img/ServiceDevelopment.png"
+              src="/img/ServiceDevelopment.jpg"
               alt="Service Development picture"
-              className="object-cover object-center rounded-[16px]"
+              className="object-cover object-center rounded-2xl"
               fill
             />
           </div>
@@ -74,11 +74,11 @@ export default function Services() {
           </div>
         </div>
         <div className="flex flex-col w-full lg:w-1/2 lg:max-w-7xl">
-          <div className="h-[250px] md:h-[400px] w-full relative mb-12">
+          <div className="h-[340px] md:h-[520px] w-full relative mb-12">
             <Image
               src="/img/ServiceSEO.png"
               alt="Service SEO picture"
-              className="object-cover object-center rounded-[16px]"
+              className="object-cover object-center rounded-2xl"
               fill
             />
           </div>

@@ -44,16 +44,16 @@ export default function Work() {
 
               {/* PROJECTS */}
               <div className="w-full flex justify-between items-center overflow-hidden">
-                <h2
+                <h1
                   ref={titleRef}
                   className="text-[17.5vw] md:text-[10vw] lg:text-[8vw] leading-none font-black text-[var(--color-dark)]"
                 >
                   PROJECTS
-                </h2>
+                </h1>
               </div>
 
               {/* Light wrapper around project cards */}
-              <div className="p-4 rounded-3xl bg-[var(--color-light)] max-w-full overflow-hidden">
+              <div className="p-4 rounded-2xl bg-[var(--color-light)] max-w-full overflow-hidden">
                 {/* Project Cards*/}
                 <div className="flex flex-col md:flex-row gap-4 md:gap-6 w-full mb-6">
                   {/* garage hans verdonschot*/}
