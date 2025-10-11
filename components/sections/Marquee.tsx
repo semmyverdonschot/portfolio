@@ -7,11 +7,11 @@ import useWindowDimensions from "@/hooks/useWindowDimensions";
 const images = [
   "GarageHomepage.png",
   "LoginCrimequest.png",
-  "Portfoliomenu.png",
-  "Portfoliomenu.png",
-  "Portfoliomenu.png",
-  "Portfoliomenu.png",
-  "Portfoliomenu.png",
+  "PortfolioMenu.png",
+  "PortfolioMenu.png",
+  "PortfolioMenu.png",
+  "PortfolioMenu.png",
+  "PortfolioMenu.png",
 ];
 
 export default function Marquee() {
