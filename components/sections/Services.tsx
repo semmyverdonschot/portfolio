@@ -14,7 +14,7 @@ export default function Services() {
       }}
     >
       <div className="flex flex-col gap-6">
-        <h3 className="text-sm md:text-base text-[var(--color-dark)] uppercase tracking-wider font-bold mb-4 md:mb-6">
+        <h3 className="text-sm md:text-base text-[var(--color-dark)] uppercase tracking-tight font-bold mb-4 md:mb-6">
           Services
         </h3>
         <Scrollanimate animateOnScroll>

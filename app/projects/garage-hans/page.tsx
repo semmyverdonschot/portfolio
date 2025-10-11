@@ -31,7 +31,12 @@ export default function GarageHansPage() {
             </h1>
           </div>
           <div className="w-full mt-8 p-4 rounded-2xl bg-[var(--color-secondary)] flex items-center justify-center">
-            <p className="text-[var(--color-primary)] text-lg">diejduejduejeij</p>
+              <h2
+                  id="about-heading"
+                  className="text-sm md:text-base text-[var(--color-graylight)] uppercase tracking-tight font-medium mb-2 md:mb-3"
+                >
+                  LAUNCH
+                </h2>
           </div>
         </div>
       </section>

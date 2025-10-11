@@ -20,7 +20,7 @@ export default function About() {
               <Scrollanimate animateOnScroll>
                 <h2
                   id="about-heading"
-                  className="text-sm md:text-base text-[var(--color-dark)] uppercase tracking-wider font-bold mb-2 md:mb-3"
+                  className="text-sm md:text-base text-[var(--color-dark)] uppercase tracking-tight font-semibold mb-2 md:mb-3"
                 >
                   About Myself
                 </h2>

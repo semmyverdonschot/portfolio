@@ -54,7 +54,7 @@ export default function Techstack() {
           </Scrollanimate>
         </div>
         <div className="flex flex-col w-full pt-24 md:pt-24">
-          <span className="text-sm md:text-base text-[var(--color-dark)] uppercase tracking-wider font-bold mb-2 md:mb-3">
+          <span className="text-sm md:text-base text-[var(--color-dark)] uppercase tracking-tight font-bold mb-2 md:mb-3">
             I&apos;m good at
           </span>
 

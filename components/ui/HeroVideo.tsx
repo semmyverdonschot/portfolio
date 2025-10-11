@@ -232,7 +232,7 @@ export default function HeroVideo({
             mounted ? "opacity-100" : "opacity-0"
           }`}
         >
-          <div className="flex w-full text-base font-medium text-[var(--color-dark)] justify-center">
+          <div className="flex w-full text-base tracking-tight font-semibold text-[var(--color-dark)] justify-center">
             <span
               ref={mobileARef}
               className="flex-1 text-left translate-y-full"
@@ -404,11 +404,11 @@ export default function HeroVideo({
       {/* Desktop "A VERY SECURE" text */}
       {!isMobile && (
         <div
-          className={`overflow-hidden w-full mt-4 mb-6 transition-opacity duration-300 ${
+          className={`overflow-hidden w-full mt-4 mb-4 transition-opacity duration-300 ${
             mounted ? "opacity-100" : "opacity-0"
           }`}
         >
-          <div className="flex w-full text-base font-normal justify-center">
+          <div className="flex w-full text-xl font-semibold tracking tight justify-center">
             <span
               ref={desktopARef}
               className="flex-1 text-left translate-y-full"
@@ -417,7 +417,7 @@ export default function HeroVideo({
             </span>
             <span
               ref={desktopVeryRef}
-              className="flex-1 text-center translate-y-full"
+              className="flex-1 text-center translate-y-full ml-5"
             >
               VERY
             </span>

@@ -211,12 +211,12 @@ export default function Page() {
 
         {/* Scroll indicators */}
         <div
-          className={`w-full flex justify-between items-center ${isMobile ? "mt-8" : "mt-10"}`}
+          className={`w-full flex justify-between items-center ${isMobile ? "mt-6" : "mt-12"}`}
         >
           <div className="overflow-hidden">
             <div
               ref={scrollLeftRef}
-              className={`flex items-center space-x-2 text-[var(--color-dark)] font-normal ${isMobile ? "text-base" : "text-base hover:text-[var(--color-dark)] transition-colors duration-300"}`}
+              className={`flex items-center space-x-2 text-[var(--color-dark)] font-semibold tracking-tight ${isMobile ? "text-base" : "text-xl"}`}
             >
               <span className={isMobile ? "text-xl" : "text-2xl"}>↓</span>
               <span>Scroll for</span>
@@ -226,7 +226,7 @@ export default function Page() {
           <div className="overflow-hidden">
             <div
               ref={scrollRightRef}
-              className={`flex items-center space-x-2 text-[var(--color-dark)] font-normal ${isMobile ? "text-base" : "text-base hover:text-[var(--color-dark)] transition-colors duration-300"}`}
+              className={`flex items-center space-x-2 text-[var(--color-dark)] font-semibold tracking-tight ${isMobile ? "text-base" : "text-xl"}`}
             >
               <span>the good stuff</span>
               <span className={isMobile ? "text-xl" : "text-2xl"}>↓</span>

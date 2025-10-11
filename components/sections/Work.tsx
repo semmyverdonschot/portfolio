@@ -81,13 +81,13 @@ export default function Work() {
                         src="/Garagehansverdonschot/small logo.png"
                       />
                       <Scrollanimate animateOnScroll>
-                        <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-wide truncate">
+                        <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-tight truncate">
                           Garage Hans
                         </p>
                       </Scrollanimate>
                     </div>
                     <Scrollanimate animateOnScroll>
-                      <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-wide flex-shrink-0 ml-2">
+                      <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-tight flex-shrink-0 ml-2">
                         Website 2024
                       </p>
                     </Scrollanimate>
@@ -163,13 +163,13 @@ export default function Work() {
                         src="/Revivor/revivor logo.webp"
                       />
                       <Scrollanimate animateOnScroll>
-                        <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-wide truncate">
+                        <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-tight truncate">
                           Project Two
                         </p>
                       </Scrollanimate>
                     </div>
                     <Scrollanimate animateOnScroll>
-                      <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-wide flex-shrink-0 ml-2">
+                      <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-tight flex-shrink-0 ml-2">
                         CONCEPT 2024
                       </p>
                     </Scrollanimate>
