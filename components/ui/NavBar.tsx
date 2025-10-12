@@ -142,7 +142,6 @@ export default function Navbar() {
   const navItemRefs = navItems.map(() => useRef<HTMLAnchorElement>(null));
 
   const activeIndex = navItems.findIndex((item) => item.href === pathname);
-  const finalActiveIndex = activeIndex === -1 ? 0 : activeIndex;
 
   const handleNavClick = () => setMenuOpen(false);
 
@@ -231,12 +230,35 @@ export default function Navbar() {
             />
           </div>
         ))}
-        <Link
-          href="mailto:hello@semmyverdonschot.com"
-          className="px-6 py-3 rounded-full bg-[var(--color-dark)] text-[var(--color-primary)] font-semibold hover:opacity-80 transition-opacity duration-300"
-        >
-          CONTACT
-        </Link>
+<Link
+  href="mailto:hello@semmyverdonschot.com"
+  className="px-6 py-3 rounded-full bg-[var(--color-dark)] text-[var(--color-primary)] font-semibold hover:bg-[var(--color-secondary)] transition duration-300"
+  style={{
+    opacity: 0,
+    visibility: "hidden",
+    animation: "fadeUp 0.8s cubic-bezier(0.55, 0.06, 0.68, 0.19) 0.4s forwards",
+  }}
+>
+  CONTACT
+</Link>
+
+
+<style jsx>{`
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+      visibility: hidden;
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      visibility: visible;
+    }
+  }
+`}</style>
+
+
       </div>
 
       {/* Mobile Header */}

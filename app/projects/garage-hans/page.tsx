@@ -30,7 +30,7 @@ export default function GarageHansPage() {
   );
   useSlideTogether(animatedUpRefs, "up", 0.8);
 
-// for this page its y=110 instead of the 100 because the text big
+  // for this page its y=110 instead of the 100 because the text big
   useEffect(() => {
     const elements = animatedUpRefs
       .map((ref) => ref.current)
@@ -116,7 +116,7 @@ export default function GarageHansPage() {
                   "Tailwind CSS",
                   "GSAP",
                   "Vercel",
-                ].map((tag, i) => (
+                ].map((tag) => (
                   <li
                     key={tag}
                     className="text-sm md:text-sm lg:text-sm text-[var(--color-primary)] uppercase tracking-tight bg-[var(--color-grayish)] px-3 py-2 rounded-lg whitespace-nowrap"
@@ -180,8 +180,7 @@ export default function GarageHansPage() {
                 <div
                   className="text-base md:hidden text-[var(--color-graylight)] leading-relaxed"
                   aria-label="Personal background"
-                >
-                </div>
+                ></div>
               </div>
             </div>
           </div>
