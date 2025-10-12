@@ -144,35 +144,61 @@ export default function Page() {
 
         {/* WEB / DEVELOPER images */}
         {isMobile ? (
-          <div className="flex flex-col items-center mt-56 space-y-3">
-            <div className="overflow-hidden w-full flex justify-center">
-              <Image
-                ref={webImgRef}
-                src="/svg/INTERACTIVE.svg"
-                alt="Interactive"
-                width={800}
-                height={267}
-                className="w-[90vw] max-w-full object-contain"
-                draggable={false}
-                priority
-                loading="eager"
-              />
-            </div>
+          <>
+            <div className="flex flex-col items-center mt-56 space-y-3">
+              <div className="overflow-hidden w-full flex justify-center">
+                <Image
+                  ref={webImgRef}
+                  src="/svg/FULLSTACK.svg"
+                  alt="Fullstack"
+                  width={800}
+                  height={267}
+                  className="w-[90vw] max-w-full object-contain"
+                  draggable={false}
+                  priority
+                  loading="eager"
+                  style={{
+                    opacity: 0,
+                    visibility: "hidden",
+                    animation: "fadeUp 0.8s cubic-bezier(0.55, 0.06, 0.68, 0.19) 0s forwards",
+                  }}
+                />
+              </div>
 
-            <div className="overflow-hidden w-full flex justify-center">
-              <Image
-                ref={devImgRef}
-                src="/svg/DEVELOPER.svg"
-                alt="Web Developer"
-                width={800}
-                height={267}
-                className="w-[90vw] max-w-full object-contain"
-                draggable={false}
-                priority
-                loading="eager"
-              />
+              <div className="overflow-hidden w-full flex justify-center">
+                <Image
+                  ref={devImgRef}
+                  src="/svg/DEVELOPER.svg"
+                  alt="Web Developer"
+                  width={800}
+                  height={267}
+                  className="w-[90vw] max-w-full object-contain"
+                  draggable={false}
+                  priority
+                  loading="eager"
+                  style={{
+                    opacity: 0,
+                    visibility: "hidden",
+                    animation: "fadeUp 0.8s cubic-bezier(0.55, 0.06, 0.68, 0.19) 0.4s forwards",
+                  }}
+                />
+              </div>
             </div>
-          </div>
+            <style jsx>{`
+              @keyframes fadeUp {
+                from {
+                  opacity: 0;
+                  transform: translateY(12px);
+                  visibility: hidden;
+                }
+                to {
+                  opacity: 1;
+                  transform: translateY(0);
+                  visibility: visible;
+                }
+              }
+            `}</style>
+          </>
         ) : (
           <div className="w-full flex h-[20vw] md:h-[14vw] lg:h-[10vw] items-end">
             <div
@@ -265,9 +291,6 @@ export default function Page() {
             </div>
           </div>
         </div>
-
-        {/**/}
-        {!isMobile && <div className="h-[100vh]" />}
       </section>
       <About />
       <Work />

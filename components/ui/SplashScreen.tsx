@@ -25,8 +25,7 @@ export default function SplashScreen({
       posterSrc,
       "/svg/WEB.svg",
       "/svg/DEVELOPER.svg",
-      "/svg/INTERACTIVE.svg",
-      "/svg/INTERACTIVE.svg",
+      "/svg/FULLSTACK.svg",
       "/videos/django.gif",
     ];
     videoSources.forEach((v) => assets.push(v.src));
