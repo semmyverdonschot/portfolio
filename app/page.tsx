@@ -145,7 +145,7 @@ export default function Page() {
         {/* WEB / DEVELOPER images */}
         {isMobile ? (
           <>
-            <div className="flex flex-col items-center mt-56 space-y-3">
+            <div className="flex flex-col items-center mt-46 space-y-3">
               <div className="overflow-hidden w-full flex justify-center">
                 <Image
                   ref={webImgRef}
