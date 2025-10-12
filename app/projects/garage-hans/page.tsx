@@ -28,8 +28,6 @@ export default function GarageHansPage() {
   );
   useSlideTogether(animatedUpRefs, "up", 0.8);
 
-;
-
   return (
     <>
       <section className="py-40 md:py-46 overflow-x-hidden">

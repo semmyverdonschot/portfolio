@@ -78,22 +78,19 @@ function Column({ images, y }: ColumnProps) {
       style={y ? { y } : {}}
       className="gallery-column h-full flex flex-col gap-[2vw] w-1/2 sm:min-w-[250px] relative"
     >
-      {images.map((src: string, index: number) => {
-        return (
-          <a
-            target="_blank"
-            key={index}
-            className=" cursor-none w-full h-full rounded-[1vw] overflow-hidden relative"
-          >
-            <Image
-              src={`/img/${src}`}
-              alt={src}
-              fill
-              className="object-cover object-top"
-            />
-          </a>
-        );
-      })}
+      {images.map((src: string, index: number) => (
+        <div
+          key={index}
+          className="w-full h-full rounded-[1vw] overflow-hidden relative cursor-none"
+        >
+          <Image
+            src={`/img/${src}`}
+            alt={src}
+            fill
+            className="object-cover object-top"
+          />
+        </div>
+      ))}
     </motion.div>
   );
 }

@@ -160,7 +160,8 @@ export default function Page() {
                   style={{
                     opacity: 0,
                     visibility: "hidden",
-                    animation: "fadeUp 0.8s cubic-bezier(0.55, 0.06, 0.68, 0.19) 0s forwards",
+                    animation:
+                      "fadeUp 0.8s cubic-bezier(0.55, 0.06, 0.68, 0.19) 0s forwards",
                   }}
                 />
               </div>
@@ -179,7 +180,8 @@ export default function Page() {
                   style={{
                     opacity: 0,
                     visibility: "hidden",
-                    animation: "fadeUp 0.8s cubic-bezier(0.55, 0.06, 0.68, 0.19) 0.4s forwards",
+                    animation:
+                      "fadeUp 0.8s cubic-bezier(0.55, 0.06, 0.68, 0.19) 0.4s forwards",
                   }}
                 />
               </div>
@@ -291,6 +293,8 @@ export default function Page() {
             </div>
           </div>
         </div>
+        {/**/}
+        {!isMobile && <div className="h-[100vh]" />}
       </section>
       <About />
       <Work />
