@@ -3,8 +3,6 @@
 import Footer from "@/components/sections/Footer";
 import { useRef, useMemo } from "react";
 import { useSlideTogether } from "@/hooks/useStaggerSlide";
-import gsap from "gsap";
-import { useEffect } from "react";
 
 export default function GarageHansPage() {
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -30,32 +28,7 @@ export default function GarageHansPage() {
   );
   useSlideTogether(animatedUpRefs, "up", 0.8);
 
-  // for this page its y=110 instead of the 100 because the text big
-  useEffect(() => {
-    const elements = animatedUpRefs
-      .map((ref) => ref.current)
-      .filter((el): el is HTMLElement => el !== null);
-
-    if (!elements.length) return;
-
-    gsap.set(elements, {
-      y: "110%",
-      force3D: true,
-    });
-
-    const timeout = setTimeout(() => {
-      gsap.to(elements, {
-        y: 0,
-        duration: 0.8,
-        ease: "cubic-bezier(0.55, 0.06, 0.68, 0.19)",
-        stagger: 0.05,
-      });
-    }, 600);
-
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [animatedUpRefs]);
+;
 
   return (
     <>
@@ -64,12 +37,14 @@ export default function GarageHansPage() {
           <div className="w-full flex justify-center items-center overflow-hidden">
             <h1
               ref={titleRef}
-              className="text-[11vw] md:text-[12vw] lg:text-[8vw] font-black uppercase text-center block mb-12 md:mb-20 mt-12 md:mt-20"
+              className="text-[11vw] md:text-[12vw] lg:text-[8vw] font-black uppercase text-center block  mt-12 md:mt-20"
               style={{ color: "var(--color-primary)" }}
             >
               Garage Hans
             </h1>
           </div>
+          {/* new div (for masking the huge text + animation) */}
+          <div className="mb-12 md:mb-20"></div>
           <div className="w-full flex flex-col gap-12 lg:grid lg:grid-cols-12 mb-8 p-4 bg-[var(--color-secondary)] rounded-2xl">
             {/* launch */}
             <div className="flex flex-col gap-4 col-span-2">
