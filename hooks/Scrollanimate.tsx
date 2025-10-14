@@ -130,7 +130,7 @@ export default function ScrollAnimate({
   }
 
   return (
-    <div ref={containerRef} data-Scrollanimate-wrapper="true">
+    <div ref={containerRef} data-scrollanimate-wrapper>
       {children}
     </div>
   );

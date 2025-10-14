@@ -3,6 +3,7 @@
 import Footer from "@/components/sections/Footer";
 import { useRef, useMemo } from "react";
 import { useSlideTogether } from "@/hooks/useStaggerSlide";
+import Image from "next/image";
 
 export default function GarageHansPage() {
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -30,7 +31,7 @@ export default function GarageHansPage() {
 
   return (
     <>
-      <section className="py-40 md:py-46 overflow-x-hidden">
+      <section className="pt-40 md:pt-46 overflow-x-hidden">
         <div className="p-4 rounded-2xl bg-[var(--color-dark)] max-w-full overflow-hidden flex flex-col items-center justify-center">
           <div className="w-full flex justify-center items-center overflow-hidden">
             <h1
@@ -41,9 +42,9 @@ export default function GarageHansPage() {
               Garage Hans
             </h1>
           </div>
-          {/* new div (for masking the huge text + animation) */}
+          {/* (for masking the huge text + animation) */}
           <div className="mb-12 md:mb-20"></div>
-          <div className="w-full flex flex-col gap-12 lg:grid lg:grid-cols-12 mb-8 p-4 bg-[var(--color-secondary)] rounded-2xl">
+          <div className="w-full flex flex-col gap-12 lg:grid lg:grid-cols-12 p-4 bg-[var(--color-secondary)] rounded-2xl">
             {/* launch */}
             <div className="flex flex-col gap-4 col-span-2">
               <div className="overflow-hidden">
@@ -150,10 +151,91 @@ export default function GarageHansPage() {
                   </svg>
                   <span>]</span>
                 </a>
-                <div
-                  className="text-base md:hidden text-[var(--color-graylight)] leading-relaxed"
-                  aria-label="Personal background"
-                ></div>
+              </div>
+            </div>
+            {/* gallery*/}
+            <div className="col-span-12 w-full flex flex-col gap-4 cursor-none">
+              {/* big img */}
+              <Image
+                src="/img/placeholder.webp"
+                alt="Placeholder"
+                width={2400}
+                height={1600}
+                className="block w-full h-[40vw] max-h-[900px] min-h-[120px] sm:h-[56vw] sm:min-h-[320px] object-cover rounded-2xl"
+                priority
+              />
+              {/* big img */}
+              <Image
+                src="/img/placeholder.webp"
+                alt="Placeholder"
+                width={2400}
+                height={1600}
+                className="block w-full h-[40vw] max-h-[900px] min-h-[120px] sm:h-[56vw] sm:min-h-[320px] object-cover rounded-2xl"
+                priority
+              />
+              {/* 2 small img */}
+              <div className="w-full flex gap-4">
+                <div className="w-1/2">
+                  <Image
+                    src="/img/ServiceDevelopment.jpg"
+                    alt="Placeholder"
+                    width={1200}
+                    height={800}
+                    className="block w-full h-[28vw] max-h-[400px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
+                    priority
+                  />
+                </div>
+                <div className="w-1/2">
+                  <Image
+                    src="/img/placeholder.webp"
+                    alt="Placeholder"
+                    width={1200}
+                    height={800}
+                    className="block w-full h-[28vw] max-h-[400px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
+                    priority
+                  />
+                </div>
+              </div>
+              {/* big img*/}
+              <Image
+                src="/img/placeholder.webp"
+                alt="Placeholder"
+                width={2400}
+                height={1600}
+                className="block w-full h-[40vw] max-h-[900px] min-h-[120px] sm:h-[56vw] sm:min-h-[320px] object-cover rounded-2xl"
+                priority
+              />
+              {/* big img*/}
+              <Image
+                src="/img/placeholder.webp"
+                alt="Placeholder"
+                width={2400}
+                height={1600}
+                className="block w-full h-[40vw] max-h-[900px] min-h-[120px] sm:h-[56vw] sm:min-h-[320px] object-cover rounded-2xl"
+                priority
+              />
+              {/* 2 small img */}
+              <div className="w-full flex gap-4">
+                <div className="w-1/2">
+                  <Image
+                    src="/img/ServiceDevelopment.jpg"
+                    alt="Placeholder"
+                    width={1200}
+                    height={800}
+                    className="block w-full h-[28vw] max-h-[400px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
+                    priority
+                  />
+                </div>
+                <div className="w-1/2">
+                  <Image
+                    src="/img/placeholder.webp"
+                    alt="Placeholder"
+                    width={1200}
+                    height={800}
+                    className="block w-full h-[28vw] max-h-[400px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
+                    priority
+                  />
+                </div>
               </div>
             </div>
           </div>
