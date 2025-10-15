@@ -10,6 +10,7 @@
   --color-light: #e5e5e5;
   --color-selection: #bfdbfe;
   --color-graylight: #a1a1a1;
+  --color-darkgray: #8a8a8a;
 
   --font-albert-sans: "Albert Sans", sans-serif;
   font-family: var(--font-albert-sans);

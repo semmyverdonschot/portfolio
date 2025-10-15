@@ -39,7 +39,7 @@ export default function GarageHansPage() {
               className="text-[11vw] md:text-[12vw] lg:text-[8vw] font-black uppercase text-center block  mt-12 md:mt-20"
               style={{ color: "var(--color-primary)" }}
             >
-              Garage Hans
+              CrimeQuest
             </h1>
           </div>
           {/* (for masking the huge text + animation) */}

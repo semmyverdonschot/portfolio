@@ -11,7 +11,7 @@ const images = [
   "LoginCrimequest.png",
   "PortfolioMenu.png",
   "LoginCybrance.png",
-   "LoginCybrance.png",
+  "LoginCybrance.png",
 ];
 
 export default function Marquee() {

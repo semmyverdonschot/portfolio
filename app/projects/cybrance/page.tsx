@@ -39,7 +39,7 @@ export default function GarageHansPage() {
               className="text-[11vw] md:text-[12vw] lg:text-[8vw] font-black uppercase text-center block  mt-12 md:mt-20"
               style={{ color: "var(--color-primary)" }}
             >
-              Garage Hans
+              Cybrance
             </h1>
           </div>
           {/* (for masking the huge text + animation) */}
@@ -60,7 +60,7 @@ export default function GarageHansPage() {
                   ref={yearValueRef}
                   className="text-4xl lg:text-5xl text-[var(--color-primary)] font-semibold tracking-tight leading-[0.8]"
                 >
-                  2024
+                  ONGOING
                 </p>
               </div>
             </div>
@@ -80,16 +80,17 @@ export default function GarageHansPage() {
               <ul className="flex gap-2 flex-wrap">
                 {[
                   "Frontend",
-                  "Backend",
-                  "Database Management",
                   "Responsive Design",
-                  "Secure Authentication",
-                  "API Integration",
-                  "SEO",
-                  "Next.js",
-                  "Tailwind CSS",
-                  "GSAP",
-                  "Vercel",
+                  "Branding",
+                  "Backend",
+                  "Recaptcha",
+                  "Secure networking",
+                  "Payment integration",
+                  "Sendgrid",
+                  "API integration",
+                  "Cloudflare",
+                  "Database management",
+                  "Hosting",
                 ].map((tag) => (
                   <li
                     key={tag}
@@ -117,22 +118,52 @@ export default function GarageHansPage() {
                   ref={summaryTextRef}
                   className="text-base md:text-2xl text-[var(--color-primary)] font-semibold"
                 >
-                  A modern website for Garage Hans Verdonschot, focused on
-                  performance, accessibility, and user experience. Built with
-                  Next.js, Tailwind CSS, GSAP, and more. A modern website for
-                  Garage Hans Verdonschot, focused on performance,
-                  accessibility, and user experience. Built with Next.js,
-                  Tailwind CSS, GSAP, and more.
+                  Cybrance is a modern Discord hosting platform optimized for
+                  performance, security, and scalability, hosted with Cloudflare
+                  for enhanced protection and speed. I developed the entire
+                  platform end-to-end, handling the frontend with responsive
+                  design and custom branding, as well as the backend with
+                  features like Recaptcha, secure networking, payment
+                  integration, and Sendgrid for transactional emails. The
+                  platform includes robust API integration, database management,
+                  and efficient hosting architecture, delivering a seamless and
+                  secure user experience.
                 </p>
               </div>
               <div className="overflow-hidden">
                 <a
                   ref={visitButtonRef}
-                  href="https://garagehansverdonschot.nl"
+                  href="https://cybrance.nl"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center overflow-hidden w-max group text-[var(--color-graylight)] hover:text-[var(--color-primary)] transition-colors text-sm md:text-base font-normal"
-                  aria-label="See about Garage Hans Verdonschot"
+                  aria-label="Check the Cybrance website"
+                >
+                  <span>[SEE IT LIVE</span>
+                  <svg
+                    className="w-5 h-5 ml-1 transform -rotate-45 transition-transform duration-300 group-hover:-translate-y-1"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M3 12h14M12 5l7 7-7 7"
+                    />
+                  </svg>
+                  <span>]</span>
+                </a>
+
+                    <a
+                  ref={visitButtonRef}
+                  href="https://cybrance.nl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center overflow-hidden w-max group text-[var(--color-graylight)] hover:text-[var(--color-primary)] transition-colors text-sm md:text-base font-normal"
+                  aria-label="See the panel of Cybrance"
                 >
                   <span>[CHECK IT OUT</span>
                   <svg

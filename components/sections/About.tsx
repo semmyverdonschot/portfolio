@@ -35,7 +35,7 @@ export default function About() {
                 </p>
               </Scrollanimate>
               <Scrollanimate animateOnScroll>
-                <aside className="text-lg md:text-2xl text-[var(--color-graylight)] hidden md:block flex-shrink-0 leading-relaxed text-left ml-auto">
+                <aside className="text-lg md:text-2xl text-[var(--color-darkgray)] hidden md:block flex-shrink-0 leading-relaxed text-left ml-auto">
                   <address className="not-italic">
                     <p>Raised in the southern</p>
                     <p>Netherlands, now studying</p>
@@ -72,7 +72,7 @@ export default function About() {
               </a>
               <div
                 className="text-base md:hidden leading-relaxed"
-                style={{ color: "var(--color-dark)" }} // increase contrast
+                style={{ color: "var(--color-darkgray)" }}
               >
                 <p>Raised in the southern Netherlands.</p>
               </div>
