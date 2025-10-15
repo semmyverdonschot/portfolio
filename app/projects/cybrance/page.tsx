@@ -188,7 +188,7 @@ export default function GarageHansPage() {
             <div className="col-span-12 w-full flex flex-col gap-4 cursor-none">
               {/* big img */}
               <Image
-                src="/img/placeholder.webp"
+                src="/Cybrance/StatusPage.webp"
                 alt="Placeholder"
                 width={2400}
                 height={1600}

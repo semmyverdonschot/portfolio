@@ -202,7 +202,7 @@ export default function GarageHansPage() {
                   playsInline
                   className="w-full h-full object-cover rounded-2xl"
                   style={{ background: "#171717" }}
-                  ref={el => {
+                  ref={(el) => {
                     if (el) el.playbackRate = 1.5;
                   }}
                 />
