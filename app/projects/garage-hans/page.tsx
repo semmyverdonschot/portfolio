@@ -160,7 +160,7 @@ export default function GarageHansPage() {
                   className="inline-flex items-center overflow-hidden ml-4 w-max group text-[var(--color-graylight)] hover:text-[var(--color-primary)] transition-colors text-sm md:text-base font-normal"
                   aria-label="Promotional video for Garage Hans Verdonschot"
                 >
-                  <span>[VIDEO</span>
+                  <span>[PROJECT VIDEO</span>
                   <svg
                     className="w-5 h-5 ml-1 transform -rotate-45 transition-transform duration-300 group-hover:-translate-y-1"
                     fill="none"

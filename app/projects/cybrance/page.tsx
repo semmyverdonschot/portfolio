@@ -159,13 +159,13 @@ export default function GarageHansPage() {
 
                 <a
                   ref={visitButtonRef}
-                  href="https://cybrance.nl"
+                  href="https://panel.cybrance.nl"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center overflow-hidden w-max group text-[var(--color-graylight)] hover:text-[var(--color-primary)] transition-colors text-sm md:text-base font-normal"
+                  className="inline-flex items-center ml-4 overflow-hidden w-max group text-[var(--color-graylight)] hover:text-[var(--color-primary)] transition-colors text-sm md:text-base font-normal"
                   aria-label="See the panel of Cybrance"
                 >
-                  <span>[CHECK IT OUT</span>
+                  <span>[VISIT THE PANEL</span>
                   <svg
                     className="w-5 h-5 ml-1 transform -rotate-45 transition-transform duration-300 group-hover:-translate-y-1"
                     fill="none"
