@@ -195,7 +195,7 @@ export default function GarageHansPage() {
               {/* video*/}
               <div className="w-full overflow-hidden rounded-2xl">
                 <video
-                  src="/Garagehansverdonschot/contact.mp4"
+                  src="/Garagehansverdonschot/ContactForm.mp4"
                   autoPlay
                   loop
                   muted
