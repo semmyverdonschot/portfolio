@@ -13,7 +13,6 @@ export default function GarageHansPage() {
   const summaryLabelRef = useRef<HTMLParagraphElement>(null);
   const summaryTextRef = useRef<HTMLParagraphElement>(null);
   const visitButtonRef = useRef<HTMLAnchorElement>(null);
-  const videoButtonRef = useRef<HTMLAnchorElement>(null);
 
   const animatedUpRefs = useMemo(
     () =>
@@ -81,16 +80,16 @@ export default function GarageHansPage() {
               <ul className="flex gap-2 flex-wrap">
                 {[
                   "Frontend",
-                  "SEO",
-                  "Photography",
+                  "Backend",
+                  "Database Management",
                   "Responsive Design",
+                  "Secure Authentication",
                   "API Integration",
-                  "Formspree",
-                  "JavaScript",
-                  "HTML",
-                  "CSS",
-                  "Design",
-                  "Video",
+                  "SEO",
+                  "Next.js",
+                  "Tailwind CSS",
+                  "GSAP",
+                  "Vercel",
                 ].map((tag) => (
                   <li
                     key={tag}
@@ -118,12 +117,12 @@ export default function GarageHansPage() {
                   ref={summaryTextRef}
                   className="text-base md:text-2xl text-[var(--color-primary)] font-semibold"
                 >
-                  Developed and designed a modern, responsive website for Garage
-                  Hans Verdonschot, a family-run auto repair business. Spanning
-                  over 15 pages, the project included frontend development, SEO,
-                  custom photography, logo redesign, and various API
-                  integrations resulting in a fast, accessible site that builds
-                  trust and reflects the business’s professionalism.
+                  A modern website for Garage Hans Verdonschot, focused on
+                  performance, accessibility, and user experience. Built with
+                  Next.js, Tailwind CSS, GSAP, and more. A modern website for
+                  Garage Hans Verdonschot, focused on performance,
+                  accessibility, and user experience. Built with Next.js,
+                  Tailwind CSS, GSAP, and more.
                 </p>
               </div>
               <div className="overflow-hidden">
@@ -135,32 +134,7 @@ export default function GarageHansPage() {
                   className="inline-flex items-center overflow-hidden w-max group text-[var(--color-graylight)] hover:text-[var(--color-primary)] transition-colors text-sm md:text-base font-normal"
                   aria-label="See about Garage Hans Verdonschot"
                 >
-                  <span>[SEE IT LIVE</span>
-                  <svg
-                    className="w-5 h-5 ml-1 transform -rotate-45 transition-transform duration-300 group-hover:-translate-y-1"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M3 12h14M12 5l7 7-7 7"
-                    />
-                  </svg>
-                  <span>]</span>
-                </a>
-                <a
-                  ref={videoButtonRef}
-                  href="https://www.youtube.com/watch?v=gYaFrXXxNaw"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center overflow-hidden ml-4 w-max group text-[var(--color-graylight)] hover:text-[var(--color-primary)] transition-colors text-sm md:text-base font-normal"
-                  aria-label="Promotional video for Garage Hans Verdonschot"
-                >
-                  <span>[VIDEO</span>
+                  <span>[CHECK IT OUT</span>
                   <svg
                     className="w-5 h-5 ml-1 transform -rotate-45 transition-transform duration-300 group-hover:-translate-y-1"
                     fill="none"

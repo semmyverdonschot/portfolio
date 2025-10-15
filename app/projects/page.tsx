@@ -12,6 +12,11 @@ export default function Work() {
   const yearRef = useRef<HTMLParagraphElement>(null);
   const card1Ref = useRef<HTMLAnchorElement>(null);
   const card2Ref = useRef<HTMLAnchorElement>(null);
+  const cybranceVideoRef = useRef<HTMLVideoElement>(null);
+  const card1VideoRef = useRef<HTMLVideoElement>(null);
+  const card2VideoRef = useRef<HTMLVideoElement>(null);
+  const revivorVideoRef = useRef<HTMLVideoElement>(null);
+  const project4VideoRef = useRef<HTMLVideoElement>(null);
 
   const animatedUpRefs = useMemo(
     () => [yearRef, titleRef] as unknown as React.RefObject<HTMLElement>[],
@@ -62,15 +67,20 @@ export default function Work() {
                       ref={card1Ref}
                       href="/projects/garage-hans"
                       className="flex flex-col gap-3 p-4 rounded-2xl bg-[var(--color-dark)] cursor-pointer group relative w-full"
+                      onMouseLeave={() => {
+                        if (card1VideoRef.current) {
+                          card1VideoRef.current.currentTime = 0;
+                        }
+                      }}
                     >
                       <div className="relative rounded-lg lg:rounded-xl overflow-hidden w-full h-[260px] md:h-[350px] lg:h-[clamp(500px,32vw,800px)]">
                         <div className="absolute inset-0 bg-[var(--color-dark)]/30 backdrop-blur-md z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out rounded-lg lg:rounded-xl"></div>
-
                         {/* Animated overlay content */}
                         <div className="absolute inset-0 z-20 flex items-center justify-center">
                           <div className="overflow-hidden">
                             <div className="w-80 h-48 md:w-[30rem] md:h-72 overflow-hidden transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
                               <video
+                                ref={card1VideoRef}
                                 autoPlay
                                 loop
                                 muted
@@ -92,7 +102,6 @@ export default function Work() {
                             </div>
                           </div>
                         </div>
-
                         <Image
                           src="/Garagehansverdonschot/Garage Hans mockup.png"
                           alt="Garage Hans Verdonschot Mockup"
@@ -140,21 +149,26 @@ export default function Work() {
                     </a>
                   </div>
 
-                  {/* revivor*/}
+                  {/* cybrance */}
                   <div className="overflow-hidden w-full md:flex-1 max-w-full">
                     <a
                       ref={card2Ref}
-                      href="/projects/revivor"
+                      href="/projects/cybrance"
                       className="flex flex-col gap-3 p-4 rounded-2xl bg-[var(--color-dark)] cursor-pointer group relative w-full"
+                      onMouseLeave={() => {
+                        if (card2VideoRef.current) {
+                          card2VideoRef.current.currentTime = 0;
+                        }
+                      }}
                     >
                       <div className="relative rounded-lg lg:rounded-xl overflow-hidden w-full h-[260px] md:h-[350px] lg:h-[clamp(500px,32vw,800px)]">
-                        <div className="absolute inset-0 bg-[var(--color-dark)]/30 backdrop-blur-md z-10 opacity-0 rounded-lg lg:rounded-xl group-hover:opacity-100 transition-opacity duration-500 ease-in-out"></div>
-
+                        <div className="absolute inset-0 bg-[var(--color-dark)]/30 backdrop-blur-md rounded-lg lg:rounded-xl z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out"></div>
                         {/* Animated overlay content */}
                         <div className="absolute inset-0 z-20 flex items-center justify-center">
                           <div className="overflow-hidden">
                             <div className="w-80 h-48 md:w-[30rem] md:h-72 overflow-hidden transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
                               <video
+                                ref={card2VideoRef}
                                 autoPlay
                                 loop
                                 muted
@@ -162,8 +176,101 @@ export default function Work() {
                                 className="w-full h-full object-cover"
                               >
                                 <source
-                                  src="/Garagehansverdonschot/preview.webm"
+                                  src="/Cybrance/preview.webm"
                                   type="video/webm"
+                                />
+                                <Image
+                                  src="/img/placeholder.webp"
+                                  alt="Cybrance Project Preview"
+                                  width={480}
+                                  height={288}
+                                  className="w-full h-full object-cover"
+                                />
+                              </video>
+                            </div>
+                          </div>
+                        </div>
+                        <Image
+                          src="/img/placeholder.webp"
+                          alt="Cybrance Project Preview"
+                          width={400}
+                          height={250}
+                          className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-500 ease-in-out"
+                          priority
+                        />
+                      </div>
+                      <div className="flex flex-col gap-3 min-w-0">
+                        <div className="flex justify-between items-center min-w-0">
+                          <div className="flex items-center gap-2 lg:gap-3 min-w-0">
+                            <Image
+                              alt="Cybrance logo"
+                              loading="lazy"
+                              width="32"
+                              height="32"
+                              decoding="async"
+                              className="w-6 h-6 lg:w-8 lg:h-8 rounded-full flex-shrink-0 object-contain"
+                              src="/Cybrance/CybranceIcon.png"
+                            />
+                            <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-tight truncate">
+                              Cybrance
+                            </p>
+                          </div>
+                          <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-tight flex-shrink-0 ml-2">
+                            ONGOING • 2025
+                          </p>
+                        </div>
+                        {/* Infinite carousel tech list */}
+                        <div className="w-full min-w-0">
+                          <InfiniteCarousel
+                            items={[
+                              "Pterodactyl",
+                              "Cloudflare",
+                              "UBUNTU",
+                              "Recaptcha",
+                              "sendgrid",
+                              "networking",
+                              "vercel",
+                              "next.js",
+                              "tailwindCSS",
+                              "Blueprint",
+                            ]}
+                          />
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+
+                {/* Project Cards - Row 2 */}
+                <div className="flex flex-col md:flex-row gap-4 md:gap-6 w-full">
+                  {/* Drink Revivor */}
+                  <div className="overflow-hidden w-full md:flex-1 max-w-full">
+                    <a
+                      href="/projects/revivor"
+                      className="flex flex-col gap-3 p-4 rounded-2xl bg-[var(--color-dark)] cursor-pointer group relative w-full"
+                      onMouseLeave={() => {
+                        if (revivorVideoRef.current) {
+                          revivorVideoRef.current.currentTime = 0;
+                        }
+                      }}
+                    >
+                      <div className="relative rounded-lg lg:rounded-xl overflow-hidden w-full h-[260px] md:h-[350px] lg:h-[clamp(500px,32vw,800px)]">
+                        <div className="absolute inset-0 bg-[var(--color-dark)]/30 backdrop-blur-md z-10 opacity-0 rounded-lg lg:rounded-xl group-hover:opacity-100 transition-opacity duration-500 ease-in-out"></div>
+                        {/* Animated overlay content */}
+                        <div className="absolute inset-0 z-20 flex items-center justify-center">
+                          <div className="overflow-hidden">
+                            <div className="w-80 h-48 md:w-[30rem] md:h-72 overflow-hidden transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                              <video
+                                ref={revivorVideoRef}
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                className="w-full h-full object-cover"
+                              >
+                                <source
+                                  src="/Revivor/preview.mp4"
+                                  type="video/mp4"
                                 />
                                 <Image
                                   src="/Revivor/preview.webp"
@@ -176,7 +283,6 @@ export default function Work() {
                             </div>
                           </div>
                         </div>
-
                         <Image
                           src="/Revivor/revivorbanner.webp"
                           alt="Revivor Preview"
@@ -186,7 +292,6 @@ export default function Work() {
                           priority
                         />
                       </div>
-
                       <div className="flex flex-col gap-3 min-w-0">
                         <div className="flex justify-between items-center min-w-0">
                           <div className="flex items-center gap-2 lg:gap-3 min-w-0">
@@ -207,7 +312,6 @@ export default function Work() {
                             CONCEPT • 2024
                           </p>
                         </div>
-
                         {/* Infinite carousel tech list */}
                         <div className="w-full min-w-0">
                           <InfiniteCarousel
@@ -223,73 +327,46 @@ export default function Work() {
                       </div>
                     </a>
                   </div>
-                </div>
-
-                {/* Project Cards - Row 2 */}
-                <div className="flex flex-col md:flex-row gap-4 md:gap-6 w-full">
-                  {/* Project 3 */}
-                  <div className="overflow-hidden w-full md:flex-1 max-w-full">
-                    <a
-                      href="/work/project-3"
-                      className="flex flex-col gap-3 p-4 rounded-2xl bg-[var(--color-dark)] cursor-pointer group relative w-full"
-                    >
-                      <div className="relative rounded-lg lg:rounded-xl overflow-hidden w-full h-[260px] md:h-[350px] lg:h-[clamp(500px,32vw,800px)]">
-                        <div className="absolute inset-0 bg-[var(--color-dark)]/30 backdrop-blur-md rounded-lg lg:rounded-xl z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out"></div>
-                        <Image
-                          src="/img/placeholder.webp"
-                          alt="Project Three Preview"
-                          width={400}
-                          height={250}
-                          className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-500 ease-in-out"
-                          priority
-                        />
-                      </div>
-
-                      <div className="flex flex-col gap-3 min-w-0">
-                        <div className="flex justify-between items-center min-w-0">
-                          <div className="flex items-center gap-2 lg:gap-3 min-w-0">
-                            <Image
-                              alt="Project Three Logo"
-                              loading="lazy"
-                              width="32"
-                              height="32"
-                              decoding="async"
-                              className="w-6 h-6 lg:w-8 lg:h-8 rounded-full flex-shrink-0 object-contain"
-                              src="/img/placeholder.webp"
-                            />
-                            <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-tight truncate">
-                              Weldas
-                            </p>
-                          </div>
-                          <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-tight flex-shrink-0 ml-2">
-                            • 2024
-                          </p>
-                        </div>
-
-                        {/* Infinite carousel tech list */}
-                        <div className="w-full min-w-0">
-                          <InfiniteCarousel
-                            items={[
-                              "HTML",
-                              "CSS",
-                              "JAVASCRIPT",
-                              "FORMSPREE",
-                              "API INTEGRATION",
-                            ]}
-                          />
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-
                   {/* Project 4 */}
                   <div className="overflow-hidden w-full md:flex-1 max-w-full">
                     <a
                       href="/work/project-4"
                       className="flex flex-col gap-3 p-4 rounded-2xl bg-[var(--color-dark)] cursor-pointer group relative w-full"
+                      onMouseLeave={() => {
+                        if (project4VideoRef.current) {
+                          project4VideoRef.current.currentTime = 0;
+                        }
+                      }}
                     >
                       <div className="relative rounded-lg lg:rounded-xl overflow-hidden w-full h-[260px] md:h-[350px] lg:h-[clamp(500px,32vw,800px)]">
                         <div className="absolute inset-0 bg-[var(--color-dark)]/30 backdrop-blur-md rounded-lg lg:rounded-xl z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out"></div>
+                        {/* Animated overlay content */}
+                        <div className="absolute inset-0 z-20 flex items-center justify-center">
+                          <div className="overflow-hidden">
+                            <div className="w-80 h-48 md:w-[30rem] md:h-72 overflow-hidden transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                              <video
+                                ref={project4VideoRef}
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                className="w-full h-full object-cover"
+                              >
+                                <source
+                                  src="/img/placeholder.mp4"
+                                  type="video/mp4"
+                                />
+                                <Image
+                                  src="/img/placeholder.webp"
+                                  alt="Project Four Preview"
+                                  width={480}
+                                  height={288}
+                                  className="w-full h-full object-cover"
+                                />
+                              </video>
+                            </div>
+                          </div>
+                        </div>
                         <Image
                           src="/img/placeholder.webp"
                           alt="Project Four Preview"
@@ -299,7 +376,6 @@ export default function Work() {
                           priority
                         />
                       </div>
-
                       <div className="flex flex-col gap-3 min-w-0">
                         <div className="flex justify-between items-center min-w-0">
                           <div className="flex items-center gap-2 lg:gap-3 min-w-0">

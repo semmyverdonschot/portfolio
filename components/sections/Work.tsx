@@ -7,6 +7,9 @@ import Scrollanimate from "@/hooks/Scrollanimate";
 
 export default function Work() {
   const sectionRef = useRef<HTMLElement>(null);
+  const garageVideoRef = useRef<HTMLVideoElement>(null);
+  const revivorVideoRef = useRef<HTMLVideoElement>(null);
+
   return (
     <section ref={sectionRef} className="pt-32 md:pt-48">
       <div className="w-full max-w-none mx-auto">
@@ -27,6 +30,11 @@ export default function Work() {
               <a
                 href="/projects/garage-hans"
                 className="flex flex-col gap-3 p-4 rounded-2xl bg-[var(--color-dark)] cursor-pointer group relative w-full md:flex-1 min-w-0"
+                onMouseLeave={() => {
+                  if (garageVideoRef.current) {
+                    garageVideoRef.current.currentTime = 0;
+                  }
+                }}
               >
                 <div className="relative rounded-lg lg:rounded-xl overflow-hidden w-full h-[260px] md:h-[350px] lg:h-[clamp(500px,32vw,800px)]">
                   <div className="absolute inset-0 bg-[var(--color-dark)]/30 backdrop-blur-md z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out"></div>
@@ -36,6 +44,7 @@ export default function Work() {
                     <div className="overflow-hidden">
                       <div className="w-80 h-48 md:w-[30rem] md:h-72 overflow-hidden transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
                         <video
+                          ref={garageVideoRef}
                           autoPlay
                           loop
                           muted
@@ -112,6 +121,11 @@ export default function Work() {
               <a
                 href="/projects/revivor"
                 className="flex flex-col gap-3 p-4 rounded-2xl bg-[var(--color-dark)] cursor-pointer group relative w-full md:flex-1 min-w-0"
+                onMouseLeave={() => {
+                  if (revivorVideoRef.current) {
+                    revivorVideoRef.current.currentTime = 0;
+                  }
+                }}
               >
                 <div className="relative rounded-lg lg:rounded-xl overflow-hidden w-full h-[260px] md:h-[350px] lg:h-[clamp(500px,32vw,800px)]">
                   <div className="absolute inset-0 bg-[var(--color-dark)]/30 backdrop-blur-md z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out"></div>
@@ -121,6 +135,7 @@ export default function Work() {
                     <div className="overflow-hidden">
                       <div className="w-80 h-48 md:w-[30rem] md:h-72 rounded-xl overflow-hidden transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
                         <video
+                          ref={revivorVideoRef}
                           autoPlay
                           loop
                           muted

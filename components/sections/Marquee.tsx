@@ -5,13 +5,13 @@ import { useRef } from "react";
 import useWindowDimensions from "@/hooks/useWindowDimensions";
 
 const images = [
+  "PortfolioMenu.png",
+  "PortfolioMenu.png",
   "GarageHomepage.png",
   "LoginCrimequest.png",
   "PortfolioMenu.png",
-  "PortfolioMenu.png",
-  "PortfolioMenu.png",
-  "PortfolioMenu.png",
-  "PortfolioMenu.png",
+  "LoginCybrance.png",
+   "LoginCybrance.png",
 ];
 
 export default function Marquee() {
@@ -78,19 +78,27 @@ function Column({ images, y }: ColumnProps) {
       style={y ? { y } : {}}
       className="gallery-column h-full flex flex-col gap-[2vw] w-1/2 sm:min-w-[250px] relative"
     >
-      {images.map((src: string, index: number) => (
-        <div
-          key={index}
-          className="w-full h-full rounded-[1vw] overflow-hidden relative cursor-none"
-        >
-          <Image
-            src={`/img/${src}`}
-            alt={src}
-            fill
-            className="object-cover object-top"
-          />
-        </div>
-      ))}
+      {images.map((src: string, index: number) => {
+        // Defensive: fallback alt if src is undefined/null
+        let altText = "Gallery image";
+        if (typeof src === "string") {
+          const name = src.split(".")[0] || "Gallery image";
+          altText = `Image of ${name.replace(/([A-Z])/g, " $1").trim()}`;
+        }
+        return (
+          <div
+            key={index}
+            className="w-full h-full rounded-[1vw] overflow-hidden relative cursor-none"
+          >
+            <Image
+              src={`/img/${src}`}
+              alt={altText}
+              fill
+              className="object-cover object-top"
+            />
+          </div>
+        );
+      })}
     </motion.div>
   );
 }

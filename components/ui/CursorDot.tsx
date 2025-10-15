@@ -6,13 +6,11 @@ export default function CursorDot() {
   const dotRef = useRef<HTMLDivElement | null>(null);
   const rafRef = useRef<number | null>(null);
 
-  // target position (mouse), current position (lerped)
   const target = useRef({ x: 0, y: 0 });
   const pos = useRef({ x: 0, y: 0 });
 
   const [visible] = useState(true);
 
-  // Hide on mobile
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -64,7 +62,7 @@ export default function CursorDot() {
         width: 12,
         height: 12,
         borderRadius: "9999px",
-        background: "#fff",
+        background: "#f5f5f5",
         boxShadow: "0 0 8px 2px rgba(0,0,0,0.10)",
         mixBlendMode: "difference",
         transition: "transform 0.1s, opacity 0.2s",

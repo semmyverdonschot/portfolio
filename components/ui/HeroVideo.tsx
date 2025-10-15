@@ -329,6 +329,13 @@ export default function HeroVideo({
                 }
                 type="video/webm"
               />
+              <track
+                kind="captions"
+                srcLang="en"
+                label="English captions"
+                src="/videos/hero-video-captions.vtt"
+                default
+              />
             </video>
 
             {/* Mobile mute button */}
