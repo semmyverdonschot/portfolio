@@ -157,7 +157,7 @@ export default function GarageHansPage() {
                   <span>]</span>
                 </a>
 
-                    <a
+                <a
                   ref={visitButtonRef}
                   href="https://cybrance.nl"
                   target="_blank"

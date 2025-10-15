@@ -191,7 +191,7 @@ export default function Work() {
                           </div>
                         </div>
                         <Image
-                          src="/Cybrance/PanelLogin.webp"
+                          src="/Cybrance/servers.png"
                           alt="Cybrance Project Preview"
                           width={400}
                           height={250}

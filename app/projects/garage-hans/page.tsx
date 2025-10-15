@@ -182,70 +182,81 @@ export default function GarageHansPage() {
             {/* gallery*/}
             <div className="col-span-12 w-full flex flex-col gap-4 cursor-none">
               {/* big img */}
-              <Image
-                src="/img/placeholder.webp"
-                alt="Placeholder"
-                width={2400}
-                height={1600}
-                className="block w-full h-[40vw] max-h-[900px] min-h-[120px] sm:h-[56vw] sm:min-h-[320px] object-cover rounded-2xl"
-                priority
-              />
-              {/* big img */}
-              <Image
-                src="/img/placeholder.webp"
-                alt="Placeholder"
-                width={2400}
-                height={1600}
-                className="block w-full h-[40vw] max-h-[900px] min-h-[120px] sm:h-[56vw] sm:min-h-[320px] object-cover rounded-2xl"
-                priority
-              />
+              <div className="w-full overflow-hidden rounded-2xl">
+                <Image
+                  src="/Garagehansverdonschot/Homepage.png"
+                  alt="Homepage van Garage Hans Verdonschot"
+                  width={2400}
+                  height={1600}
+                  className="block w-full h-[40vw] max-h-[900px] min-h-[120px] sm:h-[56vw] sm:min-h-[320px] object-cover rounded-2xl"
+                  priority
+                />
+              </div>
+              {/* video*/}
+              <div className="w-full overflow-hidden rounded-2xl">
+                <video
+                  src="/Garagehansverdonschot/contact.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover rounded-2xl"
+                  style={{ background: "#171717" }}
+                  ref={el => {
+                    if (el) el.playbackRate = 1.5;
+                  }}
+                />
+              </div>
               {/* 2 small img */}
               <div className="w-full flex gap-4">
                 <div className="w-1/2">
                   <Image
-                    src="/img/ServiceDevelopment.jpg"
-                    alt="Placeholder"
+                    src="/Garagehansverdonschot/MontserratFont.webp"
+                    alt="Montserrat font used in the website of Garage Hans Verdonschot"
                     width={1200}
                     height={800}
-                    className="block w-full h-[28vw] max-h-[400px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
+                    className="block w-full h-[48vw] max-h-[1200px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
                     priority
                   />
                 </div>
                 <div className="w-1/2">
                   <Image
-                    src="/img/placeholder.webp"
-                    alt="Placeholder"
+                    src="/Garagehansverdonschot/Werkplaats.webp"
+                    alt="Open sans font used in the website of Garage Hans Verdonschot"
                     width={1200}
                     height={800}
-                    className="block w-full h-[28vw] max-h-[400px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
+                    className="block w-full h-[48vw] max-h-[1200px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
                     priority
                   />
                 </div>
               </div>
               {/* big img*/}
-              <Image
-                src="/img/placeholder.webp"
-                alt="Placeholder"
-                width={2400}
-                height={1600}
-                className="block w-full h-[40vw] max-h-[900px] min-h-[120px] sm:h-[56vw] sm:min-h-[320px] object-cover rounded-2xl"
-                priority
-              />
-              {/* big img*/}
-              <Image
-                src="/img/placeholder.webp"
-                alt="Placeholder"
-                width={2400}
-                height={1600}
-                className="block w-full h-[40vw] max-h-[900px] min-h-[120px] sm:h-[56vw] sm:min-h-[320px] object-cover rounded-2xl"
-                priority
-              />
+              <div className="w-full overflow-hidden rounded-2xl">
+                <Image
+                  src="/Garagehansverdonschot/Googlemap.webp"
+                  alt="Usage of the Google Maps API to show the location of Garage Hans Verdonschot"
+                  width={2400}
+                  height={1600}
+                  className="block w-full h-[40vw] max-h-[900px] min-h-[120px] sm:h-[56vw] sm:min-h-[320px] object-cover rounded-2xl"
+                  priority
+                />
+              </div>
+              <div className="w-full overflow-hidden rounded-2xl">
+                <Image
+                  src="/Garagehansverdonschot/Logo's.webp"
+                  alt="Old VS new Logo's of Garage Hans Verdonschot"
+                  width={2400}
+                  height={1600}
+                  className="block w-full h-[40vw] max-h-[900px] min-h-[120px] sm:h-[56vw] sm:min-h-[320px] object-cover rounded-2xl"
+                  priority
+                />
+              </div>
               {/* 2 small img */}
               <div className="w-full flex gap-4">
                 <div className="w-1/2">
                   <Image
-                    src="/img/ServiceDevelopment.jpg"
-                    alt="Placeholder"
+                    src="/Garagehansverdonschot/Service.webp"
+                    alt="Service section of Garage Hans Verdonschot"
                     width={1200}
                     height={800}
                     className="block w-full h-[28vw] max-h-[400px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
@@ -254,8 +265,8 @@ export default function GarageHansPage() {
                 </div>
                 <div className="w-1/2">
                   <Image
-                    src="/img/placeholder.webp"
-                    alt="Placeholder"
+                    src="/Garagehansverdonschot/Reviews.webp"
+                    alt="Reviews section of Garage Hans Verdonschot"
                     width={1200}
                     height={800}
                     className="block w-full h-[28vw] max-h-[400px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
