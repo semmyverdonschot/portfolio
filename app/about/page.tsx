@@ -24,14 +24,12 @@ function AboutPage() {
   const [locked, setLocked] = useState(true);
   const [canScroll, setCanScroll] = useState(true);
 
-  // Smooth scroll handler with delay
   const handleScroll = (e: React.WheelEvent | React.TouchEvent) => {
     if (!canScroll) {
       e.preventDefault();
       return;
     }
     if (locked) {
-      // Forward: show next image
       if ("deltaY" in e && e.deltaY > 0) {
         if (currentIndex < images.length - 1) {
           setCanScroll(false);
@@ -42,7 +40,6 @@ function AboutPage() {
         }
         e.preventDefault();
       }
-      // Backward: hide last image one by one
       if ("deltaY" in e && e.deltaY < 0) {
         if (currentIndex > 0) {
           setCanScroll(false);
@@ -51,7 +48,6 @@ function AboutPage() {
         }
         e.preventDefault();
       }
-      // Touch events: treat as forward only
       if (!("deltaY" in e)) {
         if (currentIndex < images.length - 1) {
           setCanScroll(false);
@@ -66,7 +62,6 @@ function AboutPage() {
     }
   };
 
-  // Relock and reset images when scrollbar hits the top
   useEffect(() => {
     if (!locked) {
       const onScroll = () => {
@@ -174,15 +169,14 @@ function AboutPage() {
 
         {/* dark section*/}
         <section className="w-full min-h-[60vh] py-40 px-2 bg-[#171717] flex flex-col items-center justify-center mt-24 rounded-2xl">
-          <ScrollAnimate>
+          <ScrollAnimate animateOnScroll>
             <p
               className="w-[90%] max-w-[1100px] text-center font-semibold leading-tight -tracking-normal mx-auto text-[6vw] md:text-[4vw] lg:text-[3vw]"
               style={{ color: "var(--color-primary)" }}
             >
-              I’m a web developer who builds secure, scalable digital
-              experiences that go beyond just looking good. I help brands solve
-              problems, streamline tools and do more than they thought
-              possible.{" "}
+              I craft secure, scalable digital experiences that go beyond just
+              looking good. I enjoy helping brands solve problems and do things
+              they didn&apos;t know they could do.
             </p>
           </ScrollAnimate>
           <div className="flex justify-center w-full mt-12">
@@ -208,6 +202,178 @@ function AboutPage() {
               </svg>
               <span>]</span>
             </a>
+          </div>
+        </section>
+
+        {/* About Myself section */}
+        <section
+          className="min-h-[60vh] md:min-h-[90vh] bg-[var(--color-primary)] flex items-center justify-center w-full "
+          id="about"
+          aria-labelledby="about-heading"
+        >
+          <div className="w-full max-w-none mx-auto">
+            <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start">
+              <div className="md:col-span-12 ">
+                <header></header>
+                <div className="flex flex-col md:flex-row md:items-start md:space-x-20 space-y-3 md:space-y-0">
+                  <ScrollAnimate animateOnScroll>
+                    <p className="text-2xl md:text-4xl lg:text-5xl font-normal text-[var(--color-dark)] leading-tight flex-1 max-w-full md:max-w-4xl">
+                      I&apos;m a web developer with a focus on building secure
+                      digital experiences, a jack-of-all-trades who enjoys
+                      helping brands do things they didn&apos;t know they could
+                      do.{" "}
+                    </p>
+                  </ScrollAnimate>
+                  <ScrollAnimate animateOnScroll>
+                    <aside className="text-lg md:text-2xl text-[var(--color-darkgray)] hidden md:block flex-shrink-0 leading-relaxed text-left ml-auto">
+                      <address className="not-italic">
+                        <p>Experiences gained</p>
+                        <p>& where I’ve</p>
+                        <p>studied</p>
+                      </address>
+                    </aside>
+                  </ScrollAnimate>
+                </div>
+                <nav
+                  className="flex flex-row items-start space-x-6 md:space-x-8 pt-4 md:pt-8"
+                  aria-label="About page navigation"
+                >
+                  <div
+                    className="text-base md:hidden leading-relaxed"
+                    style={{ color: "var(--color-darkgray)" }}
+                  >
+                    <p>Raised in the southern Netherlands.</p>
+                  </div>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </section>
+        <hr className="w-full mx-auto border-t border-[var(--color-graylight)]" />
+
+        {/* Resume / Work Experience Section */}
+        <section className="w-full py-32 md:py-40 flex flex-col gap-32">
+          {/* Independent Work */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start w-full  ">
+            <div>
+              <h2 className="text-[8vw] md:text-[5vw] lg:text-[4vw] font-black leading-none text-black mb-4">
+                PROJECTS
+                <br />
+  
+              </h2>
+            </div>
+            <div className="flex flex-col gap-6">
+              <div className="flex gap-6 text-[var(--color-graylight)] font-semibold uppercase text-base md:text-lg">
+                <span>lorem</span>
+                <span>lorem</span>
+              </div>
+              <p className="text-base md:text-lg text-[var(--color-dark)] leading-relaxed">
+                               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe reprehenderit facere debitis repellat laudantium quasi, temporibus laborum omnis sed? Distinctio deserunt quo enim corporis nam voluptates sequi non, delectus impedit.
+
+              </p>
+            </div>
+          </div>
+          {/* Dorfjungs */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start w-full  ">
+            <div>
+              <h2 className="text-[8vw] md:text-[5vw] lg:text-[4vw] font-black leading-none text-black mb-4">
+                OVATION
+              </h2>
+              <div className="mt-2 text-base text-[var(--color-dark)] font-medium">
+                SEP 2020 – JUN 2025
+              </div>
+            </div>
+            <div className="flex flex-col gap-6">
+              <div className="flex flex-wrap gap-6 text-[var(--color-graylight)] font-semibold uppercase text-base md:text-lg">
+                <span>lorem</span>
+                <span>lorem</span>
+                <span>lorem</span>
+                <span>lorem</span>
+              </div>
+              <p className="text-base md:text-lg text-[var(--color-dark)] leading-relaxed">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe reprehenderit facere debitis repellat laudantium quasi, temporibus laborum omnis sed? Distinctio deserunt quo enim corporis nam voluptates sequi non, delectus impedit.
+                <a
+                  href="/about"
+                  className="flex items-center overflow-hidden mt-10 w-max group text-[var(--color-dark)] hover:text-[var(--color-dark)] transition-colors text-base md:text-base"
+                  aria-label="Learn more about my background and experience"
+                >
+                  <span>[VISIT OVATION </span>
+                  <svg
+                    className="w-5 h-5 ml-1 transform -rotate-45 transition-transform duration-300 group-hover:-translate-y-1"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M3 12h14M12 5l7 7-7 7"
+                    />
+                  </svg>
+                  <span>]</span>
+                </a>
+              </p>
+            </div>
+          </div>
+          <hr className="w-full mx-auto border-t border-[var(--color-graylight)]" />
+        </section>
+
+        {/* Resume/Education/Skills Section */}
+        <section className="w-full py-24 md:py-32 bg-[var(--color-primary)]">
+          <div className="mx-auto flex flex-col md:flex-row gap-16 md:gap-24 w-full max-w-none px-4">
+            {/* Left: Education */}
+            <div className="w-full md:w-1/3 flex flex-col gap-16">
+              <div>
+                <ScrollAnimate animateOnScroll>
+                  <h3 className="text-2xl md:text-3xl font-black text-[var(--color-dark)] mb-2 uppercase">
+                    BACHELOR ICT MEDIA
+                  </h3>
+                </ScrollAnimate>
+                <ScrollAnimate animateOnScroll>
+                  <div className="text-lg text-[var(--color-graylight)]">
+                    Specialisation: Cybersecurity
+                  </div>
+                </ScrollAnimate>
+                <ScrollAnimate animateOnScroll>
+                  <div className="text-lg text-[var(--color-graylight)]">
+                    Fontys University of Applied Sciences
+                  </div>
+                </ScrollAnimate>
+              </div>
+            </div>
+            {/* Center: Tools */}
+            <div className="w-full md:w-1/3 flex flex-col md:pl-24">
+              <ScrollAnimate animateOnScroll>
+                <h3 className="text-2xl md:text-3xl font-black text-[var(--color-dark)] mb-6 uppercase">
+                  TOOLS
+                </h3>
+              </ScrollAnimate>
+              <ul className="space-y-2 text-lg text-[var(--color-graylight)]">
+                <ScrollAnimate animateOnScroll><li>Figma &amp; Adobe XD</li></ScrollAnimate>
+                <ScrollAnimate animateOnScroll><li>Node.js</li></ScrollAnimate>
+                <ScrollAnimate animateOnScroll><li>React</li></ScrollAnimate>
+                <ScrollAnimate animateOnScroll><li>Linux</li></ScrollAnimate>
+                <ScrollAnimate animateOnScroll><li>HTML</li></ScrollAnimate>
+                <ScrollAnimate animateOnScroll><li>CSS</li></ScrollAnimate>
+                <ScrollAnimate animateOnScroll><li>Mongodb</li></ScrollAnimate>
+              </ul>
+            </div>
+            {/* Right: Languages */}
+            <div className="w-full md:w-1/3 flex flex-col items-start md:items-end">
+              <ScrollAnimate animateOnScroll>
+                <h3 className="text-2xl md:text-3xl font-black text-[var(--color-dark)] mb-6 uppercase">
+                  LANGUAGES
+                </h3>
+              </ScrollAnimate>
+              <ul className="space-y-2 text-lg text-[var(--color-graylight)] text-left md:text-right">
+                <ScrollAnimate animateOnScroll><li>Dutch</li></ScrollAnimate>
+                <ScrollAnimate animateOnScroll><li>English</li></ScrollAnimate>
+                <ScrollAnimate animateOnScroll><li>French</li></ScrollAnimate>
+                <ScrollAnimate animateOnScroll><li>Arabic</li></ScrollAnimate>
+              </ul>
+            </div>
           </div>
         </section>
 
