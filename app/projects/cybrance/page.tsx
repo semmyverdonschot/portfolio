@@ -60,7 +60,7 @@ export default function GarageHansPage() {
                   ref={yearValueRef}
                   className="text-4xl lg:text-5xl text-[var(--color-primary)] font-semibold tracking-tight leading-[0.8]"
                 >
-                  ONGOING
+                  ON GOING
                 </p>
               </div>
             </div>
@@ -83,14 +83,14 @@ export default function GarageHansPage() {
                   "Responsive Design",
                   "Branding",
                   "Backend",
-                  "Recaptcha",
-                  "Secure networking",
-                  "Payment integration",
-                  "Sendgrid",
-                  "API integration",
+                  "Secure Networking",
+                  "Paymenter",
+                  "Linux",
+                  "API Integration",
                   "Cloudflare",
-                  "Database management",
+                  "User Authentication",
                   "Hosting",
+                  "Pterodactyl",
                 ].map((tag) => (
                   <li
                     key={tag}
@@ -118,17 +118,7 @@ export default function GarageHansPage() {
                   ref={summaryTextRef}
                   className="text-base md:text-2xl text-[var(--color-primary)] font-semibold"
                 >
-                  Cybrance is a modern Discord hosting platform optimized for
-                  performance, security, and scalability, hosted with Cloudflare
-                  for enhanced protection and speed. I developed the entire
-                  platform end-to-end, handling the frontend with responsive
-                  design and custom branding, as well as the backend with
-                  features like Recaptcha, secure networking, payment
-                  integration, and Sendgrid for transactional emails. The
-                  platform includes robust API integration, database management,
-                  and efficient hosting architecture, delivering a seamless and
-                  secure user experience.
-                </p>
+Cybrance is a modern bot hosting platform built for performance, security, and scalability. The platform features a responsive, branded frontend, a secure backend with payment integration, API and database management, and efficient hosting, delivering a seamless and reliable user experience.                </p>
               </div>
               <div className="overflow-hidden">
                 <a
@@ -159,10 +149,35 @@ export default function GarageHansPage() {
 
                 <a
                   ref={visitButtonRef}
-                  href="https://panel.cybrance.nl"
+                  href="https://billing.cybrance.nl"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center ml-4 overflow-hidden w-max group text-[var(--color-graylight)] hover:text-[var(--color-primary)] transition-colors text-sm md:text-base font-normal"
+                  aria-label="See the panel of Cybrance"
+                >
+                  <span>[BILLING AREA</span>
+                  <svg
+                    className="w-5 h-5 ml-1 transform -rotate-45 transition-transform duration-300 group-hover:-translate-y-1"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M3 12h14M12 5l7 7-7 7"
+                    />
+                  </svg>
+                  <span>]</span>
+                </a>
+                <a
+                  ref={visitButtonRef}
+                  href="https://panel.cybrance.nl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center ml-0 mt-4 md:ml-4 sm:ml-0 overflow-hidden w-max group text-[var(--color-graylight)] hover:text-[var(--color-primary)] transition-colors text-sm md:text-base font-normal"
                   aria-label="See the panel of Cybrance"
                 >
                   <span>[VISIT THE PANEL</span>
@@ -189,7 +204,7 @@ export default function GarageHansPage() {
               {/* big img */}
               <Image
                 src="/Cybrance/StatusPage.webp"
-                alt="Placeholder"
+                alt="Status page of Cybrance"
                 width={2400}
                 height={1600}
                 className="block w-full h-[40vw] max-h-[900px] min-h-[120px] sm:h-[56vw] sm:min-h-[320px] object-cover rounded-2xl"
@@ -208,21 +223,21 @@ export default function GarageHansPage() {
               <div className="w-full flex gap-4">
                 <div className="w-1/2">
                   <Image
-                    src="/img/ServiceDevelopment.jpg"
-                    alt="Placeholder"
+                    src="/Cybrance/Pterodactyl Logo.png"
+                    alt="Pterodactyl panel used for hosting Discord bots"
                     width={1200}
                     height={800}
-                    className="block w-full h-[28vw] max-h-[400px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
+                    className="block w-full h-[48vw] max-h-[1200px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
                     priority
                   />
                 </div>
                 <div className="w-1/2">
                   <Image
-                    src="/img/placeholder.webp"
-                    alt="Placeholder"
+                    src="/Cybrance/paymenter_logo.jpg"
+                    alt="Paymenter integration for handling payments"
                     width={1200}
                     height={800}
-                    className="block w-full h-[28vw] max-h-[400px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
+                    className="block w-full h-[48vw] max-h-[1200px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
                     priority
                   />
                 </div>
@@ -249,21 +264,21 @@ export default function GarageHansPage() {
               <div className="w-full flex gap-4">
                 <div className="w-1/2">
                   <Image
-                    src="/img/ServiceDevelopment.jpg"
-                    alt="Placeholder"
+                    src="/Cybrance/Pterodactyl Logo.png"
+                    alt="Pterodactyl panel used for hosting Discord bots"
                     width={1200}
                     height={800}
-                    className="block w-full h-[28vw] max-h-[400px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
+                    className="block w-full h-[48vw] max-h-[1200px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
                     priority
                   />
                 </div>
                 <div className="w-1/2">
                   <Image
-                    src="/img/placeholder.webp"
-                    alt="Placeholder"
+                    src="/Cybrance/paymenter_logo.jpg"
+                    alt="Paymenter integration for handling payments"
                     width={1200}
                     height={800}
-                    className="block w-full h-[28vw] max-h-[400px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
+                    className="block w-full h-[48vw] max-h-[1200px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
                     priority
                   />
                 </div>
