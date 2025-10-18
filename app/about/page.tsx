@@ -12,12 +12,11 @@ const images = [
   "/img/ServiceExtra1.jpg",
 ];
 
-// Image positions for each step
 const positions = [
-  { marginTop: "-2vw", marginLeft: "6vw" }, // 1st image: default
-  { marginTop: "8vw", marginLeft: "18vw" }, // 2nd image: more down & right
-  { marginTop: "-8vw", marginLeft: "-4vw" }, // 3rd image: more up & left
-  { marginTop: "18vw", marginLeft: "10vw" }, // 4th image: middle-ish
+  { marginTop: "-2vw", marginLeft: "6vw" },
+  { marginTop: "8vw", marginLeft: "18vw" },
+  { marginTop: "-8vw", marginLeft: "-4vw" },
+  { marginTop: "18vw", marginLeft: "10vw" },
 ];
 
 function AboutPage() {
@@ -36,7 +35,7 @@ function AboutPage() {
       if ("deltaY" in e && e.deltaY > 0) {
         if (currentIndex < images.length - 1) {
           setCanScroll(false);
-          setTimeout(() => setCanScroll(true), 120); // faster transition
+          setTimeout(() => setCanScroll(true), 120);
           setCurrentIndex(currentIndex + 1);
         } else {
           setLocked(false);
@@ -47,7 +46,7 @@ function AboutPage() {
       if ("deltaY" in e && e.deltaY < 0) {
         if (currentIndex > 0) {
           setCanScroll(false);
-          setTimeout(() => setCanScroll(true), 120); // faster transition
+          setTimeout(() => setCanScroll(true), 120);
           setCurrentIndex(currentIndex - 1);
         }
         e.preventDefault();
@@ -56,7 +55,7 @@ function AboutPage() {
       if (!("deltaY" in e)) {
         if (currentIndex < images.length - 1) {
           setCanScroll(false);
-          setTimeout(() => setCanScroll(true), 120); // faster transition
+          setTimeout(() => setCanScroll(true), 120);
           setCurrentIndex(currentIndex + 1);
         } else {
           setLocked(false);
@@ -65,7 +64,6 @@ function AboutPage() {
       }
       return;
     }
-    // If unlocked, do nothing here
   };
 
   // Relock and reset images when scrollbar hits the top
@@ -82,9 +80,7 @@ function AboutPage() {
     }
   }, [locked]);
 
-  // Ref for ABOUT text
   const aboutRef = useRef<HTMLHeadingElement>(null);
-  // Animate ABOUT text with stagger slide
   const animatedRefs = useMemo(
     () => [aboutRef] as unknown as React.RefObject<HTMLElement>[],
     [],
@@ -99,7 +95,7 @@ function AboutPage() {
         onWheel={handleScroll}
         onTouchMove={handleScroll}
       >
-        {/* Show only images up to currentIndex, so they disappear one by one when scrolling up */}
+        {/* Dissapearing images  */}
         <div className="relative w-full md:min-h-screen flex flex-col items-center justify-start pt-60">
           {images.slice(0, currentIndex + 1).map((src, idx) => (
             <div
@@ -162,7 +158,7 @@ function AboutPage() {
           `}</style>
         </div>
 
-        {/* Huge ABOUT section, not fixed, dark color */}
+        {/* ABOUT */}
         <div className="w-full flex justify-center pointer-events-none z-50 mt-[-24vw]">
           <h1
             ref={aboutRef}
@@ -173,17 +169,46 @@ function AboutPage() {
           </h1>
         </div>
 
-        {/* Normal scrollable content below */}
-        <div className="relative z-30 w-full max-w-4xl mx-auto px-4 py-72 md:py-24 mt-8">
-        </div>
+        {/* Normal scrollable content below this */}
+        <div className="relative z-30 w-full max-w-4xl mx-auto px-4 py-72 md:py-24 mt-8"></div>
 
-        {/* New full-width dark section with animated paragraph using ScrollAnimate and Tailwind */}
-        <section className="w-full min-h-[60vh] py-40 px-2 bg-[#171717] flex items-center justify-center mt-24 rounded-2xl">
+        {/* dark section*/}
+        <section className="w-full min-h-[60vh] py-40 px-2 bg-[#171717] flex flex-col items-center justify-center mt-24 rounded-2xl">
           <ScrollAnimate>
-            <p className="w-[90%] max-w-[1100px] text-center font-bold leading-tight -tracking-normal mx-auto text-[5vw] md:text-[4vw] lg:text-[3vw]" style={{ color: "var(--color-primary)" }}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, urna eu tincidunt consectetur, nisi nisl aliquam enim, eget facilisis sapien nisi nec erat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+            <p
+              className="w-[90%] max-w-[1100px] text-center font-semibold leading-tight -tracking-normal mx-auto text-[6vw] md:text-[4vw] lg:text-[3vw]"
+              style={{ color: "var(--color-primary)" }}
+            >
+              I’m a web developer who builds secure, scalable digital
+              experiences that go beyond just looking good. I help brands solve
+              problems, streamline tools and do more than they thought
+              possible.{" "}
             </p>
           </ScrollAnimate>
+          <div className="flex justify-center w-full mt-12">
+            <a
+              href="/projects"
+              className="flex items-center overflow-hidden w-max group text-[var(--color-primary)] hover:text-[var(--color-primary)] transition-colors text-lg md:text-lg"
+              aria-label="see more about my work and projects"
+            >
+              <span>[PROJECTS</span>
+              <svg
+                className="w-5 h-5 ml-1 transform -rotate-45 transition-transform duration-300 group-hover:-translate-y-1"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3 12h14M12 5l7 7-7 7"
+                />
+              </svg>
+              <span>]</span>
+            </a>
+          </div>
         </section>
 
         <Footer />
