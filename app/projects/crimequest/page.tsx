@@ -39,7 +39,7 @@ export default function GarageHansPage() {
               className="text-[11vw] md:text-[12vw] lg:text-[8vw] font-black uppercase text-center block  mt-12 md:mt-20"
               style={{ color: "var(--color-primary)" }}
             >
-              CrimeQuest
+              Cybrance
             </h1>
           </div>
           {/* (for masking the huge text + animation) */}
@@ -60,7 +60,7 @@ export default function GarageHansPage() {
                   ref={yearValueRef}
                   className="text-4xl lg:text-5xl text-[var(--color-primary)] font-semibold tracking-tight leading-[0.8]"
                 >
-                  2024
+                  ON GOING
                 </p>
               </div>
             </div>
@@ -80,16 +80,17 @@ export default function GarageHansPage() {
               <ul className="flex gap-2 flex-wrap">
                 {[
                   "Frontend",
-                  "Backend",
-                  "Database Management",
                   "Responsive Design",
-                  "Secure Authentication",
+                  "Branding",
+                  "Backend",
+                  "Secure Networking",
+                  "Paymenter",
+                  "Linux",
                   "API Integration",
-                  "SEO",
-                  "Next.js",
-                  "Tailwind CSS",
-                  "GSAP",
-                  "Vercel",
+                  "Cloudflare",
+                  "User Authentication",
+                  "Hosting",
+                  "Pterodactyl",
                 ].map((tag) => (
                   <li
                     key={tag}
@@ -117,24 +118,75 @@ export default function GarageHansPage() {
                   ref={summaryTextRef}
                   className="text-base md:text-2xl text-[var(--color-primary)] font-semibold"
                 >
-                  A modern website for Garage Hans Verdonschot, focused on
-                  performance, accessibility, and user experience. Built with
-                  Next.js, Tailwind CSS, GSAP, and more. A modern website for
-                  Garage Hans Verdonschot, focused on performance,
-                  accessibility, and user experience. Built with Next.js,
-                  Tailwind CSS, GSAP, and more.
+                  Cybrance is a modern bot hosting platform built for
+                  performance, security, and scalability. The platform features
+                  a responsive, branded frontend, a secure backend with payment
+                  integration, API and database management, and efficient
+                  hosting, delivering a seamless and reliable user
+                  experience.{" "}
                 </p>
               </div>
               <div className="overflow-hidden">
                 <a
                   ref={visitButtonRef}
-                  href="https://garagehansverdonschot.nl"
+                  href="https://cybrance.nl"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center overflow-hidden w-max group text-[var(--color-graylight)] hover:text-[var(--color-primary)] transition-colors text-sm md:text-base font-normal"
-                  aria-label="See about Garage Hans Verdonschot"
+                  aria-label="Check the Cybrance website"
                 >
-                  <span>[CHECK IT OUT</span>
+                  <span>[SEE IT LIVE</span>
+                  <svg
+                    className="w-5 h-5 ml-1 transform -rotate-45 transition-transform duration-300 group-hover:-translate-y-1"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M3 12h14M12 5l7 7-7 7"
+                    />
+                  </svg>
+                  <span>]</span>
+                </a>
+
+                <a
+                  ref={visitButtonRef}
+                  href="https://billing.cybrance.nl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center ml-4 overflow-hidden w-max group text-[var(--color-graylight)] hover:text-[var(--color-primary)] transition-colors text-sm md:text-base font-normal"
+                  aria-label="See the panel of Cybrance"
+                >
+                  <span>[BILLING AREA</span>
+                  <svg
+                    className="w-5 h-5 ml-1 transform -rotate-45 transition-transform duration-300 group-hover:-translate-y-1"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M3 12h14M12 5l7 7-7 7"
+                    />
+                  </svg>
+                  <span>]</span>
+                </a>
+                <a
+                  ref={visitButtonRef}
+                  href="https://panel.cybrance.nl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center ml-0 mt-4 md:ml-4 sm:ml-0 overflow-hidden w-max group text-[var(--color-graylight)] hover:text-[var(--color-primary)] transition-colors text-sm md:text-base font-normal"
+                  aria-label="See the panel of Cybrance"
+                >
+                  <span>[VISIT THE PANEL</span>
                   <svg
                     className="w-5 h-5 ml-1 transform -rotate-45 transition-transform duration-300 group-hover:-translate-y-1"
                     fill="none"
@@ -157,8 +209,8 @@ export default function GarageHansPage() {
             <div className="col-span-12 w-full flex flex-col gap-4 cursor-none">
               {/* big img */}
               <Image
-                src="/img/placeholder.webp"
-                alt="Placeholder"
+                src="/Cybrance/StatusPage.webp"
+                alt="Status page of Cybrance"
                 width={2400}
                 height={1600}
                 className="block w-full h-[40vw] max-h-[900px] min-h-[120px] sm:h-[56vw] sm:min-h-[320px] object-cover rounded-2xl"
@@ -177,21 +229,21 @@ export default function GarageHansPage() {
               <div className="w-full flex gap-4">
                 <div className="w-1/2">
                   <Image
-                    src="/img/ServiceDevelopment.jpg"
-                    alt="Placeholder"
+                    src="/Cybrance/Pterodactyl Logo.png"
+                    alt="Pterodactyl panel used for hosting Discord bots"
                     width={1200}
                     height={800}
-                    className="block w-full h-[28vw] max-h-[400px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
+                    className="block w-full h-[48vw] max-h-[1200px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
                     priority
                   />
                 </div>
                 <div className="w-1/2">
                   <Image
-                    src="/img/placeholder.webp"
-                    alt="Placeholder"
+                    src="/Cybrance/paymenter_logo.jpg"
+                    alt="Paymenter integration for handling payments"
                     width={1200}
                     height={800}
-                    className="block w-full h-[28vw] max-h-[400px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
+                    className="block w-full h-[48vw] max-h-[1200px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
                     priority
                   />
                 </div>
@@ -218,27 +270,51 @@ export default function GarageHansPage() {
               <div className="w-full flex gap-4">
                 <div className="w-1/2">
                   <Image
-                    src="/img/ServiceDevelopment.jpg"
-                    alt="Placeholder"
+                    src="/Cybrance/Pterodactyl Logo.png"
+                    alt="Pterodactyl panel used for hosting Discord bots"
                     width={1200}
                     height={800}
-                    className="block w-full h-[28vw] max-h-[400px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
+                    className="block w-full h-[48vw] max-h-[1200px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
                     priority
                   />
                 </div>
                 <div className="w-1/2">
                   <Image
-                    src="/img/placeholder.webp"
-                    alt="Placeholder"
+                    src="/Cybrance/paymenter_logo.jpg"
+                    alt="Paymenter integration for handling payments"
                     width={1200}
                     height={800}
-                    className="block w-full h-[28vw] max-h-[400px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
+                    className="block w-full h-[48vw] max-h-[1200px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
                     priority
                   />
                 </div>
               </div>
             </div>
           </div>
+        </div>
+        <div className="flex flex-row justify-center space-x-6 md:space-x-8 pt-12 md:pt-16">
+          <a
+            href="/projects"
+            className="flex items-center font-bold aoverflow-hidden w-max group text-[var(--color-dark)] hover:text-[var(--color-dark)] transition-colors text-lg md:text-lg"
+            aria-label="see more about my work and projects"
+          >
+            <span>[OTHER PROJECTS</span>
+            <svg
+              className="w-5 h-5 ml-1 transform -rotate-45 transition-transform duration-300 group-hover:-translate-y-1"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M3 12h14M12 5l7 7-7 7"
+              />
+            </svg>
+            <span>]</span>
+          </a>
         </div>
       </section>
       <Footer />

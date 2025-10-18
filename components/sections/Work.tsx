@@ -117,93 +117,89 @@ export default function Work() {
                   </div>
                 </div>
               </a>
-              {/* revivor*/}
-              <a
-                href="/projects/revivor"
-                className="flex flex-col gap-3 p-4 rounded-2xl bg-[var(--color-dark)] cursor-pointer group relative w-full md:flex-1 min-w-0"
-                onMouseLeave={() => {
-                  if (revivorVideoRef.current) {
-                    revivorVideoRef.current.currentTime = 0;
-                  }
-                }}
-              >
-                <div className="relative rounded-lg lg:rounded-xl overflow-hidden w-full h-[260px] md:h-[350px] lg:h-[clamp(500px,32vw,800px)]">
-                  <div className="absolute inset-0 bg-[var(--color-dark)]/30 backdrop-blur-md z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out"></div>
-
-                  {/* Animated overlay content */}
-                  <div className="absolute inset-0 z-20 flex items-center justify-center">
-                    <div className="overflow-hidden">
-                      <div className="w-80 h-48 md:w-[30rem] md:h-72 rounded-xl overflow-hidden transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                        <video
-                          ref={revivorVideoRef}
-                          autoPlay
-                          loop
-                          muted
-                          playsInline
-                          className="w-full h-full object-cover"
-                        >
-                          <source src="/Revivor/preview.mp4" type="video/mp4" />
-                          <Image
-                            src="/Revivor/preview.webp"
-                            alt="Revivor Preview"
-                            width={480}
-                            height={288}
+              {/* cybrance */}
+              <div className="overflow-hidden w-full md:flex-1 max-w-full">
+                <a
+                  href="/projects/cybrance"
+                  className="flex flex-col gap-3 p-4 rounded-2xl bg-[var(--color-dark)] cursor-pointer group relative w-full"
+                >
+                  <div className="relative rounded-lg lg:rounded-xl overflow-hidden w-full h-[260px] md:h-[350px] lg:h-[clamp(500px,32vw,800px)]">
+                    <div className="absolute inset-0 bg-[var(--color-dark)]/30 backdrop-blur-md rounded-lg lg:rounded-xl z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out"></div>
+                    {/* Animated overlay content */}
+                    <div className="absolute inset-0 z-20 flex items-center justify-center">
+                      <div className="overflow-hidden">
+                        <div className="w-80 h-48 md:w-[30rem] md:h-72 overflow-hidden transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                          <video
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
                             className="w-full h-full object-cover"
-                          />
-                        </video>
+                          >
+                            <source
+                              src="/Cybrance/preview.webm"
+                              type="video/webm"
+                            />
+                            <Image
+                              src="/img/placeholder.webp"
+                              alt="Cybrance Project Preview"
+                              width={480}
+                              height={288}
+                              className="w-full h-full object-cover"
+                            />
+                          </video>
+                        </div>
                       </div>
                     </div>
-                  </div>
-
-                  <Image
-                    src="/Revivor/revivorbanner.webp"
-                    alt="Revivor Preview"
-                    width={400}
-                    height={250}
-                    className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-500 ease-in-out"
-                    priority
-                  />
-                </div>
-
-                <div className="flex flex-col gap-3 min-w-0">
-                  <div className="flex justify-between items-center min-w-0">
-                    <div className="flex items-center gap-2 lg:gap-3 min-w-0">
-                      <Image
-                        alt="Revivor Logo"
-                        loading="lazy"
-                        width="32"
-                        height="32"
-                        decoding="async"
-                        className="w-6 h-6 lg:w-8 lg:h-8 rounded-full flex-shrink-0 object-contain"
-                        src="/Revivor/revivor logo.webp"
-                      />
-                      <Scrollanimate animateOnScroll>
-                        <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-tight truncate">
-                          Project Two
-                        </p>
-                      </Scrollanimate>
-                    </div>
-                    <Scrollanimate animateOnScroll>
-                      <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-tight flex-shrink-0 ml-2">
-                        CONCEPT 2024
-                      </p>
-                    </Scrollanimate>
-                  </div>
-
-                  {/* dynamic tech list */}
-                  <div className="w-full min-w-0">
-                    <InfiniteCarousel
-                      items={[
-                        "HTML",
-                        "CSS",
-                        "JAVASCRIPT",
-                        "FORMSPREE",
-                        "API INTEGRATION",
-                      ]}
+                    <Image
+                      src="/Cybrance/servers.png"
+                      alt="Cybrance Project Preview"
+                      width={400}
+                      height={250}
+                      className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-500 ease-in-out"
+                      priority
                     />
                   </div>
-                </div>
-              </a>
+                  <div className="flex flex-col gap-3 min-w-0">
+                    <div className="flex justify-between items-center min-w-0">
+                      <div className="flex items-center gap-2 lg:gap-3 min-w-0">
+                        <Image
+                          alt="Cybrance logo"
+                          loading="lazy"
+                          width="32"
+                          height="32"
+                          decoding="async"
+                          className="w-6 h-6 lg:w-8 lg:h-8 rounded-full flex-shrink-0 object-contain"
+                          src="/Cybrance/CybranceIcon.png"
+                        />
+                        <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-tight truncate">
+                          Cybrance
+                        </p>
+                      </div>
+                      <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-tight flex-shrink-0 ml-2">
+                        ONGOING • 2025
+                      </p>
+                    </div>
+                    {/* Infinite carousel tech list */}
+                    <div className="w-full min-w-0">
+                      <InfiniteCarousel
+                        items={[
+                          "Pterodactyl",
+                          "Cloudflare",
+                          "UBUNTU",
+                          "Recaptcha",
+                          "sendgrid",
+                          "networking",
+                          "vercel",
+                          "next.js",
+                          "tailwindCSS",
+                          "Blueprint",
+                        ]}
+                      />
+                    </div>
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
         </div>
