@@ -5,17 +5,19 @@ import { useRef } from "react";
 import useWindowDimensions from "@/hooks/useWindowDimensions";
 
 const images = [
+    "WeldasHomepage.png",
+
   "PortfolioMenu.png",
   "CybranceBilling.png",
   "GarageHomepage.png",
-  "LoginCrimequest.png",
-  "PortfolioMenu.png",
-    "CybranceLight.png",
+   "LoginCybrance.png",
+    "LoginCrimequest.png",
 
-  "WeldasHomepage.png",
-  "LoginCybrance.png",
-  "CybranceLight.png",
+      "CybranceDashboard.png",
 
+   
+
+ 
 ];
 
 export default function Marquee() {

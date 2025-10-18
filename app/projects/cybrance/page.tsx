@@ -118,7 +118,13 @@ export default function GarageHansPage() {
                   ref={summaryTextRef}
                   className="text-base md:text-2xl text-[var(--color-primary)] font-semibold"
                 >
-Cybrance is a modern bot hosting platform built for performance, security, and scalability. The platform features a responsive, branded frontend, a secure backend with payment integration, API and database management, and efficient hosting, delivering a seamless and reliable user experience.                </p>
+                  Cybrance is a modern bot hosting platform built for
+                  performance, security, and scalability. The platform features
+                  a responsive, branded frontend, a secure backend with payment
+                  integration, API and database management, and efficient
+                  hosting, delivering a seamless and reliable user
+                  experience.{" "}
+                </p>
               </div>
               <div className="overflow-hidden">
                 <a
