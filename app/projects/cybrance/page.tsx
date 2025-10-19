@@ -377,7 +377,7 @@ export default function GarageHansPage() {
               <div className="w-full flex gap-4">
                 <div className="w-1/2">
                   <Image
-                    src="/Cybrance/statuspage.webp"
+                    src="/Cybrance/StatusPage.webp"
                     alt="Cybrance status page showing system health"
                     width={1200}
                     height={800}
