@@ -6,10 +6,10 @@ import { useSlideTogether } from "@/hooks/useStaggerSlide";
 import ScrollAnimate from "@/hooks/Scrollanimate";
 
 const images = [
-  "/img/ServiceDevelopment.jpg",
-  "/img/ServiceSEO.png",
-  "/Garagehansverdonschot/Homepage.png",
-  "/img/ServiceExtra1.jpg",
+  "/img/Linkedin.jpeg",
+  "/img/Linkedin.jpeg",
+  "/img/Myself.jpg",
+  "/img/Myself.jpg",
 ];
 
 const positions = [
@@ -218,10 +218,8 @@ function AboutPage() {
                 <div className="flex flex-col md:flex-row md:items-start md:space-x-20 space-y-3 md:space-y-0">
                   <ScrollAnimate animateOnScroll>
                     <p className="text-2xl md:text-4xl lg:text-5xl font-normal text-[var(--color-dark)] leading-tight flex-1 max-w-full md:max-w-4xl">
-                      I&apos;m a web developer with a focus on building secure
-                      digital experiences, a jack-of-all-trades who enjoys
-                      helping brands do things they didn&apos;t know they could
-                      do.{" "}
+                      I&apos;m a junior web developer and cybersecurity enthusiast based in Limburg, the Netherlands, passionate about building secure, scalable projects and continuously learning in the field.
+
                     </p>
                   </ScrollAnimate>
                   <ScrollAnimate animateOnScroll>
@@ -251,51 +249,30 @@ function AboutPage() {
         </section>
         <hr className="w-full mx-auto border-t border-[var(--color-graylight)]" />
 
-        {/* Resume / Work Experience Section */}
+        {/* Resume  */}
         <section className="w-full py-32 md:py-40 flex flex-col gap-32">
-          {/* Independent Work */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start w-full  ">
-            <div>
-              <h2 className="text-[8vw] md:text-[5vw] lg:text-[4vw] font-black leading-none text-black mb-4">
-                PROJECTS
-                <br />
-              </h2>
-            </div>
-            <div className="flex flex-col gap-6">
-              <div className="flex gap-6 text-[var(--color-graylight)] font-semibold uppercase text-base md:text-lg">
-                <span>lorem</span>
-                <span>lorem</span>
-              </div>
-              <p className="text-base md:text-lg text-[var(--color-dark)] leading-relaxed">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe
-                reprehenderit facere debitis repellat laudantium quasi,
-                temporibus laborum omnis sed? Distinctio deserunt quo enim
-                corporis nam voluptates sequi non, delectus impedit.
-              </p>
-            </div>
-          </div>
-          {/* Dorfjungs */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start w-full  ">
+          {/* OVATION */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start w-full">
             <div>
               <h2 className="text-[8vw] md:text-[5vw] lg:text-[4vw] font-black leading-none text-black mb-4">
                 OVATION
               </h2>
               <div className="mt-2 text-base text-[var(--color-dark)] font-medium">
-                SEP 2020 – JUN 2025
+                SEP 2024 – FEB 2025
               </div>
             </div>
             <div className="flex flex-col gap-6">
               <div className="flex flex-wrap gap-6 text-[var(--color-graylight)] font-semibold uppercase text-base md:text-lg">
-                <span>lorem</span>
-                <span>lorem</span>
-                <span>lorem</span>
-                <span>lorem</span>
+                <span>Internship</span>
+                <span>Web Development</span>
+                <span>Webflow</span>
+                <span>Excel</span>
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
               </div>
               <p className="text-base md:text-lg text-[var(--color-dark)] leading-relaxed">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe
-                reprehenderit facere debitis repellat laudantium quasi,
-                temporibus laborum omnis sed? Distinctio deserunt quo enim
-                corporis nam voluptates sequi non, delectus impedit.
+                During my internship at Ovation, I worked on a variety of web projects and learned the fundamentals of web development. I gained hands-on experience with HTML, CSS, JavaScript, Figma and Webflow, and also improved my skills in Excel for data management. I worked for several brands such as <b>Club Hacienda</b>, <b>Hydrauliek Service Venlo</b> and <b>Jill en Co</b>, where I worked on developing a Excel-based data management to filter and store over 10,000 products. This experience helped me understand the workflow of a digital agency and the importance of both technical and communication skills in delivering successful projects.
                 <a
                   href="/about"
                   className="flex items-center overflow-hidden mt-10 w-max group text-[var(--color-dark)] hover:text-[var(--color-dark)] transition-colors text-base md:text-base"
@@ -321,13 +298,34 @@ function AboutPage() {
               </p>
             </div>
           </div>
+          {/* Projects */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start w-full">
+            <div>
+              <h2 className="text-[8vw] md:text-[5vw] lg:text-[4vw] font-black leading-none text-black mb-4">
+                PROJECTS
+                <br />
+              </h2>
+            </div>
+            <div className="flex flex-col gap-6">
+              <div className="flex gap-6 text-[var(--color-graylight)] font-semibold uppercase text-base md:text-lg">
+                <span>lorem</span>
+                <span>lorem</span>
+              </div>
+              <p className="text-base md:text-lg text-[var(--color-dark)] leading-relaxed">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe
+                reprehenderit facere debitis repellat laudantium quasi,
+                temporibus laborum omnis sed? Distinctio deserunt quo enim
+                corporis nam voluptates sequi non, delectus impedit.
+              </p>
+            </div>
+          </div>
           <hr className="w-full mx-auto border-t border-[var(--color-graylight)]" />
         </section>
 
-        {/* Resume/Education/Skills Section */}
+        {/* Resume */}
         <section className="w-full py-24 md:py-32 bg-[var(--color-primary)]">
           <div className="mx-auto flex flex-col md:flex-row gap-16 md:gap-24 w-full max-w-none px-4">
-            {/* Left: Education */}
+            {/* Education */}
             <div className="w-full md:w-1/3 flex flex-col gap-16">
               <div>
                 <ScrollAnimate animateOnScroll>
@@ -347,34 +345,55 @@ function AboutPage() {
                 </ScrollAnimate>
               </div>
             </div>
-            {/* Center: Tools */}
+            {/* Center: Skills */}
             <div className="w-full md:w-1/3 flex flex-col md:pl-24">
               <ScrollAnimate animateOnScroll>
-                <h3 className="text-2xl md:text-3xl font-black text-[var(--color-dark)] mb-6 uppercase">
-                  TOOLS
+                <h3 className="text-2xl md:text-3xl font-black text-[var(--color-dark)] mb-6 uppercase tracking-wide">
+                  SKILLS
                 </h3>
               </ScrollAnimate>
-              <ul className="space-y-2 text-lg text-[var(--color-graylight)]">
+              <ul className="flex flex-wrap gap-3 text-lg e text-[var(--color-primary)]">
                 <ScrollAnimate animateOnScroll>
-                  <li>Figma &amp; Adobe XD</li>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">Figma</li>
                 </ScrollAnimate>
                 <ScrollAnimate animateOnScroll>
-                  <li>Node.js</li>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">Next.js</li>
                 </ScrollAnimate>
                 <ScrollAnimate animateOnScroll>
-                  <li>React</li>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">React</li>
                 </ScrollAnimate>
                 <ScrollAnimate animateOnScroll>
-                  <li>Linux</li>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">Linux</li>
                 </ScrollAnimate>
                 <ScrollAnimate animateOnScroll>
-                  <li>HTML</li>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">HTML</li>
                 </ScrollAnimate>
                 <ScrollAnimate animateOnScroll>
-                  <li>CSS</li>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">CSS</li>
                 </ScrollAnimate>
                 <ScrollAnimate animateOnScroll>
-                  <li>Mongodb</li>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">JavaScript</li>
+                </ScrollAnimate>
+                <ScrollAnimate animateOnScroll>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">TypeScript</li>
+                </ScrollAnimate>
+                <ScrollAnimate animateOnScroll>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">MongoDB</li>
+                </ScrollAnimate>
+                <ScrollAnimate animateOnScroll>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">Git</li>
+                </ScrollAnimate>
+                <ScrollAnimate animateOnScroll>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">Networking</li>
+                </ScrollAnimate>
+                <ScrollAnimate animateOnScroll>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">Basic Hacking</li>
+                </ScrollAnimate>
+                <ScrollAnimate animateOnScroll>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">Node.js</li>
+                </ScrollAnimate>
+                <ScrollAnimate animateOnScroll>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">Adobe tools</li>
                 </ScrollAnimate>
               </ul>
             </div>
@@ -392,17 +411,10 @@ function AboutPage() {
                 <ScrollAnimate animateOnScroll>
                   <li>English</li>
                 </ScrollAnimate>
-                <ScrollAnimate animateOnScroll>
-                  <li>French</li>
-                </ScrollAnimate>
-                <ScrollAnimate animateOnScroll>
-                  <li>Arabic</li>
-                </ScrollAnimate>
               </ul>
             </div>
           </div>
         </section>
-
         <Footer />
       </div>
     </>
