@@ -203,6 +203,31 @@ export default function GarageHansPage() {
                   </svg>
                   <span>]</span>
                 </a>
+                     <a
+                  ref={visitButtonRef}
+                  href="https://status.cybrance.nl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center ml-4 overflow-hidden w-max group text-[var(--color-graylight)] hover:text-[var(--color-primary)] transition-colors text-sm md:text-base font-normal"
+                  aria-label="See the panel of Cybrance"
+                >
+                  <span>[STATUS PAGE</span>
+                  <svg
+                    className="w-5 h-5 ml-1 transform -rotate-45 transition-transform duration-300 group-hover:-translate-y-1"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M3 12h14M12 5l7 7-7 7"
+                    />
+                  </svg>
+                  <span>]</span>
+                </a>
               </div>
             </div>
             {/* gallery*/}
@@ -215,11 +240,12 @@ export default function GarageHansPage() {
                 height={1600}
                 className="block w-full h-[40vw] max-h-[900px] min-h-[120px] sm:h-[56vw] sm:min-h-[320px] object-cover rounded-2xl"
                 priority
+                aria-label="Cybrance homepage screenshot"
               />
               {/* video */}
               <div className="w-full overflow-hidden rounded-2xl">
                 <video
-                  src="/Cybrance/Cybrance panel.mp4"
+                  src="/Cybrance/Cybrance Panel.mp4"
                   autoPlay
                   loop
                   muted
@@ -229,6 +255,7 @@ export default function GarageHansPage() {
                   ref={(el) => {
                     if (el) el.playbackRate = 1.5;
                   }}
+                  aria-label="Cybrance panel demo video"
                 />
               </div>
               {/* 2 small img */}
@@ -241,6 +268,7 @@ export default function GarageHansPage() {
                     height={800}
                     className="block w-full h-[48vw] max-h-[1200px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
                     priority
+                    aria-label="EinaFont branding screenshot"
                   />
                 </div>
                 <div className="w-1/2">
@@ -251,6 +279,7 @@ export default function GarageHansPage() {
                     height={800}
                     className="block w-full h-[48vw] max-h-[1200px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
                     priority
+                    aria-label="Cybrance infrastructure diagram"
                   />
                 </div>
               </div>
@@ -267,9 +296,9 @@ export default function GarageHansPage() {
                   ref={(el) => {
                     if (el) el.playbackRate = 1;
                   }}
+                  aria-label="Cybrance billing system demo video"
                 />
               </div>
-
               {/* 2 small img */}
               <div className="w-full flex gap-4">
                 <div className="w-1/2 relative group">
@@ -282,11 +311,12 @@ export default function GarageHansPage() {
                   >
                     <Image
                       src="/Cybrance/Pterodactyl Logo.png"
-                      alt="Pterodactyl panel used for hosting Discord bots"
+                      alt="Pterodactyl open source panel for hosting Discord bots"
                       width={1200}
                       height={800}
                       className="block w-full h-[48vw] max-h-[1200px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
                       priority
+                      aria-label="Pterodactyl panel screenshot"
                     />
                     <div className="absolute inset-0 bg-white/30 backdrop-blur-md opacity-0 group-hover:opacity-100 flex items-center justify-center rounded-2xl transition-opacity duration-300">
                       <span className="text-[var(--color-dark)] text-base font-semibold px-4 text-center">
@@ -305,11 +335,12 @@ export default function GarageHansPage() {
                   >
                     <Image
                       src="/Cybrance/paymenter_logo.jpg"
-                      alt="Paymenter integration for handling payments"
+                      alt="Paymenter open source CMS system for payments"
                       width={1200}
                       height={800}
                       className="block w-full h-[48vw] max-h-[1200px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
                       priority
+                      aria-label="Paymenter CMS screenshot"
                     />
                     <div className="absolute inset-0 bg-white/30 backdrop-blur-md opacity-0 group-hover:opacity-100 flex items-center justify-center rounded-2xl transition-opacity duration-300">
                       <span className="text-black text-base font-semibold px-4 text-center">
@@ -327,36 +358,40 @@ export default function GarageHansPage() {
                 height={1600}
                 className="block w-full h-[40vw] max-h-[900px] min-h-[120px] sm:h-[56vw] sm:min-h-[320px] object-cover rounded-2xl mt-4"
                 priority
+                aria-label="Cybrance logo designs"
               />
               {/* big img  */}
               <Image
                 src="/Cybrance/Style.png"
-                alt="Logo design explorations for Cybrance"
+                alt="Cybrance style and branding overview"
                 width={2400}
                 height={1600}
                 className="block w-full h-[40vw] max-h-[900px] min-h-[120px] sm:h-[56vw] sm:min-h-[320px] object-cover rounded-2xl mt-4"
                 priority
+                aria-label="Cybrance style branding"
               />
               {/* 2 small img */}
               <div className="w-full flex gap-4">
                 <div className="w-1/2">
                   <Image
-                    src="/Cybrance/EinaFont.png"
-                    alt="EinaFont typeface used for Cybrance branding"
+                    src="/Cybrance/statuspage.webp"
+                    alt="Cybrance status page showing system health"
                     width={1200}
                     height={800}
                     className="block w-full h-[48vw] max-h-[1200px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
                     priority
+                    aria-label="Cybrance status page screenshot"
                   />
                 </div>
                 <div className="w-1/2">
                   <Image
-                    src="/Cybrance/Security.png"
-                    alt="Infrastructure design diagram for Cybrance platform"
+                    src="/Cybrance/Tawkto.png"
+                    alt="Tawk.to live chat integration for Cybrance"
                     width={1200}
                     height={800}
                     className="block w-full h-[48vw] max-h-[1200px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
                     priority
+                    aria-label="Tawk.to live chat screenshot"
                   />
                 </div>
               </div>
