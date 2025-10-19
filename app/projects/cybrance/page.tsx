@@ -209,28 +209,34 @@ export default function GarageHansPage() {
             <div className="col-span-12 w-full flex flex-col gap-4 cursor-none">
               {/* big img */}
               <Image
-                src="/Cybrance/StatusPage.webp"
-                alt="Status page of Cybrance"
+                src="/Cybrance/Homepage.png"
+                alt="Cybrance homepage showing status and dashboard"
                 width={2400}
                 height={1600}
                 className="block w-full h-[40vw] max-h-[900px] min-h-[120px] sm:h-[56vw] sm:min-h-[320px] object-cover rounded-2xl"
                 priority
               />
-              {/* big img */}
-              <Image
-                src="/img/placeholder.webp"
-                alt="Placeholder"
-                width={2400}
-                height={1600}
-                className="block w-full h-[40vw] max-h-[900px] min-h-[120px] sm:h-[56vw] sm:min-h-[320px] object-cover rounded-2xl"
-                priority
-              />
+              {/* video */}
+              <div className="w-full overflow-hidden rounded-2xl">
+                <video
+                  src="/Cybrance/Cybrance panel.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover rounded-2xl"
+                  style={{ background: "#171717" }}
+                  ref={(el) => {
+                    if (el) el.playbackRate = 1.5;
+                  }}
+                />
+              </div>
               {/* 2 small img */}
               <div className="w-full flex gap-4">
                 <div className="w-1/2">
                   <Image
-                    src="/Cybrance/Pterodactyl Logo.png"
-                    alt="Pterodactyl panel used for hosting Discord bots"
+                    src="/Cybrance/EinaFont.png"
+                    alt="EinaFont typeface used for Cybrance branding"
                     width={1200}
                     height={800}
                     className="block w-full h-[48vw] max-h-[1200px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
@@ -239,8 +245,8 @@ export default function GarageHansPage() {
                 </div>
                 <div className="w-1/2">
                   <Image
-                    src="/Cybrance/paymenter_logo.jpg"
-                    alt="Paymenter integration for handling payments"
+                    src="/Cybrance/CybranceInfrastructure Design.png"
+                    alt="Infrastructure design diagram for Cybrance platform"
                     width={1200}
                     height={800}
                     className="block w-full h-[48vw] max-h-[1200px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
@@ -248,30 +254,95 @@ export default function GarageHansPage() {
                   />
                 </div>
               </div>
-              {/* big img*/}
+              {/* video */}
+              <div className="w-full overflow-hidden rounded-2xl">
+                <video
+                  src="/Cybrance/BillingSystem.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover rounded-2xl"
+                  style={{ background: "#171717" }}
+                  ref={(el) => {
+                    if (el) el.playbackRate = 1;
+                  }}
+                />
+              </div>
+
+              {/* 2 small img */}
+              <div className="w-full flex gap-4">
+                <div className="w-1/2 relative group">
+                  <a
+                    href="https://pterodactyl.io"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block"
+                    aria-label="Open source panel Pterodactyl.io"
+                  >
+                    <Image
+                      src="/Cybrance/Pterodactyl Logo.png"
+                      alt="Pterodactyl panel used for hosting Discord bots"
+                      width={1200}
+                      height={800}
+                      className="block w-full h-[48vw] max-h-[1200px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
+                      priority
+                    />
+                    <div className="absolute inset-0 bg-white/30 backdrop-blur-md opacity-0 group-hover:opacity-100 flex items-center justify-center rounded-2xl transition-opacity duration-300">
+                      <span className="text-[var(--color-dark)] text-base font-semibold px-4 text-center">
+                        Open source panel <br /> pterodactyl.io
+                      </span>
+                    </div>
+                  </a>
+                </div>
+                <div className="w-1/2 relative group">
+                  <a
+                    href="https://paymenter.org"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block"
+                    aria-label="Open source CMS system Paymenter"
+                  >
+                    <Image
+                      src="/Cybrance/paymenter_logo.jpg"
+                      alt="Paymenter integration for handling payments"
+                      width={1200}
+                      height={800}
+                      className="block w-full h-[48vw] max-h-[1200px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
+                      priority
+                    />
+                    <div className="absolute inset-0 bg-white/30 backdrop-blur-md opacity-0 group-hover:opacity-100 flex items-center justify-center rounded-2xl transition-opacity duration-300">
+                      <span className="text-black text-base font-semibold px-4 text-center">
+                        Open source CMS system <br /> paymenter.org
+                      </span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              {/* big img */}
               <Image
-                src="/img/placeholder.webp"
-                alt="Placeholder"
+                src="/Cybrance/logo designs.jpg"
+                alt="Logo design explorations for Cybrance"
                 width={2400}
                 height={1600}
-                className="block w-full h-[40vw] max-h-[900px] min-h-[120px] sm:h-[56vw] sm:min-h-[320px] object-cover rounded-2xl"
+                className="block w-full h-[40vw] max-h-[900px] min-h-[120px] sm:h-[56vw] sm:min-h-[320px] object-cover rounded-2xl mt-4"
                 priority
               />
-              {/* big img*/}
+              {/* big img  */}
               <Image
-                src="/img/placeholder.webp"
-                alt="Placeholder"
+                src="/Cybrance/Style.png"
+                alt="Logo design explorations for Cybrance"
                 width={2400}
                 height={1600}
-                className="block w-full h-[40vw] max-h-[900px] min-h-[120px] sm:h-[56vw] sm:min-h-[320px] object-cover rounded-2xl"
+                className="block w-full h-[40vw] max-h-[900px] min-h-[120px] sm:h-[56vw] sm:min-h-[320px] object-cover rounded-2xl mt-4"
                 priority
               />
               {/* 2 small img */}
               <div className="w-full flex gap-4">
                 <div className="w-1/2">
                   <Image
-                    src="/Cybrance/Pterodactyl Logo.png"
-                    alt="Pterodactyl panel used for hosting Discord bots"
+                    src="/Cybrance/EinaFont.png"
+                    alt="EinaFont typeface used for Cybrance branding"
                     width={1200}
                     height={800}
                     className="block w-full h-[48vw] max-h-[1200px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
@@ -280,8 +351,8 @@ export default function GarageHansPage() {
                 </div>
                 <div className="w-1/2">
                   <Image
-                    src="/Cybrance/paymenter_logo.jpg"
-                    alt="Paymenter integration for handling payments"
+                    src="/Cybrance/Security.png"
+                    alt="Infrastructure design diagram for Cybrance platform"
                     width={1200}
                     height={800}
                     className="block w-full h-[48vw] max-h-[1200px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"

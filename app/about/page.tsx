@@ -259,7 +259,6 @@ function AboutPage() {
               <h2 className="text-[8vw] md:text-[5vw] lg:text-[4vw] font-black leading-none text-black mb-4">
                 PROJECTS
                 <br />
-  
               </h2>
             </div>
             <div className="flex flex-col gap-6">
@@ -268,8 +267,10 @@ function AboutPage() {
                 <span>lorem</span>
               </div>
               <p className="text-base md:text-lg text-[var(--color-dark)] leading-relaxed">
-                               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe reprehenderit facere debitis repellat laudantium quasi, temporibus laborum omnis sed? Distinctio deserunt quo enim corporis nam voluptates sequi non, delectus impedit.
-
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe
+                reprehenderit facere debitis repellat laudantium quasi,
+                temporibus laborum omnis sed? Distinctio deserunt quo enim
+                corporis nam voluptates sequi non, delectus impedit.
               </p>
             </div>
           </div>
@@ -291,7 +292,10 @@ function AboutPage() {
                 <span>lorem</span>
               </div>
               <p className="text-base md:text-lg text-[var(--color-dark)] leading-relaxed">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe reprehenderit facere debitis repellat laudantium quasi, temporibus laborum omnis sed? Distinctio deserunt quo enim corporis nam voluptates sequi non, delectus impedit.
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe
+                reprehenderit facere debitis repellat laudantium quasi,
+                temporibus laborum omnis sed? Distinctio deserunt quo enim
+                corporis nam voluptates sequi non, delectus impedit.
                 <a
                   href="/about"
                   className="flex items-center overflow-hidden mt-10 w-max group text-[var(--color-dark)] hover:text-[var(--color-dark)] transition-colors text-base md:text-base"
@@ -351,13 +355,27 @@ function AboutPage() {
                 </h3>
               </ScrollAnimate>
               <ul className="space-y-2 text-lg text-[var(--color-graylight)]">
-                <ScrollAnimate animateOnScroll><li>Figma &amp; Adobe XD</li></ScrollAnimate>
-                <ScrollAnimate animateOnScroll><li>Node.js</li></ScrollAnimate>
-                <ScrollAnimate animateOnScroll><li>React</li></ScrollAnimate>
-                <ScrollAnimate animateOnScroll><li>Linux</li></ScrollAnimate>
-                <ScrollAnimate animateOnScroll><li>HTML</li></ScrollAnimate>
-                <ScrollAnimate animateOnScroll><li>CSS</li></ScrollAnimate>
-                <ScrollAnimate animateOnScroll><li>Mongodb</li></ScrollAnimate>
+                <ScrollAnimate animateOnScroll>
+                  <li>Figma &amp; Adobe XD</li>
+                </ScrollAnimate>
+                <ScrollAnimate animateOnScroll>
+                  <li>Node.js</li>
+                </ScrollAnimate>
+                <ScrollAnimate animateOnScroll>
+                  <li>React</li>
+                </ScrollAnimate>
+                <ScrollAnimate animateOnScroll>
+                  <li>Linux</li>
+                </ScrollAnimate>
+                <ScrollAnimate animateOnScroll>
+                  <li>HTML</li>
+                </ScrollAnimate>
+                <ScrollAnimate animateOnScroll>
+                  <li>CSS</li>
+                </ScrollAnimate>
+                <ScrollAnimate animateOnScroll>
+                  <li>Mongodb</li>
+                </ScrollAnimate>
               </ul>
             </div>
             {/* Right: Languages */}
@@ -368,10 +386,18 @@ function AboutPage() {
                 </h3>
               </ScrollAnimate>
               <ul className="space-y-2 text-lg text-[var(--color-graylight)] text-left md:text-right">
-                <ScrollAnimate animateOnScroll><li>Dutch</li></ScrollAnimate>
-                <ScrollAnimate animateOnScroll><li>English</li></ScrollAnimate>
-                <ScrollAnimate animateOnScroll><li>French</li></ScrollAnimate>
-                <ScrollAnimate animateOnScroll><li>Arabic</li></ScrollAnimate>
+                <ScrollAnimate animateOnScroll>
+                  <li>Dutch</li>
+                </ScrollAnimate>
+                <ScrollAnimate animateOnScroll>
+                  <li>English</li>
+                </ScrollAnimate>
+                <ScrollAnimate animateOnScroll>
+                  <li>French</li>
+                </ScrollAnimate>
+                <ScrollAnimate animateOnScroll>
+                  <li>Arabic</li>
+                </ScrollAnimate>
               </ul>
             </div>
           </div>
