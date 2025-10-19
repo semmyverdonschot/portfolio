@@ -91,6 +91,9 @@ export default function GarageHansPage() {
                   "User Authentication",
                   "Hosting",
                   "Pterodactyl",
+                  "Vercel",
+                  "Vite",
+                  "MariaDB",
                 ].map((tag) => (
                   <li
                     key={tag}
@@ -203,13 +206,13 @@ export default function GarageHansPage() {
                   </svg>
                   <span>]</span>
                 </a>
-                     <a
+                <a
                   ref={visitButtonRef}
                   href="https://status.cybrance.nl"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center ml-4 overflow-hidden w-max group text-[var(--color-graylight)] hover:text-[var(--color-primary)] transition-colors text-sm md:text-base font-normal"
-                  aria-label="See the panel of Cybrance"
+                  aria-label="See the  status of all the services"
                 >
                   <span>[STATUS PAGE</span>
                   <svg

@@ -180,7 +180,7 @@ export default function Work() {
                                   type="video/webm"
                                 />
                                 <Image
-                                  src="/img/placeholder.webp"
+                                  src="/Cybrance/servers.png"
                                   alt="Cybrance Project Preview"
                                   width={480}
                                   height={288}
@@ -224,15 +224,14 @@ export default function Work() {
                           <InfiniteCarousel
                             items={[
                               "Pterodactyl",
+                              "Paymenter",
                               "Cloudflare",
                               "UBUNTU",
-                              "Recaptcha",
-                              "sendgrid",
                               "networking",
                               "vercel",
-                              "next.js",
+                              "typescript",
+                              "vite",
                               "tailwindCSS",
-                              "Blueprint",
                             ]}
                           />
                         </div>
