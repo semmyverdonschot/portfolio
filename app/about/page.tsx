@@ -349,7 +349,7 @@ function AboutPage() {
               </div>
               <ScrollAnimate animateOnScroll>
                 <p className="text-base md:text-lg text-[var(--color-dark)] leading-relaxed">
-                  Cybrance is my own individual project focused on building a modern bot hosting platform from the ground up. I have been responsible for everything from the branding and frontend design to backend development, infrastructure setup and security. My work includes creating a scalable and secure platform, integrating payment systems, managing APIs and database and delivering a seamless user experience. This project has allowed me to apply and expand my skills in fullstack development and cloud infrastructure.
+                  Cybrance is my own individual project focused on building a modern Dutch/English bot hosting platform from the ground up. I have been responsible for everything from the branding and frontend design to backend development, infrastructure setup and security. My work includes creating a scalable and secure platform, integrating payment systems, managing APIs and database and delivering a seamless user experience. This project has allowed me to apply and expand my skills in fullstack development and cloud infrastructure.
                   <a
                     href="https://cybrance.nl"
                     target="_blank"
@@ -382,7 +382,7 @@ function AboutPage() {
         </section>
 
         {/* Resume */}
-        <section className="w-full py-24 md:py-32 bg-[var(--color-primary)]">
+        <section className="w-full py-12 md:py-12 bg-[var(--color-primary)]">
           <div className="mx-auto flex flex-col md:flex-row gap-16 md:gap-24 w-full max-w-none px-4">
             {/* Education */}
             <div className="w-full md:w-1/3 flex flex-col gap-16">
@@ -394,16 +394,22 @@ function AboutPage() {
                 </ScrollAnimate>
                 <ScrollAnimate animateOnScroll>
                   <div className="text-lg text-[var(--color-graylight)]">
+                    2022 – Present
+                  </div>
+                </ScrollAnimate>
+                <ScrollAnimate animateOnScroll>
+                  <div className="text-lg text-[var(--color-graylight)]">
                     Specialisation: Cybersecurity
                   </div>
                 </ScrollAnimate>
                 <ScrollAnimate animateOnScroll>
                   <div className="text-lg text-[var(--color-graylight)]">
                     <a href="https://www.fontys.nl/Opleidingen/ICT-bachelor-voltijd.htm"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center overflow-hidden w-max group text-[var(--color-graylight)] hover:text-[#663366] hover:underline transition-colors text-lg"
-                    aria-label="Visit the Fontys website">Fontys University of Applied Sciences
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center overflow-hidden w-max group text-[var(--color-graylight)] hover:text-[#663366] hover:underline transition-colors text-lg"
+                      aria-label="Visit the Fontys website">
+                      Fontys University of Applied Sciences
                     </a>
                   </div>
                 </ScrollAnimate>
@@ -416,76 +422,43 @@ function AboutPage() {
                   SKILLS
                 </h3>
               </ScrollAnimate>
-              <ul className="flex flex-wrap gap-3 text-lg e text-[var(--color-primary]">
+              <ul className="flex flex-wrap gap-3 text-lg text-[var(--color-primary)]">
                 <ScrollAnimate animateOnScroll>
-                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">
-                    Figma
-                  </li>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">Figma</li>
                 </ScrollAnimate>
                 <ScrollAnimate animateOnScroll>
-                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">
-                    Next.js
-                  </li>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">Next.js</li>
                 </ScrollAnimate>
                 <ScrollAnimate animateOnScroll>
-                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">
-                    React
-                  </li>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">React</li>
                 </ScrollAnimate>
                 <ScrollAnimate animateOnScroll>
-                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">
-                    Linux
-                  </li>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">Linux</li>
                 </ScrollAnimate>
                 <ScrollAnimate animateOnScroll>
-                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">
-                    HTML
-                  </li>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">Frontend</li>
+                </ScrollAnimate>
+
+                <ScrollAnimate animateOnScroll>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">TypeScript</li>
                 </ScrollAnimate>
                 <ScrollAnimate animateOnScroll>
-                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">
-                    CSS
-                  </li>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">MongoDB</li>
                 </ScrollAnimate>
                 <ScrollAnimate animateOnScroll>
-                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">
-                    JavaScript
-                  </li>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">Git</li>
                 </ScrollAnimate>
                 <ScrollAnimate animateOnScroll>
-                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">
-                    TypeScript
-                  </li>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">Networking</li>
                 </ScrollAnimate>
                 <ScrollAnimate animateOnScroll>
-                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">
-                    MongoDB
-                  </li>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">Basic Hacking</li>
                 </ScrollAnimate>
                 <ScrollAnimate animateOnScroll>
-                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">
-                    Git
-                  </li>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">Node.js & Express</li>
                 </ScrollAnimate>
                 <ScrollAnimate animateOnScroll>
-                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">
-                    Networking
-                  </li>
-                </ScrollAnimate>
-                <ScrollAnimate animateOnScroll>
-                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">
-                    Basic Hacking
-                  </li>
-                </ScrollAnimate>
-                <ScrollAnimate animateOnScroll>
-                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">
-                    Node.js
-                  </li>
-                </ScrollAnimate>
-                <ScrollAnimate animateOnScroll>
-                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">
-                    Adobe tools
-                  </li>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">Adobe tools</li>
                 </ScrollAnimate>
               </ul>
             </div>
@@ -504,6 +477,32 @@ function AboutPage() {
                   <li>English</li>
                 </ScrollAnimate>
               </ul>
+            </div>
+          </div>
+          {/* High School Diploma below the main row */}
+          <div className="mx-auto w-full max-w-none px-4 mt-12 flex flex-col items-start">
+            <div>
+              <ScrollAnimate animateOnScroll>
+                <h3 className="text-2xl md:text-2xl font-black text-[var(--color-dark)] mb-2 uppercase">
+                  HIGH SCHOOL DIPLOMA (HAVO)
+                </h3>
+              </ScrollAnimate>
+              <ScrollAnimate animateOnScroll>
+                <div className="text-lg text-[var(--color-graylight)]">
+                   <a href="https://www.ursula.nl/leerlingen/havo/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center overflow-hidden w-max group text-[var(--color-graylight)] hover:text-[#424d94] hover:underline transition-colors text-lg"
+                      aria-label="Visit the Sint Ursula website">
+                      Sint Ursula Horn
+                    </a>
+                </div>
+              </ScrollAnimate>
+              <ScrollAnimate animateOnScroll>
+                <div className="text-lg text-[var(--color-graylight)]">
+                  Aug 2017 - Jul 2022
+                </div>
+              </ScrollAnimate>
             </div>
           </div>
         </section>
