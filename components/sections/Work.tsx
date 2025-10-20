@@ -172,13 +172,17 @@ export default function Work() {
                           className="w-6 h-6 lg:w-8 lg:h-8 rounded-full flex-shrink-0 object-contain"
                           src="/Cybrance/CybranceIcon.png"
                         />
-                        <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-tight truncate">
-                          Cybrance
-                        </p>
+                        <Scrollanimate animateOnScroll>
+                          <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-tight truncate">
+                            Cybrance
+                          </p>
+                        </Scrollanimate>
                       </div>
-                      <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-tight flex-shrink-0 ml-2">
-                        ONGOING • 2025
-                      </p>
+                      <Scrollanimate animateOnScroll>
+                        <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-tight flex-shrink-0 ml-2">
+                          ONGOING • 2025
+                        </p>
+                      </Scrollanimate>
                     </div>
                     {/* Infinite carousel tech list */}
                     <div className="w-full min-w-0">
