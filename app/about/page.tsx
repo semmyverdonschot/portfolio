@@ -7,14 +7,14 @@ import ScrollAnimate from "@/hooks/Scrollanimate";
 
 const images = [
   "/img/Linkedin.jpeg",
+    "/img/Myself.jpg",
   "/img/Linkedin.jpeg",
-  "/img/Myself.jpg",
   "/img/Myself.jpg",
 ];
 
 const positions = [
   { marginTop: "-2vw", marginLeft: "6vw" },
-  {  marginLeft: "5vw" },
+  { marginLeft: "5vw" },
   { marginTop: "-1vw", marginLeft: "1vw" },
   { marginTop: "-3vw", marginLeft: "8vw" },
 ];
@@ -286,8 +286,19 @@ function AboutPage() {
               </div>
               <ScrollAnimate animateOnScroll>
                 <p className="text-base md:text-lg text-[var(--color-dark)] leading-relaxed">
-                 During my internship at Ovation, I focused on concepting, designing and strategically positioning the agency towards a new target audience in the make industry. I worked on a variety of web projects and gained hands-on experience with HTML, CSS, JavaScript, Figma, and Webflow. I also improved my skills in Excel for data management. I contributed to projects for several brands such as <b>Club Hacienda</b>, <b>Hydrauliek Service Venlo</b>, and <b>Jill en Co</b>, where I developed an Excel-based system to filter and manage over 10,000 products. This experience gave me valuable insights into the workflow of a digital agency and highlighted the importance of both technical and communication skills in delivering successful projects.
-
+                  During my internship at Ovation, I focused on concepting,
+                  designing and strategically positioning the agency towards a
+                  new target audience in the make industry. I worked on a
+                  variety of web projects and gained hands-on experience with
+                  HTML, CSS, JavaScript, Figma, and Webflow. I also improved my
+                  skills in Excel for data management. I contributed to projects
+                  for several brands such as <b>Club Hacienda</b>,{" "}
+                  <b>Hydrauliek Service Venlo</b>, and <b>Jill en Co</b>, where
+                  I developed an Excel-based system to filter and manage over
+                  10,000 products. This experience gave me valuable insights
+                  into the workflow of a digital agency and highlighted the
+                  importance of both technical and communication skills in
+                  delivering successful projects.
                   <a
                     href="https://www.ovation-agency.nl/"
                     target="_blank"
@@ -349,7 +360,15 @@ function AboutPage() {
               </div>
               <ScrollAnimate animateOnScroll>
                 <p className="text-base md:text-lg text-[var(--color-dark)] leading-relaxed">
-                  Cybrance is my own individual project focused on building a modern Dutch/English bot hosting platform from the ground up. I have been responsible for everything from the branding and frontend design to backend development, infrastructure setup and security. My work includes creating a scalable and secure platform, integrating payment systems, managing APIs and database and delivering a seamless user experience. This project has allowed me to apply and expand my skills in fullstack development and cloud infrastructure.
+                  Cybrance is my own individual project focused on building a
+                  modern Dutch/English bot hosting platform from the ground up.
+                  I have been responsible for everything from the branding and
+                  frontend design to backend development, infrastructure setup
+                  and security. My work includes creating a scalable and secure
+                  platform, integrating payment systems, managing APIs and
+                  database and delivering a seamless user experience. This
+                  project has allowed me to apply and expand my skills in
+                  fullstack development and cloud infrastructure.
                   <a
                     href="https://cybrance.nl"
                     target="_blank"
@@ -404,11 +423,13 @@ function AboutPage() {
                 </ScrollAnimate>
                 <ScrollAnimate animateOnScroll>
                   <div className="text-lg text-[var(--color-graylight)]">
-                    <a href="https://www.fontys.nl/Opleidingen/ICT-bachelor-voltijd.htm"
+                    <a
+                      href="https://www.fontys.nl/Opleidingen/ICT-bachelor-voltijd.htm"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center overflow-hidden w-max group text-[var(--color-graylight)] hover:text-[#663366] hover:underline transition-colors text-lg"
-                      aria-label="Visit the Fontys website">
+                      aria-label="Visit the Fontys website"
+                    >
                       Fontys University of Applied Sciences
                     </a>
                   </div>
@@ -424,41 +445,65 @@ function AboutPage() {
               </ScrollAnimate>
               <ul className="flex flex-wrap gap-3 text-lg text-[var(--color-primary)]">
                 <ScrollAnimate animateOnScroll>
-                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">Figma</li>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">
+                    Figma
+                  </li>
                 </ScrollAnimate>
                 <ScrollAnimate animateOnScroll>
-                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">Next.js</li>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">
+                    Next.js
+                  </li>
                 </ScrollAnimate>
                 <ScrollAnimate animateOnScroll>
-                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">React</li>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">
+                    React
+                  </li>
                 </ScrollAnimate>
                 <ScrollAnimate animateOnScroll>
-                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">Linux</li>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">
+                    Linux
+                  </li>
                 </ScrollAnimate>
                 <ScrollAnimate animateOnScroll>
-                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">Frontend</li>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">
+                    Frontend
+                  </li>
                 </ScrollAnimate>
 
                 <ScrollAnimate animateOnScroll>
-                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">TypeScript</li>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">
+                    TypeScript
+                  </li>
                 </ScrollAnimate>
                 <ScrollAnimate animateOnScroll>
-                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">MongoDB</li>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">
+                    MongoDB
+                  </li>
                 </ScrollAnimate>
                 <ScrollAnimate animateOnScroll>
-                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">Git</li>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">
+                    Git
+                  </li>
                 </ScrollAnimate>
                 <ScrollAnimate animateOnScroll>
-                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">Networking</li>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">
+                    Networking
+                  </li>
                 </ScrollAnimate>
                 <ScrollAnimate animateOnScroll>
-                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">Basic Hacking</li>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">
+                    Basic Hacking
+                  </li>
                 </ScrollAnimate>
                 <ScrollAnimate animateOnScroll>
-                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">Node.js & Express</li>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">
+                    Node.js & Express
+                  </li>
                 </ScrollAnimate>
                 <ScrollAnimate animateOnScroll>
-                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">Adobe tools</li>
+                  <li className="bg-[var(--color-dark)] rounded-lg px-4 py-2 font-semibold">
+                    Adobe tools
+                  </li>
                 </ScrollAnimate>
               </ul>
             </div>
@@ -488,21 +533,24 @@ function AboutPage() {
                 </h3>
               </ScrollAnimate>
               <ScrollAnimate animateOnScroll>
-                <div className="text-lg text-[var(--color-graylight)]">
-                   <a href="https://www.ursula.nl/leerlingen/havo/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center overflow-hidden w-max group text-[var(--color-graylight)] hover:text-[#424d94] hover:underline transition-colors text-lg"
-                      aria-label="Visit the Sint Ursula website">
-                      Sint Ursula Horn
-                    </a>
-                </div>
-              </ScrollAnimate>
-              <ScrollAnimate animateOnScroll>
+                   <ScrollAnimate animateOnScroll>
                 <div className="text-lg text-[var(--color-graylight)]">
                   Aug 2017 - Jul 2022
                 </div>
               </ScrollAnimate>
+                <div className="text-lg text-[var(--color-graylight)]">
+                  <a
+                    href="https://www.ursula.nl/leerlingen/havo/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center overflow-hidden w-max group text-[var(--color-graylight)] hover:text-[#424d94] hover:underline transition-colors text-lg"
+                    aria-label="Visit the Sint Ursula website"
+                  >
+                    Sint Ursula Horn
+                  </a>
+                </div>
+              </ScrollAnimate>
+           
             </div>
           </div>
         </section>
