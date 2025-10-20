@@ -12,7 +12,6 @@ export default function Work() {
   const yearRef = useRef<HTMLParagraphElement>(null);
   const card1Ref = useRef<HTMLAnchorElement>(null);
   const card2Ref = useRef<HTMLAnchorElement>(null);
-  const cybranceVideoRef = useRef<HTMLVideoElement>(null);
   const card1VideoRef = useRef<HTMLVideoElement>(null);
   const card2VideoRef = useRef<HTMLVideoElement>(null);
   const revivorVideoRef = useRef<HTMLVideoElement>(null);
