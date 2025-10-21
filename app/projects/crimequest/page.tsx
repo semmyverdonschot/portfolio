@@ -81,16 +81,10 @@ export default function GarageHansPage() {
                 {[
                   "Frontend",
                   "Login & Signup",
-                  "Branding",
-                  "Backend",
-                  "Secure Networking",
-                  "Paymenter",
-                  "Linux",
-                  "API Integration",
-                  "Cloudflare",
-                  "User Authentication",
-                  "Hosting",
-                  "Pterodactyl",
+                  "Encryption",
+                  "UI/UX Design",
+                  "Database management",
+                  "API Intergration",
                 ].map((tag) => (
                   <li
                     key={tag}
@@ -118,15 +112,13 @@ export default function GarageHansPage() {
                   ref={summaryTextRef}
                   className="text-base md:text-2xl text-[var(--color-primary)] font-semibold"
                 >
-                  I worked within a Fontys group for ROSH Studios on a project
-                  commissioned by the Dutch Police to improve recruitment among
-                  detectives and community officers. We created CrimeQuest, an
-                  interactive experience where users solve a crime by collecting
-                  evidence and identifying the suspect. I managed the Git
-                  repository and contributed to the project’s technical
-                  development. Specifically, I built the signup and login
-                  system, as well as the introduction and choose the guilty section of CrimeQuest,
-                  which was developed as a progressive web app (PWA).
+                  I worked in a Fontys group for ROSH Studios on a project for
+                  the Dutch Police to improve recruitment among detectives and
+                  community officers. We created CrimeQuest, an interactive app
+                  where users solve crimes by collecting evidence and
+                  identifying suspects. I managed the Git repository and built
+                  the signup/login system, as well as the introduction and
+                  “choose the guilty” sections of this PWA.
                 </p>
               </div>
               <div className="overflow-hidden">
@@ -138,7 +130,7 @@ export default function GarageHansPage() {
                   className="inline-flex items-center overflow-hidden w-max group text-[var(--color-graylight)] hover:text-[var(--color-primary)] transition-colors text-sm md:text-base font-normal"
                   aria-label="Check the CrimeQuest PWA"
                 >
-                  <span>[VIEW PWA)</span>
+                  <span>[VIEW PWA</span>
                   <svg
                     className="w-5 h-5 ml-1 transform -rotate-45 transition-transform duration-300 group-hover:-translate-y-1"
                     fill="none"
@@ -155,7 +147,6 @@ export default function GarageHansPage() {
                   </svg>
                   <span>]</span>
                 </a>
-
                 <a
                   ref={visitButtonRef}
                   href="https://www.rosh-studios.com/"

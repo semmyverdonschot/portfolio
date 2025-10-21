@@ -355,7 +355,7 @@ function AboutPage() {
                   <span>Security</span>
                 </ScrollAnimate>
                 <ScrollAnimate animateOnScroll>
-                  <span>Cloud</span>
+                  <span>Cloudflare</span>
                 </ScrollAnimate>
               </div>
               <ScrollAnimate animateOnScroll>
