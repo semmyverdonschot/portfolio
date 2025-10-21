@@ -328,7 +328,7 @@ export default function Work() {
                   {/* Project 4 */}
                   <div className="overflow-hidden w-full md:flex-1 max-w-full">
                     <a
-                      href="/work/project-4"
+                      href="/projects/crimequest"
                       className="flex flex-col gap-3 p-4 rounded-2xl bg-[var(--color-dark)] cursor-pointer group relative w-full"
                       onMouseLeave={() => {
                         if (project4VideoRef.current) {
@@ -355,7 +355,7 @@ export default function Work() {
                                   type="video/mp4"
                                 />
                                 <Image
-                                  src="/img/placeholder.webp"
+                                  src="/Crimequest/crimequest.webp"
                                   alt="Project Four Preview"
                                   width={480}
                                   height={288}
@@ -366,8 +366,8 @@ export default function Work() {
                           </div>
                         </div>
                         <Image
-                          src="/img/placeholder.webp"
-                          alt="Project Four Preview"
+                          src="/Crimequest/crimequest.webp"
+                          alt="CrimeQuest Project"
                           width={400}
                           height={250}
                           className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-500 ease-in-out"
@@ -384,14 +384,14 @@ export default function Work() {
                               height="32"
                               decoding="async"
                               className="w-6 h-6 lg:w-8 lg:h-8 rounded-full flex-shrink-0 object-contain"
-                              src="/img/placeholder.webp"
+                              src="/CrimeQuest/logo.png"
                             />
                             <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-tight truncate">
                               Crime Quest
                             </p>
                           </div>
                           <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-tight flex-shrink-0 ml-2">
-                            • 2023
+                            PWA • 2023
                           </p>
                         </div>
 
@@ -400,10 +400,11 @@ export default function Work() {
                           <InfiniteCarousel
                             items={[
                               "HTML",
-                              "CSS",
                               "JAVASCRIPT",
-                              "FORMSPREE",
-                              "API INTEGRATION",
+                              "HANDLEBARS",
+                              "EXPRESS",
+                              "MONGODB",
+                              "CSS",
                             ]}
                           />
                         </div>

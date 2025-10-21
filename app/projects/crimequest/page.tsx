@@ -39,7 +39,7 @@ export default function GarageHansPage() {
               className="text-[11vw] md:text-[12vw] lg:text-[8vw] font-black uppercase text-center block  mt-12 md:mt-20"
               style={{ color: "var(--color-primary)" }}
             >
-              Cybrance
+              CrimeQuest
             </h1>
           </div>
           {/* (for masking the huge text + animation) */}
@@ -60,7 +60,7 @@ export default function GarageHansPage() {
                   ref={yearValueRef}
                   className="text-4xl lg:text-5xl text-[var(--color-primary)] font-semibold tracking-tight leading-[0.8]"
                 >
-                  ON GOING
+                  2023
                 </p>
               </div>
             </div>
@@ -80,7 +80,7 @@ export default function GarageHansPage() {
               <ul className="flex gap-2 flex-wrap">
                 {[
                   "Frontend",
-                  "Responsive Design",
+                  "Login & Signup",
                   "Branding",
                   "Backend",
                   "Secure Networking",
@@ -118,24 +118,27 @@ export default function GarageHansPage() {
                   ref={summaryTextRef}
                   className="text-base md:text-2xl text-[var(--color-primary)] font-semibold"
                 >
-                  Cybrance is a modern bot hosting platform built for
-                  performance, security, and scalability. The platform features
-                  a responsive, branded frontend, a secure backend with payment
-                  integration, API and database management, and efficient
-                  hosting, delivering a seamless and reliable user
-                  experience.{" "}
+                  I worked within a Fontys group for ROSH Studios on a project
+                  commissioned by the Dutch Police to improve recruitment among
+                  detectives and community officers. We created CrimeQuest, an
+                  interactive experience where users solve a crime by collecting
+                  evidence and identifying the suspect. I managed the Git
+                  repository and contributed to the project’s technical
+                  development. Specifically, I built the signup and login
+                  system, as well as the introduction and choose the guilty section of CrimeQuest,
+                  which was developed as a progressive web app (PWA).
                 </p>
               </div>
               <div className="overflow-hidden">
                 <a
                   ref={visitButtonRef}
-                  href="https://cybrance.nl"
+                  href="https://jordankoevoets.nl/crimequest/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center overflow-hidden w-max group text-[var(--color-graylight)] hover:text-[var(--color-primary)] transition-colors text-sm md:text-base font-normal"
-                  aria-label="Check the Cybrance website"
+                  aria-label="Check the CrimeQuest PWA"
                 >
-                  <span>[SEE IT LIVE</span>
+                  <span>[VIEW PWA)</span>
                   <svg
                     className="w-5 h-5 ml-1 transform -rotate-45 transition-transform duration-300 group-hover:-translate-y-1"
                     fill="none"
@@ -155,38 +158,13 @@ export default function GarageHansPage() {
 
                 <a
                   ref={visitButtonRef}
-                  href="https://billing.cybrance.nl"
+                  href="https://www.rosh-studios.com/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center ml-4 overflow-hidden w-max group text-[var(--color-graylight)] hover:text-[var(--color-primary)] transition-colors text-sm md:text-base font-normal"
-                  aria-label="See the panel of Cybrance"
+                  aria-label="Our Project partner ROSH Studios"
                 >
-                  <span>[BILLING AREA</span>
-                  <svg
-                    className="w-5 h-5 ml-1 transform -rotate-45 transition-transform duration-300 group-hover:-translate-y-1"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M3 12h14M12 5l7 7-7 7"
-                    />
-                  </svg>
-                  <span>]</span>
-                </a>
-                <a
-                  ref={visitButtonRef}
-                  href="https://panel.cybrance.nl"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center ml-0 mt-4 md:ml-4 sm:ml-0 overflow-hidden w-max group text-[var(--color-graylight)] hover:text-[var(--color-primary)] transition-colors text-sm md:text-base font-normal"
-                  aria-label="See the panel of Cybrance"
-                >
-                  <span>[VISIT THE PANEL</span>
+                  <span>[ROSH STUDIO&apos;S</span>
                   <svg
                     className="w-5 h-5 ml-1 transform -rotate-45 transition-transform duration-300 group-hover:-translate-y-1"
                     fill="none"

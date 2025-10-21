@@ -7,7 +7,7 @@ import ScrollAnimate from "@/hooks/Scrollanimate";
 
 const images = [
   "/img/Linkedin.jpeg",
-    "/img/Myself.jpg",
+  "/img/Myself.jpg",
   "/img/Linkedin.jpeg",
   "/img/Myself.jpg",
 ];
@@ -533,11 +533,11 @@ function AboutPage() {
                 </h3>
               </ScrollAnimate>
               <ScrollAnimate animateOnScroll>
-                   <ScrollAnimate animateOnScroll>
-                <div className="text-lg text-[var(--color-graylight)]">
-                  Aug 2017 - Jul 2022
-                </div>
-              </ScrollAnimate>
+                <ScrollAnimate animateOnScroll>
+                  <div className="text-lg text-[var(--color-graylight)]">
+                    Aug 2017 - Jul 2022
+                  </div>
+                </ScrollAnimate>
                 <div className="text-lg text-[var(--color-graylight)]">
                   <a
                     href="https://www.ursula.nl/leerlingen/havo/"
@@ -550,7 +550,6 @@ function AboutPage() {
                   </a>
                 </div>
               </ScrollAnimate>
-           
             </div>
           </div>
         </section>
