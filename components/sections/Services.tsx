@@ -90,7 +90,7 @@ export default function Services() {
               <Scrollanimate animateOnScroll>
                 <p className="text-base md:text-lg text-[var(--color-dark)] mt-10 mb-8 max-w-2xl">
                   Enhancing performance and accessibility making sure every
-                  product is fast, secure, and ready to grow.
+                  product is fast, secure and ready to grow.
                 </p>
               </Scrollanimate>
               <div className="flex flex-wrap gap-2 mb-6">

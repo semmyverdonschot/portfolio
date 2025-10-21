@@ -31,7 +31,7 @@ export default function GarageHansPage() {
 
   return (
     <>
-      <section className="pt-40 md:pt-46 overflow-x-hidden">
+      <section className="pt-40 md:pt-46 overflow-hidden">
         <div className="p-4 rounded-2xl bg-[var(--color-dark)] max-w-full overflow-hidden flex flex-col items-center justify-center">
           <div className="w-full flex justify-center items-center overflow-hidden">
             <h1
