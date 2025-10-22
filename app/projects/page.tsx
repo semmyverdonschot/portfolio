@@ -60,94 +60,6 @@ export default function Work() {
               <div className="p-4 rounded-2xl bg-[var(--color-light)] max-w-full overflow-hidden">
                 {/* Project Cards*/}
                 <div className="flex flex-col md:flex-row gap-4 md:gap-6 w-full mb-6">
-                  {/* garage hans verdonschot*/}
-                  <div className="overflow-hidden w-full md:flex-1 max-w-full">
-                    <a
-                      ref={card1Ref}
-                      href="/projects/garage-hans"
-                      className="flex flex-col gap-3 p-4 rounded-2xl bg-[var(--color-dark)] cursor-pointer group relative w-full"
-                      onMouseLeave={() => {
-                        if (card1VideoRef.current) {
-                          card1VideoRef.current.currentTime = 0;
-                        }
-                      }}
-                    >
-                      <div className="relative rounded-lg lg:rounded-xl overflow-hidden w-full h-[260px] md:h-[350px] lg:h-[clamp(500px,32vw,800px)]">
-                        <div className="absolute inset-0 bg-[var(--color-dark)]/30 backdrop-blur-md z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out rounded-lg lg:rounded-xl"></div>
-                        {/* Animated overlay content */}
-                        <div className="absolute inset-0 z-20 flex items-center justify-center">
-                          <div className="overflow-hidden">
-                            <div className="w-80 h-48 md:w-[30rem] md:h-72 overflow-hidden transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                              <video
-                                ref={card1VideoRef}
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                                className="w-full h-full object-cover"
-                              >
-                                <source
-                                  src="/Garagehansverdonschot/preview.webm"
-                                  type="video/webm"
-                                />
-                                <Image
-                                  src="/Garagehansverdonschot/Garage Hans mockup.png"
-                                  alt="Garage Hans Mockup"
-                                  width={480}
-                                  height={288}
-                                  className="w-full h-full object-cover"
-                                />
-                              </video>
-                            </div>
-                          </div>
-                        </div>
-                        <Image
-                          src="/Garagehansverdonschot/Garage Hans mockup.png"
-                          alt="Garage Hans Verdonschot Mockup"
-                          width={400}
-                          height={250}
-                          className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-500 ease-in-out"
-                          priority
-                        />
-                      </div>
-
-                      <div className="flex flex-col gap-3 min-w-0">
-                        <div className="flex justify-between items-center min-w-0">
-                          <div className="flex items-center gap-2 lg:gap-3 min-w-0">
-                            <Image
-                              alt="Garage Hans Verdonschot Logo"
-                              loading="lazy"
-                              width="32"
-                              height="32"
-                              decoding="async"
-                              className="w-6 h-6 lg:w-8 lg:h-8 rounded-full flex-shrink-0 object-contain"
-                              src="/Garagehansverdonschot/small logo.png"
-                            />
-                            <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-tight truncate">
-                              Garage Hans
-                            </p>
-                          </div>
-                          <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-tight flex-shrink-0 ml-2">
-                            Website • 2024
-                          </p>
-                        </div>
-
-                        {/* Infinite carousel tech list */}
-                        <div className="w-full min-w-0">
-                          <InfiniteCarousel
-                            items={[
-                              "HTML",
-                              "CSS",
-                              "JAVASCRIPT",
-                              "FORMSPREE",
-                              "API INTEGRATION",
-                            ]}
-                          />
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-
                   {/* cybrance */}
                   <div className="overflow-hidden w-full md:flex-1 max-w-full">
                     <a
@@ -237,11 +149,98 @@ export default function Work() {
                       </div>
                     </a>
                   </div>
+                  {/* garage hans verdonschot*/}
+                  <div className="overflow-hidden w-full md:flex-1 max-w-full">
+                    <a
+                      ref={card1Ref}
+                      href="/projects/garage-hans"
+                      className="flex flex-col gap-3 p-4 rounded-2xl bg-[var(--color-dark)] cursor-pointer group relative w-full"
+                      onMouseLeave={() => {
+                        if (card1VideoRef.current) {
+                          card1VideoRef.current.currentTime = 0;
+                        }
+                      }}
+                    >
+                      <div className="relative rounded-lg lg:rounded-xl overflow-hidden w-full h-[260px] md:h-[350px] lg:h-[clamp(500px,32vw,800px)]">
+                        <div className="absolute inset-0 bg-[var(--color-dark)]/30 backdrop-blur-md z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out rounded-lg lg:rounded-xl"></div>
+                        {/* Animated overlay content */}
+                        <div className="absolute inset-0 z-20 flex items-center justify-center">
+                          <div className="overflow-hidden">
+                            <div className="w-80 h-48 md:w-[30rem] md:h-72 overflow-hidden transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                              <video
+                                ref={card1VideoRef}
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                className="w-full h-full object-cover"
+                              >
+                                <source
+                                  src="/Garagehansverdonschot/preview.webm"
+                                  type="video/webm"
+                                />
+                                <Image
+                                  src="/Garagehansverdonschot/Garage Hans mockup.png"
+                                  alt="Garage Hans Mockup"
+                                  width={480}
+                                  height={288}
+                                  className="w-full h-full object-cover"
+                                />
+                              </video>
+                            </div>
+                          </div>
+                        </div>
+                        <Image
+                          src="/Garagehansverdonschot/Garage Hans mockup.png"
+                          alt="Garage Hans Verdonschot Mockup"
+                          width={400}
+                          height={250}
+                          className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-500 ease-in-out"
+                          priority
+                        />
+                      </div>
+
+                      <div className="flex flex-col gap-3 min-w-0">
+                        <div className="flex justify-between items-center min-w-0">
+                          <div className="flex items-center gap-2 lg:gap-3 min-w-0">
+                            <Image
+                              alt="Garage Hans Verdonschot Logo"
+                              loading="lazy"
+                              width="32"
+                              height="32"
+                              decoding="async"
+                              className="w-6 h-6 lg:w-8 lg:h-8 rounded-full flex-shrink-0 object-contain"
+                              src="/Garagehansverdonschot/small logo.png"
+                            />
+                            <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-tight truncate">
+                              Garage Hans
+                            </p>
+                          </div>
+                          <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-tight flex-shrink-0 ml-2">
+                            Website • 2024
+                          </p>
+                        </div>
+
+                        {/* Infinite carousel tech list */}
+                        <div className="w-full min-w-0">
+                          <InfiniteCarousel
+                            items={[
+                              "HTML",
+                              "CSS",
+                              "JAVASCRIPT",
+                              "FORMSPREE",
+                              "API INTEGRATION",
+                            ]}
+                          />
+                        </div>
+                      </div>
+                    </a>
+                  </div>
                 </div>
 
                 {/* Project Cards */}
                 <div className="flex flex-col md:flex-row gap-4 md:gap-6 w-full">
-                  {/* CrimeQuest (third card) */}
+                  {/* CrimeQuest  */}
                   <div className="overflow-hidden w-full md:flex-1 max-w-full">
                     <a
                       href="/projects/crimequest"
@@ -267,7 +266,7 @@ export default function Work() {
                                 className="w-full h-full object-cover"
                               >
                                 <source
-                                  src="/img/placeholder.mp4"
+                                  src="/Crimequest/videocrimequest.mp4"
                                   type="video/mp4"
                                 />
                                 <Image
@@ -319,7 +318,7 @@ export default function Work() {
                               "JAVASCRIPT",
                               "HANDLEBARS",
                               "NODE.JS",
-                              "BCRPYPTJS",
+                              "BCRPYCTJS",
                               "EXPRESS",
                               "MONGODB",
                               "CSS",
