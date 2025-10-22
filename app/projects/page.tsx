@@ -271,7 +271,7 @@ export default function Work() {
                                 />
                                 <Image
                                   src="/Crimequest/crimequest.webp"
-                                  alt="Project Four Preview"
+                                  alt="CrimeQuest Project"
                                   width={480}
                                   height={288}
                                   className="w-full h-full object-cover"
@@ -299,7 +299,7 @@ export default function Work() {
                               height="32"
                               decoding="async"
                               className="w-6 h-6 lg:w-8 lg:h-8 rounded-full flex-shrink-0 object-contain"
-                              src="/CrimeQuest/logo.png"
+                              src="/Crimequest/logo.png"
                             />
                             <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-tight truncate">
                               CrimeQuest
