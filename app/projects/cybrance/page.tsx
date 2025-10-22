@@ -189,7 +189,7 @@ export default function GarageHansPage() {
                   className="inline-flex items-center ml-0 mt-4 md:ml-4 sm:ml-0 overflow-hidden w-max group text-[var(--color-graylight)] hover:text-[var(--color-primary)] transition-colors text-sm md:text-base font-normal"
                   aria-label="See the panel of Cybrance"
                 >
-                  <span>[VISIT THE PANEL</span>
+                  <span>[PANEL</span>
                   <svg
                     className="w-5 h-5 ml-1 transform -rotate-45 transition-transform duration-300 group-hover:-translate-y-1"
                     fill="none"

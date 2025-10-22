@@ -225,7 +225,7 @@ export default function Work() {
                               "Pterodactyl",
                               "Paymenter",
                               "Cloudflare",
-                              "UBUNTU",
+                              "Linux",
                               "networking",
                               "vercel",
                               "typescript",
