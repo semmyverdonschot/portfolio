@@ -239,7 +239,7 @@ export default function Work() {
                   </div>
                 </div>
 
-                {/* Project Cards - Row 2 */}
+                {/* Project Cards */}
                 <div className="flex flex-col md:flex-row gap-4 md:gap-6 w-full">
                   {/* CrimeQuest (third card) */}
                   <div className="overflow-hidden w-full md:flex-1 max-w-full">
@@ -303,7 +303,7 @@ export default function Work() {
                               src="/CrimeQuest/logo.png"
                             />
                             <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-tight truncate">
-                              Crime Quest
+                              CrimeQuest
                             </p>
                           </div>
                           <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-tight flex-shrink-0 ml-2">

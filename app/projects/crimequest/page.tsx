@@ -147,6 +147,7 @@ export default function GarageHansPage() {
                   </svg>
                   <span>]</span>
                 </a>
+                
                 <a
                   ref={visitButtonRef}
                   href="https://www.rosh-studios.com/"
@@ -172,95 +173,72 @@ export default function GarageHansPage() {
                   </svg>
                   <span>]</span>
                 </a>
+                    <a
+                  ref={visitButtonRef}
+                  href="https://github.com/Cybrance/CrimeQuest-Login-Signup-Mongodb-bcrypt"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center overflow-hidden ml-4 w-max group text-[var(--color-graylight)] hover:text-[var(--color-primary)] transition-colors text-sm md:text-base font-normal"
+                  aria-label="Check the CrimeQuest PWA Login repository"
+                >
+                  <span>[LOGIN/SIGNUP REPOSITORY </span>
+                  <svg
+                    className="w-5 h-5 ml-1 transform -rotate-45 transition-transform duration-300 group-hover:-translate-y-1"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M3 12h14M12 5l7 7-7 7"
+                    />
+                  </svg>
+                  <span>]</span>
+                </a>
               </div>
             </div>
             {/* gallery*/}
             <div className="col-span-12 w-full flex flex-col gap-4 cursor-none">
               {/* big img */}
-              <Image
-                src="/Cybrance/StatusPage.webp"
-                alt="Status page of Cybrance"
-                width={2400}
-                height={1600}
-                className="block w-full h-[40vw] max-h-[900px] min-h-[120px] sm:h-[56vw] sm:min-h-[320px] object-cover rounded-2xl"
-                priority
-              />
-              {/* big img */}
-              <Image
-                src="/img/placeholder.webp"
-                alt="Placeholder"
-                width={2400}
-                height={1600}
-                className="block w-full h-[40vw] max-h-[900px] min-h-[120px] sm:h-[56vw] sm:min-h-[320px] object-cover rounded-2xl"
-                priority
-              />
-              {/* 2 small img */}
-              <div className="w-full flex gap-4">
-                <div className="w-1/2">
-                  <Image
-                    src="/Cybrance/Pterodactyl Logo.png"
-                    alt="Pterodactyl panel used for hosting Discord bots"
-                    width={1200}
-                    height={800}
-                    className="block w-full h-[48vw] max-h-[1200px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
-                    priority
-                  />
-                </div>
-                <div className="w-1/2">
-                  <Image
-                    src="/Cybrance/paymenter_logo.jpg"
-                    alt="Paymenter integration for handling payments"
-                    width={1200}
-                    height={800}
-                    className="block w-full h-[48vw] max-h-[1200px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
-                    priority
-                  />
-                </div>
+                {/* video */}
+              <div className="w-full overflow-hidden rounded-2xl">
+                <video
+                  src="/Crimequest/crimequest login.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover rounded-2xl"
+                  style={{ background: "#171717" }}
+                  ref={(el) => {
+                    if (el) el.playbackRate = 1.5;
+                  }}
+                  aria-label="Login and Signup functionality demonstration"
+                />
               </div>
-              {/* big img*/}
-              <Image
-                src="/img/placeholder.webp"
-                alt="Placeholder"
-                width={2400}
-                height={1600}
-                className="block w-full h-[40vw] max-h-[900px] min-h-[120px] sm:h-[56vw] sm:min-h-[320px] object-cover rounded-2xl"
-                priority
-              />
-              {/* big img*/}
-              <Image
-                src="/img/placeholder.webp"
-                alt="Placeholder"
-                width={2400}
-                height={1600}
-                className="block w-full h-[40vw] max-h-[900px] min-h-[120px] sm:h-[56vw] sm:min-h-[320px] object-cover rounded-2xl"
-                priority
-              />
-              {/* 2 small img */}
-              <div className="w-full flex gap-4">
-                <div className="w-1/2">
-                  <Image
-                    src="/Cybrance/Pterodactyl Logo.png"
-                    alt="Pterodactyl panel used for hosting Discord bots"
-                    width={1200}
-                    height={800}
-                    className="block w-full h-[48vw] max-h-[1200px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
-                    priority
-                  />
-                </div>
-                <div className="w-1/2">
-                  <Image
-                    src="/Cybrance/paymenter_logo.jpg"
-                    alt="Paymenter integration for handling payments"
-                    width={1200}
-                    height={800}
-                    className="block w-full h-[48vw] max-h-[1200px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
-                    priority
-                  />
-                </div>
+         <div className="w-full overflow-hidden rounded-2xl">
+                <video
+                  src="/Crimequest/playthrough.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover rounded-2xl"
+                  style={{ background: "#171717" }}
+                  ref={(el) => {
+                    if (el) el.playbackRate = 1.5;
+                  }}
+                  aria-label="playthrough demonstration"
+                />
+              </div>
+
               </div>
             </div>
           </div>
-        </div>
+        
         <div className="flex flex-row justify-center space-x-6 md:space-x-8 pt-12 md:pt-16">
           <a
             href="/projects"
