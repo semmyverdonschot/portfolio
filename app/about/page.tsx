@@ -108,7 +108,7 @@ function AboutPage() {
                 transition: "opacity 0.5s, margin 0.5s",
               }}
             >
-              <div className="relative w-full h-full rounded-xl overflow-hidden shadow-lg mb-[-8vw]">
+              <div className="relative w-full h-full rounded-xl overflow-hidden mb-[-8vw]">
                 <Image
                   src={src}
                   alt={`About photo ${idx + 1}`}
