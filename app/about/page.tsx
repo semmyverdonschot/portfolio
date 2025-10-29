@@ -346,9 +346,6 @@ function AboutPage() {
                   <span>Fullstack</span>
                 </ScrollAnimate>
                 <ScrollAnimate animateOnScroll>
-                  <span>Branding</span>
-                </ScrollAnimate>
-                <ScrollAnimate animateOnScroll>
                   <span>Infrastructure</span>
                 </ScrollAnimate>
                 <ScrollAnimate animateOnScroll>

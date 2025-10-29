@@ -301,6 +301,7 @@ export default function HeroVideo({
             />
 
             {/* Video element */}
+
             <video
               ref={videoElRef}
               poster="/img/placeholder.webp"
@@ -334,7 +335,6 @@ export default function HeroVideo({
                 srcLang="en"
                 label="English captions"
                 src="/videos/hero-video-captions.vtt"
-                default
               />
             </video>
 

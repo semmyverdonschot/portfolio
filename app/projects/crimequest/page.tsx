@@ -147,7 +147,7 @@ export default function GarageHansPage() {
                   </svg>
                   <span>]</span>
                 </a>
-                
+
                 <a
                   ref={visitButtonRef}
                   href="https://www.rosh-studios.com/"
@@ -173,7 +173,7 @@ export default function GarageHansPage() {
                   </svg>
                   <span>]</span>
                 </a>
-                    <a
+                <a
                   ref={visitButtonRef}
                   href="https://github.com/Cybrance/CrimeQuest-Login-Signup-Mongodb-bcrypt"
                   target="_blank"
@@ -203,7 +203,7 @@ export default function GarageHansPage() {
             {/* gallery*/}
             <div className="col-span-12 w-full flex flex-col gap-4 cursor-none">
               {/* big img */}
-                {/* video */}
+              {/* video */}
               <div className="w-full overflow-hidden rounded-2xl">
                 <video
                   src="/Crimequest/crimequest login.mp4"
@@ -219,7 +219,7 @@ export default function GarageHansPage() {
                   aria-label="Login and Signup functionality demonstration"
                 />
               </div>
-         <div className="w-full overflow-hidden rounded-2xl">
+              <div className="w-full overflow-hidden rounded-2xl">
                 <video
                   src="/Crimequest/playthrough.mp4"
                   autoPlay
@@ -234,11 +234,10 @@ export default function GarageHansPage() {
                   aria-label="playthrough demonstration"
                 />
               </div>
-
-              </div>
             </div>
           </div>
-        
+        </div>
+
         <div className="flex flex-row justify-center space-x-6 md:space-x-8 pt-12 md:pt-16">
           <a
             href="/projects"
