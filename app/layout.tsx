@@ -4,7 +4,6 @@ import "./globals.css";
 import DocumentTitleChanger from "@/components/DocumentTitleChanger";
 import ClientWrapper from "@/components/ui/ClientWrapper";
 import { Analytics } from "@vercel/analytics/react";
-import CursorDot from "@/components/ui/CursorDot";
 import { albertSans } from "./fonts";
 export { metadata } from "./metadata";
 
@@ -28,7 +27,6 @@ export default function RootLayout({
           </div>
           <Analytics />
           <SpeedInsights />
-          <CursorDot />
         </body>
       </ReactLenis>
     </html>

@@ -440,7 +440,7 @@ function AboutPage() {
             <div className="w-full md:w-1/3 flex flex-col md:pl-24">
               <ScrollAnimate animateOnScroll>
                 <h3 className="text-2xl md:text-3xl font-black text-[var(--color-dark)] mb-6 uppercase tracking-wide">
-                  SKILLS
+                  WHAT I LEARNED
                 </h3>
               </ScrollAnimate>
               <ul className="flex flex-wrap gap-3 text-lg text-[var(--color-primary)]">
