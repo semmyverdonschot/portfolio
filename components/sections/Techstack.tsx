@@ -30,7 +30,7 @@ export default function Techstack() {
     { name: "Gsap", target: "_blank", href: "https://greensock.com/gsap/" },
     { name: "Tailwind", target: "_blank", href: "https://tailwindcss.com/" },
     { name: "Mongodb", target: "_blank", href: "https://www.mongodb.com/" },
-    { name: "Angular", target: "_blank", href: "https://angular.io/" },
+    { name: "Linux", target: "_blank", href: "https://www.linux.org/" },
   ];
 
   const desktopTopCount = 3;
@@ -121,7 +121,7 @@ export default function Techstack() {
             })}
           </div>
 
-          {/* Desktop: 3 top + rest bottom, split bottom into dynamic columns */}
+          {/* Desktop: 3 top REst on BOTTOMs */}
           <div className="hidden md:grid md:grid-cols-3 w-full bg-[var(--color-primary)]">
             {gridTop.map((tech, i) => {
               const iconSrc = `/svg/${slugify(tech.name)}.svg`;
