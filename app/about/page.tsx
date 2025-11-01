@@ -327,7 +327,7 @@ function AboutPage() {
               </ScrollAnimate>
             </div>
           </div>
-          {/* Cybrance (was Projects) */}
+          {/* Cytric (was Projects) */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start w-full">
             <div>
               <h2 className="text-[8vw] md:text-[5vw] lg:text-[4vw] font-black leading-none text-[var(--color-dark)] mb-4">
@@ -357,15 +357,16 @@ function AboutPage() {
               </div>
               <ScrollAnimate animateOnScroll>
                 <p className="text-base md:text-lg text-[var(--color-dark)] leading-relaxed">
-                  Cytric (previously known as Cybrance) is my own individual project focused on building a
-                  modern Dutch/English bot hosting platform from the ground up.
-                  I have been responsible for everything from the branding and
-                  frontend design to backend development, infrastructure setup
-                  and security. My work includes creating a scalable and secure
-                  platform, integrating payment systems, managing APIs and
-                  database and delivering a seamless user experience. This
-                  project has allowed me to apply and expand my skills in
-                  fullstack development and cloud infrastructure.
+                  Cytric (previously known as Cybrance) is my own individual
+                  project focused on building a modern Dutch/English bot hosting
+                  platform from the ground up. I have been responsible for
+                  everything from the branding and frontend design to backend
+                  development, infrastructure setup and security. My work
+                  includes creating a scalable and secure platform, integrating
+                  payment systems, managing APIs and database and delivering a
+                  seamless user experience. This project has allowed me to apply
+                  and expand my skills in fullstack development and cloud
+                  infrastructure.
                   <a
                     href="https://cytric.nl"
                     target="_blank"
