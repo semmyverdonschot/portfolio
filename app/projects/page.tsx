@@ -60,11 +60,11 @@ export default function Work() {
               <div className="p-4 rounded-2xl bg-[var(--color-light)] max-w-full overflow-hidden">
                 {/* Project Cards*/}
                 <div className="flex flex-col md:flex-row gap-4 md:gap-6 w-full mb-6">
-                  {/* cybrance */}
+                  {/* Cytric */}
                   <div className="overflow-hidden w-full md:flex-1 max-w-full">
                     <a
                       ref={card2Ref}
-                      href="/projects/cybrance"
+                      href="/projects/cytric"
                       className="flex flex-col gap-3 p-4 rounded-2xl bg-[var(--color-dark)] cursor-pointer group relative w-full"
                       onMouseLeave={() => {
                         if (card2VideoRef.current) {
@@ -87,12 +87,12 @@ export default function Work() {
                                 className="w-full h-full object-cover"
                               >
                                 <source
-                                  src="/Cybrance/preview.webm"
+                                  src="/Cytric/preview.webm"
                                   type="video/webm"
                                 />
                                 <Image
-                                  src="/Cybrance/servers.png"
-                                  alt="Cybrance Project Preview"
+                                  src="/Cytric/servers.png"
+                                  alt="Cytric Project Preview"
                                   width={480}
                                   height={288}
                                   className="w-full h-full object-cover"
@@ -102,8 +102,8 @@ export default function Work() {
                           </div>
                         </div>
                         <Image
-                          src="/Cybrance/servers.png"
-                          alt="Cybrance Project Preview"
+                          src="/Cytric/servers.png"
+                          alt="Cytric Project Preview"
                           width={400}
                           height={250}
                           className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-500 ease-in-out"
@@ -114,16 +114,16 @@ export default function Work() {
                         <div className="flex justify-between items-center min-w-0">
                           <div className="flex items-center gap-2 lg:gap-3 min-w-0">
                             <Image
-                              alt="Cybrance logo"
+                              alt="Cytric logo"
                               loading="lazy"
                               width="32"
                               height="32"
                               decoding="async"
                               className="w-6 h-6 lg:w-8 lg:h-8 rounded-full flex-shrink-0 object-contain"
-                              src="/Cybrance/CybranceIcon.png"
+                              src="/Cytric/CytricIcon.png"
                             />
                             <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-tight truncate">
-                              Cybrance
+                              Cytric
                             </p>
                           </div>
                           <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-tight flex-shrink-0 ml-2">

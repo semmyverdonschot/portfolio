@@ -377,7 +377,7 @@ export default function Navbar() {
           </a>
 
           <a
-            href="https://github.com/cybrance"
+            href="https://github.com/semmyverdonschot"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center overflow-hidden w-max group"

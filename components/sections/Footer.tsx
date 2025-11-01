@@ -116,7 +116,7 @@ export default function Footer() {
           {/* GitHub */}
           <div className="order-2 md:order-3">
             <a
-              href="https://github.com/cybrance"
+              href="https://github.com/semmyverdonschot"
               target="_blank"
               className="text-sm uppercase tracking-wider"
             >

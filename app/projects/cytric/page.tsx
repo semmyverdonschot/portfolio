@@ -39,7 +39,7 @@ export default function GarageHansPage() {
               className="text-[11vw] md:text-[12vw] lg:text-[8vw] font-black uppercase text-center block  mt-12 md:mt-20"
               style={{ color: "var(--color-primary)" }}
             >
-              Cybrance
+              Cytric
             </h1>
           </div>
           {/* (for masking the huge text + animation) */}
@@ -121,11 +121,11 @@ export default function GarageHansPage() {
                   ref={summaryTextRef}
                   className="text-base md:text-2xl text-[var(--color-primary)] font-semibold"
                 >
-                  Cytric (previously known as Cybrance) is a modern bot hosting platform built for
-                  performance, security, and scalability. The platform features
-                  a responsive, branded frontend, a secure backend with payment
-                  integration, API and database management, and efficient
-                  hosting, delivering a seamless and reliable user
+                  Cytric (previously known as Cybrance) is a modern bot hosting
+                  platform built for performance, security, and scalability. The
+                  platform features a responsive, branded frontend, a secure
+                  backend with payment integration, API and database management,
+                  and efficient hosting, delivering a seamless and reliable user
                   experience.{" "}
                 </p>
               </div>
@@ -237,18 +237,18 @@ export default function GarageHansPage() {
             <div className="col-span-12 w-full flex flex-col gap-4 cursor-none">
               {/* big img */}
               <Image
-                src="/Cybrance/Homepage.png"
-                alt="Cybrance homepage showing status and dashboard"
+                src="/Cytric/Homepage.png"
+                alt="Cytric homepage showing status and dashboard"
                 width={2400}
                 height={1600}
                 className="block w-full h-[40vw] max-h-[900px] min-h-[120px] sm:h-[56vw] sm:min-h-[320px] object-cover rounded-2xl"
                 priority
-                aria-label="Cybrance homepage screenshot"
+                aria-label="Cytric homepage screenshot"
               />
               {/* video */}
               <div className="w-full overflow-hidden rounded-2xl">
                 <video
-                  src="/Cybrance/Cybrance Panel.mp4"
+                  src="/Cytric/Cytric Panel.mp4"
                   autoPlay
                   loop
                   muted
@@ -258,15 +258,15 @@ export default function GarageHansPage() {
                   ref={(el) => {
                     if (el) el.playbackRate = 1.5;
                   }}
-                  aria-label="Cybrance panel demo video"
+                  aria-label="Cytric panel demo video"
                 />
               </div>
               {/* 2 small img */}
               <div className="w-full flex gap-4">
                 <div className="w-1/2">
                   <Image
-                    src="/Cybrance/EinaFont.png"
-                    alt="EinaFont typeface used for Cybrance branding"
+                    src="/Cytric/EinaFont.png"
+                    alt="EinaFont typeface used for Cytric branding"
                     width={1200}
                     height={800}
                     className="block w-full h-[48vw] max-h-[1200px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
@@ -276,20 +276,20 @@ export default function GarageHansPage() {
                 </div>
                 <div className="w-1/2">
                   <Image
-                    src="/Cybrance/CybranceInfrastructure Design.png"
-                    alt="Infrastructure design diagram for Cybrance platform"
+                    src="/Cytric/CytricInfrastructure Design.png"
+                    alt="Infrastructure design diagram for Cytric platform"
                     width={1200}
                     height={800}
                     className="block w-full h-[48vw] max-h-[1200px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
                     priority
-                    aria-label="Cybrance infrastructure diagram"
+                    aria-label="Cytric infrastructure diagram"
                   />
                 </div>
               </div>
               {/* video */}
               <div className="w-full overflow-hidden rounded-2xl">
                 <video
-                  src="/Cybrance/BillingSystem.mp4"
+                  src="/Cytric/BillingSystem.mp4"
                   autoPlay
                   loop
                   muted
@@ -299,7 +299,7 @@ export default function GarageHansPage() {
                   ref={(el) => {
                     if (el) el.playbackRate = 1;
                   }}
-                  aria-label="Cybrance billing system demo video"
+                  aria-label="Cytric billing system demo video"
                 />
               </div>
               {/* 2 small img */}
@@ -313,7 +313,7 @@ export default function GarageHansPage() {
                     aria-label="Open source panel Pterodactyl.io"
                   >
                     <Image
-                      src="/Cybrance/Pterodactyl Logo.png"
+                      src="/Cytric/Pterodactyl Logo.png"
                       alt="Pterodactyl open source panel for hosting Discord bots"
                       width={1200}
                       height={800}
@@ -337,7 +337,7 @@ export default function GarageHansPage() {
                     aria-label="Open source CMS system Paymenter"
                   >
                     <Image
-                      src="/Cybrance/paymenter_logo.jpg"
+                      src="/Cytric/paymenter_logo.jpg"
                       alt="Paymenter open source CMS system for payments"
                       width={1200}
                       height={800}
@@ -355,41 +355,41 @@ export default function GarageHansPage() {
               </div>
               {/* big img */}
               <Image
-                src="/Cybrance/logo designs.jpg"
-                alt="Logo design explorations for Cybrance"
+                src="/Cytric/logo designs.jpg"
+                alt="Logo design explorations for Cytric"
                 width={2400}
                 height={1600}
                 className="block w-full h-[40vw] max-h-[900px] min-h-[120px] sm:h-[56vw] sm:min-h-[320px] object-cover rounded-2xl mt-4"
                 priority
-                aria-label="Cybrance logo designs"
+                aria-label="Cytric logo designs"
               />
               {/* big img  */}
               <Image
-                src="/Cybrance/Style.png"
-                alt="Cybrance style and branding overview"
+                src="/Cytric/Style.png"
+                alt="Cytric style and branding overview"
                 width={2400}
                 height={1600}
                 className="block w-full h-[40vw] max-h-[900px] min-h-[120px] sm:h-[56vw] sm:min-h-[320px] object-cover rounded-2xl mt-4"
                 priority
-                aria-label="Cybrance style branding"
+                aria-label="Cytric style branding"
               />
               {/* 2 small img */}
               <div className="w-full flex gap-4">
                 <div className="w-1/2">
                   <Image
-                    src="/Cybrance/StatusPage.webp"
-                    alt="Cybrance status page showing system health"
+                    src="/Cytric/StatusPage.webp"
+                    alt="Cytric status page showing system health"
                     width={1200}
                     height={800}
                     className="block w-full h-[48vw] max-h-[1200px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
                     priority
-                    aria-label="Cybrance status page screenshot"
+                    aria-label="Cytric status page screenshot"
                   />
                 </div>
                 <div className="w-1/2">
                   <Image
-                    src="/Cybrance/Tawkto.png"
-                    alt="Tawk.to live chat integration for Cybrance"
+                    src="/Cytric/Tawkto.png"
+                    alt="Tawk.to live chat integration for Cytric"
                     width={1200}
                     height={800}
                     className="block w-full h-[48vw] max-h-[1200px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"

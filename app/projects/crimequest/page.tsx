@@ -175,7 +175,7 @@ export default function GarageHansPage() {
                 </a>
                 <a
                   ref={visitButtonRef}
-                  href="https://github.com/Cybrance/CrimeQuest-Login-Signup-Mongodb-bcrypt"
+                  href="https://github.com/semmyverdonschot/CrimeQuest-Login-Signup-Mongodb-bcrypt"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center overflow-hidden ml-4 w-max group text-[var(--color-graylight)] hover:text-[var(--color-primary)] transition-colors text-sm md:text-base font-normal"

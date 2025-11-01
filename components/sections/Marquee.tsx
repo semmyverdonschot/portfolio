@@ -8,12 +8,12 @@ const images = [
   "WeldasHomepage.png",
 
   "PortfolioMenu.png",
-  "CybranceBilling.png",
+  "CytricBilling.png",
   "GarageHomepage.png",
-  "LoginCybrance.png",
+  "LoginCytric.png",
   "LoginCrimequest.png",
 
-  "CybranceDashboard.png",
+  "CytricDashboard.png",
 ];
 
 export default function Marquee() {
