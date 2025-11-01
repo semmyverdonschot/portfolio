@@ -331,7 +331,7 @@ function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start w-full">
             <div>
               <h2 className="text-[8vw] md:text-[5vw] lg:text-[4vw] font-black leading-none text-[var(--color-dark)] mb-4">
-                CYBRANCE
+                CYTRIC
               </h2>
               <div className="mt-2 text-base text-[var(--color-dark)] font-medium">
                 2024 – Present
@@ -357,7 +357,7 @@ function AboutPage() {
               </div>
               <ScrollAnimate animateOnScroll>
                 <p className="text-base md:text-lg text-[var(--color-dark)] leading-relaxed">
-                  Cybrance is my own individual project focused on building a
+                  Cytric (previously known as Cybrance) is my own individual project focused on building a
                   modern Dutch/English bot hosting platform from the ground up.
                   I have been responsible for everything from the branding and
                   frontend design to backend development, infrastructure setup
@@ -367,13 +367,13 @@ function AboutPage() {
                   project has allowed me to apply and expand my skills in
                   fullstack development and cloud infrastructure.
                   <a
-                    href="https://cybrance.nl"
+                    href="https://cytric.nl"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center overflow-hidden mt-10 w-max group text-[var(--color-dark)] hover:text-[var(--color-dark)] transition-colors text-base md:text-base"
-                    aria-label="Visit Cybrance website"
+                    aria-label="Visit Cytric website"
                   >
-                    <span>[VISIT CYBRANCE </span>
+                    <span>[VISIT CYTRIC </span>
                     <svg
                       className="w-5 h-5 ml-1 transform -rotate-45 transition-transform duration-300 group-hover:-translate-y-1"
                       fill="none"
