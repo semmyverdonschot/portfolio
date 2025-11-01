@@ -132,11 +132,11 @@ export default function GarageHansPage() {
               <div className="overflow-hidden">
                 <a
                   ref={visitButtonRef}
-                  href="https://cybrance.nl"
+                  href="https://cytric.nl"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center overflow-hidden w-max group text-[var(--color-graylight)] hover:text-[var(--color-primary)] transition-colors text-sm md:text-base font-normal"
-                  aria-label="Check the Cybrance website"
+                  aria-label="Check the Cytric website"
                 >
                   <span>[SEE IT LIVE</span>
                   <svg
@@ -158,11 +158,11 @@ export default function GarageHansPage() {
 
                 <a
                   ref={visitButtonRef}
-                  href="https://billing.cybrance.nl"
+                  href="https://billing.cytric.nl"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center ml-4 overflow-hidden w-max group text-[var(--color-graylight)] hover:text-[var(--color-primary)] transition-colors text-sm md:text-base font-normal"
-                  aria-label="See the panel of Cybrance"
+                  aria-label="See the panel of Cytric"
                 >
                   <span>[BILLING AREA</span>
                   <svg
@@ -183,11 +183,11 @@ export default function GarageHansPage() {
                 </a>
                 <a
                   ref={visitButtonRef}
-                  href="https://panel.cybrance.nl"
+                  href="https://panel.cytric.nl"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center ml-0 mt-4 md:ml-4 sm:ml-0 overflow-hidden w-max group text-[var(--color-graylight)] hover:text-[var(--color-primary)] transition-colors text-sm md:text-base font-normal"
-                  aria-label="See the panel of Cybrance"
+                  aria-label="See the panel of Cytric"
                 >
                   <span>[PANEL</span>
                   <svg
@@ -208,11 +208,11 @@ export default function GarageHansPage() {
                 </a>
                 <a
                   ref={visitButtonRef}
-                  href="https://status.cybrance.nl"
+                  href="https://status.cytric.nl"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center ml-4 overflow-hidden w-max group text-[var(--color-graylight)] hover:text-[var(--color-primary)] transition-colors text-sm md:text-base font-normal"
-                  aria-label="See the  status of all the services"
+                  aria-label="See the status of all the services"
                 >
                   <span>[STATUS PAGE</span>
                   <svg
