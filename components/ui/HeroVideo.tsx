@@ -330,12 +330,17 @@ export default function HeroVideo({
                 }
                 type="video/webm"
               />
-              <track
-                kind="captions"
-                srcLang="en"
-                label="English captions"
-                src="/videos/hero-video-captions.vtt"
-              />
+
+              {/* Only show captions if NOT on mobile */}
+              {!isMobile && (
+                <track
+                  kind="captions"
+                  srcLang="en"
+                  label="English captions"
+                  src="/videos/hero-video-captions.vtt"
+                  default
+                />
+              )}
             </video>
 
             {/* Mobile mute button */}
