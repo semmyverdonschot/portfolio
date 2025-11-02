@@ -301,7 +301,6 @@ export default function HeroVideo({
             />
 
             {/* Video element */}
-
             <video
               ref={videoElRef}
               poster="/img/placeholder.webp"
@@ -330,18 +329,24 @@ export default function HeroVideo({
                 }
                 type="video/webm"
               />
-
-              {/* Only show captions if NOT on mobile */}
-              {!isMobile && (
-                <track
-                  kind="captions"
-                  srcLang="en"
-                  label="English captions"
-                  src="/videos/hero-video-captions.vtt"
-                  default
-                />
-              )}
+              <track
+                kind="captions"
+                srcLang="en"
+                label="English captions"
+                src="/videos/hero-video-captions.vtt"
+                default
+              />
             </video>
+
+            <style jsx>{`
+              @media (max-width: 768px) {
+                video::cue {
+                  display: none;
+                  color: transparent;
+                  background: transparent;
+                }
+              }
+            `}</style>
 
             {/* Mobile mute button */}
             {isMobile && (
