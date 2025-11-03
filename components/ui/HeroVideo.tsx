@@ -329,24 +329,7 @@ export default function HeroVideo({
                 }
                 type="video/webm"
               />
-              <track
-                kind="captions"
-                srcLang="en"
-                label="English captions"
-                src="/videos/hero-video-captions.vtt"
-                default
-              />
             </video>
-
-            <style jsx>{`
-              @media (max-width: 768px) {
-                video::cue {
-                  display: none;
-                  color: transparent;
-                  background: transparent;
-                }
-              }
-            `}</style>
 
             {/* Mobile mute button */}
             {isMobile && (
