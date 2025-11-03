@@ -338,7 +338,7 @@ function AboutPage() {
               </div>
             </div>
             <div className="flex flex-col gap-6">
-              <div className="flex gap-6 text-[var(--color-graylight)] font-semibold uppercase text-base md:text-lg">
+              <div className="flex flex-wrap gap-6 text-[var(--color-graylight)] font-semibold uppercase text-base md:text-lg">
                 <ScrollAnimate animateOnScroll>
                   <span>Founder</span>
                 </ScrollAnimate>
