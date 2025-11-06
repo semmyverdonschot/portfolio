@@ -1,6 +1,7 @@
 # Next.js Portfolio Website
 
 This is my portfolio website built with Next.js, TypeScript and Tailwind CSS.
+Live: https://semmyverdonschot.com/
 
 ## Getting Started
 
@@ -12,7 +13,7 @@ Make sure you have Node.js and npm installed on your machine.
 
 Here are the links incase you do not.
 
-- [Node.js](httpshttps://nodejs.org/) (v20 or later recommended)
+- [Node.js](https://nodejs.org/) (v20 or later recommended)
 - [npm](https://www.npmjs.com/get-npm)
 
 ### Installation
