@@ -120,7 +120,7 @@ export default function LacersPage() {
               <div className="overflow-hidden">
                 <a
                   ref={visitButtonRef}
-                  href="#"
+                  href="https://lacers.vercel.app"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center overflow-hidden w-max group text-[var(--color-graylight)] hover:text-[var(--color-primary)] transition-colors text-sm md:text-base font-normal"
