@@ -1,6 +1,7 @@
 # Next.js Portfolio Website
 
 This is my portfolio website built with Next.js, TypeScript and Tailwind CSS.
+Live: https://semmyverdonschot.com/
 
 ## Getting Started
 
@@ -12,7 +13,7 @@ Make sure you have Node.js and npm installed on your machine.
 
 Here are the links incase you do not.
 
-- [Node.js](httpshttps://nodejs.org/) (v20 or later recommended)
+- [Node.js](https://nodejs.org/) (v20 or later recommended)
 - [npm](https://www.npmjs.com/get-npm)
 
 ### Installation
@@ -50,16 +51,16 @@ You should run `npm run build` before this.
 
 ### `npx prettier . --check --write`
 
-I like to use rettier this command helps organize and structure any changes to the code.
+I like to use prettier this command helps organize and structure any changes to the code.
 
 ## Tech Stack
 
 - [Next.js](https://nextjs.org/) React framework for production
 - [React](https://reactjs.org/) A JavaScript library for building user interfaces
-- [TypeScript](https://www.typescriptlang.org/) Typed superset of JavaScript
+- [TypeScript](https://www.typescriptlang.org/) TypeScript is a typed JavaScript superset that compiles to plain JavaScript
 - [Tailwind CSS](https://tailwindcss.com/) A CSS framework
 - [GSAP](https://greensock.com/gsap/) JavaScript animation library
-- [ESLint](https://eslint.org/) Linting utility for JavaScript and JSX
+- [ESLint](https://eslint.org/) Linting utility for TypeScript, and TSX 
 - [Prettier](https://prettier.io/) code formatter
 
 ## Folder Structure
