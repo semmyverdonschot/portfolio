@@ -8,7 +8,7 @@ import Scrollanimate from "@/hooks/Scrollanimate";
 export default function Work() {
   const sectionRef = useRef<HTMLElement>(null);
   const garageVideoRef = useRef<HTMLVideoElement>(null);
-  const revivorVideoRef = useRef<HTMLVideoElement>(null);
+  const LacersVideoRef = useRef<HTMLVideoElement>(null);
 
   return (
     <section ref={sectionRef} className="pt-32 md:pt-48">

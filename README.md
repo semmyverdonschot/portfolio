@@ -110,7 +110,7 @@ Here is an overview of the project's folder structure:
 │   ├── Cytric/
 │   ├── Garagehansverdonsot/
 │   ├── img/
-│   ├── Revivor/
+│   ├── Lacers/
 │   ├── static/
 │   ├── svg/
 │   └── videos/

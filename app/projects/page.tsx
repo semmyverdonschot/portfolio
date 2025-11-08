@@ -14,7 +14,7 @@ export default function Work() {
   const card2Ref = useRef<HTMLAnchorElement>(null);
   const card1VideoRef = useRef<HTMLVideoElement>(null);
   const card2VideoRef = useRef<HTMLVideoElement>(null);
-  const revivorVideoRef = useRef<HTMLVideoElement>(null);
+  const lacersVideoRef = useRef<HTMLVideoElement>(null);
   const project4VideoRef = useRef<HTMLVideoElement>(null);
 
   const animatedUpRefs = useMemo(
@@ -328,14 +328,14 @@ export default function Work() {
                       </div>
                     </a>
                   </div>
-                  {/* Drink Revivor */}
+                  {/* Drink lacers */}
                   <div className="overflow-hidden w-full md:flex-1 max-w-full">
                     <a
-                      href="/projects/revivor"
+                      href="/projects/lacers"
                       className="flex flex-col gap-3 p-4 rounded-2xl bg-[var(--color-dark)] cursor-pointer group relative w-full"
                       onMouseLeave={() => {
-                        if (revivorVideoRef.current) {
-                          revivorVideoRef.current.currentTime = 0;
+                        if (lacersVideoRef.current) {
+                          lacersVideoRef.current.currentTime = 0;
                         }
                       }}
                     >
@@ -346,7 +346,7 @@ export default function Work() {
                           <div className="overflow-hidden">
                             <div className="w-80 h-48 md:w-[30rem] md:h-72 overflow-hidden transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
                               <video
-                                ref={revivorVideoRef}
+                                ref={lacersVideoRef}
                                 autoPlay
                                 loop
                                 muted
@@ -354,12 +354,12 @@ export default function Work() {
                                 className="w-full h-full object-cover"
                               >
                                 <source
-                                  src="/Revivor/preview.mp4"
+                                  src="/lacers/preview.mp4"
                                   type="video/mp4"
                                 />
                                 <Image
-                                  src="/Revivor/preview.webp"
-                                  alt="Revivor Preview"
+                                  src="/lacers/preview.webp"
+                                  alt="lacers Preview"
                                   width={480}
                                   height={288}
                                   className="w-full h-full object-cover"
@@ -369,8 +369,8 @@ export default function Work() {
                           </div>
                         </div>
                         <Image
-                          src="/Revivor/revivorbanner.webp"
-                          alt="Revivor Preview"
+                          src="/lacers/lacersbanner.webp"
+                          alt="lacers Preview"
                           width={400}
                           height={250}
                           className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-500 ease-in-out"
@@ -381,31 +381,34 @@ export default function Work() {
                         <div className="flex justify-between items-center min-w-0">
                           <div className="flex items-center gap-2 lg:gap-3 min-w-0">
                             <Image
-                              alt="Revivor Logo"
+                              alt="lacers Logo"
                               loading="lazy"
                               width="32"
                               height="32"
                               decoding="async"
                               className="w-6 h-6 lg:w-8 lg:h-8 rounded-full flex-shrink-0 object-contain"
-                              src="/Revivor/revivor logo.webp"
+                              src="/lacers/lacers logo.webp"
                             />
                             <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-tight truncate">
-                              Drink Revivor
+                              Lacers
                             </p>
                           </div>
                           <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-tight flex-shrink-0 ml-2">
-                            CONCEPT • 2024
+                            WEBSHOP • 2024
                           </p>
                         </div>
                         {/* Infinite carousel tech list */}
                         <div className="w-full min-w-0">
                           <InfiniteCarousel
                             items={[
-                              "HTML",
-                              "CSS",
-                              "JAVASCRIPT",
-                              "FORMSPREE",
+                              "TYPESCRIPT",
+                              "SUPABASE",
+                              "RESEND",
+                              "REACT",
                               "API INTEGRATION",
+                              "CUSTOM CMS",
+                              "NEXT.js",
+                              "AUTH",
                             ]}
                           />
                         </div>

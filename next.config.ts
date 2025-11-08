@@ -2,11 +2,11 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   experimental: {
-    optimizeCss: true, // Next.js built-in CSS optimization
+    optimizeCss: true,
   },
   images: {
-    formats: ["image/avif", "image/webp"], // modern formats
-    unoptimized: true, // optional if using external images
+    formats: ["image/avif", "image/webp"],
+    unoptimized: true,
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",
