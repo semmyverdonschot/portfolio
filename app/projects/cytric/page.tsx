@@ -60,7 +60,7 @@ export default function GarageHansPage() {
                   ref={yearValueRef}
                   className="text-4xl lg:text-5xl text-[var(--color-primary)] font-semibold tracking-tight leading-[0.8]"
                 >
-                  ON GOING
+                  2025
                 </p>
               </div>
             </div>

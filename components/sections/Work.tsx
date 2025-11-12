@@ -89,7 +89,7 @@ export default function Work() {
                       </div>
                       <Scrollanimate animateOnScroll>
                         <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-tight flex-shrink-0 ml-2">
-                          ONGOING • 2025
+                          PLATFORM • 2025
                         </p>
                       </Scrollanimate>
                     </div>

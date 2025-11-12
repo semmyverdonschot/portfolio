@@ -42,7 +42,7 @@ export default function Work() {
                   ref={yearRef}
                   className="text-base font-medium text-[var(--color-dark)] text-left"
                 >
-                  [2024-2025]
+                  [2023-2025]
                 </p>
               </div>
 
@@ -127,7 +127,7 @@ export default function Work() {
                             </p>
                           </div>
                           <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-tight flex-shrink-0 ml-2">
-                            ONGOING • 2025
+                            PLATFORM • 2025
                           </p>
                         </div>
                         {/* Infinite carousel tech list */}
@@ -394,7 +394,7 @@ export default function Work() {
                             </p>
                           </div>
                           <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-tight flex-shrink-0 ml-2">
-                            WEBSHOP • 2024
+                            ONGOING • 2025
                           </p>
                         </div>
                         {/* Infinite carousel tech list */}
