@@ -1,4 +1,4 @@
-# Next.js Portfolio Website
+# My Portfolio Website
 
 This is my portfolio website built with Next.js, TypeScript and Tailwind CSS.
 Live: https://semmyverdonschot.com/
