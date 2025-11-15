@@ -7,8 +7,7 @@ import Scrollanimate from "@/hooks/Scrollanimate";
 
 export default function Work() {
   const sectionRef = useRef<HTMLElement>(null);
-  const garageVideoRef = useRef<HTMLVideoElement>(null);
-  const LacersVideoRef = useRef<HTMLVideoElement>(null);
+  const lacerzVideoRef = useRef<HTMLVideoElement>(null);
 
   return (
     <section ref={sectionRef} className="pt-32 md:pt-48">
@@ -112,13 +111,14 @@ export default function Work() {
                   </div>
                 </a>
               </div>
-              {/* garage hans*/}
+
+              {/* lacerz (replaces Garage Hans) */}
               <a
-                href="/projects/garage-hans"
+                href="/projects/lacerz"
                 className="flex flex-col gap-3 p-4 rounded-2xl bg-[var(--color-dark)] cursor-pointer group relative w-full md:flex-1 min-w-0"
                 onMouseLeave={() => {
-                  if (garageVideoRef.current) {
-                    garageVideoRef.current.currentTime = 0;
+                  if (lacerzVideoRef.current) {
+                    lacerzVideoRef.current.currentTime = 0;
                   }
                 }}
               >
@@ -130,20 +130,17 @@ export default function Work() {
                     <div className="overflow-hidden">
                       <div className="w-80 h-48 md:w-[30rem] md:h-72 overflow-hidden transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
                         <video
-                          ref={garageVideoRef}
+                          ref={lacerzVideoRef}
                           autoPlay
                           loop
                           muted
                           playsInline
                           className="w-full h-full object-cover"
                         >
-                          <source
-                            src="/Garagehansverdonschot/preview.webm"
-                            type="video/webm"
-                          />
+                          <source src="/Lacerz/preview.mp4" type="video/mp4" />
                           <Image
-                            src="/Garagehansverdonschot/preview.webp"
-                            alt="Garage Hans Preview"
+                            src="/Lacerz/preview.webp"
+                            alt="lacerz Preview"
                             width={480}
                             height={288}
                             className="w-full h-full object-cover"
@@ -154,8 +151,8 @@ export default function Work() {
                   </div>
 
                   <Image
-                    src="/Garagehansverdonschot/Garage Hans mockup.png"
-                    alt="Garage Hans Verdonschot mockup"
+                    src="/Lacerz/lacerzbanner.webp"
+                    alt="lacerz Banner"
                     width={400}
                     height={250}
                     className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-500 ease-in-out rounded-lg lg:rounded-xl"
@@ -167,37 +164,40 @@ export default function Work() {
                   <div className="flex justify-between items-center min-w-0">
                     <div className="flex items-center gap-2 lg:gap-3 min-w-0">
                       <Image
-                        alt="Garage Hans Verdonschot Logo"
+                        alt="lacerz Logo"
                         loading="lazy"
                         width="32"
                         height="32"
                         decoding="async"
                         className="w-6 h-6 lg:w-8 lg:h-8 rounded-full flex-shrink-0 object-contain"
-                        src="/Garagehansverdonschot/small logo.png"
+                        src="/Lacerz/lacerzlogo.webp"
                       />
                       <Scrollanimate animateOnScroll>
                         <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-tight truncate">
-                          Garage Hans
+                          lacerz
                         </p>
                       </Scrollanimate>
                     </div>
                     <Scrollanimate animateOnScroll>
                       <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-tight flex-shrink-0 ml-2">
-                        Website 2024
+                        ONGOING • 2025
                       </p>
                     </Scrollanimate>
                   </div>
 
-                  {/* tech*/}
+                  {/* tech */}
                   <div className="w-full min-w-0">
                     <InfiniteCarousel
                       items={[
-                        "HTML",
-                        "CSS",
-                        "JAVASCRIPT",
-                        "FORMSPREE",
-                        "API INTEGRATION",
+                        "TYPESCRIPT",
+                        "SUPABASE",
                         "SEO",
+                        "RECAPTCHA",
+                        "REACT",
+                        "API INTEGRATION",
+                        "CUSTOM CMS",
+                        "NEXT.js",
+                        "AUTH",
                       ]}
                     />
                   </div>
@@ -207,10 +207,12 @@ export default function Work() {
           </div>
         </div>
       </div>
+
+      {/* See more link */}
       <div className="flex flex-row justify-center space-x-6 md:space-x-8 pt-12 md:pt-16">
         <a
           href="/projects"
-          className="flex items-center font-bold aoverflow-hidden w-max group text-[var(--color-dark)] hover:text-[var(--color-dark)] transition-colors text-lg md:text-lg"
+          className="flex items-center font-bold overflow-hidden w-max group text-[var(--color-dark)] hover:text-[var(--color-dark)] transition-colors text-lg md:text-lg"
           aria-label="see more about my work and projects"
         >
           <span>[SEE ALL</span>

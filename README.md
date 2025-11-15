@@ -60,7 +60,7 @@ I like to use prettier this command helps organize and structure any changes to 
 - [TypeScript](https://www.typescriptlang.org/) TypeScript is a typed JavaScript superset that compiles to plain JavaScript
 - [Tailwind CSS](https://tailwindcss.com/) A CSS framework
 - [GSAP](https://greensock.com/gsap/) JavaScript animation library
-- [ESLint](https://eslint.org/) Linting utility for TypeScript, and TSX 
+- [ESLint](https://eslint.org/) Linting utility for TypeScript, and TSX
 - [Prettier](https://prettier.io/) code formatter
 
 ## Folder Structure
@@ -111,7 +111,7 @@ Here is an overview of the project's folder structure:
 │   ├── Cytric/
 │   ├── Garagehansverdonsot/
 │   ├── img/
-│   ├── Lacers/
+│   ├── lacerz/
 │   ├── static/
 │   ├── svg/
 │   └── videos/

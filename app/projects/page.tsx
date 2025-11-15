@@ -14,7 +14,7 @@ export default function Work() {
   const card2Ref = useRef<HTMLAnchorElement>(null);
   const card1VideoRef = useRef<HTMLVideoElement>(null);
   const card2VideoRef = useRef<HTMLVideoElement>(null);
-  const lacersVideoRef = useRef<HTMLVideoElement>(null);
+  const lacerzVideoRef = useRef<HTMLVideoElement>(null);
   const project4VideoRef = useRef<HTMLVideoElement>(null);
 
   const animatedUpRefs = useMemo(
@@ -236,16 +236,16 @@ export default function Work() {
                   </div>
                 </div>
 
-                {/* Second Row — Lacers first, CrimeQuest second */}
+                {/* Second Row — lacerz first, CrimeQuest second */}
                 <div className="flex flex-col md:flex-row gap-4 md:gap-6 w-full">
-                  {/* Lacers */}
+                  {/* lacerz */}
                   <div className="overflow-hidden w-full md:flex-1 max-w-full">
                     <a
-                      href="/projects/lacers"
+                      href="/projects/lacerz"
                       className="flex flex-col gap-3 p-4 rounded-2xl bg-[var(--color-dark)] cursor-pointer group relative w-full"
                       onMouseLeave={() => {
-                        if (lacersVideoRef.current) {
-                          lacersVideoRef.current.currentTime = 0;
+                        if (lacerzVideoRef.current) {
+                          lacerzVideoRef.current.currentTime = 0;
                         }
                       }}
                     >
@@ -255,17 +255,20 @@ export default function Work() {
                           <div className="overflow-hidden">
                             <div className="w-80 h-48 md:w-[30rem] md:h-72 overflow-hidden transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
                               <video
-                                ref={lacersVideoRef}
+                                ref={lacerzVideoRef}
                                 autoPlay
                                 loop
                                 muted
                                 playsInline
                                 className="w-full h-full object-cover"
                               >
-                                <source src="/lacers/preview.mp4" type="video/mp4" />
+                                <source
+                                  src="/Lacerz/preview.mp4"
+                                  type="video/mp4"
+                                />
                                 <Image
-                                  src="/lacers/preview.webp"
-                                  alt="lacers Preview"
+                                  src="/Lacerz/preview.webp"
+                                  alt="lacerz Preview"
                                   width={480}
                                   height={288}
                                   className="w-full h-full object-cover"
@@ -275,8 +278,8 @@ export default function Work() {
                           </div>
                         </div>
                         <Image
-                          src="/lacers/lacersbanner.webp"
-                          alt="lacers Preview"
+                          src="/Lacerz/lacerzbanner.webp"
+                          alt="lacerz Preview"
                           width={400}
                           height={250}
                           className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-500 ease-in-out"
@@ -287,16 +290,16 @@ export default function Work() {
                         <div className="flex justify-between items-center min-w-0">
                           <div className="flex items-center gap-2 lg:gap-3 min-w-0">
                             <Image
-                              alt="lacers Logo"
+                              alt="lacerz Logo"
                               loading="lazy"
                               width="32"
                               height="32"
                               decoding="async"
                               className="w-6 h-6 lg:w-8 lg:h-8 rounded-full flex-shrink-0 object-contain"
-                              src="/lacers/lacerslogo.webp"
+                              src="/Lacerz/lacerzlogo.webp"
                             />
                             <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-tight truncate">
-                              Lacers
+                              lacerz
                             </p>
                           </div>
                           <p className="text-sm md:text-lg uppercase font-semibold text-[var(--color-primary)] tracking-tight flex-shrink-0 ml-2">
@@ -308,7 +311,8 @@ export default function Work() {
                             items={[
                               "TYPESCRIPT",
                               "SUPABASE",
-                              "RESEND",
+                              "SEO",
+                              "RECAPTCHA",
                               "REACT",
                               "API INTEGRATION",
                               "CUSTOM CMS",
@@ -345,7 +349,10 @@ export default function Work() {
                                 playsInline
                                 className="w-full h-full object-cover"
                               >
-                                <source src="/Crimequest/videocrimequest.mp4" type="video/mp4" />
+                                <source
+                                  src="/Crimequest/videocrimequest.mp4"
+                                  type="video/mp4"
+                                />
                                 <Image
                                   src="/Crimequest/crimequest.webp"
                                   alt="CrimeQuest Project"
@@ -393,7 +400,7 @@ export default function Work() {
                               "JAVASCRIPT",
                               "HANDLEBARS",
                               "NODE.JS",
-                              "BCRPYCTJS",
+                              "BCRYPTJS",
                               "EXPRESS",
                               "MONGODB",
                               "CSS",

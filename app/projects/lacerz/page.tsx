@@ -5,7 +5,7 @@ import { useRef, useMemo } from "react";
 import { useSlideTogether } from "@/hooks/useStaggerSlide";
 import Image from "next/image";
 
-export default function LacersPage() {
+export default function LacerzPage() {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const yearLabelRef = useRef<HTMLParagraphElement>(null);
   const yearValueRef = useRef<HTMLParagraphElement>(null);
@@ -39,7 +39,7 @@ export default function LacersPage() {
               className="text-[11vw] md:text-[12vw] lg:text-[8vw] font-black uppercase text-center block  mt-12 md:mt-20"
               style={{ color: "var(--color-primary)" }}
             >
-              Lacers
+              lacerz
             </h1>
           </div>
           {/* (for masking the huge text + animation) */}
@@ -81,12 +81,14 @@ export default function LacersPage() {
                 {[
                   "TYPESCRIPT",
                   "SUPABASE",
-                  "RESEND",
                   "REACT",
                   "API INTEGRATION",
                   "CUSTOM CMS",
                   "NEXT.js",
                   "AUTH",
+                  "RESPONSIVE DESIGN",
+                  "RECAPTCHA",
+                  "SEO",
                 ].map((tag) => (
                   <li
                     key={tag}
@@ -114,17 +116,33 @@ export default function LacersPage() {
                   ref={summaryTextRef}
                   className="text-base md:text-2xl text-[var(--color-primary)] font-semibold"
                 >
-                  Lacers is a modern webshop for custom shoelaces. The project features a custom CMS for managing products and orders, secure authentication with Supabase, and email notifications with Resend. The frontend is built with Next.js and React, providing a fast and responsive user experience.
+                  <p>
+                    Lacerz is a modern webshop featuring a custom CMS, Supabase
+                    for authentication, database and storage, complete webshop
+                    essentials such as product management, categories, filters,
+                    search and server-side product rendering for
+                    rich metadata and SEO, with visual design crafted in
+                    collaboration with visual designer{" "}
+                    <a
+                      href="https://maxvaneijk.com"
+                      target="_blank"
+                      style={{ textDecoration: "underline" }}
+                      rel="noopener noreferrer"
+                    >
+                      Max Van Eijk
+                    </a>
+                    .
+                  </p>
                 </p>
               </div>
               <div className="overflow-hidden">
                 <a
                   ref={visitButtonRef}
-                  href="https://lacers.vercel.app"
+                  href="https://lacerz.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center overflow-hidden w-max group text-[var(--color-graylight)] hover:text-[var(--color-primary)] transition-colors text-sm md:text-base font-normal"
-                  aria-label="Check out the Lacers webshop"
+                  aria-label="Check out the lacerz webshop"
                 >
                   <span>[VISIT WEBSHOP</span>
                   <svg
@@ -150,7 +168,7 @@ export default function LacersPage() {
               {/* video */}
               <div className="w-full overflow-hidden rounded-2xl">
                 <video
-                  src="/Lacers/preview.mp4"
+                  src="/Lacerz/preview.mp4"
                   autoPlay
                   loop
                   muted
@@ -160,7 +178,7 @@ export default function LacersPage() {
                   ref={(el) => {
                     if (el) el.playbackRate = 1.5;
                   }}
-                  aria-label="Lacers webshop preview"
+                  aria-label="lacerz webshop preview"
                 />
               </div>
             </div>
