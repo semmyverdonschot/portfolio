@@ -312,6 +312,7 @@ export default function Work() {
                               "TYPESCRIPT",
                               "SUPABASE",
                               "SEO",
+                              "CLOUDFLARE",
                               "RECAPTCHA",
                               "REACT",
                               "API INTEGRATION",

@@ -196,6 +196,8 @@ export default function Work() {
                         "REACT",
                         "API INTEGRATION",
                         "CUSTOM CMS",
+                        "TAILWINDCSS",
+                        "CLOUDFLARE",
                         "NEXT.js",
                         "AUTH",
                       ]}

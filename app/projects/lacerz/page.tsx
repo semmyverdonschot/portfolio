@@ -86,6 +86,7 @@ export default function LacerzPage() {
                   "CUSTOM CMS",
                   "NEXT.js",
                   "AUTH",
+                  "CLOUDFLARE",
                   "RESPONSIVE DESIGN",
                   "RECAPTCHA",
                   "SEO",
@@ -164,27 +165,114 @@ export default function LacerzPage() {
               </div>
             </div>
             {/* gallery*/}
-            <div className="col-span-12 w-full flex flex-col gap-4 cursor-none">
-              {/* video */}
-              <div className="w-full overflow-hidden rounded-2xl">
-                <video
-                  src="/Lacerz/preview.mp4"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full h-full object-cover rounded-2xl"
-                  style={{ background: "#171717" }}
-                  ref={(el) => {
-                    if (el) el.playbackRate = 1.5;
-                  }}
-                  aria-label="lacerz webshop preview"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
+                     <div className="col-span-12 w-full flex flex-col gap-4 cursor-none">
+                       {/* big img */}
+                       <Image
+                         src="/Lacerz/Homepage.png"
+                         alt="Lacerz homepage showing status and dashboard"
+                         width={2400}
+                         height={1600}
+                         className="block w-full h-[40vw] max-h-[900px] min-h-[120px] sm:h-[56vw] sm:min-h-[320px] object-cover rounded-2xl"
+                         priority
+                         aria-label="Lacerz homepage screenshot"
+                       />
+                       {/* video */}
+                       <div className="w-full overflow-hidden rounded-2xl">
+                         <video
+                           src="/Lacerz/lacerz_admin.mp4"
+                           autoPlay
+                           loop
+                           muted
+                           playsInline
+                           className="w-full h-full object-cover rounded-2xl"
+                           style={{ background: "#171717" }}
+                           ref={(el) => {
+                             if (el) el.playbackRate = 1.5;
+                           }}
+                           aria-label="Lacerz admin panel demo video"
+                         />
+                       </div>
+                       {/* 2 small img */}
+                       <div className="w-full flex gap-4">
+                         <div className="w-1/2">
+                           <Image
+                             src="/Lacerz/Poppins.png"
+                             alt="Poppins typeface used for Lacerz branding"
+                             width={1200}
+                             height={800}
+                             className="block w-full h-[48vw] max-h-[1200px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
+                             priority
+                             aria-label="Poppins branding screenshot"
+                           />
+                         </div>
+                         <div className="w-1/2">
+                           <Image
+                             src="/Lacerz/Adminflow.png"
+                             alt="Infrastructure design diagram for Lacerz platform"
+                             width={1200}
+                             height={800}
+                             className="block w-full h-[46vw] max-h-[1200px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
+                             priority
+                             aria-label="Lacerz infrastructure diagram"
+                           />
+                         </div>
+                       </div>
+                       {/* video */}
+                       <div className="w-full overflow-hidden rounded-2xl">
+                         <video
+                           src="/lacerz/lacerz_admin.mp4"
+                           autoPlay
+                           loop
+                           muted
+                           playsInline
+                           className="w-full h-full object-cover rounded-2xl"
+                           style={{ background: "#171717" }}
+                           ref={(el) => {
+                             if (el) el.playbackRate = 1;
+                           }}
+                           aria-label="Lacerz admin panel demo video"
+                         />
+                       </div>
+                       
+                     
+                       {/* big img  */}
+                       <Image
+                         src="/Lacerz/style.png"
+                         alt="Lacerz style and branding overview"
+                         width={2400}
+                         height={1600}
+                         className="block w-full h-[40vw] max-h-[900px] min-h-[120px] sm:h-[56vw] sm:min-h-[320px] object-cover rounded-2xl mt-4"
+                         priority
+                         aria-label="Lacerz style branding"
+                       />
+                       {/* 2 small img */}
+                       <div className="w-full flex gap-4">
+                         <div className="w-1/2">
+                           <Image
+                             src="/Cytric/StatusPage.webp"
+                             alt="Cytric status page showing system health"
+                             width={1200}
+                             height={800}
+                             className="block w-full h-[48vw] max-h-[1200px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
+                             priority
+                             aria-label="Cytric status page screenshot"
+                           />
+                         </div>
+                         <div className="w-1/2">
+                           <Image
+                             src="/Cytric/Tawkto.png"
+                             alt="Tawk.to live chat integration for Cytric"
+                             width={1200}
+                             height={800}
+                             className="block w-full h-[48vw] max-h-[1200px] min-h-[80px] sm:h-[38vw] sm:min-h-[180px] object-cover rounded-2xl"
+                             priority
+                             aria-label="Tawk.to live chat screenshot"
+                           />
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
         <div className="flex flex-row justify-center space-x-6 md:space-x-8 pt-12 md:pt-16">
           <a
             href="/projects"
